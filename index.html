@@ -29,7 +29,10 @@
           </h1>
         </a>
       </header>
-      <main>
+      <main class="relative">
+        <a href="/resume/" class="px-10 h-10 bg-white text-black ring(2 inset black) flex items-center absolute -top-5 left-1/2 z-10 -translate-x-1/2 rounded shadow-2xl transition hover:(scale-110) focus:(scale-110) dark:(ring-transparent bg-black text-white)">
+          <b>My Resume</b>
+        </a>
         <section class="work pt-12 border(b gray-500 opacity-25) bg(gray-50 opacity-50) relative lg:(pt-32) dark:bg(black opacity-25)">
           <main-heading title="Work"></main-heading>
           <template v-for="(work_type, index) in work">
