@@ -8,7 +8,7 @@
     <meta name="description" content="Author: Craig Erskine, Illustrator: Craig Erskine, Category: Web Developer/UX Design" />
     <meta name="author" content="Craig Erskine" />
     <link href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -44,16 +44,16 @@
                 <a :href="case_study.href" class="work-item w-1/4 bg-center flex hover:(w-1/2) focus:(w-1/2) transition-all relative group" v-for="(case_study, index) in work_type.case" :style="((work_type.title !== 'Web') ? 'background-image: url(\'/assets/img/bg-wood.png\')' : '')">
                   <figure :class="['w-full h-full bg(center cover black)', ((index % 2 == 0) ? 'bg-opacity-10' : 'bg-opacity-25')]" :style="'background-image: url(/assets/img/work-'+ slug(case_study.title) + ((work_type.title == 'Web') ? '.jpg' : '.png') +');'">
                     <figcaption class="bg(white) text-gray-600 flex items-center absolute inset-x-4 bottom-4 opacity-0 transition-all duration-500 lg:(group-hover:(opacity-100) group-focus:(opacity-100))">
-                      <i :class="'fal fa-fw '+ ((work_type.title == 'Illustration') ? 'fa-draw-polygon' : 'fa-globe') +' fa-lg ml-4 hidden xl:(block)'" :title="work_type.title"></i>
+                      <i :class="'fa-light fa-fw '+ ((work_type.title == 'Illustration') ? 'fa-draw-polygon' : 'fa-globe') +' fa-lg ml-4 hidden xl:(block)'" :title="work_type.title"></i>
                       <h3 class="p-2 text-base font-bold truncate xl:(p-4 text-2xl)">{{ case_study.title }} <small class="text-xs xl:(text-sm) tracking-tight block opacity-80">{{ case_study.sub }}</small></h3>
                       <ul class="ml-auto pr-4 -space-x-2 text(sm center) hidden xl:(flex)">
                         <li v-for="(tag, index) in case_study.tags" class="ring(2 inset gray-100 opacity-75) w-10 h-10 bg-gray-300 text-[18px] flex items-center justify-center rounded-full shadow-md">
-                          <template v-if="tag.title == 'Sketch'"><i class="fab fa-sketch" :title="tag.title"></i></template>
-                          <template v-if="tag.title == 'Figma'"><i class="fab fa-figma" :title="tag.title"></i></template>
-                          <template v-if="tag.title == 'HTML'"><i class="fab fa-html5" :title="tag.title"></i></template>
-                          <template v-if="tag.title == 'CSS'"><i class="fab fa-css3-alt" :title="tag.title"></i></template>
-                          <template v-if="tag.title == 'JS'"><i class="fab fa-js" :title="tag.title"></i></template>
-                          <template v-if="tag.title == 'Vue'"><i class="fab fa-vuejs" :title="tag.title"></i></template>
+                          <template v-if="tag == 'Sketch'"><i class="fa-brands fa-sketch" :title="tag"></i></template>
+                          <template v-if="tag == 'Figma'"><i class="fa-brands fa-figma" :title="tag"></i></template>
+                          <template v-if="tag == 'HTML'"><i class="fa-brands fa-html5" :title="tag"></i></template>
+                          <template v-if="tag == 'CSS'"><i class="fa-brands fa-css3-alt" :title="tag"></i></template>
+                          <template v-if="tag == 'JS'"><i class="fa-brands fa-js" :title="tag"></i></template>
+                          <template v-if="tag == 'Vue'"><i class="fa-brands fa-vuejs" :title="tag"></i></template>
                         </li>
                       </ul>
                     </figcaption>
@@ -99,7 +99,7 @@
               <article-heading sub="Social Media" ico="share-alt-square">Stalk Me</article-heading>
               <ul class="mb-16 space-x-5 flex flex-wrap justify-center lg:(mb-0 justify-start)">
                 <li v-for="(item, index) in soc">
-                  <a :href="item.href" :class="'w-12 h-12 text-2xl lg:(w-16 h-16 text-4xl) flex items-center justify-center ring(2 inset '+ item.color+'-500 opacity-50) rounded-full text-'+ item.color +'-500 hover:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) focus:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) transition'"><i :class="'fab fa-fw fa-'+ item.ico" :title="item.title"></i></a>
+                  <a :href="item.href" :class="'w-12 h-12 text-2xl lg:(w-16 h-16 text-4xl) flex items-center justify-center ring(2 inset '+ item.color+'-500 opacity-50) rounded-full text-'+ item.color +'-500 hover:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) focus:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) transition'"><i :class="'fa-brands fa-fw fa-'+ item.ico" :title="item.title"></i></a>
                 </li>
               </ul>
             </div>
@@ -158,7 +158,7 @@
       Vue.component('article-heading', {
         template: `
           <h3 class="mx-auto mb-10 space-x-4 w-full max-w-lg text-xl font-bold flex items-center lg:(max-w-none text-3xl)">
-            <span class="flex items-center justify-center opacity-50"><i :class="'fad fa-fw fa-'+ ico"></i></span>
+            <span class="flex items-center justify-center opacity-50"><i :class="'fa-light fa-fw fa-'+ ico"></i></span>
             <span class="flex flex-col flex-col-reverse">
               <slot></slot>
               <small class="text(xs) uppercase opacity-90 dark:opacity-80">{{ sub }}</small>
@@ -180,20 +180,20 @@
             work: [
               {
                 title: 'Web', active: true, case: [
-                  { title: 'OpenEmu', sub: 'Web UX', href: 'https://openemu.org/', tags: [{ title: 'HTML' }, { title: 'CSS' }, { title: 'JS' }, { title: 'Vue' }], },
-                  { title: 'Legend of Mana', sub: 'Web UX + CMS', href: 'https://legendofmana.info/', tags: [{ title: 'Sketch' }, { title: 'HTML' }, { title: 'CSS' }, { title: 'JS' }], },
-                  { title: 'bioplan', sub: '[OFFLINE] Web UX + CMS', href: '#', tags: [{ title: 'Figma' }, { title: 'HTML' }, { title: 'CSS' }, { title: 'JS' }, ], },
-                  { title: 'Wisconsin Music', sub: 'Web UX + CMS', href: 'https://wisconsinmusic.net/', tags: [{ title: 'Sketch' }, { title: 'HTML' }, { title: 'CSS' }, { title: 'JS' }], },
+                  { title: 'OpenEmu', sub: 'Web UX', href: 'https://openemu.org/', tags: ['HTML', 'CSS', 'JS', 'Vue'], },
+                  { title: 'Legend of Mana', sub: 'Web UX + CMS', href: 'https://legendofmana.info/', tags: ['Sketch', 'HTML', 'CSS', 'JS'], },
+                  { title: 'bioplan', sub: '[OFFLINE] Web UX + CMS', href: '#', tags: ['Figma', 'HTML', 'CSS', 'JS'], },
+                  { title: 'Wisconsin Music', sub: 'Web UX + CMS', href: 'https://wisconsinmusic.net/', tags: ['Sketch', 'HTML', 'CSS', 'JS'], },
                 ]
               },
               {
                 title: 'Illustration', active: false, case: [
-                  { title: 'Gamecube', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: [{ title: 'Sketch' }, { title: 'Figma' }], },
-                  { title: 'Dreamcast', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: [{ title: 'Sketch' }, { title: 'Figma' }], },
-                  { title: 'Turbografx', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: [{ title: 'Sketch' }, { title: 'Figma' }], },
-                  { title: 'PS Vita', sub: 'System Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: [{ title: 'Sketch' }, { title: 'Figma' }], },
-                  //{ title: 'Neo Geo Pocket color', sub: 'System Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: [{ title: 'Sketch' }, { title: 'Figma' }], },
-                  //{ title: 'PCE 8bitdo', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: [{ title: 'Sketch' }, { title: 'Figma' }], },
+                  { title: 'Gamecube', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: ['Sketch', 'Figma'], },
+                  { title: 'Dreamcast', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: ['Sketch', 'Figma'], },
+                  { title: 'Turbografx', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: ['Sketch', 'Figma'], },
+                  { title: 'PS Vita', sub: 'System Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: ['Sketch', 'Figma'], },
+                  //{ title: 'Neo Geo Pocket color', sub: 'System Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: ['Sketch', 'Figma'], },
+                  //{ title: 'PCE 8bitdo', sub: 'Controller Illustration', href: 'https://dribbble.com/craigerskine/projects/464116-OpenEmu', tags: ['Sketch', 'Figma'], },
                 ]
               },
             ],
