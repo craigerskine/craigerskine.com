@@ -107,7 +107,7 @@
               <template v-for="(media_group, index) in media_current">
                 <article-heading sub="Currently" :ico="((media_group.title == 'Playing') ? 'gamepad-alt' : 'list-music')">{{ media_group.title +((media_group.title == 'Listening') ? '' : '') }}</article-heading>
                 <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full max-w-[466px] bg-bottom bg-no-repeat flex items-end justify-between lg:(mb-32)" style="background-image: url('/assets/img/media-shelf.png');">
-                  <li v-for="(item, index) in media_group.list" :class="['flex-1 justify-center', index === 2 ? 'hidden sm:(flex)' : 'flex']">
+                  <li v-for="(item, index) in media_group.list" :class="['flex-1 justify-center', index === 2 ? 'hidden xs:(flex)' : 'flex']">
                     <a :href="item.href" :class="'media-case media-'+ item.media +' group flex relative transition-all transform hover:(-translate-y-2) focus:(-translate-y-2)'">
                       <figure class="flex w-full">
                         <img :src="'/assets/img/media/'+ ((media_group.title == 'Playing') ? 'games' : 'music') +'/'+ item.media +''+ ((media_group.title == 'Playing') ? '' : '-'+slug(item.artist)) +'-'+ slug(item.title) +'.jpg'" :alt="item.title" class="w-full h-full" />
@@ -286,6 +286,9 @@
         mode: "silent",
         theme: {
           extend: {
+            screens: {
+              'xs': '425px',
+            },
             colors: {
               gray: twindColors.gray,
             },
