@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="min-h-screen bg-gray-50 dark:(bg(gray-900))" hidden>
+<html lang="en" class="min-h-screen bg-gray-50 font-sans dark:(bg(gray-900))" hidden>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Author: Craig Erskine, Illustrator: Craig Erskine, Category: Web Developer/UX Design" />
     <meta name="author" content="Craig Erskine" />
-    <link href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&family=Cabin+Sketch&display=swap" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -20,7 +21,7 @@
   <body class="min-h-screen text-gray-600 dark:text-gray-400">
 
     <div class="page min-h-screen bg(gray-50 opacity-90) flex flex-col divide(y gray-500 opacity-10) dark:(bg-transparent)" v-cloak>
-      <header class="hero md:min-h-[50vh] flex relative overflow-hidden">
+      <header class="hero flex relative overflow-hidden md:(min-h-[50vh])">
         <a href="/" class="container m-auto py-16 px-4 block group">
           <i class="logo block absolute right-4 lg:right-16 top-1/2 z-10 opacity-25 filter transition-all group-hover:(animate-blob opacity-75) group-focus:(animate-blob opacity-75)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto p-4 md:p-6 w-[calc(30vw+10vh)] h-[calc(30vw+10vh)] fill-current bg(black opacity-50) text-white block rounded-full shadow-2xl transform -translate-y-1/2"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></i>
           <h1 class="intro first-line::text-gray-900 dark:first-line::text-white font-black text-[calc(4.5vw+1vmin)] leading-tight relative z-20">
@@ -30,11 +31,8 @@
         </a>
       </header>
       <main class="relative">
-        <a href="/resume/" class="absolute top-2 right-2 z-10 transition hover:(text-yellow-500 animate-blob) focus:(text-yellow-500 animate-blob) lg:(top-5 right-5)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 50" width="180" height="50" role="img" class="w-16 h-auto fill-current lg:(w-32)">
-            <title>My Resume</title>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="m.158737 1.08332c-.270923.71888-.1866361 2.78667.188643 4.59509.37528 1.8074.89405 11.78789 1.15293 22.17789.25989 10.39.67129 19.4699.91512 20.1775.33916.9824 5.38235 1.2734 21.29257 1.2295 11.4661-.0327 27.6212.2257 35.8994.5739s23.4048.1194 33.6146-.5096c10.21-.628 33.464-1.3264 51.676-1.5531s33.383-.436 33.714-.4646c.33-.0286.885-7.0591 1.232-15.6243.603-14.8871-.593-27.9259-2.765-30.13562-.408-.41458-18.426-.859792-40.041-.989475-136.185898-.818946-136.373539-.817925-136.879263.522815zm116.643263 3.95075c34.889.73624 47.796.67599 53.853-.25119l3.681-.56367.717 5.84289c.448 3.6506.221 8.5632-.608 13.095-1.3 7.1101-1.43 15.5753-.298 19.3831.524 1.7645.177 1.8554-4.305 1.1293-8.797-1.4244-74.8931-.5983-88.6611 1.109-12.2718 1.5215-28.9938 1.2151-66.8418-1.2233l-8.14278-.5239-.49168-14.7267c-.26992-8.0986-.27393-17.0202-.00903-19.82524l.48164-5.10054 38.75615.47789c21.3156.26345 53.6569.79342 71.8686 1.17736zm-88.1331 9.20753c-.3682.3737-.6693 5.1986-.6693 10.7219 0 8.2446.269 10.0407 1.5052 10.0407 1.479 0 2.0138-2.2699 1.6235-6.8926-.1505-1.7798.3231-2.2894 2.1012-2.2598 1.6054.0256 3.1497 1.4082 5.1335 4.5951 1.5613 2.5059 3.4798 4.5573 4.2645 4.5573 2.038 0 1.7801-.9455-1.6647-6.1206l-3.0554-4.589 2.6771-2.1719c2.3179-1.8809 2.5196-2.4691 1.5072-4.395-.6432-1.2223-2.3009-2.66-3.6826-3.1951-2.8918-1.1191-8.7548-1.2948-9.7402-.291zm40.5252.7842c-.6573.8057-1.0506 2.9879-.875 4.8504.2789 2.9643.8499 3.5719 4.5836 4.8851 3.3394 1.1753 4.2646 2.0055 4.2646 3.8292 0 2.7193-1.3838 2.9133-5.4396.7618-3.809-2.0219-5.7596-.4146-3.1106 2.564 1.2473 1.4041 3.0966 2.0668 5.7617 2.0668 5.1023 0 7.8056-1.5419 7.8056-4.4531 0-2.6049-3.805-6.7793-6.1801-6.7793-2.0369 0-5.2308-3.6649-4.395-5.0413 1.1258-1.8534 4.1-1.1989 6.5323 1.4357 2.6159 2.8346 4.122 2.6028 3.3213-.5116-1.1459-4.4624-9.5556-6.9355-12.2688-3.6077zm72.1919-.5647-3.512.6311.032 9.1902.031 9.1901 6.341.3064c4.853.2348 6.239-.0041 5.91-1.0212-.237-.7301-2.196-1.5572-4.355-1.838-6.591-.8567-5.819-6.0737.904-6.1115 4.505-.0245 2.625-2.5221-2.168-2.8816-3.37-.2532-4.186-.7015-4.186-2.2975 0-1.7002.718-1.9841 5.017-1.9841 3.619 0 5.017-.3962 5.017-1.4224 0-1.4572-2.254-2.7673-4.347-2.5273-.644.0735-2.752.4187-4.684.7658zm-92.6446.8864c-.2459.4217-.6111 4.6717-.8118 9.4454l-.3633 8.6796 6.8966.8445c4.7742.5851 7.2416.4932 8.0183-.2971 1.7249-1.7554-1.0957-3.0665-6.6366-3.0849-4.3438-.0143-4.7663-.2297-4.7663-2.4405 0-2.5028 2.8307-3.7016 8.7378-3.7016 1.5403 0 2.3009-.4799 2.0259-1.2764-.294-.8506-2.1624-1.1814-5.6031-.9905-4.9258.2727-5.1606.1685-5.1606-2.2975 0-2.4507.284-2.5835 5.5188-2.5835 4.2365 0 5.5188-.3553 5.5188-1.5317 0-1.2029-1.3867-1.5317-6.463-1.5317-3.5551 0-6.6647.3452-6.9115.7659zm38.1751 1.9881c-1.0596 6.4893-.7777 13.2839.599 14.447.7707.6504 3.2772 1.257 5.571 1.3489 5.0131.2001 8.6355-2.7244 10.2765-8.2957 1.407-4.784.842-9.7436-1.11-9.7436-1.091 0-1.676 1.6113-2.124 5.8582-.6978 6.6108-2.1097 8.9482-5.4019 8.9482-3.3213 0-4.3659-1.9157-4.71-8.6347-.3241-6.3422-2.2979-8.843-3.1006-3.9283zm22.5215-.1531c-1.394 3.1144-1.52 13.6269-.187 15.7713 1.46 2.3496 2.866.1246 3.224-5.0975l.314-4.5951 2.801 4.8504c1.541 2.6682 3.382 4.8504 4.09 4.8504 1.582 0 5.651-4.2755 5.651-5.9369 0-.6668.4-1.211.886-1.211 1.026 0 2.092 3.5229 2.111 6.9773.024 4.2051 2.505 1.7788 2.833-2.7703.36-4.9811-1.549-15.4395-2.817-15.4395-1.17 0-7.026 7.3246-7.026 8.7869 0 .6463-.614 1.693-1.365 2.3271-1.096.9252-1.9-.0592-4.071-4.98-2.933-6.6527-4.631-7.5829-6.444-3.5331zm-71.4041.4411c1.3375.8608 1.3375 1.1304 0 2.4282-.8279.8016-2.5216 1.7686-3.7629 2.1475-1.9978.6096-2.2577.3288-2.2577-2.4436 0-2.5712.4034-3.1287 2.2577-3.1165 1.2413.0092 2.935.4514 3.7629.9844z" />
-          </svg>
+        <a href="/resume/" class="py-1 px-3 border(1 dashed current) text-base leading-none font-thin font-sketch absolute top-2 right-2 z-10 transition hover:(text-yellow-500 animate-blob) focus:(text-yellow-500 animate-blob) lg:(border-2 text-2xl leading-none top-5 right-5)">
+          R&eacute;sum&eacute;
         </a>
         <section class="work pt-12 border(b gray-500 opacity-25) bg(gray-50 opacity-50) relative lg:(pt-32) dark:bg(black opacity-25)">
           <main-heading title="Work"></main-heading>
@@ -147,7 +145,7 @@
     <script>
       Vue.component('main-heading', {
         template: `
-          <h2 :data-title="title" class="heading text-[40px] leading-[30px] tracking-[-5px] font-bold uppercase absolute -top-[3px] left-0 lg:(text-[100px] leading-[75px] tracking-[-12px]) opacity-40 dark:opacity-60">
+          <h2 :data-title="title" class="heading text-[40px] leading-none tracking-[-5px] font-bold uppercase absolute -top-[4px] left-0 opacity-40 dark:(opacity-60) lg:(text-[100px] leading-none tracking-[-12px] -top-[12px])">
             <span class="sr-only">{{ title }}</span>
           </h2>
         `,
@@ -292,9 +290,10 @@
             colors: {
               gray: twindColors.gray,
             },
-            fontFamily: {
-              fontFamily: (theme) => ({ sans: 'Inter,'+ theme('fontFamily.sans') }),
-            },
+            fontFamily: (theme) => ({
+              sans: 'Inter,'+ theme('fontFamily.sans'),
+              sketch: 'Cabin Sketch,'+ theme('fontFamily.sans'),
+            }),
             keyframes: {
               blob: {
                 '15%': { 'transform-origin': 'center center', transform: 'scale(1.4, 1.2)', },
