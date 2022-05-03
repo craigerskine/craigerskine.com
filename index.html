@@ -26,20 +26,20 @@
           <i class="logo block absolute right-4 lg:right-16 top-1/2 z-10 opacity-25 filter transition-all group-hover:(animate-blob opacity-75) group-focus:(animate-blob opacity-75)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto p-4 md:p-6 w-[calc(30vw+10vh)] h-[calc(30vw+10vh)] fill-current bg(black opacity-50) text-white block rounded-full shadow-2xl transform -translate-y-1/2"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></i>
           <h1 class="intro first-line::text-gray-900 dark:first-line::text-white font-black text-[calc(4.5vw+1vmin)] leading-tight relative z-20">
             Craig Erskine
-            <small class="text-[calc(3vw+1vmin)] font-bold block dark:(text-gray-500)">UX Designer &amp; Developer</small>
+            <small class="text-[calc(2.5vw+.5vmin)] font-thin block dark:(text-gray-400)">UX Designer &amp; Developer</small>
           </h1>
         </a>
       </header>
       <main class="relative">
-        <a href="/resume/" class="py-1 px-3 border(1 dashed white opacity-25) text-base leading-none font-thin font-sketch absolute top-2 right-2 z-10 transition hover:(text-yellow-500 animate-blob) focus:(text-yellow-500 animate-blob) lg:(border-2 text-2xl leading-none top-5 right-5)">
+        <a href="/resume/" class="py-1 px-3 border(1 dashed white opacity-25) text-base leading-none font-thin font-sketch absolute top-2 right-2 z-10 rounded-md transition hover:(text-yellow-500 animate-blob) lg:(border-2 text-2xl leading-none top-5 right-5)">
           R&eacute;sum&eacute;
         </a>
         <section class="work pt-12 border(b gray-500 opacity-25) bg(gray-50 opacity-50) relative lg:(pt-32) dark:bg(black opacity-25)">
           <main-heading title="Work"></main-heading>
           <template v-for="(work_type, index) in work">
-            <article class="flex items-center">
-              <div class="work-items w-full h-[calc(25vw)] flex-1 flex">
-                <a :href="case_study.href" :class="['work-item w-1/4 bg-center flex hover:(w-1/2) focus:(w-1/2) transition-all relative group', {'select-none': case_study.href === '#'}]" v-for="(case_study, index) in work_type.case" :style="((work_type.title !== 'Web') ? 'background-image: url(\'/assets/img/bg-wood.png\')' : '')">
+            <article :class="['flex items-center', { 'mt-px': index === 1 }]">
+              <div class="work-items w-full h-[calc(25vw)] flex-1 flex gap-px">
+                <a v-for="(case_study, index) in work_type.case" :href="case_study.href" :class="['work-item group w-1/4 bg-center flex relative transition-all hover:(w-1/2) focus:(w-1/2)', {'select-none': case_study.href === '#'}]" :style="((work_type.title !== 'Web') ? 'background-image: url(\'/assets/img/bg-wood.png\')' : '')">
                   <figure :class="['w-full h-full bg(center cover black)', ((index % 2 == 0) ? 'bg-opacity-10' : 'bg-opacity-25')]" :style="'background-image: url(/assets/img/work-'+ slug(case_study.title) + ((work_type.title == 'Web') ? '.jpg' : '.png') +');'">
                     <figcaption class="bg(white) text-gray-600 flex items-center absolute inset-x-4 bottom-4 opacity-0 transition-all duration-500 lg:(group-hover:(opacity-100) group-focus:(opacity-100))">
                       <i :class="'fa-light fa-fw '+ ((work_type.title == 'Illustration') ? 'fa-draw-polygon' : 'fa-globe') +' fa-lg ml-4 hidden xl:(block)'" :title="work_type.title"></i>
@@ -56,6 +56,7 @@
                       </ul>
                     </figcaption>
                   </figure>
+                  <b class="h-px bg-white absolute inset-x-0 top-0 opacity-25" aria-hidden="true"></b>
                 </a>
               </div>
             </article>
@@ -255,29 +256,20 @@
         },
         methods: {
           slug: function(text) {
+            const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìıİłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;'
+            const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------'
+            const p = new RegExp(a.split('').join('|'), 'g')
             return text.toString().toLowerCase()
-            .replace(/\s+/g, '-')           // Replace spaces with -
-            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-            .replace(/^-+/, '')             // Trim - from start of text
-            .replace(/-+$/, '');            // Trim - from end of text
+              .replace(/\s+/g, '-')                    // Replace spaces with -
+              .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+              .replace(/&/g, '-and-')                  // Replace & with 'and'
+              .replace(/[^\w\-]+/g, '')                // Remove all non-word characters
+              .replace(/\-\-+/g, '-')                  // Replace multiple - with single -
+              .replace(/^-+/, '')                      // Trim - from start of text
+              .replace(/-+$/, '')                      // Trim - from end of text
           },
         },
-        computed: {
-          list_results(){
-            if(this.list_search){
-              return this.list.filter((item)=>{
-                const tags = item.tags?.map(({
-                  title
-                }) => title.toLowerCase()) ?? []
-                const arr = [item.title.toLowerCase(), ...tags]
-                return arr.some(e => e.includes(this.list_search))
-              })
-            } else {
-              return this.list;
-            }
-          }
-        }
+        computed: {},
       });
 
       twind.setup({
