@@ -31,10 +31,10 @@
             <ul class="ml-auto md:(flex gap-x-5)">
               <li class="flex(& col)">
                 <b class="pb-2 w-full block">Contact:</b>
-                <ul class="mb-5 border(l gray-500 opacity-25 dashed) pl-5 flex(& 1 col) gap-y-2 md:(pr-12 mb-0)">
-                  <li v-for="i in 2">
-                    <a :href="(i == 1) ? 'mailto:'+ email : 'tel:'+ phone" class="group inline-block relative trnasition hover:(text-blue-500) focus:(text-blue-500)">
-                      {{ (i == 1) ? email : phone }}
+                <ul class="mb-5 border(l gray-500 opacity-25 dashed) pl-5 flex(& 1 col) justify-center gap-y-2 md:(pr-12 mb-0)">
+                  <li v-for="i in 1">
+                    <a :href="'mailto:'+ email" class="group inline-block relative trnasition hover:(text-blue-500) focus:(text-blue-500)">
+                      {{ email }}
                       <underline></underline>
                     </a>
                   </li>
@@ -220,7 +220,6 @@
             applicant: 'Craig Erskine',
             position: 'UX Designer/Developer',
             email: 'craig@craigerskine.com',
-            phone: '920.265.2406',
             username: 'craigerskine',
             social: [
               { ico: 'dribbble', link: 'https://dribbble.com/craigerskine/', color: 'pink', },
