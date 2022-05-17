@@ -23,7 +23,7 @@
     <div class="page min-h-screen bg(gray-50 opacity-90) flex flex-col divide(y gray-500 opacity-10) dark:(bg-transparent)" v-cloak>
       <header class="hero flex relative overflow-hidden md:(min-h-[50vh])">
         <a href="/" class="container m-auto py-16 px-4 block group">
-          <i class="logo block absolute right-4 lg:right-16 top-1/2 z-10 opacity-25 filter motion-safe:transition-all group-hover:(animate-blob opacity-75) group-focus:(animate-blob opacity-75)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto p-4 md:p-6 w-[calc(30vw+10vh)] h-[calc(30vw+10vh)] fill-current bg(black opacity-50) text-white block rounded-full shadow-2xl transform -translate-y-1/2"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></i>
+          <i class="logo block absolute right-4 lg:right-16 top-1/2 z-10 opacity-25 filter motion-safe:transition-all group-hover:(motion-safe:animate-blob opacity-75) group-focus:(motion-safe:animate-blob opacity-75)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto p-4 md:p-6 w-[calc(30vw+10vh)] h-[calc(30vw+10vh)] fill-current bg(black opacity-50) text-white block rounded-full shadow-2xl transform -translate-y-1/2"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></i>
           <h1 class="intro first-line::text-gray-900 dark:first-line::text-white font-black text-[calc(4.5vw+1vmin)] leading-tight relative z-20">
             Craig Erskine
             <small class="text-[calc(2.5vw+.5vmin)] font-thin block dark:(text-gray-400)">UX Designer &amp; Developer</small>
@@ -31,7 +31,7 @@
         </a>
       </header>
       <main class="relative">
-        <a href="/resume/" class="py-1 px-3 border(1 dashed white opacity-25) text-base leading-none font-thin font-sketch absolute top-2 right-2 z-10 rounded-md motion-safe:transition hover:(text-yellow-500 animate-blob) lg:(border-2 text-2xl leading-none top-5 right-5)">
+        <a href="/resume/" class="py-1 px-3 border(1 dashed white opacity-25) text-base leading-none font-thin font-sketch absolute top-2 right-2 z-10 rounded-md motion-safe:transition hover:(text-yellow-500 motion-safe:animate-blob) lg:(border-2 text-2xl leading-none top-5 right-5)">
           R&eacute;sum&eacute;
         </a>
         <section class="work pt-12 border(b gray-500 opacity-25) bg(gray-50 opacity-50) relative lg:(pt-32) dark:bg(black opacity-25)">
@@ -73,8 +73,8 @@
                 <article-heading sub="More Info" ico="address-card">About Me</article-heading>
                 <div class="group flex items-center justify-center">
                   <figure class="mr-8 relative">
-                    <img src="/assets/img/craig-erskine.png" alt="Craig Erskine" class="w-32 h-32 block rounded-full group-hover:animate-blob" />
-                    <img src="/assets/img/craig-erskine-huh.png" alt="Craig Erskine" class="w-32 h-32 block absolute top-0 left-0 opacity-0 rounded-full motion-safe:transition group-hover:(animate-blob opacity-100)" />
+                    <img src="/assets/img/craig-erskine.png" alt="Craig Erskine" class="w-32 h-32 block rounded-full group-hover:(motion-safe:animate-blob)" />
+                    <img src="/assets/img/craig-erskine-huh.png" alt="Craig Erskine" class="w-32 h-32 block absolute top-0 left-0 opacity-0 rounded-full motion-safe:transition group-hover:(motion-safe:animate-blob opacity-100)" />
                     <figcaption class="sr-only">Craig Erskine</figcaption>
                   </figure>
                   <p class="max-w-sm flex-1 lg:(m-0 max-w-none text([calc(.75vw+1vmin)]))">
@@ -98,7 +98,7 @@
               <article-heading sub="Social Media" ico="share-alt-square">Stalk Me</article-heading>
               <ul class="mb-16 space-x-2 flex flex-wrap justify-center lg:(mb-0 justify-start space-x-5)">
                 <li v-for="(item, index) in soc">
-                  <a :href="item.href" :class="'w-12 h-12 text-2xl lg:(w-16 h-16 text-4xl) flex items-center justify-center ring(2 inset '+ item.color+'-500 opacity-50) rounded-full text-'+ item.color +'-500 hover:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) focus:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) motion-safe:transition'"><i :class="'fa-brands fa-fw fa-'+ item.ico" :title="item.title"></i></a>
+                  <a :href="item.href" :class="'w-12 h-12 text-2xl lg:(w-16 h-16 text-4xl) flex items-center justify-center ring(2 inset '+ item.color+'-500 opacity-50) rounded-full text-'+ item.color +'-500 hover:(bg-'+ item.color +'-500 text-white ring-0 motion-safe:animate-blob) focus:(bg-'+ item.color +'-500 text-white ring-0 motion-safe:animate-blob) motion-safe:transition'"><i :class="'fa-brands fa-fw fa-'+ item.ico" :title="item.title"></i></a>
                 </li>
               </ul>
             </div>
