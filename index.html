@@ -23,7 +23,7 @@
     <div class="page min-h-screen bg(gray-50 opacity-90) flex flex-col divide(y gray-500 opacity-10) dark:(bg-transparent)" v-cloak>
       <header class="hero flex relative overflow-hidden md:(min-h-[50vh])">
         <a href="/" class="container m-auto py-16 px-4 block group">
-          <i class="logo block absolute right-4 lg:right-16 top-1/2 z-10 opacity-25 filter transition-all group-hover:(animate-blob opacity-75) group-focus:(animate-blob opacity-75)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto p-4 md:p-6 w-[calc(30vw+10vh)] h-[calc(30vw+10vh)] fill-current bg(black opacity-50) text-white block rounded-full shadow-2xl transform -translate-y-1/2"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></i>
+          <i class="logo block absolute right-4 lg:right-16 top-1/2 z-10 opacity-25 filter motion-safe:transition-all group-hover:(animate-blob opacity-75) group-focus:(animate-blob opacity-75)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="mx-auto p-4 md:p-6 w-[calc(30vw+10vh)] h-[calc(30vw+10vh)] fill-current bg(black opacity-50) text-white block rounded-full shadow-2xl transform -translate-y-1/2"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></i>
           <h1 class="intro first-line::text-gray-900 dark:first-line::text-white font-black text-[calc(4.5vw+1vmin)] leading-tight relative z-20">
             Craig Erskine
             <small class="text-[calc(2.5vw+.5vmin)] font-thin block dark:(text-gray-400)">UX Designer &amp; Developer</small>
@@ -31,7 +31,7 @@
         </a>
       </header>
       <main class="relative">
-        <a href="/resume/" class="py-1 px-3 border(1 dashed white opacity-25) text-base leading-none font-thin font-sketch absolute top-2 right-2 z-10 rounded-md transition hover:(text-yellow-500 animate-blob) lg:(border-2 text-2xl leading-none top-5 right-5)">
+        <a href="/resume/" class="py-1 px-3 border(1 dashed white opacity-25) text-base leading-none font-thin font-sketch absolute top-2 right-2 z-10 rounded-md motion-safe:transition hover:(text-yellow-500 animate-blob) lg:(border-2 text-2xl leading-none top-5 right-5)">
           R&eacute;sum&eacute;
         </a>
         <section class="work pt-12 border(b gray-500 opacity-25) bg(gray-50 opacity-50) relative lg:(pt-32) dark:bg(black opacity-25)">
@@ -39,9 +39,9 @@
           <template v-for="(work_type, index) in work">
             <article :class="['flex items-center', { 'mt-px': index === 1 }]">
               <div class="work-items w-full h-[calc(25vw)] flex-1 flex gap-px">
-                <a v-for="(case_study, index) in work_type.case" :href="case_study.href" :class="['work-item group w-1/4 bg-center flex relative transition-all hover:(w-1/2) focus:(w-1/2)', {'select-none': case_study.href === '#'}]" :style="((work_type.title !== 'Web') ? 'background-image: url(\'/assets/img/bg-wood.png\')' : '')">
+                <a v-for="(case_study, index) in work_type.case" :href="case_study.href" :class="['work-item group w-1/4 bg-center flex relative motion-safe:transition-all hover:(w-1/2) focus:(w-1/2)', {'select-none': case_study.href === '#'}]" :style="((work_type.title !== 'Web') ? 'background-image: url(\'/assets/img/bg-wood.png\')' : '')">
                   <figure :class="['w-full h-full bg(center cover black)', ((index % 2 == 0) ? 'bg-opacity-10' : 'bg-opacity-25')]" :style="'background-image: url(/assets/img/work-'+ slug(case_study.title) + ((work_type.title == 'Web') ? '.jpg' : '.png') +');'">
-                    <figcaption class="bg(white) text-gray-600 flex items-center absolute inset-x-4 bottom-4 opacity-0 transition-all duration-500 lg:(group-hover:(opacity-100) group-focus:(opacity-100))">
+                    <figcaption class="bg(white) text-gray-600 flex items-center absolute inset-x-4 bottom-4 opacity-0 motion-safe:transition-all duration-500 lg:(group-hover:(opacity-100) group-focus:(opacity-100))">
                       <i :class="'fa-light fa-fw '+ ((work_type.title == 'Illustration') ? 'fa-draw-polygon' : 'fa-globe') +' fa-lg ml-4 hidden xl:(block)'" :title="work_type.title"></i>
                       <h3 class="p-2 text-base font-bold truncate xl:(p-4 text-2xl)">{{ case_study.title }} <small class="text-xs xl:(text-sm) tracking-tight block opacity-80">{{ case_study.sub }}</small></h3>
                       <ul class="ml-auto pr-4 -space-x-2 text(sm center) hidden xl:(flex)">
@@ -74,7 +74,7 @@
                 <div class="group flex items-center justify-center">
                   <figure class="mr-8 relative">
                     <img src="/assets/img/craig-erskine.png" alt="Craig Erskine" class="w-32 h-32 block rounded-full group-hover:animate-blob" />
-                    <img src="/assets/img/craig-erskine-huh.png" alt="Craig Erskine" class="w-32 h-32 block absolute top-0 left-0 opacity-0 rounded-full transition group-hover:(animate-blob opacity-100)" />
+                    <img src="/assets/img/craig-erskine-huh.png" alt="Craig Erskine" class="w-32 h-32 block absolute top-0 left-0 opacity-0 rounded-full motion-safe:transition group-hover:(animate-blob opacity-100)" />
                     <figcaption class="sr-only">Craig Erskine</figcaption>
                   </figure>
                   <p class="max-w-sm flex-1 lg:(m-0 max-w-none text([calc(.75vw+1vmin)]))">
@@ -87,18 +87,18 @@
               </article>
               <article-heading sub="My Book" ico="book">Foundation Fw</article-heading>
               <div class="text-center lg:(text-left)">
-                <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="fw-book group mb-16 w-[220px] inline-flex transform transition-all hover:(-rotate-3) focus:(-rotate-3)">
+                <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="fw-book group mb-16 w-[220px] inline-flex transform motion-safe:transition-all hover:(-rotate-3) focus:(-rotate-3)">
                   <figure class="fw-book-inner flex flex-row-reverse" role="group">
                     <figcaption class="sr-only">Foundation Fireworks CS4</figcaption>
-                    <figure class="fw-book-cover transition-all"><img src="/assets/img/foundation-fw-cover.jpg" alt="Book cover" class="rounded-r transition group-hover:(rounded-sm shadow-lg) group-focus:(rounded-sm shadow-lg)" /></figure>
-                    <figure class="fw-book-binding transition-all"><img src="/assets/img/foundation-fw-binding.png" alt="Book binding" class="rounded-l" /></figure>
+                    <figure class="fw-book-cover motion-safe:transition-all"><img src="/assets/img/foundation-fw-cover.jpg" alt="Book cover" class="rounded-r motion-safe:transition group-hover:(rounded-sm shadow-lg) group-focus:(rounded-sm shadow-lg)" /></figure>
+                    <figure class="fw-book-binding motion-safe:transition-all"><img src="/assets/img/foundation-fw-binding.png" alt="Book binding" class="rounded-l" /></figure>
                   </figure>
                 </a>
               </div>
               <article-heading sub="Social Media" ico="share-alt-square">Stalk Me</article-heading>
               <ul class="mb-16 space-x-2 flex flex-wrap justify-center lg:(mb-0 justify-start space-x-5)">
                 <li v-for="(item, index) in soc">
-                  <a :href="item.href" :class="'w-12 h-12 text-2xl lg:(w-16 h-16 text-4xl) flex items-center justify-center ring(2 inset '+ item.color+'-500 opacity-50) rounded-full text-'+ item.color +'-500 hover:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) focus:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) transition'"><i :class="'fa-brands fa-fw fa-'+ item.ico" :title="item.title"></i></a>
+                  <a :href="item.href" :class="'w-12 h-12 text-2xl lg:(w-16 h-16 text-4xl) flex items-center justify-center ring(2 inset '+ item.color+'-500 opacity-50) rounded-full text-'+ item.color +'-500 hover:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) focus:(bg-'+ item.color +'-500 text-white ring-0 animate-blob) motion-safe:transition'"><i :class="'fa-brands fa-fw fa-'+ item.ico" :title="item.title"></i></a>
                 </li>
               </ul>
             </div>
@@ -107,11 +107,11 @@
                 <article-heading sub="Currently" :ico="((media_group.title == 'Playing') ? 'gamepad-alt' : 'list-music')">{{ media_group.title +((media_group.title == 'Listening') ? '' : '') }}</article-heading>
                 <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full max-w-[466px] bg-bottom bg-no-repeat flex items-end justify-between lg:(mb-32)" style="background-image: url('/assets/img/media-shelf.png');">
                   <li v-for="(item, index) in media_group.list" :class="['flex-1 justify-center', index === 2 ? 'hidden xs:(flex)' : 'flex']">
-                    <a :href="item.href" :class="'media-case media-'+ item.media +' group flex relative transition-all transform hover:(-translate-y-2) focus:(-translate-y-2)'">
+                    <a :href="item.href" :class="'media-case media-'+ item.media +' group flex relative motion-safe:transition-all transform hover:(-translate-y-2) focus:(-translate-y-2)'">
                       <figure class="flex w-full">
                         <img :src="'/assets/img/media/'+ ((media_group.title == 'Playing') ? 'games' : 'music') +'/'+ item.media +''+ ((media_group.title == 'Playing') ? '' : '-'+slug(item.artist)) +'-'+ slug(item.title) +'.jpg'" :alt="item.title" class="w-full h-full" />
                         <i class="bg-no-repeat absolute inset-0" :style="'background-image: url(\'/assets/img/media/cases/'+ item.media +'.png\');'"></i>
-                        <figcaption class="mt-2 px-2 py-1 max-w-[130px] bg(black opacity-75) text(xs gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl transform -translate-x-1/2 transition-all group-hover:(-mt-1 opacity-100) group-focus:(-mt-1 opacity-100)">
+                        <figcaption class="mt-2 px-2 py-1 max-w-[130px] bg(black opacity-75) text(xs gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-2xl transform -translate-x-1/2 motion-safe:transition-all group-hover:(-mt-1 opacity-100) group-focus:(-mt-1 opacity-100)">
                           <template v-if="media_group.title !== 'Playing'"><small class="pb-px font-bold leading-none block opacity-50">{{ item.artist }}:</small></template>
                           {{ item.title }}
                           <template v-if="media_group.title == 'Playing'"><small class="pt-px font-bold leading-none block opacity-50">{{ item.system }}</small></template>
@@ -133,7 +133,7 @@
           <polygon points="8 4 12 0 16 4 8 12 0 4 4 0"></polygon>
         </svg>
         Using
-        <template v-for="(item, index) in credits"><a :href="item.href" class="mx-1 text-gray-900 dark:(text-gray-300 hover:(text-white) focus:(text-white)) hover:underline focus:underline transition">{{ item.title }}</a><template v-if="index !== credits.length - 1"> + </template></template>
+        <template v-for="(item, index) in credits"><a :href="item.href" class="mx-1 text-gray-900 dark:(text-gray-300 hover:(text-white) focus:(text-white)) hover:underline focus:underline motion-safe:transition">{{ item.title }}</a><template v-if="index !== credits.length - 1"> + </template></template>
       </footer>
     </div>
 
@@ -302,7 +302,7 @@
       })
       twind.tw(() => ({
         '@global': {
-          'a:not([class])': { '@apply': 'text-indigo-500 hover:(text-indigo-400 underline) focus:(text-indigo-400 underline) dark:(text-gray-400 hover:text-gray-300 focus:text-gray-300) font-bold transition', },
+          'a:not([class])': { '@apply': 'text-indigo-500 hover:(text-indigo-400 underline) focus:(text-indigo-400 underline) dark:(text-gray-400 hover:text-gray-300 focus:text-gray-300) font-bold motion-safe:transition', },
           'p:not([class]),ul:not([class]),ol:not([class]),table:not([class])': { '@apply': 'mb-5 border-current', },
           'ul:not([class]) ul:not([class]),ul:not([class]) ol:not([class]),ol:not([class]) ol:not([class]),ol:not([class]) ul:not([class])': { '@apply': 'mb-0', },
           'ul:not([class])': { '@apply': 'ml-5 list-disc', },
