@@ -8,10 +8,10 @@
     <figure class="flex w-full">
       <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
       <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
-      <figcaption class="mt-2 px-2 py-1 max-w-[130px] bg(gray-900 opacity-75) text(xs gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-xl transform -translate-x-1/2 motion-safe:(transition-all) group-hover:(-mt-1 opacity-100)">
-        {% if category == 'music' %}<small class="pb-px font-bold leading-none block opacity-75">{{ item.sub }}:</small>{% endif %}
+      <figcaption class="mt-2 px-2 py-1 max-w-[130px] bg(gray-900 opacity-75) text(xs gray-200) font-bold truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-xl transform -translate-x-1/2 motion-safe:(transition-all) group-hover:(-mt-1 opacity-100)">
+        {% if category == 'music' %}<small class="pb-px font-semibold leading-none block opacity-75">{{ item.sub }}:</small>{% endif %}
         {{ item.title }}
-        {% if category == 'games' %}<small class="pt-px font-bold leading-none block opacity-75">{{ item.sub }}</small>{% endif %}
+        {% if category == 'games' %}<small class="pt-px font-semibold leading-none block opacity-75">{{ item.sub }}</small>{% endif %}
       </figcaption>
     </figure>
   </a>
@@ -139,13 +139,19 @@
           </div>
         </div>
         <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) items-center gap-6 md:(px-8 flex-row justify-between)">
-          <p class="text-xs font-bold uppercase">&copy;2008-{% year %} <a href="{{ site.meta.url }}" class="mx-1.5 motion-safe:(transition) hover:(text-blue-500)">{{ site.meta.author }}</a></p>
-          <ul class="p-3 pt-0 flex items-center gap-x-4">
+          <p class="text-xs font-bold uppercase">
+            &copy;2008-{% year %}
+            <a href="{{ site.meta.url }}" class="group mx-1.5 relative motion-safe:(transition) hover:(text-blue-500)">
+              {{ site.meta.author }}
+              <b class="w-full h-px bg-current transform absolute -bottom-px left-0 scale-0 motion-safe:(transition) group-hover:(scale-100)"></b>
+            </a>
+          </p>
+          <ul class="p-3 pt-0 flex items-center gap-x-4 md:(gap-x-6)">
             {%- for nav in site.tech %}
             <li>
-              <a href="{{ nav.url }}" class="block motion-safe:(transition hover:(animate-blob)) hover:(text-blue-500)">
+              <a href="{{ nav.url }}" class="group block relative motion-safe:(transition hover:(animate-blob)) hover:(text-blue-500)">
+                <b class="mt-2 px-2 py-1 max-w-[130px] bg(gray-900 opacity-75) text(xs gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-xl transform -translate-x-1/2 motion-safe:(transition-all) group-hover:(-mt-1 opacity-100)">{{ nav.sub }}: {{ nav.title }}</b>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="w-6 fill-current">
-                  <title>{{ nav.title }}</title>
                   {{ nav.ico | safe }}
                 </svg>
               </a>
