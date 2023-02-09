@@ -1,0 +1,86 @@
+---
+layout: 'layouts/default.njk'
+permalink: /
+eleventyNavigation:
+  key: Home
+---
+
+{%- setblock 'data' %}home{% endsetblock -%}
+{%- import 'components/social.njk' as social -%}
+
+<section class="bg-(paper gray-100)">
+  <article class="mx-auto py-6 px-4 max-w-7xl lg:px-8">
+    <div class="hero max-w-2xl space-y-8">
+      <h1 class="text-4xl font-semibold tracking-tight md:(text-5xl leading-tight)">
+        {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-gray-900 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor %}
+        ...
+      </h1>
+      <p class="text-gray-600 leading-relaxed">{{ home.lead }}</p>
+      {{ social.x(social=site.social) }}
+    </div>
+  </article>
+  <nav class="mx-auto pt-6 px-4 max-w-7xl flex justify-center relative lg:px-8">
+    <ul class="px-1 py-2 bg-gray-50/50 inline-flex ring-(1 gray-200) rounded-full shadow" role="tablist">
+      <template x-for="(item, index) in tabs" class="hidden">
+        <li class="mx-1"><a @click.prevent.stop="tabActive = index" href="#" :class="['py-1.5 px-2.5 block rounded-full motion-safe:(transition)', tabActive == index ? 'bg-gray-700 text-gray-50 hover:text-gray-300' : 'hover:text-gray-500']" role="tab" :aria-expanded="tabActive == index" x-text="item">TAB</a></li>
+      </template>
+    </ul>
+  </nav>
+  <div class="relative">
+    <section x-show="tabActive == 0" id="panel-work-ill" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel"
+      x-transition:enter="absolute top-0 inset-x-0"
+      x-transition:enter-start="opacity-0 scale-90 blur-lg"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave-start="opacity-100 scale-100"
+      x-transition:leave-end="opacity-0 scale-90 blur-lg"
+    >
+      {%- for item in home.work.illustrations %}
+      <a href="{{ item.url }}" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+        <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.jpg');"></b>
+        <figure class="w-full h-full flex relative">
+          <img src="/_assets/img/work-{{ item.title | slugify }}.png" alt="{{ item.title }} image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          {# <figcaption class="py-2 px-4 bg-gray-50/75 text-(sm end) font-semibold absolute bottom-0 inset-x-0 opacity-0 transform translate-y-2 motion-safe:(transition) group-hover:(translate-y-0 opacity-100)">
+            {{ item.title }}
+          </figcaption> #}
+        </figure>
+      </a>
+      {%- endfor %}
+    </section>
+    <section x-show="tabActive == 1" id="panel-work-web" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel"
+      x-transition:enter="absolute top-0 inset-x-0"
+      x-transition:enter-start="opacity-0 scale-90 blur-lg"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave-start="opacity-100 scale-100"
+      x-transition:leave-end="opacity-0 scale-90 blur-lg"
+    >
+      {%- for item in home.work.web %}
+      <a href="{{ item.url }}" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+        <figure class="w-full h-full flex">
+          <img src="/_assets/img/work-{{ item.title | slugify }}.jpg" alt="{{ item.title }} image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          {# <figcaption class="py-2 px-4 bg-gray-50/75 text-(sm end) font-semibold absolute bottom-0 inset-x-0 opacity-0 transform translate-y-2 motion-safe:(transition) group-hover:(translate-y-0 opacity-100)">
+            {{ item.title }}
+          </figcaption> #}
+        </figure>
+      </a>
+      {%- endfor %}
+    </section>
+  </div>
+</section>
+
+<section class="h-72" aria-hidden="true">
+
+</section>
+
+{% setblock 'js' %}
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('home', () => ({
+      tabActive: 0,
+      tabs: [
+        'Illustrations',
+        'Web Design',
+      ],
+    }))
+  })
+</script>
+{% endsetblock %}

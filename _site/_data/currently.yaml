@@ -1,0 +1,39 @@
+---
+# dvd,ps2,wii,gcn,xb,xb360: 204x280
+# cd: 192x196
+# cd-tl: 192x304
+# xbone: 212x220
+# wiiu: 208x280
+# switch: 172x252
+# 3ds: 210x168
+# ds: 204x180
+# ps4: 204x240
+# ps3: 212x232
+# psv: 170x216
+# psp: 168x260
+playing:
+  - title: 'Tales of Innocence R'
+    sub: PS Vita
+    media: psv
+    url: https://amzn.com/dp/B005ZNJWXS?tag=qrayg-20
+  - title: 'Tales of Arise'
+    sub: Xbox X|S
+    media: xbone
+    url: https://amzn.com/dp/B07SPYKLWW?tag=qrayg-20
+  - title: 'Tales of Zestiria'
+    sub: PS3
+    media: ps3
+    url: https://amzn.com/dp/B00X8WTMKQ?tag=qrayg-20
+listening:
+  - title: 'Solveig'
+    sub: 'Seven Spires'
+    media: cd
+    url: https://amzn.com/dp/B072ZCNFGP?tag=qrayg-20
+  - title: 'Emerald Seas'
+    sub: 'Seven Spires'
+    media: cd
+    url: https://amzn.com/dp/B07ZWBQK5L?tag=qrayg-20
+  - title: 'Gods of Debauchery'
+    sub: 'Seven Spires'
+    media: cd
+    url: https://amzn.com/dp/B096LSVYDL?tag=qrayg-20

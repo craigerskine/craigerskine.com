@@ -1,0 +1,87 @@
+<main class="w-full flex-1">
+  <section class="bg-(paper gray-100)">
+    <article class="mx-auto py-6 px-4 max-w-7xl lg:px-8">
+      <div class="hero max-w-2xl space-y-8">
+        <h1 class="text-4xl font-semibold tracking-tight md:(text-5xl leading-tight)"> Craig Erskine is a <b class="text-gray-900 font-black">designer</b>, <b class="text-gray-900 font-black">artist</b>, <b class="text-gray-900 font-black">author</b>, <b class="text-gray-900 font-black">guitarist</b>, <b class="text-gray-900 font-black">gamer</b>, and <b class="text-gray-900 font-black">super geek</b> ...</h1>
+        <p class="text-gray-600 leading-relaxed">I&#39;m passionate about UX design, front-end website engineering, paper &amp; pencil sketching, noodling around on guitars, playing nerdy RPG&#39;s... oh, and I co-authored a book about designing in good ol&#39; Macromedia Fireworks.</p>
+        <ul class="text-xl flex gap-2 md:(gap-5)">
+          <li><a href="https://dribbble.com/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-pink-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><i class="fab fa-fw fa-dribbble" title="Dribbble"></i></a></li>
+          <li><a href="https://github.com/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-gray-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><i class="fab fa-fw fa-github" title="GitHub"></i></a></li>
+          <li><a href="https://linkedin.com/in/craigerskine/" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-blue-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><i class="fab fa-fw fa-linkedin-in" title="LinkedIn"></i></a></li>
+          <li><a href="https://angel.co/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-yellow-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><i class="fab fa-fw fa-angellist" title="Angel List"></i></a></li>
+          <li><a href="https://behance.net/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-red-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><i class="fab fa-fw fa-behance" title="Behance"></i></a></li>
+        </ul>
+      </div>
+    </article>
+    <nav class="mx-auto pt-6 px-4 max-w-7xl flex justify-center relative lg:px-8">
+      <ul class="px-1 py-2 bg-gray-50/50 inline-flex ring-(1 gray-200) rounded-full shadow" role="tablist">
+        <template x-for="(item, index) in tabs" class="hidden">
+          <li class="mx-1"><a @click.prevent.stop="tabActive = index" href="#" :class="['py-1.5 px-2.5 block rounded-full motion-safe:(transition)', tabActive == index ? 'bg-gray-700 text-gray-50 hover:text-gray-300' : 'hover:text-gray-500']" role="tab" :aria-expanded="tabActive == index" x-text="item">TAB</a></li>
+        </template>
+      </ul>
+    </nav>
+    <div class="relative">
+      <section x-show="tabActive == 0" id="panel-work-ill" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" x-transition:enter="absolute top-0 inset-x-0" x-transition:enter-start="opacity-0 scale-90 blur-lg" x-transition:enter-end="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90 blur-lg">
+        <a href="https://dribbble.com/craigerskine/projects/464116-OpenEmu" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl bg-gray-900 dark:(bg-gray-900) relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <b class="bg-center opacity-80 absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
+          <figure class="w-full h-full flex relative">
+            <img src="/_assets/img/work-dreamcast.png" alt="Dreamcast image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://dribbble.com/craigerskine/projects/464116-OpenEmu" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl bg-gray-900 dark:(bg-gray-900) relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <b class="bg-center opacity-80 absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
+          <figure class="w-full h-full flex relative">
+            <img src="/_assets/img/work-ps-vita.png" alt="PS Vita image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://dribbble.com/craigerskine/projects/464116-OpenEmu" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl bg-gray-900 dark:(bg-gray-900) relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <b class="bg-center opacity-80 absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
+          <figure class="w-full h-full flex relative">
+            <img src="/_assets/img/work-gamecube.png" alt="Gamecube image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://dribbble.com/craigerskine/projects/464116-OpenEmu" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl bg-gray-900 dark:(bg-gray-900) relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <b class="bg-center opacity-80 absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
+          <figure class="w-full h-full flex relative">
+            <img src="/_assets/img/work-neo-geo-pocket-color.png" alt="Neo Geo Pocket Color image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://dribbble.com/shots/11534393-PC-Engine-Wireless-Controller"
+          class="group relative w-44 flex-(& none) overflow-hidden rounded-xl bg-gray-900 dark:(bg-gray-900) relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <b class="bg-center opacity-80 absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
+          <figure class="w-full h-full flex relative">
+            <img src="/_assets/img/work-pce-8bitdo.png" alt="PCE 8bitdo image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+      </section>
+      <section x-show="tabActive == 1" id="panel-work-web" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" x-transition:enter="absolute top-0 inset-x-0" x-transition:enter-start="opacity-0 scale-90 blur-lg" x-transition:enter-end="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90 blur-lg">
+        <a href="https://wisconsinmusic.net/" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <figure class="w-full h-full flex">
+            <img src="/_assets/img/work-wisconsin-music.jpg" alt="Wisconsin Music image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://legendofmana.info/" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <figure class="w-full h-full flex">
+            <img src="/_assets/img/work-legend-of-mana.jpg" alt="Legend of Mana image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://openemu.org/" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <figure class="w-full h-full flex">
+            <img src="/_assets/img/work-openemu.jpg" alt="OpenEmu image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://pxl.media" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <figure class="w-full h-full flex">
+            <img src="/_assets/img/work-pxl-media.jpg" alt="pxl.media image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+        <a href="https://craigerskine.github.io/bioplan.se/" class="group relative w-44 flex-(& none) overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+          <figure class="w-full h-full flex">
+            <img src="/_assets/img/work-bioplan.jpg" alt="Bioplan image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          </figure>
+        </a>
+      </section>
+    </div>
+  </section>
+  <section class="h-72"></section>
+</main>

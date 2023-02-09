@@ -1,0 +1,164 @@
+{%- import 'components/heading.njk' as heading -%}
+{%- import 'components/social.njk' as social -%}
+
+{%- macro media(data=[], category='games') -%}
+{%- for item in data %}
+<li class="flex-1 justify-center {% if loop.index == 3 %}hidden xs:(flex){% else %}flex{% endif %}">
+  <a href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
+    <figure class="flex w-full">
+      <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
+      <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
+      <figcaption class="mt-2 px-2 py-1 max-w-[130px] bg(gray-900 opacity-75) text(xs gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-xl transform -translate-x-1/2 motion-safe:(transition-all) group-hover:(-mt-1 opacity-100)">
+        {% if category == 'music' %}<small class="pb-px font-bold leading-none block opacity-75">{{ item.sub }}:</small>{% endif %}
+        {{ item.title }}
+        {% if category == 'games' %}<small class="pt-px font-bold leading-none block opacity-75">{{ item.sub }}</small>{% endif %}
+      </figcaption>
+    </figure>
+  </a>
+</li>
+{%- endfor %}
+{%- endmacro -%}
+
+<!doctype html>
+<html lang="en" x-data="{% renderblock 'data' -%}" x-cloak>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{%- if title -%}{{ title }} - {{ site.meta.title }}{%- else -%}{{ site.meta.title }} - {{ site.meta.description }}{%- endif -%}</title>
+    <meta name="description" content="{{ site.meta.description }}" />
+    <meta name="author" content="{{ site.meta.author + ' - '+ site.meta.url }}" />
+    <meta name="generator" content="{{ eleventy.generator }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:title" content="{{ site.meta.title }}" />
+    <meta property="og:description" content="{{ site.meta.description }}" />
+    <meta property="og:url" content="{{ site.meta.url }}{{ page.url }}" />
+    <meta property="og:image" content="{{ site.meta.url }}/og-image.png" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
+    <meta name="theme-color" content="#111111" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
+
+    {% set css %}
+      {% include "css/prism.css" %}
+    {% endset %}
+    <style>{{ css | cssmin | safe }}</style>
+    {% renderblock 'css' %}
+
+    <script>
+      if (localStorage.getItem('color-mode') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('color-mode'))) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+
+  </head>
+
+  <body class="bg-gray-100 text-gray-600" style="display: none;" data-instant-intensity="mousedown">
+    <div class="bg-slate-900 dark:(bg-slate-900) grid-(& cols-1) items-center fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      {%- highlight "html" %}
+      {% include "html/home.html" %}
+      {%- endhighlight %}
+      <div class="bg-slate-50/50 fixed inset-0"></div>
+    </div>
+    <div class="app w-full min-h-screen flex-(& col) relative z-30" x-data="{% renderblock 'data' -%}">
+
+      <header class="w-full bg-(paper gray-100) flex-none">
+        <div class="mx-auto py-6 px-4 max-w-7xl lg:px-8">
+          <nav class="flex items-center justify-between">
+            <a href="/" class="p-1.5 w-12 h-12 bg-gray-800 text-gray-50 flex rounded-full transform motion-safe:(transition) hover:(motion-safe:(animate-blob))">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="fill-current">
+                <title>Craig Erskine logo</title>
+                <g fill-rule="evenodd">
+                  <path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
+                </g>
+              </svg>
+            </a>
+            <ul class="py-1.5 px-3 bg-gray-50/50 flex space-x-3 ring-(1 gray-200) rounded-full shadow">
+              {%- for item in collections.all | eleventyNavigation %}
+              <li class="py-1 px-2"><a href="{{ item.url }}" class="flex motion-safe:(transition) hover:(text-blue-500)">{{ item.key }}</a></li>
+              {%- endfor %}
+              <li class="py-1 px-2">
+                <button class="color-mode flex items-center motion-safe:(transition) hover:(text-blue-500)" aria-label="Toggle color mode">
+                  <span class="block dark:(hidden)"><i class="fal fa-fw fa-sun"></i> <span class="sr-only">Switch to dark mode</span></span>
+                  <span class="hidden dark:(block)"><i class="fal fa-fw fa-moon-stars"></i> <span class="sr-only">Switch to light mode</span></span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      
+      <main class="w-full flex-1">
+        {{ content | safe }}
+      </main>
+
+      <footer class="pt-16 px-4 w-full bg-(paper gray-100) flex-none">
+        <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) gap-16 lg:(px-8 flex-row)">
+          <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0 max-w-none flex-1)">
+            {%- call heading.x(sub='My Book', ico='book') %}
+            Foundation Fw
+            {%- endcall %}
+            <div class="flex-(& col) items-center gap-6 lg:(flex-row-reverse)">
+              <p class="px-12 w-full lg:(px-0 flex-1)">{{ site.book.desc }}</p>
+              <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="fw-book group w-[207px] inline-flex flex-none transform motion-safe:(transition-all) hover:(-rotate-3)">
+                <figure role="group" class="fw-book-inner flex flex-row-reverse">
+                  <figcaption class="sr-only">{{ site.book.title }}</figcaption>
+                  <figure class="fw-book-cover motion-safe:transition-all">
+                    <img src="/_assets/img/foundation-fw-cover.jpg" alt="Book cover" class="rounded-r motion-safe:transition group-hover:rounded-sm group-hover:shadow-lg group-focus:rounded-sm group-focus:shadow-lg" />
+                  </figure>
+                  <figure class="fw-book-binding motion-safe:transition-all">
+                    <img src="/_assets/img/foundation-fw-binding.png" alt="Book binding" class="rounded-l" />
+                  </figure>
+                </figure>
+              </a>
+            </div>
+            {%- call heading.x(sub='Social Media', ico='share-alt') %}
+            Stalk Me
+            {%- endcall %}
+            {{ social.x(social=site.social, css='lg:text-2xl lg:w-16 lg:h-16') }}
+          </div>
+          <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0)">
+            {%- call heading.x(sub='Currently', ico='gamepad-alt') %}Playing{%- endcall %}
+            <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full bg-bottom bg-no-repeat flex items-end justify-between lg:mb-32" style="background-image: url('/_assets/img/media-shelf.png');">
+              {{ media(data=currently.playing, category='games') }}
+            </ul>
+            {%- call heading.x(sub='Currently', ico='list-music') %}Listening{%- endcall %}
+            <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full bg-bottom bg-no-repeat flex items-end justify-between lg:mb-32" style="background-image: url('/_assets/img/media-shelf.png');">
+              {{ media(data=currently.listening, category='music') }}
+            </ul>
+          </div>
+        </div>
+        <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) items-center gap-6 md:(px-8 flex-row justify-between)">
+          <p class="text-xs font-bold uppercase">&copy;2008-{% year %} <a href="{{ site.meta.url }}" class="mx-1.5 motion-safe:(transition) hover:(text-blue-500)">{{ site.meta.author }}</a></p>
+          <ul class="p-3 pt-0 flex items-center gap-x-4">
+            {%- for nav in site.tech %}
+            <li>
+              <a href="{{ nav.url }}" class="block motion-safe:(transition hover:(animate-blob)) hover:(text-blue-500)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="w-6 fill-current">
+                  <title>{{ nav.title }}</title>
+                  {{ nav.ico | safe }}
+                </svg>
+              </a>
+            </li>
+            {%- endfor %}
+          </ul>
+        </div>
+      </footer>
+
+    </div>
+
+    {% renderblock 'js' %}
+    <script src="/_assets/js/_app.js?v={% bust %}"></script>
+    <script src="https://kit.fontawesome.com/6d6156d427.js" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>
