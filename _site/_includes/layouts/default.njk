@@ -123,7 +123,9 @@
             {%- call heading.x(sub='Social Media', ico='share-alt') %}
             Stalk Me
             {%- endcall %}
-            {{ social.x(social=site.social, css='lg:text-2xl lg:w-16 lg:h-16') }}
+            <div class="flex justify-center lg:(justify-start)">
+              {{ social.x(social=site.social, css='lg:w-16 lg:h-16 lg:text-2xl') }}
+            </div>
           </div>
           <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0)">
             {%- call heading.x(sub='Currently', ico='gamepad-alt') %}Playing{%- endcall %}
