@@ -13,13 +13,13 @@ social:
     url: 'https://github.com/craigerskine/'
     color: gray
 personal:
-  lead: >-
+  lead: |-
     I'm an experienced UX designer & engineer focused on clean and accessible
     interfaces built with HTML, CSS, Js, Sketch, and Figma.
-  body: >-
+  body: |-
     I specialize in website creation and product design from initial concept to
     final completion, including front-end implementation like Vue, React, Alpine, etc.
-  closing: >-
+  closing: |-
     I have a deep fascination with UX design as well as video games (modern or retro)...
     if I could combine both of those passions that would be my ideal career trajectory.
   sites:
@@ -85,20 +85,20 @@ skills:
 accomplishments:
   - title: OpenEmu
     type: Website + UI Graphics
-    desc: >-
+    desc: |-
       I created the website with Tailwind, Twind, Vue, Js, and GitHub. I also
       created vector illustrations for a few of the controllers in the
       preference configuration.
-    ico: >-
+    ico: |-
       <path d="M506,130 L506,182 L370,182 C345.903111,183.850077 326.719444,203.091051 325,228 L467,228 L467,279 L325,279 L325,285 C326.719444,309.908949 345.903111,329.149923 370,331 L506,331 L506,383 L370,383 C317.27,381.144667 274.844583,338.621205 273,285 L273,228 C274.844583,174.378795 317.27,131.855333 370,130 L506,130 Z M161,130 C214.627692,131.855333 257.144667,174.378795 259,228 L259,285 C257.144667,338.621205 214.627692,381.144667 161,383 L104,383 C50.3723077,381.144667 7.85533333,338.621205 6,285 L6,228 C7.85533333,174.378795 50.3723077,131.855333 104,130 L161,130 Z M161,182 L104,182 C79.1450435,183.949957 59.9434783,203.164478 58,228 L58,285 C59.9434783,309.835522 79.1450435,329.050043 104,331 L161,331 C185.854957,329.050043 205.056522,309.835522 207,285 L207,228 C205.056522,203.164478 185.854957,183.949957 161,182 Z"></path>
     url: 'https://openemu.org'
   - title: Foundation Fw CS4
     type: Author
-    desc: >-
+    desc: |-
       I co-wrote a book with an amazing group of talented designers. Some of the
       design techniques carry over to other design software like Sketch and
       Figma
-    ico: >-
+    ico: |-
       <path d="M506,216 C506,337.304769 430.381745,444.829195 320.344941,446.967553 L317,447 L317,371.571429 C379.801511,371.571429 429.39937,302.724936 430.385047,218.555232 L430.4,216 L506,216 Z M351,216 C351,337.304769 275.381745,444.829195 165.344941,446.967553 L162,447 L162,371.571429 C224.801511,371.571429 274.39937,302.724936 275.385047,218.555232 L275.4,216 L351,216 Z M308,70 L308,145 C241.12,145 217.6064,203.4672 193.333888,268.950464 L190.015152,277.918656 C160.0296,358.9368 125.88,447 6,447 L6,372 C49.3533335,371.884774 81.0200001,346.55144 101,296 L44,296 L44,221 L131,221 C164.333333,120.333333 223.333333,70 308,70 Z"></path>
     url: 'https://amzn.com/dp/1430216182?tag=qrayg-20'
 hobbies:
