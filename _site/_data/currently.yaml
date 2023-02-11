@@ -12,6 +12,10 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: 'The Cruel King and the Great Hero'
+    sub: Switch
+    media: switch
+    url: https://amzn.com/dp/B099TPXB8D?tag=qrayg-20
   - title: 'Tales of Innocence R'
     sub: PS Vita
     media: psv
@@ -20,10 +24,6 @@ playing:
     sub: Xbox X|S
     media: xbone
     url: https://amzn.com/dp/B07SPYKLWW?tag=qrayg-20
-  - title: 'Tales of Zestiria'
-    sub: PS3
-    media: ps3
-    url: https://amzn.com/dp/B00X8WTMKQ?tag=qrayg-20
 listening:
   - title: 'Solveig'
     sub: 'Seven Spires'
