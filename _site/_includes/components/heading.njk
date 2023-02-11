@@ -1,11 +1,11 @@
 {% macro x(as='h3', sub='', ico='text') %}
 <{{ as }} class="mx-auto space-x-4 w-full text-xl font-bold flex items-center lg:(text-3xl)">
-  <span class="flex items-center justify-center opacity-50">
+  <span class="text-pri-500 flex items-center justify-center opacity-50">
     <i class="fal fa-fw fa-{{ ico }}"></i>
   </span>
   <span class="flex flex-col flex-col-reverse">
-    <b class="tracking-tight">{{ caller() }}</b>
-    <small class="text-xs uppercase opacity-90">{{ sub }}</small>
+    <b class="text-gray-800 tracking-tight">{{ caller() }}</b>
+    <small class="text-(xs gray-600) uppercase">{{ sub }}</small>
   </span>
   <i class="h-1 bg-current flex-1 opacity-20 aria-hidden="true""></i>
 </{{ as }}>

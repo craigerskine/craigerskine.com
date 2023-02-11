@@ -1,0 +1,5 @@
+{% macro x(as='b') %}
+<{{ as }} class="mt-2 px-2 py-1 max-w-[130px] bg(gray-900 opacity-75) text(xs gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-xl transform -translate-x-1/2 motion-safe:(transition-all) group-hover:(-mt-1 opacity-100)">
+  {{ caller() }}
+</{{ as }}>
+{% endmacro %}

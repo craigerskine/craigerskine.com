@@ -1,5 +1,6 @@
 {%- import 'components/heading.njk' as heading -%}
 {%- import 'components/social.njk' as social -%}
+{%- import 'components/tooltip.njk' as tooltip -%}
 
 {%- macro media(data=[], category='games') -%}
 {%- for item in data %}
@@ -8,11 +9,11 @@
     <figure class="flex w-full">
       <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
       <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
-      <figcaption class="mt-2 px-2 py-1 max-w-[130px] bg(gray-900 opacity-75) text(xs gray-200) font-bold truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-xl transform -translate-x-1/2 motion-safe:(transition-all) group-hover:(-mt-1 opacity-100)">
+      {%- call tooltip.x(as='figcaption') %}
         {% if category == 'music' %}<small class="pb-px font-semibold leading-none block opacity-75">{{ item.sub }}:</small>{% endif %}
         {{ item.title }}
         {% if category == 'games' %}<small class="pt-px font-semibold leading-none block opacity-75">{{ item.sub }}</small>{% endif %}
-      </figcaption>
+      {%- endcall %}
     </figure>
   </a>
 </li>
@@ -20,7 +21,7 @@
 {%- endmacro -%}
 
 <!doctype html>
-<html lang="en" x-data="{% renderblock 'data' -%}" x-cloak>
+<html lang="en" x-data="{% renderblock 'data' -%}" {% if page.url == '/' %}@work-modal.window="workData = $event.detail.data" {% endif %}x-cloak>
 
   <head>
     <meta charset="utf-8" />
@@ -68,7 +69,7 @@
       {%- endhighlight %}
       <div class="bg-slate-50/50 fixed inset-0"></div>
     </div>
-    <div class="app w-full min-h-screen flex-(& col) relative z-30" x-data="{% renderblock 'data' -%}">
+    <div class="app w-full min-h-screen flex-(& col) relative z-30">
 
       <header class="w-full bg-(paper gray-100) flex-none">
         <div class="mx-auto py-6 px-4 max-w-7xl lg:px-8">
@@ -83,7 +84,7 @@
             </a>
             <ul class="py-1.5 px-3 bg-gray-50/50 flex space-x-3 ring-(1 gray-200) rounded-full shadow">
               {%- for item in collections.all | eleventyNavigation %}
-              <li class="py-1 px-2"><a href="{{ item.url }}" class="flex motion-safe:(transition) hover:(text-blue-500)">{{ item.key }}</a></li>
+              <li class="py-1 px-2"><a href="{{ item.url }}" class="flex motion-safe:(transition) hover:(text-pri-500)">{{ item.key }}</a></li>
               {%- endfor %}
               <li class="py-1 px-2">
                 <button class="color-mode flex items-center motion-safe:(transition) hover:(text-blue-500)" aria-label="Toggle color mode">
@@ -141,7 +142,7 @@
         <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) items-center gap-6 md:(px-8 flex-row justify-between)">
           <p class="text-xs font-bold uppercase">
             &copy;2008-{% year %}
-            <a href="{{ site.meta.url }}" class="group mx-1.5 relative motion-safe:(transition) hover:(text-blue-500)">
+            <a href="{{ site.meta.url }}" class="group mx-1.5 relative motion-safe:(transition) hover:(text-pri-500)">
               {{ site.meta.author }}
               <b class="w-full h-px bg-current transform absolute -bottom-px left-0 scale-0 motion-safe:(transition) group-hover:(scale-100)"></b>
             </a>
@@ -149,8 +150,10 @@
           <ul class="p-3 pt-0 flex items-center gap-x-4 md:(gap-x-6)">
             {%- for nav in site.tech %}
             <li>
-              <a href="{{ nav.url }}" class="group block relative motion-safe:(transition hover:(animate-blob)) hover:(text-blue-500)">
-                <b class="mt-2 px-2 py-1 max-w-[130px] bg(gray-900 opacity-75) text(xs gray-200) truncate pointer-events-none absolute -top-10 left-1/2 rounded opacity-0 shadow-xl transform -translate-x-1/2 motion-safe:(transition-all) group-hover:(-mt-1 opacity-100)">{{ nav.sub }}: {{ nav.title }}</b>
+              <a href="{{ nav.url }}" class="group block relative motion-safe:(transition hover:(animate-blob)) hover:(text-pri-500)">
+                {%- call tooltip.x() %}
+                  {{ nav.sub }}: {{ nav.title }}
+                {%- endcall %}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="w-6 fill-current">
                   {{ nav.ico | safe }}
                 </svg>
@@ -165,7 +168,7 @@
 
     {% renderblock 'js' %}
     <script src="/_assets/js/_app.js?v={% bust %}"></script>
-    <script src="https://kit.fontawesome.com/6d6156d427.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a2bf4ed495.js" crossorigin="anonymous"></script>
 
   </body>
 

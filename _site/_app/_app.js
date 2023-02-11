@@ -34,7 +34,7 @@ install({
         'xs': '425px',
       },
       colors: ({ theme }) => ({
-        // gray: theme('colors.gray'),
+        pri: theme('colors.orange'),
       }),
       fontFamily: ({ theme }) => ({
         sans: 'Inter,'+ theme('fontFamily.sans'),
@@ -84,5 +84,7 @@ injectGlobal({
 
 // alpinejs
 import Alpine from 'alpinejs';
+import focus from '@alpinejs/focus';
+Alpine.plugin(focus);
 window.Alpine = Alpine;
 Alpine.start();
