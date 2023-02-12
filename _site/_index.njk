@@ -12,7 +12,7 @@ eleventyNavigation:
   <article class="mx-auto py-6 px-4 max-w-7xl lg:px-8">
     <div class="hero max-w-2xl space-y-8">
       <h1 class="text-4xl font-semibold tracking-tight md:(text-5xl leading-tight)">
-        {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-500 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor %}
+        {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-500 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}
         ...
       </h1>
       <h2 class="text-gray-600 leading-relaxed">{{ home.lead }}</h2>
@@ -75,7 +75,7 @@ eleventyNavigation:
     <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><i class="fa-regular fa-fw fa-times" title="Close"></i></button>
     <template x-if="workModal"> <!-- ** alpine needs this or it will just try to render things even if they have not dispatched yet? seems like a bug to me ** -->
     <figure class="w-screen max-w-xl bg-gray-200 overflow-hidden rounded-2xl shadow-2xl">
-      <img :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full h-96 bg-(cover center) object-(center cover)" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.jpg\')' : ''" />
+      <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full h-96 bg-(cover center) object-(center cover) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.jpg\')' : ''" />
       <figcaption class="py-6 px-8 relative">
         <div class="flex-(& col) gap-1">
           <p x-text="workData.title" class="text-2xl font-black flex-1 lg:(text-4xl tracking-tight)"></p>
