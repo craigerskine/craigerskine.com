@@ -8,16 +8,8 @@ const yaml = require("js-yaml");
 const CleanCSS = require("clean-css");
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy('_site/_assets');
-  eleventyConfig.addPassthroughCopy('_site/_redirects');
-  eleventyConfig.addPassthroughCopy('_site/netlify.toml');
-  eleventyConfig.addPassthroughCopy('_site/site.webmanifest');
-  eleventyConfig.addPassthroughCopy('_site/*.ico');
-  eleventyConfig.addPassthroughCopy('_site/*.jpg');
-  eleventyConfig.addPassthroughCopy('_site/*.png');
-  eleventyConfig.addPassthroughCopy('_site/*.svg');
-  eleventyConfig.addPassthroughCopy('_site/*.txt');
-  eleventyConfig.addPassthroughCopy('_site/*.xml');
+  eleventyConfig.addPassthroughCopy({'_site/_assets/img': '_assets/img'});
+  eleventyConfig.addPassthroughCopy({'_site/_assets/_root': './'});
   
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
