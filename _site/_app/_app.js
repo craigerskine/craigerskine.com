@@ -61,12 +61,6 @@ install({
 injectGlobal({
   'html': { '@apply': '' },
   'body': { '@apply': '!block' },
-  '.fw-book': { 'perspective': '33rem', },
-  '.fw-book-inner': { 'transform-style': 'preserve-3d', },
-  '.fw-book-cover': { 'transform-origin': 'center left', 'transform': 'rotateY(35deg)', },
-  '.fw-book:hover .fw-book-cover,.fw-book:focus .fw-book-cover': { 'transform': 'rotateY(0)', },
-  '.fw-book-binding': { 'transform-origin': 'center right', 'transform': 'rotateY(-35deg)', },
-  '.fw-book:hover .fw-book-binding,.fw-book:focus .fw-book-binding': { 'transform': 'rotateY(-90deg)', },
   '.media-dvd,.media-ps2,.media-wii,.media-gcn,.media-xb,.media-xb360': { 'padding': '7px 8px 7px 0', 'width': '110px', 'height': '154px', },
   '.media-cd': { 'padding': '2px 4px 2px 12px', 'width': '112px', 'height': '102px', },
   '.media-cd-tl': { 'padding': '2px 4px 2px 12px', 'width': '112px', 'height': '156px', },
