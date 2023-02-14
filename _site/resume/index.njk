@@ -168,7 +168,7 @@ eleventyNavigation:
               <li class="group flex items-center cursor-default mt-2 pt-2">
                 <b class="mr-2 min-w-0 font-normal truncate">{{ skill.title }}</b>
                 <div class="ml-auto p-[3px] h-3 w-48 bg-gray-200 flex rounded-full shadow-inner motion-safe:(transition-all duration-300 group-hover:(p-[2px]))" role="progressbar">
-                  <div class="bg-current relative rounded-full motion-safe:(transition duration-300 group-hover:(bg-orange-500 animate-blob))" style="width: {{ skill.rating }}%;">
+                  <div class="w-[{{ skill.rating }}%] bg-current relative rounded-full motion-safe:(transition duration-300 group-hover:(bg-orange-500))">
                     <i class="sr-only">{{ skill.rating }}</i>
                   </div>
                 </div>
