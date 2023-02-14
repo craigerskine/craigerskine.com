@@ -7,6 +7,7 @@ tech:
   - HTML
   - CSS
   - Js
+date: 0001-01-01
 ---
 
 ...

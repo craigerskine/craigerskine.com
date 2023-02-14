@@ -8,6 +8,7 @@ tech:
   - CSS
   - Alpine
   - 11ty
+date: 0002-01-01
 ---
 
 ...

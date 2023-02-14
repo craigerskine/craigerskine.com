@@ -67,21 +67,21 @@ specialties:
     ico: figma
 skills:
   - title: HTML
-    rating: 9
+    rating: 95
   - title: CSS
-    rating: 9
+    rating: 95
   - title: Js
-    rating: 5
+    rating: 55
   - title: Tailwind
-    rating: 8
+    rating: 90
   - title: Vue
-    rating: 6
+    rating: 65
   - title: Sketch
-    rating: 9
+    rating: 90
   - title: Figma
-    rating: 7
+    rating: 75
   - title: Accessibility
-    rating: 7
+    rating: 75
 accomplishments:
   - title: OpenEmu
     type: Website + UI Graphics

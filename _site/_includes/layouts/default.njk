@@ -63,51 +63,46 @@
   </head>
 
   <body class="bg-gray-100 text-gray-600" style="display: none;" data-instant-intensity="mousedown">
-    <div class="bg-slate-900 dark:(bg-slate-900) grid-(& cols-1) items-center fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      {%- highlight "html" %}
-      {% include "html/home.html" %}
-      {%- endhighlight %}
-      <div class="bg-slate-50/50 fixed inset-0"></div>
-    </div>
-    <div class="app w-full min-h-screen flex-(& col) relative z-30">
+    <div class="app w-full min-h-screen flex-(& col) relative">
+      <div class="bg-(paper gray-100) relative z-10">
+        <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
+        <b class="h-16 bg-(repeat-x bottom) absolute inset-x-0 bottom-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-bot.png');" aria-hidden="true"></b>
+        <header class="w-full flex-none relative">
+          <div class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
+            <nav class="flex items-center justify-between">
+              <a href="/" class="p-1.5 w-12 h-12 bg-gray-800 text-gray-50 flex rounded-full transform motion-safe:(transition) hover:(motion-safe:(animate-blob))">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="fill-current">
+                  <title>Craig Erskine logo</title>
+                  <g fill-rule="evenodd">
+                    <path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
+                  </g>
+                </svg>
+              </a>
+              <ul class="py-1.5 px-3 bg-gray-50/50 flex space-x-3 ring-(1 gray-200) rounded-full shadow">
+                {%- for item in collections.all | eleventyNavigation %}
+                <li class="py-1 px-2"><a href="{{ item.url }}" class="flex motion-safe:(transition) hover:(text-pri-500)">{{ item.key }}</a></li>
+                {%- endfor %}
+                <li class="py-1 px-2">
+                  <button class="color-mode flex items-center motion-safe:(transition) hover:(text-blue-500)" aria-label="Toggle color mode">
+                    <span class="block dark:(hidden)"><i class="fal fa-fw fa-sun"></i> <span class="sr-only">Switch to dark mode</span></span>
+                    <span class="hidden dark:(block)"><i class="fal fa-fw fa-moon-stars"></i> <span class="sr-only">Switch to light mode</span></span>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+        
+        <main class="w-full flex-1 relative">
+          {{ content | safe }}
+        </main>
+      </div>
 
-      <header class="w-full bg-(paper gray-100) flex-none relative">
-        <b class="h-16 bg-(repeat-x bottom) absolute inset-x-0 bottom-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-bot.png');"></b>
-        <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-20)"></b>
-        <div class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-          <nav class="flex items-center justify-between">
-            <a href="/" class="p-1.5 w-12 h-12 bg-gray-800 text-gray-50 flex rounded-full transform motion-safe:(transition) hover:(motion-safe:(animate-blob))">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="fill-current">
-                <title>Craig Erskine logo</title>
-                <g fill-rule="evenodd">
-                  <path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
-                </g>
-              </svg>
-            </a>
-            <ul class="py-1.5 px-3 bg-gray-50/50 flex space-x-3 ring-(1 gray-200) rounded-full shadow">
-              {%- for item in collections.all | eleventyNavigation %}
-              <li class="py-1 px-2"><a href="{{ item.url }}" class="flex motion-safe:(transition) hover:(text-pri-500)">{{ item.key }}</a></li>
-              {%- endfor %}
-              <li class="py-1 px-2">
-                <button class="color-mode flex items-center motion-safe:(transition) hover:(text-blue-500)" aria-label="Toggle color mode">
-                  <span class="block dark:(hidden)"><i class="fal fa-fw fa-sun"></i> <span class="sr-only">Switch to dark mode</span></span>
-                  <span class="hidden dark:(block)"><i class="fal fa-fw fa-moon-stars"></i> <span class="sr-only">Switch to light mode</span></span>
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        {% renderblock 'header' %}
-      </header>
-      
-      <main class="w-full flex-1">
-        {{ content | safe }}
-        <section class="h-72" aria-hidden="true"></section>
-      </main>
+      <div class="h-72" aria-hidden="true"></div>
 
-      <footer class="pt-16 px-4 w-full bg-(paper gray-100) flex-none relative">
-        <b class="h-16 bg-(repeat-x top) absolute inset-x-0 top-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-top.png');"></b>
-        <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-20)"></b>
+      <footer class="pt-16 w-full bg-(paper gray-100) flex-none relative z-10">
+        <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
+        <b class="h-16 bg-(repeat-x top) absolute inset-x-0 top-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-top.png');" aria-hidden="true"></b>
         <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) gap-16 relative lg:(px-8 flex-row)">
           <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0 max-w-none flex-1)">
             {%- call heading.x(sub='My Book', ico='book') %}
@@ -145,7 +140,8 @@
             </ul>
           </div>
         </div>
-        <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) items-center gap-6 md:(px-8 flex-row justify-between)">
+        <div class="w-full h-10 bg-(repeat-x top) invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-bot.png');" aria-hidden="true"></div>
+        <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) items-center gap-6 relative md:(px-8 flex-row justify-between)">
           <p class="text-xs font-bold uppercase">
             &copy;2008-{% year %}
             <a href="{{ site.meta.url }}" class="group mx-1.5 relative motion-safe:(transition) hover:(text-pri-500)">
@@ -153,7 +149,7 @@
               <b class="w-full h-px bg-current transform absolute -bottom-px left-0 scale-0 motion-safe:(transition) group-hover:(scale-100)"></b>
             </a>
           </p>
-          <ul class="p-3 pt-0 flex items-center gap-x-4 md:(gap-x-6)">
+          <ul class="p-2 flex items-center gap-x-4 md:(gap-x-6)">
             {%- for nav in site.tech %}
             <li>
               <a href="{{ nav.url }}" class="group block relative motion-safe:(transition hover:(animate-blob)) hover:(text-pri-500)">
@@ -169,6 +165,16 @@
           </ul>
         </div>
       </footer>
+
+      <div class="bg-src flex items-center fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <div class="w-full bg-slate-900 dark:(bg-slate-900)">
+          {%- highlight "html" %}
+          {% include "html/home.html" %}
+          {%- endhighlight %}
+        </div>
+        <div class="bg-slate-50/50 absolute inset-0"></div>
+        <div class="bg-grid absolute inset-0 opacity-5 dark:(opacity-20)"></div>
+      </div>
 
     </div>
 

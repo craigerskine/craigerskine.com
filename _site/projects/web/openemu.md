@@ -7,6 +7,7 @@ tech:
   - CSS
   - Js
   - Vue
+date: 0003-01-01
 ---
 
 ...

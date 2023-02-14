@@ -167,13 +167,11 @@ eleventyNavigation:
               {%- for skill in resume.skills %}
               <li class="group flex items-center cursor-default mt-2 pt-2">
                 <b class="mr-2 min-w-0 font-normal truncate">{{ skill.title }}</b>
-                <ul class="ml-auto flex items-center space-x-[2px]" aria-label="Rating: {{ skill.rating }} / 10" title="Rating: {{ skill.rating }} / 10">
-                  {%- for i in range(0, 10) %}
-                  <li class="w-4 h-4 relative rounded-sm transform -skew-x-12 {% if i <= skill.rating %}bg-current motion-safe:transition group-hover:(text-yellow-500) group-focus:(text-yellow-500){% else %}bg-white ring-(1 inset gray-500 opacity-75){% endif %}">
-                    {% if i <= skill.rating %}<b class="ring-(1 transparent) absolute inset-0 group-hover:(ring-current motion-safe:animate-ping) group-focus:(ring-current motion-safe:animate-ping)"></b>{% endif %}
-                  </li>
-                  {%- endfor %}
-                </ul>
+                <div class="ml-auto p-[3px] h-3 w-48 bg-gray-200 flex rounded-full shadow-inner motion-safe:(transition-all duration-300 group-hover:(p-[2px]))" role="progressbar">
+                  <div class="bg-current relative rounded-full motion-safe:(transition duration-300 group-hover:(bg-orange-500 animate-blob))" style="width: {{ skill.rating }}%;">
+                    <i class="sr-only">{{ skill.rating }}</i>
+                  </div>
+                </div>
               </li>
               {%- endfor %}
             </ul>
