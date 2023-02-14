@@ -140,7 +140,7 @@ eleventyNavigation:
               {%- endfor %}
             </ul>
           {%- endcall %}
-          <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)">
+          <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
             <b class="h-px bg-gray-500/25 flex-1"></b>
             <i class="fa fa-fw fa-arrow-down"></i>
             <span>Continue to next page...</span>
@@ -162,15 +162,17 @@ eleventyNavigation:
               {%- endfor %}
             </ul>
           {%- endcall %}
-          {%- call region(title='Skills') %}
+          {%- call region(title='Skills Levels') %}
             <ul class="divide-(y dashed gray-500 opacity-25)">
               {%- for skill in resume.skills %}
               <li class="group flex items-center cursor-default mt-2 pt-2">
                 <b class="mr-2 min-w-0 font-normal truncate">{{ skill.title }}</b>
                 <div class="ml-auto p-[3px] w-32 bg-gray-200 flex items-center rounded-full shadow-inner sm:(w-48)" role="progressbar">
                   <div class="w-[{{ skill.rating }}%] h-1.5 bg-current flex item-center justify-end relative rounded-full motion-safe:(transition duration-300 group-hover:(text-orange-500))">
-                    <b class="w-3 h-3 bg-white ring-(1 current) rounded-full transform -translate-y-[3px] group-hover:(ring-2)" aria-hidden="true"></b>
-                    <i class="sr-only">{{ skill.rating }}</i>
+                    <b class="w-3 h-3 bg-current ring-(2 white/100) rounded-full transform -translate-y-[3px]" aria-hidden="true">
+                      <b class="absolute inset-0 ring-(2 current) rounded-full opacity-0 group-hover:(opacity-100 animate-ping)"></b>
+                    </b>
+                    <i class="sr-only">{{ skill.rating }}% skill level</i>
                   </div>
                 </div>
               </li>
