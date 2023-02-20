@@ -27,10 +27,10 @@ eleventyNavigation:
 <div class="pb-16 relative">
   <section x-show="workTypeActive == 0" id="panel-work-ill" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel"
     x-transition:enter="absolute top-0 inset-x-0"
-    x-transition:enter-start="opacity-0 scale-90 blur-lg"
+    x-transition:enter-start="opacity-0 scale-110 blur-lg"
     x-transition:enter-end="opacity-100 scale-100"
     x-transition:leave-start="opacity-100 scale-100"
-    x-transition:leave-end="opacity-0 scale-90 blur-lg"
+    x-transition:leave-end="opacity-0 scale-110 blur-lg"
   >
     {%- for item in collections.illustrations %}
     <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "png" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
