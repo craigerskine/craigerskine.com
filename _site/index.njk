@@ -58,13 +58,12 @@ eleventyNavigation:
   </section>
 </div>
 
-<div x-show="workModal" x-trap.noscroll.inert="workModal" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)" role="dialog"
+<div x-show="workModal" x-trap.noscroll.inert="workModal" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)"
   x-transition:enter-start="opacity-0 blur-lg"
   x-transition:enter-end="opacity-100"
   x-transition:leave-start="opacity-100"
-  x-transition:leave-end="opacity-0 blur-lg"
->
-  <div class="relative" @click.outside="workModal = false">
+  x-transition:leave-end="opacity-0 blur-lg">
+  <div @click.outside="workModal = false" class="relative" role="dialog" aria-modal="true">
     <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><i class="fa-regular fa-fw fa-times" title="Close"></i></button>
     <template x-if="workModal"> <!-- ** alpine needs this or it will just try to render things even if they have not dispatched yet? seems like a bug to me ** -->
     <figure class="w-screen max-w-xl bg-gray-200 overflow-hidden rounded-2xl shadow-2xl">
