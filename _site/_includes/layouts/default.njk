@@ -1,6 +1,7 @@
 {%- import 'components/heading.njk' as heading -%}
 {%- import 'components/social.njk' as social -%}
 {%- import 'components/tooltip.njk' as tooltip -%}
+{%- import 'components/ui-grunge.njk' as grunge -%}
 
 {%- macro media(data=[], category='games') -%}
 {%- for item in data %}
@@ -66,7 +67,8 @@
     <div class="app w-full min-h-screen flex-(& col) relative">
       <div class="bg-(paper gray-100) relative z-10">
         <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
-        <b class="h-16 bg-(repeat-x bottom) absolute inset-x-0 bottom-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-bot.png');" aria-hidden="true"></b>
+        {{ grunge.x() }}
+        {{ grunge.x(pos='bot') }}
         <header class="w-full flex-none relative">
           <div class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
             <nav class="flex items-center justify-between">
@@ -101,10 +103,11 @@
       <div class="h-72" aria-hidden="true"></div>
 
       <footer class="w-full bg-(paper gray-100) flex-none relative z-10">
+        {{ grunge.x(pos='bot') }}
         <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
         <div class="py-16 relative">
-          <b class="h-16 bg-(repeat-x top) absolute inset-x-0 top-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-top.png');" aria-hidden="true"></b>
-          <b class="h-16 bg-(repeat-x bottom) absolute inset-x-0 bottom-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-bot.png');" aria-hidden="true"></b>
+          {{ grunge.x() }}
+          {{ grunge.x(pos='bot') }}
           <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) gap-16 relative lg:(px-8 flex-row)">
             <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0 max-w-none flex-1)">
               {%- call heading.x(sub='My Book', ico='book') %}
