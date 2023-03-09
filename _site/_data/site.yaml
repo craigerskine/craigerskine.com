@@ -18,13 +18,13 @@ social:
     ico: linkedin-in
     color: blue
   - title: Angel List
-    url: https://angel.co/craigerskine
+    url: https://wellfound.com/craigerskine
     ico: angellist
-    color: yellow
+    color: red
   - title: Behance
     url: https://behance.net/craigerskine
     ico: behance
-    color: red
+    color: purple
 book:
   title: Foundation Fireworks CS4
   desc: |-
