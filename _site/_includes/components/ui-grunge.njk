@@ -1,4 +1,4 @@
-{% macro x(pos='top') %}
+{%- macro x(pos='top') %}
 {% set position %}{% if pos == 'top' %}top{% else %}bottom{% endif %}{% endset %}
-<b class="h-16 bg-(repeat-x {{ position }}) absolute inset-x-0 {{ position }}-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-{{ pos }}.png');" aria-hidden="true"></b>
-{% endmacro %}
+<b class="h-10 bg-(repeat-x {{ position }}) absolute inset-x-0 {{ position }}-0 invert dark:(invert-0)" style="background-image: url('/_assets/img/bg-grunge-{{ pos }}.png');" aria-hidden="true"></b>
+{%- endmacro %}
