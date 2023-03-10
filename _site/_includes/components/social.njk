@@ -1,4 +1,4 @@
-{% macro x(social='', css='') %}
+{% macro x(social='',css='') %}
 <ul class="text-xl flex gap-2 lg:(gap-5)">
   {%- for soc in social %}
   <li><a href="{{ soc.url }}" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-{{ soc.color }}-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) {{ css }}"><i class="fab fa-fw fa-{{ soc.ico }}" title="{{ soc.title }}"></i></a></li>
