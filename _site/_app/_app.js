@@ -1,6 +1,9 @@
 // instant page
 import 'instant.page';
 
+// icons
+import 'iconify-icon';
+
 // color mode
 const toggleColorMode = function() {
   // light

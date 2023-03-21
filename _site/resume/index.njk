@@ -32,8 +32,8 @@ eleventyNavigation:
     <div class="">
       <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
         <ul class="print:(hidden) flex -space-x-2 absolute top-2 right-2 z-50 md:(-top-5 -right-5)">
-          <li><a href="/" class="border-(2 white) w-10 h-10 bg-gray-300 text-gray-800 flex items-center justify-center rounded-full shadow-xl ring-(1 gray-500 opacity-20) motion-safe:(transition) hover:(bg-blue-500 text-white) focus:(bg-blue-500 text-white)"><i class="far fa-fw fa-home"></i></a></li>
-          <li><button type="button" onclick="window.print();" class="border-(2 white) w-10 h-10 bg-gray-300 text-gray-800 flex items-center justify-center rounded-full shadow-xl ring-(1 gray-500 opacity-20) motion-safe:(transition) hover:(bg-blue-500 text-white) focus:(bg-blue-500 text-white)"><i class="far fa-fw fa-print"></i></button></li>
+          <li><a href="/" class="border-(2 white) w-10 h-10 bg-gray-300 text-gray-800 flex items-center justify-center rounded-full shadow-xl ring-(1 gray-500 opacity-20) motion-safe:(transition) hover:(bg-blue-500 text-white) focus:(bg-blue-500 text-white)"><iconify-icon icon="fa6-solid:house" inline="false"></iconify-icon></a></li>
+          <li><button type="button" onclick="window.print();" class="border-(2 white) w-10 h-10 bg-gray-300 text-gray-800 flex items-center justify-center rounded-full shadow-xl ring-(1 gray-500 opacity-20) motion-safe:(transition) hover:(bg-blue-500 text-white) focus:(bg-blue-500 text-white)"><iconify-icon icon="fa6-solid:print" inline="false"></iconify-icon></button></li>
         </ul>
         <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500 opacity-20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
           <figure class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
@@ -65,9 +65,9 @@ eleventyNavigation:
               </li>
               <li class="flex-(& col)">
                 <b class="pb-2 w-full block">@{{ resume.username }}</b>
-                <ul class="mb-5 border-(l gray-500 opacity-25 dashed) pl-5 text-3xl flex-(& 1) items-center gap-x-2 md:(pr-12 mb-0)">
+                <ul class="mb-5 border-(l gray-500 opacity-25 dashed) pl-5 text-3xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
                   {%- for soc in resume.social %}
-                  <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><i class="fab fa-fw fa-{{ soc.ico }}"></i><b class="sr-only">{{ soc.ico }}</b></a></li>
+                  <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" inline="false"></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
                   {%- endfor %}
                 </ul>
               </li>
@@ -86,7 +86,7 @@ eleventyNavigation:
                   <a href="{{ site.url }}" class="group font-bold inline-block opacity-80 motion-safe:transition hover:(text-blue-500 opacity-100) focus:(text-blue-500 opacity-100)">
                     {# <i class="mr-1 text-xs font-mono inline-block opacity-50" aria-hidden="true">//</i> #}
                     <span class="inline-flex items-center gap-2">
-                      <i class="fa fa-fw fa-globe opacity-50"></i>
+                      <iconify-icon icon="fa6-solid:globe" inline="false" class="opacity-50"></iconify-icon>
                       {{ site.title }}
                     </span>
                     {{ underline() }}
@@ -142,9 +142,9 @@ eleventyNavigation:
           {%- endcall %}
           <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
             <b class="h-px bg-gray-500/25 flex-1"></b>
-            <i class="fa fa-fw fa-arrow-down"></i>
+            <iconify-icon icon="fa6-solid:arrow-down" inline="false"></iconify-icon>
             <span>Continue to next page...</span>
-            <i class="fa fa-fw fa-arrow-down"></i>
+            <iconify-icon icon="fa6-solid:arrow-down" inline="false"></iconify-icon>
             <b class="h-px bg-gray-500/25 flex-1"></b>
           </div>
           {%- call region(title='Specialties') %}
@@ -152,7 +152,7 @@ eleventyNavigation:
               {% for spec in resume.specialties %}
               <li class="flex-(& col) items-center motion-safe:transition hover:(scale-110 text-red-500)">
                 <b class="w-16 h-16 ring-(1 inset current) flex items-center justify-center rounded-full md:(w-24 h-24)">
-                  <i class="text-2xl fab fa-{{ spec.ico }} md:(text-4xl)"></i>
+                  <iconify-icon icon="{{ spec.ico }}" inline="false" class="text-2xl md:(text-4xl)"></iconify-icon>
                 </b>
                 <i class="-mt-4 w-px bg-current relative {% if loop.index % 2 == 0 %}h-12{% else %}h-24{% endif %}">
                   <i class="-mt-1 -ml-1 w-2 h-2 bg-current absolute top-0 left-0 rounded-full"></i>
@@ -202,7 +202,7 @@ eleventyNavigation:
               {%- for hobby in resume.hobbies %}
               <li>
                 <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(1 gray-500 opacity-20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-400) scale-110) focus:(ring-(4 blue-400) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
-                  <i class="fad text-4xl fa-{{ hobby.ico }} print:(text-lg)"></i>
+                  <iconify-icon icon="{{ hobby.ico }}" inline="false" class="text-4xl print:(text-lg)"></iconify-icon>
                   <small class="mt-2 text-xs tracking-tight opacity-80 print:(!mt-0 text-[6px])">{{ hobby.title }}</small>
                 </a>
               </li>
@@ -228,7 +228,6 @@ eleventyNavigation:
     </div>
 
     <script src="/_assets/js/_app.js?v={% bust %}"></script>
-    <script src="https://kit.fontawesome.com/6d6156d427.js" crossorigin="anonymous"></script>
 
   </body>
 </html>

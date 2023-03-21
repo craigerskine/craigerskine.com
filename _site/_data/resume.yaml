@@ -5,11 +5,11 @@ email: craig@craigerskine.com
 username: craigerskine
 social:
   - title: Dribbble
-    ico: dribbble
+    ico: fa6-brands:dribbble
     url: 'https://dribbble.com/craigerskine/'
     color: pink
   - title: GitHub
-    ico: github
+    ico: fa6-brands:github
     url: 'https://github.com/craigerskine/'
     color: gray
 personal:
@@ -58,13 +58,13 @@ experience:
       company: 'NetNet, Inc.'
 specialties:
   - title: HTML
-    ico: html5
+    ico: fa6-brands:html5
   - title: CSS
-    ico: css3-alt
+    ico: fa6-brands:css3-alt
   - title: Sketch
-    ico: sketch
+    ico: fa6-brands:sketch
   - title: Figma
-    ico: figma
+    ico: fa6-brands:figma
 skills:
   - title: HTML
     rating: 95
@@ -103,26 +103,26 @@ accomplishments:
     url: 'https://amzn.com/dp/1430216182?tag=qrayg-20'
 hobbies:
   - title: Gaming
-    ico: gamepad-alt
+    ico: fa6-solid:gamepad
     url: 'https://pxl.media/'
   - title: Guitar
-    ico: guitar-electric
+    ico: mdi:guitar-electric
     url: 'https://qrayg.com/gear/#music'
   - title: Home Theater
-    ico: speakers
+    ico: mdi:speaker-multiple
     url: 'https://qrayg.com/gear/#home-theater'
   - title: Keyboards
-    ico: keyboard
+    ico: mdi:keyboard
     url: 'https://qrayg.com/gear/#keyboards'
   - title: My Book
-    ico: book
+    ico: fa6-solid:book
     url: 'https://craig.ersk.in/e/#section-book'
   - title: Rescue Cats
-    ico: cat
+    ico: mdi:cat
     url: 'https://craig.ersk.in/e/#section-family'
   - title: Sketching
-    ico: pencil
+    ico: fa6-solid:pencil
     url: 'https://craig.ersk.in/e/#section-art'
   - title: VW
-    ico: car
+    ico: simple-icons:volkswagen
     url: 'https://flic.kr/s/aHBqjzyCbb'

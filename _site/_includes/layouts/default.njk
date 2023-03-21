@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
 
     {% set css %}
-      {% include "css/prism.css" %}
+      {% include 'css/prism.css' %}
     {% endset %}
     <style>{{ css | cssmin | safe }}</style>
     {% renderblock 'css' %}
@@ -69,35 +69,15 @@
         <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
         {{ grunge.x() }}
         {{ grunge.x(pos='bot') }}
+
         <header class="w-full flex-none relative">
-          <div class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-            <nav class="flex items-center justify-between">
-              <a href="/" class="p-1.5 w-12 h-12 bg-gray-800 text-gray-50 flex rounded-full transform motion-safe:(transition) hover:(motion-safe:(animate-blob))">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="fill-current">
-                  <title>Craig Erskine logo</title>
-                  <g fill-rule="evenodd">
-                    <path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
-                  </g>
-                </svg>
-              </a>
-              <ul class="py-1.5 px-3 bg-gray-50/50 flex space-x-3 ring-(1 gray-200) rounded-full shadow">
-                {%- for item in collections.all | eleventyNavigation %}
-                <li class="py-1 px-2"><a href="{{ item.url }}" class="flex motion-safe:(transition) hover:(text-pri-500)">{{ item.key }}</a></li>
-                {%- endfor %}
-                <li class="py-1 px-2">
-                  <button class="color-mode flex items-center motion-safe:(transition) hover:(text-blue-500)" aria-label="Toggle color mode">
-                    <span class="block dark:(hidden)"><i class="fal fa-fw fa-sun"></i> <span class="sr-only">Switch to dark mode</span></span>
-                    <span class="hidden dark:(block)"><i class="fal fa-fw fa-moon-stars"></i> <span class="sr-only">Switch to light mode</span></span>
-                  </button>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          {% include 'components/nav.njk' %}
         </header>
         
         <main class="w-full flex-1 relative">
           {{ content | safe }}
         </main>
+
       </div>
 
       <div class="h-72" aria-hidden="true"></div>
@@ -110,7 +90,7 @@
           {{ grunge.x(pos='bot') }}
           <div class="mx-auto py-6 px-4 max-w-7xl flex-(& col) gap-16 relative lg:(px-8 flex-row)">
             <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0 max-w-none flex-1)">
-              {%- call heading.x(sub='My Book', ico='book') %}
+              {%- call heading.x(sub='My Book', ico='fa6-solid:book') %}
               Foundation Fw
               {%- endcall %}
               <div class="flex-(& col) items-center gap-6 lg:(flex-row-reverse)">
@@ -127,7 +107,7 @@
                   </figure>
                 </a>
               </div>
-              {%- call heading.x(sub='Social Media', ico='share-alt') %}
+              {%- call heading.x(sub='Social Media', ico='fa6-solid:share') %}
               Stalk Me
               {%- endcall %}
               <div class="flex justify-center lg:(justify-start)">
@@ -135,11 +115,11 @@
               </div>
             </div>
             <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0)">
-              {%- call heading.x(sub='Currently', ico='gamepad-alt') %}Playing{%- endcall %}
+              {%- call heading.x(sub='Currently', ico='fa6-solid:gamepad') %}Playing{%- endcall %}
               <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full bg-bottom bg-no-repeat flex items-end justify-between lg:mb-32" style="background-image: url('/_assets/img/media-shelf.png');">
                 {{ media(data=currently.playing, category='games') }}
               </ul>
-              {%- call heading.x(sub='Currently', ico='list-music') %}Listening{%- endcall %}
+              {%- call heading.x(sub='Currently', ico='fa6-solid:music') %}Listening{%- endcall %}
               <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full bg-bottom bg-no-repeat flex items-end justify-between lg:mb-32" style="background-image: url('/_assets/img/media-shelf.png');">
                 {{ media(data=currently.listening, category='music') }}
               </ul>
@@ -162,9 +142,7 @@
                   {%- call tooltip.x() %}
                     {{ nav.sub }}: {{ nav.title }}
                   {%- endcall %}
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="w-6 fill-current">
-                    {{ nav.ico | safe }}
-                  </svg>
+                  <iconify-icon icon="{{ nav.ico }}" inline="false" class="text-2xl"></iconify-icon>
                 </a>
               </li>
               {%- endfor %}
@@ -187,7 +165,6 @@
 
     {% renderblock 'js' %}
     <script src="/_assets/js/_app.js?v={% bust %}"></script>
-    <script src="https://kit.fontawesome.com/a2bf4ed495.js" crossorigin="anonymous"></script>
 
   </body>
 
