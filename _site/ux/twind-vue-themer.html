@@ -1,0 +1,186 @@
+---
+layout: false
+tags: ux
+title: Theme Switcher
+desc: A Twind v0 foreground color contrast "plugin" using CSS props/variables
+ico: mdi:fill
+permalink: /ux/twind-vue-themer.html
+date: 0002-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-gray-400 motion-safe:scroll-smooth" hidden>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;700;900&display=swap" rel="stylesheet" />
+  </head>
+  <body class="text-gray-800">
+    
+    <div id="app" class="px-4 min-h-screen flex items-center relative" v-cloak>
+
+      <div class="bg-gradient-to-b from-transparent via-transparent to-gray-300 fixed inset-0"><div class="bg-grid absolute inset-0 opacity-30"></div></div>
+
+      <nav class="fixed top-10 inset-x-10">
+        <ul class="flex justify-center gap-x-3 leading-none md:(gap-x-12)">
+          <li v-for="(i, index) in ['Simple', 'Fun', 'Elegant', 'Brutal']" :class="[{ 'order-last' : index === 1 }]">
+            <a @click.prevent="theme = index" :href="'#'+ slug(i)" :class="['py-2 w-24 flex(& col) items-center relative rounded-md transition', index === theme ? 'bg-gray-900 text-white' : '']" :tabindex="index === 1 ? '4' : (index === 2) ? '2' : (index === 3) ? '3' : '1'">
+              <span :class="['mb-1 text-xl opacity-50 md:(text-3xl)']">
+                <i :class="['fa',
+                  index === 0 ? 'fa-window-maximize' :
+                  (index === 1) ? 'fa-face-grin-tongue-wink' :
+                  (index === 2) ? 'fa-signature' :
+                  'fa-cube'
+                ]"></i>
+              </span>
+              <b class="py-1 text-sm md:(text-base)" v-text="i"></b>
+              <!-- <b :class="['h-[2px] bg-current opacity-50', theme === index ? 'w-full' : 'w-0']"></b> -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10" aria-hidden="true" :class="['fill-current absolute -bottom-[10px] left-1/2 transform -translate-x-1/2 transition', index === theme ? 'text-gray-900' : 'text-transparent']">
+                <polygon points="0 0 20 0 10 10"></polygon>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div :class="['m-auto max-w-xl min-h-[300px] flex shadow-2xl', { 'rounded-lg': theme === 0 || theme === 1 }]">
+
+        <!-- component -->
+        <div :class="['card flex relative', { 'font-sans': theme === 0 }, { 'font-comic': theme === 1 }, { 'font-serif': theme === 2 }, { 'font-mono': theme === 3 } ]">
+          <div :class="['flex-none overflow-hidden', theme === 1 ? 'w-[14rem]' : 'w-48', theme === 3 ? 'absolute left-0 inset-y-0' : 'relative', { 'rounded-l-lg': theme === 0 }, { '-my-4 rounded-lg shadow-xl transform -rotate-3': theme === 1 }, { '': theme === 3 }]">
+            <img src="https://images.unsplash.com/photo-1605972713890-e157ae3f7018?crop=entropy&fit=crop&w=300&h=400" alt="" :class="['absolute inset-0 w-full h-full object-cover', { 'py-4 pl-4': theme === 3 }]" loading="lazy" />
+          </div>
+          <form :class="['bg-white flex(& auto col)', { '-ml-6': theme === 1 }, theme === 3 ? 'p-0' : 'p-6', { 'rounded-r-lg': theme === 0 || theme === 1 }]">
+            <div :class="['w-full flex flex-wrap', theme === 2 ? 'items-baseline' : 'items-center', { 'pl-2': theme === 1 }, { 'pl-48 py-4 bg-black text-white': theme === 3 }]">
+              <h1 :class="['flex-auto text-xl tracking-tight font-semibold', { 'text-gray-900': theme !== 3 }, { 'w-full': theme === 2 || theme === 3 }, { 'pl-4': theme === 3 }]">
+                Introduction to Painting
+              </h1>
+              <div :class="['text-lg font-semibold', { 'text-gray-500': theme !== 3 }, { 'w-full flex-none order-1': theme === 1 }, { 'pl-4': theme === 3 }]">
+                $110
+              </div>
+              <div :class="['flex-none text-sm font-medium', { 'text-gray-500': theme !== 3 }, { 'py-1 w-full': theme === 0 }, { 'ml-auto': theme === 2 }, { 'pl-8 opacity-70': theme === 3 }]">
+                10+ Seats
+              </div>
+            </div>
+            <div :class="['flex items-baseline mt-4 mb-6 pb-6 border-b border-gray-200', { 'pl-1': theme === 1 }, { 'ml-4 pl-48': theme === 3 }]">
+              <div class="space-x-2 flex text-sm">
+                <label v-for="(i, index) in ['Water', 'Oil', 'Acrylic']" class="text-gray-700">
+                  <input name="size" type="radio" :value="i" class="sr-only" />
+                  <span :class="['px-2 h-8 flex items-center justify-center', { 'bg-indigo-600 text-white rounded-md' : index === 1 && theme === 0 }, { 'bg-yellow-500 text-yellow-900 rounded-full' : index === 1 && theme === 1 }, { 'ring(1 inset current)' : index === 1 && theme === 2 }, { 'bg-black text-white' : index === 1 && theme === 3 }]" v-text="i"></span>
+                </label>
+              </div>
+            </div>
+            <div :class="['flex space-x-4 mb-6 text-sm font-medium', { 'pl-5': theme === 1 }, { 'mx-4 pl-48': theme === 3 }]">
+              <div class="flex-auto flex space-x-4">
+                <button :class="['h-10 px-6 font-semibold', {'bg-indigo-600 text-white rounded-md': theme === 0 }, {'bg-yellow-500 text-yellow-900 rounded-full': theme === 1 }, {'text-gray-900 ring(1 inset current)': theme === 2 }, {'bg-black text-white': theme === 3 }]" type="submit">
+                  Buy now
+                </button>
+                <button :class="['h-10 px-6 font-semibold border border-gray-200 text-gray-900', {'rounded-md': theme === 0 }, {'rounded-full': theme === 1 }]" type="button">
+                  Add to cart
+                </button>
+              </div>
+              <button :class="['flex-none flex items-center justify-center w-9 h-9 text-gray-300 border border-gray-200', {'rounded-md': theme === 0 }, {'rounded-full': theme === 1 }]" type="button" aria-label="Like">
+                <i class="fa fa-heart"></i>
+              </button>
+            </div>
+            <ul :class="['mt-auto text(sm gray-600) flex items-end justify-between', { 'pl-6 flex-row-reverse': theme === 1 }, { 'mx-4 pb-4 pl-48 flex-row-reverse': theme === 3 }]">
+              <li><i class="fa fa-fw fa-book mr-px opacity-50"></i> Classroom</li>
+              <li class="text-yellow-600"><i class="fa fa-fw fa-coins mr-px"></i> 256 <sup class="font-bold">EXP</sup></li>
+            </ul>
+          </form>
+        </div>
+        <!-- /component -->
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script>
+      // data
+      var app = Vue.createApp({
+        data() {
+          return {
+            theme: 0,
+          }
+        },
+        methods: {
+          slug: function(text) {
+            return text
+              .toString()
+              .toLowerCase()
+              .trim()
+              .replace(/\.+/g, '-')     // . to -
+              .replace(/\s+/g, '-')     // space to -
+              .normalize('NFKD')        // unicode normalization
+              .replace(/[^\w\-]+/g, '') // remove other crazy chars
+              .replace(/\-\-+/g, '-')   // multiple - to single -
+              .replace(/^-+/, '')       // remove - from start
+              .replace(/-+$/, '')       // remove - from end
+          },
+        },
+        computed: {
+          list_results(){
+            if(this.list_search){
+              return this.list.filter((item)=>{
+                const tags = item.tags?.map(({
+                  name
+                }) => name.toLowerCase()) ?? []
+                const arr = [item.name.toLowerCase(), ...tags]
+                return arr.some(e => e.includes(this.list_search))
+              })
+            } else {
+              return this.list;
+            }
+          }
+        },
+      });
+      app.component('btn', {
+        template: `
+          <button :class="[
+            'px-2.5 py-1 inline-block rounded',
+            variant === 'primary' ? 'bg-blue-500 text-white hover:(bg-blue-700)' :
+            (variant === 'secondary') ? 'bg-gray-400 text-gray-900 hover:(bg-gray-600 text-white)' : 'ring(1 inset current) hover:(opacity-60)',
+            off ? 'bg-opacity-50 cursor-not-allowed' : ''
+          ]" :disabled="off"><slot></slot></button>
+        `,
+        props: {
+          'variant': String,
+          'off': Boolean,
+        },
+      });
+      app.mount('#app');
+
+      twind.setup({
+        mode: "silent",
+        theme: {
+          extend: {
+            colors: {
+              //gray: twindColors.gray,
+            },
+            fontFamily: (theme) => ({
+              sans: 'Inter,'+ theme('fontFamily.sans'),
+              comic: 'Comic Sans MS,'+ theme('fontFamily.sans'),
+            }),
+          },
+        },
+        plugins: {
+          'scroll-smooth': { 'scroll-behavior': 'smooth' },
+          'bg-grid': { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 4\' width=\'4\' height=\'4\'><rect x=\'0\' y=\'0\' width=\'1\' height=\'1\' fill=\'rgba(5,5,5,.66)\'></rect></svg>")', },
+        },
+      })
+      twind.tw(() => ({
+        '@global': {
+          ':root [v-cloak]': { '@apply': 'hidden', },
+          '.card,.card *': { '@apply': 'transition-all', },
+        }
+      }))
+      twindObserve.observe(document.documentElement);
+      document.documentElement.removeAttribute('hidden');
+    </script>
+
+  </body>
+</html>

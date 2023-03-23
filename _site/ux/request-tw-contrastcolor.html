@@ -1,0 +1,183 @@
+---
+layout: false
+tags: ux
+title: jQuery-ish Contrast Color
+desc: A Twind v0 foreground color contrast "plugin" using CSS props/variables
+ico: mdi:contrast-box
+permalink: /ux/request-tw-contrastcolor.html
+date: 0003-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-gray-900" hidden>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body class="text-contrast bg-gradient-to-b from-transparent via-transparent to-gray-800 bg-fixed">
+
+    <div class="app py-8 px-4 min-h-screen" v-cloak>
+      <header></header>
+      <main class="py-8">
+        <section class="mx-auto max-w-prose space-y-4">
+          <h1 class="text-gray-400 text-3xl font-thin flex items-center">
+            Contrast Color
+            <a href="https://gist.github.com/craigerskine/ea2f7e38a62aeb0ec4e7f0ac8b09b5b3" class="ml-auto text-xs text-blue-300">View Code</a>
+          </h1>
+          <p>I'm looking to use this type of color contrast logic within TailwindCSS. Ideally it would be a <code>.text-contrast</code> class that 'enables' a CSS var that is auto applied to every <code>.bg-<i>color</i></code></p>
+          <pre class="p-3 bg-black bg-opacity-50 text-gray-400 text-xs rounded shadow-lg overflow-x-scroll">.bg-black {
+  --tw-bg-opacity: 1;
+  --tw-fg-contrast: #FFF;
+  background-color: rgba(0,0,0,var(--tw-bg-opacity));
+}
+.text-contrast {
+  color: var(--tw-fg-contrast);
+}</pre>
+          <p>So, you would have the option to use an auto contrast for accessibility. If anyone can help build a TailwindCSS plugin to do this, I would be most grateful.</p>
+          <p>Here's the partial jQuery plugin I Frankenstein'd together that I've been using:</p>
+          <pre class="p-3 bg-black bg-opacity-50 text-gray-400 text-xs rounded shadow-lg overflow-x-scroll">$.fn.contrastColor = function(target){
+  return this.each(function(){
+    var target = target;
+    if(target === undefined){ target = this; }
+    var bg = $(this).css('background-color');
+    // use first opaque parent bg if element is transparent
+    if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)'){ 
+      $(this).parents().each(function(){
+        bg = $(this).css('background-color')
+        if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false; 
+      });
+      // exit if all parents are transparent
+      if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') return false;
+    }
+    // get r,g,b and decide
+    var rgb = bg.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+    var yiq = (rgb[0]*0.2126)+(rgb[1]*0.7152)+(rgb[2]*0.0722);
+    // if light
+    if(yiq >= 128) $(target).addClass('text-gray-900');
+    // if dark
+    else $(target).addClass('text-white');
+  });
+};
+$(function(){
+  $('.text-contrast').contrastColor();
+});</pre>
+          <h2 class="text-gray-400 text-2xl font-thin">Demo of the jQuery Plugin</h2>
+          <ul class="flex justify-center space-x-4">
+            <swatch color="black">Black</swatch>
+            <swatch color="white">White</swatch>
+            <swatch color="transparent">Transparent</swatch>
+            <swatch color="gray-200"><div><div><div class="text-contrast">Nested</div></div></div></swatch>
+          </ul>
+          <ul v-for="(swatch, index) in swatches" class="flex justify-center space-x-4 font-mono">
+            <swatch v-for="i in 9" :color="swatch.color +'-'+ (i * 100)"><span v-text="swatch.title"></span></swatch>
+          </ul>
+        </section>
+      </main>
+      <footer class="pt-8 border-t border-gray-500 border-opacity-25 text-xs font-bold uppercase text-right opacity-50">
+        Made with <svg xmlns="http://www.w3.org/2000/svg" class="mx-1 text-red-400 align-top inline-block" width="16" height="16" viewBox="0 0 16 16" role="img" aria-labelledby="foot-love"><title id="foot-love">Love</title><polygon class="fill-current" fill-rule="evenodd" points="8 6 11 3 15 7 8 14 1 7 5 3"></polygon></svg> by <a href="http://craigerskine.com/" class="mx-1">Craig Erskine (qrayg)</a>
+      </footer>
+    </div>
+
+    <a href="/" class="menu-close w-12 h-12 text-gray-500 flex items-center justify-center fixed top-0 right-0 motion-safe:transition hover:(text-white)" aria-label="Close"><i class="inline-block align-middle fa fa-fw fa-2x fa-times"></i></a>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js"></script>
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script>
+  // vue
+      var app = Vue.createApp({
+        data() {
+          return {
+            swatches: [
+              { title: 'Gy', color: 'gray', },
+              { title: 'Rd', color: 'red', },
+              { title: 'Yw', color: 'yellow', },
+              { title: 'Gn', color: 'green', },
+              { title: 'Bl', color: 'blue', },
+              { title: 'Sk', color: 'sky', },
+              { title: 'In', color: 'indigo', },
+              { title: 'Pu', color: 'purple', },
+              { title: 'Pk', color: 'pink', },
+              { title: 'Cy', color: 'cyan', },
+              { title: 'Fu', color: 'fuchsia', },
+              { title: 'Li', color: 'lime', },
+              { title: 'Or', color: 'orange', },
+              { title: 'Ro', color: 'rose', },
+              { title: 'Tl', color: 'teal', },
+            ],
+          }
+        },
+      });
+
+      // components
+      app.component('swatch', {
+        template: `
+          <li :class="['p-1 md:p-4 rounded text-contrast', 'bg-'+ color]"><slot></slot></li>
+        `,
+        props: {
+          'color': String,
+        },
+      });
+
+      app.mount('.app');
+
+      // twind
+      twind.setup({
+        mode: "silent",
+        theme: {
+          extend: {
+            colors: {
+              cyan: twindColors.cyan,
+              fuchsia: twindColors.fuchsia,
+              lime: twindColors.lime,
+              orange: twindColors.orange,
+              rose: twindColors.rose,
+              sky: twindColors.sky,
+              teal: twindColors.teal,
+            },
+          },
+        },
+        plugins: {},
+      })
+      twind.tw(() => ({
+        '@global': {
+          ':root [v-cloak]': { '@apply': 'hidden', },
+        }
+      }))
+      twindObserve.observe(document.documentElement);
+      document.documentElement.removeAttribute('hidden');
+
+      // jQuery contrastColor
+      // Usage: $('.element').contrastColor('.optional-target-element');
+      $.fn.contrastColor = function(target){
+        return this.each(function(){
+          var target = target;
+          if(target === undefined){ target = this; }
+          var bg = $(this).css('background-color');
+          // use first opaque parent bg if element is transparent
+          if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)'){ 
+            $(this).parents().each(function(){
+              bg = $(this).css('background-color')
+              if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false; 
+            });
+            // exit if all parents are transparent
+            if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') return false;
+          }
+          // get r,g,b and decide
+          var rgb = bg.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+          var yiq = (rgb[0]*0.2126)+(rgb[1]*0.7152)+(rgb[2]*0.0722);
+          // if light
+          if(yiq >= 128) $(target).addClass('text-gray-900');
+          // if dark
+          else $(target).addClass('text-white');
+        });
+      };
+      $(function(){
+        $('.text-contrast').contrastColor();
+      });
+    </script>
+
+  </body>
+</html>

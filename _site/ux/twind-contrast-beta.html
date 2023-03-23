@@ -1,0 +1,196 @@
+---
+layout: false
+tags: ux
+title: Color Contrast via Twind
+desc: A Twind v0 foreground color contrast "plugin" using CSS props/variables
+ico: mdi:gradient-horizontal
+permalink: /ux/twind-contrast-beta.html
+date: 0001-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-c-zinc-900 text-zinc-400 motion-safe:(scroll-smooth)" hidden>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;700;900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+
+    <div class="app min-h-screen flex(& col)">
+      <header class="pt-6 px-4 w-full text-center flex-none md:(pt-24)">
+        <h1 class="text-xl font-black md:(text-[calc(3vw)] tracking-tight leading-tight)"></h1>
+        <p class="mx-auto py-3 w-full max-w-3xl text-xs font-semibold uppercase flex items-center md:(text-base)"><b class="h-1 bg-current flex-1 opacity-10"></b><span class="px-4 block flex-none opacity-40">Auto foreground color plugin</span><b class="h-1 bg-current flex-1 opacity-10"></b></p>
+      </header>
+      <main class="px-4 w-full flex">
+        <section class="m-auto grid gap-2 lg:(gap-4)">
+          <article class="prose prose-blue mx-auto pb-12 w-full text-gray-400">
+            <details>
+              <summary>Pros:</summary>
+              <ul>
+                <li>"Just works"</li>
+              </ul>
+            </details>
+            <details>
+              <summary>Cons:</summary>
+              <ul>
+                <li>Uses alternative to <code>bg-{COLOR-SHADE}</code> syntax</li>
+              </ul>
+            </details>
+            <hr />
+          </article>
+          <div class="pb-6 flex items-center justify-center space-x-6 fixed top-5 right-5">
+            <p class="flex(& 1) justify-end">
+              <button type="button" @click.prevent="contrastEnabled = !contrastEnabled" :class="['p-1 w-12 inline-flex rounded-full transition-all', contrastEnabled ? 'bg-blue-500 text-white' : 'bg-white text-gray-500 opacity-50']" role="switch" :aria-checked="contrastEnabled">
+                <span v-text="'Toggle contrast'" class="sr-only"></span>
+                <span :class="['w-4 h-4 rounded-full transition-all', contrastEnabled ? 'bg-current shadow transform translate-x-6' : 'ring(2 inset current)']" aria-hidden="true"></span>
+              </button>
+            </p>
+            <small @click.prevent="contrastEnabled = !contrastEnabled" v-text="contrastEnabled ? 'Enabled' : 'Disabled'" class="flex-1 opacity-50 cursor-pointer"></small>
+          </div>
+          <ul v-for="(swatch, index) in swatches" class="font-mono flex -space-x-1 lg:(-space-x-3)">
+            <swatch :contrast="contrastEnabled" :color="swatch.color" :shade="50">
+              <i v-text="swatch.title"></i>
+            </swatch>
+            <swatch v-for="i in 9" :contrast="contrastEnabled" :color="swatch.color" :shade="(i * 100)">
+              <i v-text="swatch.title"></i>
+            </swatch>
+          </ul>
+        </section>
+      </main>
+      <footer class="w-full flex-none">
+        <p class="p-4 text(xs center)"></p>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js,npm/@twind/typography/typography.umd.js"></script>
+    <script src="https://unpkg.com/tinycolor2@1/dist/tinycolor-min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script>
+      // data
+      var app = Vue.createApp({
+        data() {
+          return {
+            contrastEnabled: false,
+            swatches: [
+              { title: 'Sl', color: 'slate', },
+              { title: 'Gr', color: 'gray', },
+              { title: 'Zi', color: 'zinc', },
+              { title: 'Ne', color: 'neutral', },
+              { title: 'St', color: 'stone', },
+              { title: 'Rd', color: 'red', },
+              { title: 'Yw', color: 'yellow', },
+              { title: 'Gn', color: 'green', },
+              { title: 'Bl', color: 'blue', },
+              { title: 'Sk', color: 'sky', },
+              { title: 'In', color: 'indigo', },
+              { title: 'Pu', color: 'purple', },
+              { title: 'Pk', color: 'pink', },
+              { title: 'Cy', color: 'cyan', },
+              { title: 'Fu', color: 'fuchsia', },
+              { title: 'Li', color: 'lime', },
+              { title: 'Or', color: 'orange', },
+              { title: 'Ro', color: 'rose', },
+              { title: 'Tl', color: 'teal', },
+            ],
+          }
+        },
+        methods: {
+          slug: function(text) {
+            return text
+              .toString()
+              .toLowerCase()
+              .trim()
+              .replace(/\.+/g, '-')     // . to -
+              .replace(/\s+/g, '-')     // space to -
+              .normalize('NFKD')        // unicode normalization
+              .replace(/[^\w\-]+/g, '') // remove other crazy chars
+              .replace(/\-\-+/g, '-')   // multiple - to single -
+              .replace(/^-+/, '')       // remove - from start
+              .replace(/-+$/, '')       // remove - from end
+          },
+        },
+      });
+
+      // component example
+      app.component('swatch', {
+        template: `
+          <li :class="[{ 'text-contrast': contrast }, 'w-8 h-8 text-xs flex(& col) items-center justify-center ring(2 black opacity-50) rounded-full cursor-pointer shadow transform transition hover:(scale-110) lg:(w-24 h-24 text-lg)', 'bg-c-'+ color +'-'+ shade, shade !== 900 ? 'hover:bg-c-'+ color +'-900' : 'hover:bg-c-black']">
+            <slot></slot>
+            <b class="text-xs hidden opacity-70 lg:(text-base block)" v-text="shade"></b>
+          </li>
+        `,
+        props: {
+          'contrast': Boolean,
+          'color': String,
+          'shade': Number,
+        },
+      });
+
+      app.mount('.app');
+
+      twind.setup({
+        mode: "silent",
+        theme: {
+          extend: {
+            colors: {
+              slate: twindColors.blueGray,
+              gray: twindColors.coolGray,
+              zinc: twindColors.gray,
+              neutral: twindColors.trueGray,
+              stone: twindColors.warmGray,
+              cyan: twindColors.cyan,
+              fuchsia: twindColors.fuchsia,
+              lime: twindColors.lime,
+              orange: twindColors.orange,
+              pri: twindColors.blue,
+              rose: twindColors.rose,
+              sky: twindColors.sky,
+              teal: twindColors.teal,
+            },
+            fontFamily: (theme) => ({
+              sans: 'Inter,'+ theme('fontFamily.sans'),
+              mono: 'Inconsolata,'+ theme('fontFamily.mono'),
+            }),
+          },
+        },
+        plugins: {
+          // typography
+          ...twindTypography(),
+          // smooth anchors
+          'scroll-smooth': { 'scroll-behavior': 'smooth' },
+          // bg + contrast fg var
+          'bg-c': (parts, { theme }) => ({
+            'background-color': 'rgba('+ tinycolor(theme('colors', parts)).toRgb().r +', '+ tinycolor(theme('colors', parts)).toRgb().g +', '+ tinycolor(theme('colors', parts)).toRgb().b +', var(--tw-bg-opacity, 1))',
+            '--tw-contrast-color': tinycolor.mostReadable(theme('colors', parts), ['#FFF', '#111']).toRgbString(),
+          }),
+          'text-contrast': { 'color': 'var(--tw-contrast-color, currentColor)' },
+        },
+      })
+      twind.tw(() => ({
+        '@global': {
+          // typography
+          '.prose ul': { '@apply': 'ml-4 list-disc' },
+          '.prose ol': { '@apply': 'ml-4 list-decimal' },
+          '.prose ul > li,.prose ol > li': { 'padding-left': '.25rem !important' },
+          '.prose ul > li::marker,.prose ol > li::marker': { '@apply': 'text(gray-500 opacity-30)' },
+          '.prose details': { '@apply': 'py-2' },
+          '.prose summary': { '@apply': 'py-2 text-2xl font-black cursor-pointer' },
+          '.prose summary::marker': { '@apply': 'text(gray-500 opacity-30)' },
+          '.prose table': { '@apply': 'w-full' },
+          '.prose table th': { '@apply': 'text-left' },
+          '.prose code': { '@apply': 'font-bold' },
+          '.prose pre': { '@apply': 'bg-c-gray-800 text-contrast overflow-x-auto' },
+          '.prose hr': { '@apply': 'border(gray-500 opacity-50)' },
+          //':root [v-cloak]': { '@apply': 'hidden', },
+        }
+      }))
+      twindObserve.observe(document.documentElement);
+      document.documentElement.removeAttribute('hidden');
+    </script>
+
+  </body>
+</html>

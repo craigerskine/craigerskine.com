@@ -13,7 +13,7 @@ eleventyNavigation:
       {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-500 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}
       ...
     </h1>
-    <h2 class="text-gray-600 leading-relaxed">{{ home.lead }}</h2>
+    <h2 class="leading-relaxed opacity-80">{{ home.lead }}</h2>
     {{ social.x(social=site.social) }}
   </div>
 </article>

@@ -1,0 +1,289 @@
+---
+layout: false
+tags: ux
+title: Twind Prose + Vue Fun
+desc: A Twind v0 foreground color contrast "plugin" using CSS props/variables
+ico: mdi:arrow-collapse-horizontal
+permalink: /ux/tw-prose.html
+date: 0004-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-gray-200 motion-safe:(scroll-smooth)" hidden>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;600;700;900&display=swap" rel="stylesheet" />
+  </head>
+  <body class="text-gray-800">
+
+    <div class="app min-h-screen flex flex-col divide(y gray-500 opacity-20)" v-cloak>
+      <header class="py-8 px-4 bg-pri-900 text-pri-400">
+        <div class="container mx-auto lg:(flex items-center)">
+          <h1 class="py-2 font-bold uppercase flex(& wrap) items-center justify-center lg:(text-3xl justify-start)">
+            <b class="mr-4 relative z-20">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" role="img" id="site-logo" class="w-10 h-10 text-pri-400 fill-current">
+                <title><!-- title gets injected on pageload --></title>
+                <circle cx="10" cy="10" r="10" />
+              </svg>
+              <b class="ring(1 pri-400) absolute inset-0 -z-10 rounded-full motion-safe:(animate-ping)"></b>
+            </b>
+            <span>
+              <span id="site-title"><!-- title gets injected on pageload --></span>
+              <small class="text-xs block opacity-50 lg:(text-base)">Some slogan</small>
+            </span>
+          </h1>
+          <nav class="py-5 lg:(ml-auto)">
+            <ul class="text-sm flex(& wrap) items-center justify-center gap-5 font-bold uppercase lg:(text-base justify-end)">
+              <li v-for="(item, index) in nav">
+                <a :href="item.href" @click.prevent class="group flex(& col) motion-safe:(transition) hover:(text-pri-100)">
+                  <span v-text="item.name"></span>
+                  <b class="mt-1 w-full h-[2px] flex"><b class="mx-auto w-0 bg-current motion-safe:(transition-all) group-hover:(w-full)"></b></b>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <section class="mx-auto py-8 max-w-prose md:(w-3/4 max-w-none)">
+          <h2 class="first-line::(text-white font-black) font-bold leading-tight text-3xl md:(text-[calc(3vw+3vh+.5vmin)] tracking-tight) lg:(py-24)">Welcome to this amazing site! Let's do some fancy one-off font/text trickery <sup class="font-normal opacity-30">*</sup></h2>
+          <small class="pt-3 text-xs font-semibold block opacity-70 transform translate-y-8 md:(text-sm)">* Resize your viewport or rotate your device</small>
+        </section>
+      </header>
+      <main class="py-8">
+        <section class="mx-auto px-4 max-w-prose">
+          <article class="prose prose-pri pb-5">
+            <h3>Typography/Prose</h3>
+            <p>In a fantastical universe, centuries ago, Solveig was born into a family in a small fishing town in the cold North. Father fished, and Mother took care of the market stall to make their living.</p>
+            <ul>
+              <li v-for="i in [{title: 'Solveig', url: 'https://amzn.com/dp/B072ZCNFGP?tag=qrayg-20'},{title: 'Emerald Seas', url: 'https://amzn.com/dp/B07ZWBQK5L?tag=qrayg-20'},{title: 'Gods of Debauchery', url: 'https://amzn.com/dp/B096LSVYDL?tag=qrayg-20'}]"><a :href="i.url" v-text="i.title"></a></li>
+            </ul>
+            <p>Solveig never spent much time with the other children, instead preferring the company of the näcken boy who laughed and played violin while she danced by the river in the woods by her house, and of the strange old woman at the edge of town - unfailingly kind, always giving Solveig sweets, and rumoured to be a witch.</p>
+            <blockquote>
+              <p>Solveig's Father told her stories of the wider world, and all there was to see. He told her of the island in the East, at the edge of the world, where the Fountain of Youth runs...</p>
+            </blockquote>
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th v-for="i in 3">Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="i in 3">
+                  <td v-for="i in 3">Cell</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="pb-16">
+            <div class="prose prose-pri pb-5">
+              <h3>Vue Component</h3>
+            </div>
+            <ul class="mb-5 flex(& wrap) gap-5">
+              <li><btn variant="primary">Primary</btn></li>
+              <li><btn variant="secondary">Secondary</btn></li>
+              <li><btn>Default</btn>
+            </ul>
+          </article>
+        </section>
+        <section class="mx-auto px-4 max-w-prose">
+          <div class="prose prose-pri pb-5">
+            <h3>Vue Live Filter <small class="ml-1 text-sm inline-block opacity-70">w/ nested array</small></h3>
+          </div>
+          <fieldset class="relative">
+            <label for="list-filter" class="w-8 h-8 flex items-center justify-center absolute z-10 right-5 top-1/2 opacity-50 transform -translate-y-1/2"><i class="m-auto fa fa-fw fa-filter" role="presentation" aria-label="Filter"></i></label>
+            <input type="search" id="list-filter" v-model="list_filter" class="appearance-none py-3 px-6 w-full bg(gray-500 opacity-10) block placeholder(gray-500 opacity-75) rounded-md motion-safe:(transition) focus:(bg-white outline-none shadow-xl ring(& white)) relative z-20" placeholder="Filter the following list..." />
+          </fieldset>
+          <section v-if="!list_results.length" class="py-8 text(gray-500 opacity-50) font-bold text-2xl uppercase tracking-tight text-center"><i class="fa fa-fw fa-ban opacity-50" role="presentation" aria-hidden="true"></i> No Results</section>
+          <ul class="py-4">
+            <li v-for="(item, index) in list_results" class="py-2">
+              <a href="#" @click.prevent class="group p-4 flex items-center gap-4 rounded-lg motion-safe:(transition) hover:(bg(pri-600) text-white shadow-xl)">
+                <b class="w-12 h-12 bg(gray-500 opacity-30) text-gray-500 flex(& none) rounded-full transform scale-75 motion-safe:(transition) group-hover:(bg-pri-900 text-white scale-100 -rotate-[360deg])">
+                  <i class="fa fa-check m-auto text-xl"></i>
+                </b>
+                <div>
+                  <span v-text="item.name"></span>
+                  <ol v-if="item.tags" class="-mx-2 px-1 text-xs uppercase flex flex-wrap">
+                    <li v-for="(tag, index) in item.tags" class="p-1">
+                      <b class="px-1 py-px font-semibold bg(gray-500 opacity-25) inline-block rounded group-hover:(bg(pri-900 opacity-50))" v-text="tag.name"></b>
+                    </li>
+                  </ol>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="mt-auto py-8 px-4 text(gray-500 xs center) font-bold uppercase">
+        <div class="container mx-auto">
+          Made with
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" role="img" class="-mt-1 mx-1 fill-current text-red-500 inline-block">
+            <title>Love</title>
+            <polygon points="8 3 11 0 12 0 16 4 16 5 9 12 7 12 0 5 0 4 4 0 5 0" transform="translate(0,2)"></polygon>
+          </svg>
+          by <a href="https://craigerskine.com/" class="mx-1 text-red-500 motion-safe:(transition) hover:(text-red-900)">Craig Erskine</a>
+        </div>
+      </footer>
+    </div>
+
+    <div class="bg-gradient-to-b from-transparent via-transparent to-white fixed inset-0 z-[-1] opacity-10" aria-hidden="true"><div class="bg(grid fixed) absolute inset-0"></div></div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js,npm/@twind/typography/typography.umd.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script>
+      // data
+      var app = Vue.createApp({
+        data() {
+          return {
+            nav: [
+              { name: 'Home', href: '#', },
+              { name: 'Something', href: '#', },
+              { name: 'Another', href: '#', },
+            ],
+            list_filter: null,
+            list: [
+              {
+                name: 'When she was old enough, Solveig\'s Father taught her how to sail...',
+                tags: [
+                  { name: 'Tag 1' },
+                  { name: 'Tag 2' },
+                  { name: 'Tag 3' },
+                ],
+              },
+              {
+                name: 'Not long before the strange old woman passed away, she blessed Solveig\'s boat - it would always take her to her heart\'s...',
+              },
+              {
+                name: 'Solveig comes of age, and decides to leave home, searching...',
+                tags: [
+                  { name: 'Tag 2' },
+                ],
+              },
+              {
+                name: 'Passing years turn into a decade - collecting every clue...',
+                tags: [
+                  { name: 'Tag 1' },
+                ],
+              },
+              {
+                name: 'At a dinner in a lively inn, she runs into her childhood friend...',
+                tags: [
+                  { name: 'Tag 3' },
+                ],
+              },
+            ],
+          }
+        },
+        methods: {
+          // slugify a string
+          slug: function(text) {
+            return text
+              .toString()
+              .toLowerCase()
+              .trim()
+              .replace(/\.+/g, '-')     // . to -
+              .replace(/\s+/g, '-')     // space to -
+              .normalize('NFKD')        // unicode normalization
+              .replace(/[^\w\-]+/g, '') // remove other crazy chars
+              .replace(/\-\-+/g, '-')   // multiple - to single -
+              .replace(/^-+/, '')       // remove - from start
+              .replace(/-+$/, '')       // remove - from end
+          },
+        },
+        computed: {
+          // filter logic
+          list_results(){
+            if(this.list_filter){
+              return this.list.filter((item)=>{
+                const tags = item.tags?.map(({
+                  name
+                }) => name.toLowerCase()) ?? []
+                const arr = [item.name.toLowerCase(), ...tags]
+                return arr.some(e => e.includes(this.list_filter))
+              })
+            } else {
+              return this.list;
+            }
+          }
+        },
+      });
+      // component example
+      app.component('btn', {
+        template: `
+          <button :class="[
+            'px-2.5 py-1 inline-block rounded motion-safe:(transition)',
+            variant === 'primary' ? 'bg-pri-500 text-white hover:(bg-pri-700)' :
+            (variant === 'secondary') ? 'bg-gray-400 text-gray-900 hover:(bg-gray-600 text-white)' :
+            'ring(1 inset gray-500 opacity-50) hover:(opacity-60)',
+            off ? 'bg-opacity-50 cursor-not-allowed' : ''
+          ]" :disabled="off"><slot></slot></button>
+        `,
+        props: {
+          'variant': String,
+          'off': Boolean,
+        },
+      });
+      app.mount('.app');
+
+      twind.setup({
+        mode: "silent",
+        theme: {
+          extend: {
+            colors: {
+              pri: twindColors.blue,
+              gray: twindColors.gray,
+              cyan: twindColors.cyan,
+              fuchsia: twindColors.fuchsia,
+              lime: twindColors.lime,
+              orange: twindColors.orange,
+              rose: twindColors.rose,
+              sky: twindColors.sky,
+              teal: twindColors.teal,
+            },
+            fontFamily: (theme) => ({
+              sans: 'Inter,'+ theme('fontFamily.sans'),
+              mono: 'Inconsolata,'+ theme('fontFamily.mono'),
+            }),
+          },
+        },
+        plugins: {
+          // typography
+          ...twindTypography(),
+          // my custom stuff
+          'scroll-smooth': { 'scroll-behavior': 'smooth' },
+          'ratio-16x9': { '@apply': 'pb-[56.25%] overflow-hidden relative' },
+          'ratio-4x3': { '@apply': 'pb-[75%] overflow-hidden relative' },
+          'bg-grid': { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 4\' width=\'4\' height=\'4\'><rect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'rgba(5,5,5,.33)\'></rect></svg>")', },
+        },
+      })
+      twind.tw(() => ({
+        '@global': {
+          // some prose helpers since twind's version is outdated
+          '.prose h1,.prose h2,.prose h3': { '@apply': 'font-black' },
+          '.prose h4,.prose h5,.prose h6': { '@apply': 'font-bold' },
+          '.prose hr': { '@apply': 'border(pri-500 opacity-30)' },
+          '.prose blockquote': { '@apply': 'border(l-4 pri-900 opacity-10) font-semibold italic' },
+          '.prose ul': { '@apply': 'ml-4 list-disc' },
+          '.prose ol': { '@apply': 'ml-4 list-decimal' },
+          '.prose ul > li,.prose ol > li': { 'padding-left': '.25rem !important' },
+          '.prose ul > li::marker,.prose ol > li::marker': { '@apply': 'text-pri-900 text-opacity-50' },
+          '.prose table': { '@apply': 'w-full' },
+          '.prose table thead tr': { '@apply': 'border(b-2 gray-500 opacity-20)' },
+          '.prose table thead th': { '@apply': 'text-left uppercase' },
+          '.prose table tbody tr': { '@apply': 'border(gray-500 opacity-20)' },
+          '.prose table.striped tbody tr:nth-child(even)': { '@apply': 'bg(gray-500 opacity-10)' },
+          '.prose table.striped tbody td:first-child': { '@apply': 'pl-2' },
+          '.prose code': { '@apply': 'font-bold' },
+          '.prose pre': { '@apply': 'bg-gray-800 text-gray-100 overflow-x-auto' },
+          // prevent fouc for vue
+          ':root [v-cloak]': { '@apply': 'hidden', },
+        }
+      }))
+      twindObserve.observe(document.documentElement);
+      document.documentElement.removeAttribute('hidden');
+    </script>
+
+  </body>
+</html>
