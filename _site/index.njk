@@ -5,17 +5,16 @@ eleventyNavigation:
 ---
 
 {%- setblock 'data' %}home{% endsetblock -%}
+{%- import 'components/hero.njk' as hero -%}
 {%- import 'components/social.njk' as social -%}
 
 <article class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-  <div class="hero max-w-xl space-y-8">
-    <h1 class="text-(gray-900 3xl) font-semibold tracking-tight md:(text-4xl leading-tight)">
-      {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-500 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}
-      ...
-    </h1>
-    <h2 class="leading-relaxed opacity-80">{{ home.lead }}</h2>
+  {%- set heroTitle %}
+    {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-500 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}...
+  {%- endset %}
+  {%- call hero.x(title=heroTitle,lead=home.lead) %}
     {{ social.x(social=site.social) }}
-  </div>
+  {%- endcall %}
 </article>
 <nav class="mx-auto pt-6 px-4 max-w-7xl flex justify-center relative lg:px-8">
   <div class="px-1 py-2 bg-gray-50/50 inline-flex ring-(1 gray-200) rounded-full shadow" role="tablist">
