@@ -14,7 +14,7 @@
         </g>
       </svg>
     </a>
-    <ul class="ml-auto px-5 bg-gray-50/50 font-semibold flex space-x-3 ring-(1 gray-200) rounded-full shadow">
+    <ul class="ml-auto px-5 bg-gray-50/50 text-sm font-semibold flex space-x-3 ring-(1 gray-200) rounded-full shadow md:(text-base)">
       {%- for item in collections.all | eleventyNavigation %}
       <li>
         <a href="{{ item.url }}" class="py-2.5 px-2 flex relative{% if page.url == '/' and item.url == '/' %} text-pri-500{% elseif item.url == page.url and item.url in page.url %} text-pri-500{% endif %} motion-safe:(transition) hover:(text-pri-500)"{% if page.url == '/' and item.url == '/' %} aria-current="page" {% elseif item.url == page.url and item.url in page.url %} aria-current="page"{% endif %}>
