@@ -8,8 +8,8 @@ eleventyNavigation:
 {%- import 'components/social.njk' as social -%}
 
 <article class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-  <div class="hero max-w-2xl space-y-8">
-    <h1 class="text-4xl font-semibold tracking-tight md:(text-5xl leading-tight)">
+  <div class="hero max-w-xl space-y-8">
+    <h1 class="text-(gray-900 3xl) font-semibold tracking-tight md:(text-4xl leading-tight)">
       {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-500 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}
       ...
     </h1>
