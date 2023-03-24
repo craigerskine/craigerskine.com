@@ -52,7 +52,7 @@
     {% set css %}
       {% include 'css/prism.css' %}
     {% endset %}
-    <style>{{ css | cssmin | safe }}</style>
+    <{{ 'style' }}>{{ css | cssmin | safe }}</{{ 'style' }}>
     {% renderblock 'css' %}
 
     <script>
@@ -111,7 +111,7 @@
               Stalk Me
               {%- endcall %}
               <div class="flex justify-center lg:(justify-start)">
-                {{ social.x(social=site.social, css='lg:w-16 lg:h-16 lg:text-2xl') }}
+                {{ social.x(social=site.social, css='lg:w-16 lg:h-16 lg:text-3xl') }}
               </div>
             </div>
             <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0)">
