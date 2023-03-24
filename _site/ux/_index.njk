@@ -29,10 +29,13 @@ eleventyNavigation:
                 <li><iconify-icon icon="{{ tech.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon></li>
                 {%- endfor %}
               </ul>
-              <iconify-icon icon="mdi:link-variant" width="1em" height="1em" inline="false" class="iconify opacity-30"></iconify-icon>
+              <p class="flex items-center gap-1">
+                {%- if item.data.status %}<small class="text-xs uppercase opacity-50">{{ item.data.status }}</small>{%- endif %}
+                <iconify-icon icon="mdi:link-variant" width="1em" height="1em" inline="false" class="iconify opacity-30"></iconify-icon>
+              </p>
             </div>
           </div>
-          <div class="border-(t {{ item.data.color }}-500/20) bg-{{ item.data.color }}-500/10 absolute -inset-3 z-10 opacity-0 rounded-2xl transform scale-75 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true" aria-hidden="true"></div>
+          <div class="bg-{{ item.data.color }}-500/10 absolute -inset-3 z-10 opacity-0 rounded-2xl shadow-(xl {{ item.data.color}}-500/5) transform scale-75 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true"></div>
         </a>
       </li>
       {%- endfor -%}
