@@ -18,7 +18,7 @@ eleventyNavigation:
     <ul class="grid-(& cols-1) gap-16 sm:(grid-cols-2) lg:(grid-cols-3)">
       {%- for item in collections.ux -%}
       <li class="group relative flex flex-col items-start">
-        <div class="h-12 w-12 bg-{{ item.data.color }}-400 text-({{ item.data.color }}-900 2xl) flex items-center justify-center rounded-full shadow-lg ring-(2 inset white/20)">
+        <div class="border-(t white/50) h-12 w-12 bg-{{ item.data.color }}-500/30 bg-gradient-to-b from-white/30 via-transparent to-{{ item.data.color }}-500/30 text-({{ item.data.color }}-600 2xl) flex items-center justify-center rounded-full shadow-lg ring-(1 inset {{ item.data.color }}-900/20)" aria-hidden="true">
           <iconify-icon icon="{{ item.data.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
         </div>
         <a href="{{ item.data.page.fileSlug }}.html" class="group mt-6">
@@ -29,7 +29,7 @@ eleventyNavigation:
             <li><iconify-icon icon="{{ tech.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon></li>
             {%- endfor %}
           </ul>
-          <div class="bg-gray-500/10 absolute -inset-y-6 -inset-x-4 z-10 opacity-0 transform scale-75 motion-safe:(transition) group-hover:(opacity-100 scale-100) sm:(-inset-x-6 rounded-2xl)" aria-hidden="true"></div>
+          <div class="bg-{{ item.data.color }}-500/10 absolute -inset-y-6 -inset-x-4 z-10 opacity-0 transform scale-75 motion-safe:(transition) group-hover:(opacity-100 scale-100) sm:(-inset-x-6 rounded-2xl)" aria-hidden="true"></div>
         </a>
       </li>
       {%- endfor -%}
