@@ -1,3 +1,9 @@
+{% macro active() %}
+  {%- for i in range(0, 2) -%}
+    <b class="h-px bg-gradient-to-r from-transparent via-pri-500 to-transparent absolute inset-x-0 {% if i == 0 %}top{% else %}bottom{% endif %}-px opacity-75"></b>
+  {%- endfor %}
+{% endmacro %}
+
 <div class="mx-auto py-6 px-4 max-w-7xl lg:px-8">
   <nav class="flex items-center justify-between" aria-label="Main navigation">
     <a href="/" class="p-1.5 w-12 h-12 bg-gray-800 text-gray-50 flex rounded-full transform motion-safe:(transition) hover:(motion-safe:(animate-blob))">
@@ -8,15 +14,17 @@
         </g>
       </svg>
     </a>
-    <ul class="ml-auto px-5 bg-gray-50/50 flex space-x-3 ring-(1 gray-200) rounded-full shadow">
+    <ul class="ml-auto px-5 bg-gray-50/50 font-semibold flex space-x-3 ring-(1 gray-200) rounded-full shadow">
       {%- for item in collections.all | eleventyNavigation %}
       <li>
-        <a href="{{ item.url }}" class="py-2.5 px-2 flex relative {% if item.url == '/' %}{% elseif item.url in page.url %} text-pri-500 {% endif %}motion-safe:(transition) hover:(text-pri-500)"{%- if item.url == page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+        <a href="{{ item.url }}" class="py-2.5 px-2 flex relative{% if page.url == '/' and item.url == '/' %} text-pri-500{% elseif item.url == page.url and item.url in page.url %} text-pri-500{% endif %} motion-safe:(transition) hover:(text-pri-500)"{% if page.url == '/' and item.url == '/' %} aria-current="page" {% elseif item.url == page.url and item.url in page.url %} aria-current="page"{% endif %}>
           {{ item.key }}
-          {%- if item.url == '/' %}{% elseif item.url in page.url %}
-            {%- for i in range(0, 2) -%}
-              <b class="h-px bg-gradient-to-r from-transparent via-pri-500 to-transparent absolute inset-x-0 {% if i == 0 %}top{% else %}bottom{% endif %}-px opacity-75"></b>
-            {%- endfor %}
+          {%- if page.url == '/' and item.url == '/' %}
+            {#- home page #}
+            {{ active() -}}
+          {%- elseif item.url == page.url and item.url in page.url %}
+            {#- other pages #}
+            {{ active() -}}
           {%- endif %}
         </a>
       </li>
