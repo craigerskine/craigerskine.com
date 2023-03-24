@@ -22,9 +22,9 @@ eleventyNavigation:
           <iconify-icon icon="{{ item.data.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
         </div>
         <a href="{{ item.data.page.fileSlug }}.html" class="group mt-6">
-          <strong>{{ item.data.title }}</strong>
+          <strong class="text-gray-900">{{ item.data.title }}</strong>
           <p class="mt-2 text-sm leading-normal opacity-80">{{ item.data.desc }}</p>
-          <ul class="mt-2 text-xl flex gap-2 opacity-50">
+          <ul class="mt-2 text-xl flex gap-3 opacity-50">
             {%- for tech in item.data.tech %}
             <li><iconify-icon icon="{{ tech.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon></li>
             {%- endfor %}
