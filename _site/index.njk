@@ -32,7 +32,7 @@ eleventyNavigation:
     x-transition:leave-end="opacity-0 scale-110 blur-lg"
   >
     {%- for item in collections.illustrations %}
-    <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "png" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+    <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "png" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
       <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.jpg');"></b>
       <figure class="w-full h-full flex relative">
         <img src="/_assets/img/work-{{ item.data.title | slugify }}.png" alt="{{ item.data.title }} image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
@@ -48,7 +48,7 @@ eleventyNavigation:
     x-transition:leave-end="opacity-0 scale-90 blur-lg"
   >
     {%- for item in collections.web %}
-    <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "jpg" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+    <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "jpg" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
       <figure class="w-full h-full flex">
         <img src="/_assets/img/work-{{ item.data.title | slugify }}.jpg" alt="{{ item.data.title }} image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
       </figure>
