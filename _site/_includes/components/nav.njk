@@ -19,7 +19,7 @@
       <li class="flex">
         <a href="{{ item.url }}" class="py-2.5 px-1.5 flex relative{% if page.url == '/' and item.url == '/' %} text-pri-500{% elseif item.url == page.url and item.url in page.url %} text-pri-500{% endif %} motion-safe:(transition) hover:(text-pri-500) md:(px-2)"{% if page.url == '/' and item.url == '/' %} aria-current="page" {% elseif item.url == page.url and item.url in page.url %} aria-current="page"{% endif %}>
           {%- if item.url == '/' %}
-          <iconify-icon icon="mdi:chevron-left" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)" title="Home"></iconify-icon>
+          <iconify-icon icon="mdi:home-roof" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)" title="Home"></iconify-icon>
           {%- else %}
           {{ item.key }}
           {%- endif %}
