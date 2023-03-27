@@ -30,14 +30,13 @@ eleventyNavigation:
   </head>
   <body class="print:(!m-0 !py-0 !px-0 bg-white text-xs) p-2 bg-gray-100 text-gray-700 md:(py-12 px-5)" style="display: none;">
     <b class="print:(hidden) bg-paper fixed inset-0 z-[-1]" aria-hidden="true"></b>
-    <div>
+    <div class="mx-auto px-4 max-w-7xl relative lg:(px-8)">
+      <div class="print:(hidden) absolute top-2 right-6 z-50 lg:(-top-5 right-8)">
+        {% include "components/nav.njk" %}
+      </div>
       <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
-        <ul class="print:(hidden) ml-auto px-5 bg-gray-700 text-gray-200 font-semibold flex space-x-3 ring-(1 gray-200) absolute top-2 right-2 z-50 rounded-full shadow md:(-top-5 -right-5)">
-          <li class="flex"><a href="/" class="py-2.5 px-1.5 flex relative motion-safe:(transition) hover:(text-pri-300) md:(px-2)"><iconify-icon icon="mdi:home-roof" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></a></li>
-          <li class="flex"><button type="button" @click.prevent.stop="window.print();" class="py-2.5 px-1.5 flex relative motion-safe:(transition) hover:(text-pri-300) md:(px-2)"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></button></li>
-        </ul>
         <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500 opacity-20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
-          <figure class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
+          <a href="/" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block">
               <title>{{ resume.applicant }} logo</title>
               <g fill-rule="evenodd" transform="translate(2,2)">
@@ -45,13 +44,12 @@ eleventyNavigation:
                 <path class="stroke-current" fill="transparent" stroke-width="3" d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" />
               </g>
             </svg>
-            <figcaption class="sr-only">{{ resume.applicant }}</figcaption>
-          </figure>
+          </a>
           <h1 class="text-(2xl center) flex-none relative xl:(pr-12 text-left)">
             <b class="font-black md:(text-[50px])">{{ resume.applicant }}</b>
             <i class="text-sm font(serif normal) block opacity-80 xl:(pt-3 text-xl)">{{ resume.position }}</i>
           </h1>
-          <nav class="print:(flex-row) text-sm flex-(& col wrap 1) gap-x-5 md:(flex-row)">
+          <div class="print:(flex-row) text-sm flex-(& col wrap 1) gap-x-5 md:(flex-row)">
             <ul class="ml-auto md:(flex gap-x-5) print:(flex gap-x-5)">
               <li class="flex-(& col)">
                 <b class="pb-2 w-full block">Contact:</b>
@@ -66,14 +64,14 @@ eleventyNavigation:
               </li>
               <li class="flex-(& col)">
                 <b class="pb-2 w-full block">@{{ resume.username }}</b>
-                <ul class="mb-5 border-(l gray-500 opacity-25 dashed) pl-5 text-3xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
+                <ul class="mb-5 border-(l gray-500 opacity-25 dashed) pl-5 text-4xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
                   {%- for soc in resume.social %}
-                  <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" inline="false"></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
+                  <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
                   {%- endfor %}
                 </ul>
               </li>
             </ul>
-          </nav>
+          </div>
         </header>
         <main class="print:(!px-0 grid-cols-2 gap-6) pb-12 px-6 grid-(& cols-1) gap-16 relative md:(px-12) lg:(grid-cols-2)">
           {%- call region(title='Personal Statement') %}
@@ -87,7 +85,7 @@ eleventyNavigation:
                   <a href="{{ site.url }}" class="group font-bold inline-block opacity-80 motion-safe:transition hover:(text-blue-500 opacity-100) focus:(text-blue-500 opacity-100)">
                     {# <i class="mr-1 text-xs font-mono inline-block opacity-50" aria-hidden="true">//</i> #}
                     <span class="inline-flex items-center gap-2">
-                      <iconify-icon icon="fa6-solid:globe" inline="false" class="opacity-50"></iconify-icon>
+                      <iconify-icon icon="fa6-solid:globe" width="1em" height="1em" inline="false" class="iconify opacity-50"></iconify-icon>
                       {{ site.title }}
                     </span>
                     {{ underline() }}
@@ -143,9 +141,9 @@ eleventyNavigation:
           {%- endcall %}
           <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
             <b class="h-px bg-gray-500/25 flex-1"></b>
-            <iconify-icon icon="fa6-solid:arrow-down" inline="false"></iconify-icon>
+            <iconify-icon icon="fa6-solid:arrow-down" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
             <span>Continue to next page...</span>
-            <iconify-icon icon="fa6-solid:arrow-down" inline="false"></iconify-icon>
+            <iconify-icon icon="fa6-solid:arrow-down" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
             <b class="h-px bg-gray-500/25 flex-1"></b>
           </div>
           {%- call region(title='Specialties') %}
@@ -153,7 +151,7 @@ eleventyNavigation:
               {% for spec in resume.specialties %}
               <li class="flex-(& col) items-center motion-safe:transition hover:(scale-110 text-red-500)">
                 <b class="w-16 h-16 ring-(1 inset current) flex items-center justify-center rounded-full md:(w-24 h-24)">
-                  <iconify-icon icon="{{ spec.ico }}" inline="false" class="text-2xl md:(text-4xl)"></iconify-icon>
+                  <iconify-icon icon="{{ spec.ico }}" width="1em" height="1em" inline="false" class="iconify text-2xl md:(text-4xl)"></iconify-icon>
                 </b>
                 <i class="-mt-4 w-px bg-current relative {% if loop.index % 2 == 0 %}h-12{% else %}h-24{% endif %}">
                   <i class="-mt-1 -ml-1 w-2 h-2 bg-current absolute top-0 left-0 rounded-full"></i>
@@ -203,7 +201,7 @@ eleventyNavigation:
               {%- for hobby in resume.hobbies %}
               <li>
                 <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(1 gray-500 opacity-20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-400) scale-110) focus:(ring-(4 blue-400) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
-                  <iconify-icon icon="{{ hobby.ico }}" inline="false" class="text-4xl print:(text-lg)"></iconify-icon>
+                  <iconify-icon icon="{{ hobby.ico }}" width="1em" height="1em" inline="false" class="iconify text-4xl print:(text-lg)"></iconify-icon>
                   <small class="mt-2 text-xs tracking-tight opacity-80 print:(!mt-0 text-[6px])">{{ hobby.title }}</small>
                 </a>
               </li>

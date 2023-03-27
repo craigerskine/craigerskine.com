@@ -5,11 +5,11 @@ email: craig@craigerskine.com
 username: craigerskine
 social:
   - title: Dribbble
-    ico: fa6-brands:dribbble
+    ico: mdi:dribbble
     url: 'https://dribbble.com/craigerskine/'
     color: pink
   - title: GitHub
-    ico: fa6-brands:github
+    ico: mdi:github
     url: 'https://github.com/craigerskine/'
     color: gray
 personal:
@@ -103,25 +103,25 @@ accomplishments:
     url: 'https://amzn.com/dp/1430216182?tag=qrayg-20'
 hobbies:
   - title: Gaming
-    ico: fa6-solid:gamepad
+    ico: mdi:controller-classic
     url: 'https://pxl.media/'
   - title: Guitar
     ico: mdi:guitar-electric
     url: 'https://qrayg.com/gear/#music'
-  - title: Home Theater
+  - title: Home Audio
     ico: mdi:speaker-multiple
     url: 'https://qrayg.com/gear/#home-theater'
   - title: Keyboards
     ico: mdi:keyboard
     url: 'https://qrayg.com/gear/#keyboards'
   - title: My Book
-    ico: fa6-solid:book
+    ico: mdi:book
     url: 'https://craig.ersk.in/e/#section-book'
   - title: Rescue Cats
     ico: mdi:cat
     url: 'https://craig.ersk.in/e/#section-family'
   - title: Sketching
-    ico: fa6-solid:pencil
+    ico: mdi:draw
     url: 'https://craig.ersk.in/e/#section-art'
   - title: VW
     ico: simple-icons:volkswagen
