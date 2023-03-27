@@ -19,7 +19,7 @@ eleventyNavigation:
 {%- endmacro -%}
 
 <!doctype html>
-<html lang="en">
+<html lang="en" x-data="{}">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -30,11 +30,11 @@ eleventyNavigation:
   </head>
   <body class="print:(!m-0 !py-0 !px-0 bg-white text-xs) p-2 bg-gray-100 text-gray-700 md:(py-12 px-5)" style="display: none;">
     <b class="print:(hidden) bg-paper fixed inset-0 z-[-1]" aria-hidden="true"></b>
-    <div class="">
+    <div>
       <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
-        <ul class="print:(hidden) text-xl flex -space-x-2 absolute top-2 right-2 z-50 md:(-top-5 -right-5)">
-          <li><a href="/" class="border-(2 white) w-10 h-10 bg-gray-300 text-gray-800 flex items-center justify-center rounded-full shadow-xl ring-(1 gray-500 opacity-20) motion-safe:(transition) hover:(bg-blue-500 text-white) focus:(bg-blue-500 text-white)"><iconify-icon icon="mdi:home-roof" width="1em" height="1em" inline="false"></iconify-icon></a></li>
-          <li><button type="button" onclick="window.print();" class="border-(2 white) w-10 h-10 bg-gray-300 text-gray-800 flex items-center justify-center rounded-full shadow-xl ring-(1 gray-500 opacity-20) motion-safe:(transition) hover:(bg-blue-500 text-white) focus:(bg-blue-500 text-white)"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false"></iconify-icon></button></li>
+        <ul class="print:(hidden) ml-auto px-5 bg-gray-700 text-gray-200 font-semibold flex space-x-3 ring-(1 gray-200) absolute top-2 right-2 z-50 rounded-full shadow md:(-top-5 -right-5)">
+          <li class="flex"><a href="/" class="py-2.5 px-1.5 flex relative motion-safe:(transition) hover:(text-pri-300) md:(px-2)"><iconify-icon icon="mdi:home-roof" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></a></li>
+          <li class="flex"><button type="button" @click.prevent.stop="window.print();" class="py-2.5 px-1.5 flex relative motion-safe:(transition) hover:(text-pri-300) md:(px-2)"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></button></li>
         </ul>
         <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500 opacity-20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
           <figure class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
