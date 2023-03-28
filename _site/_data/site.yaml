@@ -34,7 +34,7 @@ tech:
   - title: 'VS Code'
     sub: Editor
     url: https://code.visualstudio.com/
-    ico: akar-icons:vscode-fill
+    ico: simple-icons:visualstudiocode
   - title: 'Twind'
     sub: CSS
     url: 'https://twind.style/'
@@ -46,11 +46,11 @@ tech:
   - title: 'GitHub'
     sub: Source
     url: https://github.com/craigerskine/craigerskine.com
-    ico: mdi:source-repository
+    ico: simple-icons:git
   - title: 'Netlify'
     sub: Host
     url: https://netlify.com/
-    ico: bxl:netlify
+    ico: simple-icons:netlify
 analytics: |-
   // google analytics
   window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
