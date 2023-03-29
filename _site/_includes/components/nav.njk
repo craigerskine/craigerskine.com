@@ -38,10 +38,10 @@
     {% if page.url == '/resume/' %}
       <li class="flex"><button type="button" @click.prevent.stop="window.print();" class="py-2.5 px-2 flex relative motion-safe:(transition) hover:(text-pri-300)"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></button></li>
     {% else %}      
-      <li>
-        <button class="color-mode py-2.5 px-2 flex items-center motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
-          <span class="block dark:(hidden)"><iconify-icon icon="fa6-solid:sun" width="1em" height="1em" inline="false" class="iconify"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
-          <span class="hidden dark:(block)"><iconify-icon icon="fa6-solid:moon" width="1em" height="1em" inline="false" class="iconify"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
+      <li class="flex">
+        <button class="color-mode py-2.5 px-2 flex motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
+          <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
+          <span class="hidden dark:(block)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
         </button>
       </li>
     {% endif %}
