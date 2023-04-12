@@ -17,7 +17,7 @@ eleventyNavigation:
       {%- for item in collections.ux -%}
       <li class="relative flex flex-col items-start">
         <a href="{{ item.url }}" class="group">
-          <div class="h-12 w-12 bg-gray-50/50 text-2xl flex items-center justify-center rounded-full ring-(1 gray-200 inset) motion-safe:(transition) group-hover:(motion-safe:(animate-blob) border-(t white/75) bg-{{ item.data.color }}-500/30 bg-gradient-to-b from-white/30 via-transparent to-{{ item.data.color }}-500/30 text-{{ item.data.color }}-600 ring-{{ item.data.color }}-900/20 shadow-(lg {{ item.data.color}}-500/30))" aria-hidden="true">
+          <div class="h-12 w-12 text-2xl btn-{{ item.data.color }}" aria-hidden="true">
             <iconify-icon icon="{{ item.data.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
           </div>
           <div class="pt-6">

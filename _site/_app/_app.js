@@ -56,6 +56,7 @@ install({
     },
   },
   rules: [
+    [ 'btn-', ({ $$ }) => `bg-gray-50/50 flex items-center justify-center rounded-full ring-(1 gray-200 inset) motion-safe:(transition) group-hover:(motion-safe:(animate-blob) border-(t white/75) bg-${$$}-500/30 bg-gradient-to-b from-white/30 via-transparent to-${$$}-500/30 text-${$$}-600 ring-${$$}-900/20 shadow-(lg ${$$}-500/30))` ],
     [ 'bg-grid', { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 4 4\' width=\'4\' height=\'4\'><rect x=\'0\' y=\'0\' width=\'2\' height=\'2\' fill=\'currentColor\'></rect></svg>")', } ],
     [ 'bg-paper', { 'background-image': 'url(/_assets/img/bg-paper.png)', '@apply': 'bg-fixed' } ],
   ],
