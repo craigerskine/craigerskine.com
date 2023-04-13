@@ -119,7 +119,7 @@
               <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full bg-bottom bg-no-repeat flex items-end justify-between lg:mb-32" style="background-image: url('/_assets/img/media-shelf.png');">
                 {{ media(data=currently.playing, category='games') }}
               </ul>
-              {%- call heading.x(sub='Currently', ico='fa6-solid:music') %}Listening{%- endcall %}
+              {%- call heading.x(sub='Currently', ico='fa6-solid:music') %}Listening To{%- endcall %}
               <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full bg-bottom bg-no-repeat flex items-end justify-between lg:mb-32" style="background-image: url('/_assets/img/media-shelf.png');">
                 {{ media(data=currently.listening, category='music') }}
               </ul>
