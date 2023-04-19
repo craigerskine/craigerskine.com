@@ -138,7 +138,7 @@
             <ul class="p-2 flex items-center gap-x-4 md:(gap-x-6)">
               {%- for nav in site.tech %}
               <li>
-                <a href="{{ nav.url }}" class="group block relative motion-safe:(transition hover:(animate-blob)) hover:(text-pri-500)">
+                <a href="{{ nav.url }}" class="group block relative motion-safe:(transition) hover:(text-pri-500)">
                   {%- call tooltip.x() %}
                     {{ nav.sub }}: {{ nav.title }}
                   {%- endcall %}
