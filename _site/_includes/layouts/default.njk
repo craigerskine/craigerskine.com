@@ -69,19 +69,16 @@
         <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
         {{ grunge.x() }}
         {{ grunge.x(pos='bot') }}
-
         <header class="w-full flex-none relative">
-          <div class="mx-auto py-6 px-4 max-w-7xl lg:px-8">{% include 'components/nav.njk' %}</div>
+          <div class="mx-auto py-6 px-4 max-w-7xl lg:px-8">
+            {% include 'components/nav.njk' %}
+          </div>
         </header>
-        
         <main class="w-full flex-1 relative">
           {{ content | safe }}
         </main>
-
       </div>
-
       <div class="h-72" aria-hidden="true"></div>
-
       <footer class="w-full bg-(paper gray-100) flex-none relative z-10">
         {{ grunge.x(pos='bot') }}
         <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
@@ -150,7 +147,6 @@
           </div>
         </div>
       </footer>
-
       <div class="bg-src flex items-center fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
         <div class="w-full bg-slate-900 dark:(bg-slate-900)">
           {%- highlight "html" %}
@@ -160,7 +156,6 @@
         <div class="bg-slate-50/50 absolute inset-0"></div>
         <div class="bg-grid absolute inset-0 opacity-5 dark:(opacity-20)"></div>
       </div>
-
     </div>
 
     {% renderblock 'js' %}

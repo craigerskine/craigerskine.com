@@ -1,8 +1,8 @@
-{%- set active %}
+{%- set active -%}
   {%- for i in range(0, 2) -%}
     <b class="h-px bg-gradient-to-r from-transparent via-pri-500 to-transparent absolute inset-x-0 {% if i == 0 %}top{% else %}bottom{% endif %}-0 opacity-75"></b>
-  {%- endfor %}
-{%- endset %}
+  {%- endfor -%}
+{%- endset -%}
 
 <nav class="flex items-center justify-between" aria-label="Main navigation">
   {%- if page.url !== '/resume/' %}  
@@ -36,15 +36,15 @@
         </a>
       </li>
     {%- endfor %}
-    {% if page.url == '/resume/' %}
+    {%- if page.url == '/resume/' %}
       <li class="flex"><button type="button" @click.prevent.stop="window.print();" class="py-2.5 px-2 flex relative motion-safe:(transition) hover:(text-pri-300)"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></button></li>
-    {% else %}      
+    {%- else %}      
       <li class="flex">
         <button class="color-mode py-2.5 px-2 flex motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
           <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
           <span class="hidden dark:(block)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
         </button>
       </li>
-    {% endif %}
+    {%- endif %}
   </ul>
 </nav>
