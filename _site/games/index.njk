@@ -1,0 +1,40 @@
+---
+layout: 'layouts/default.njk'
+title: Gaming
+---
+
+{%- import 'components/hero.njk' as hero -%}
+
+<section class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
+  {% call hero.x(title=title +' stuff',lead='I hope to possibly make a video game one day before I die. This is my current progress along with other amazing, or maybe not so amazing, video game related garbage...') %}
+  {% endcall %}
+  <div class="py-16 sm:(py-32)">
+    <ul class="grid-(& cols-1) gap-16 sm:(grid-cols-2) lg:(grid-cols-3)">
+      {%- for item in collections.games -%}
+      <li class="relative flex flex-col items-start">
+        <a href="{{ item.url }}" class="group">
+          <div class="h-12 w-12 text-2xl btn-{{ item.data.color }}" aria-hidden="true">
+            <iconify-icon icon="{{ item.data.ico }}" inline="false" class="iconify"></iconify-icon>
+          </div>
+          <div class="pt-6">
+            <strong class="text-gray-900">{{ item.data.title }}</strong>
+            <p class="pt-2 text-sm leading-normal opacity-80">{{ item.data.desc }}</p>
+            <div class="pt-4 text-xl flex-(& wrap) items-center justify-between">
+              <ul class="flex gap-3 opacity-50">
+                {%- for tech in item.data.tech %}
+                <li><iconify-icon icon="{{ tech.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon></li>
+                {%- endfor %}
+              </ul>
+              <p class="flex items-center gap-1">
+                {%- if item.data.status %}<small class="text-xs uppercase opacity-50">{{ item.data.status }}</small>{%- endif %}
+                <iconify-icon icon="mdi:link-variant" width="1em" height="1em" inline="false" class="iconify opacity-30"></iconify-icon>
+              </p>
+            </div>
+          </div>
+          <div class="bg-{{ item.data.color }}-500/10 absolute -inset-3 z-10 opacity-0 rounded-2xl shadow-(xl {{ item.data.color}}-500/5) transform scale-75 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true"></div>
+        </a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
