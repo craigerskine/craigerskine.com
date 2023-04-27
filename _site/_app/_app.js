@@ -62,23 +62,24 @@ install({
   ],
 });
 
-injectGlobal({
-  'html': { '@apply': '' },
-  'body': { '@apply': '!block' },
-  '.media-dvd,.media-ps2,.media-wii,.media-gcn,.media-xb,.media-xb360': { 'padding': '7px 8px 7px 0', 'width': '110px', 'height': '154px', },
-  '.media-cd': { 'padding': '2px 4px 2px 12px', 'width': '112px', 'height': '102px', },
-  '.media-cd-tl': { 'padding': '2px 4px 2px 12px', 'width': '112px', 'height': '156px', },
-  '.media-xbone': { 'padding': '17px 4px 7px 0', 'width': '110px', 'height': '134px', },
-  '.media-wiiu': { 'padding': '7px 6px 7px 0', 'width': '110px', 'height': '154px', },
-  '.media-switch': { 'padding': '4px 4px 4px 0', 'width': '90px', 'height': '134px', },
-  '.media-3ds': { 'padding': '5px 5px 5px 0', 'width': '110px', 'height': '104px', },
-  '.media-ds': { 'padding': '7px 8px 7px 0', 'width': '110px', 'height': '104px', },
-  '.media-ps4': { 'padding': '7px 8px 7px 0', 'width': '110px', 'height': '134px', },
-  '.media-ps3': { 'padding': '14px 4px 4px 0', 'width': '110px', 'height': '134px', },
-  '.media-psv': { 'padding': '5px 5px 5px 0', 'width': '90px', 'height': '118px', },
-  '.media-psp': { 'padding': '4px 4px 4px 0', 'width': '88px', 'height': '138px', },
-  '[x-cloak]': { '@apply': 'hidden', },
-});
+injectGlobal`
+  @layer base {
+    body { @apply !block; }
+    .media-dvd,.media-ps2,.media-wii,.media-gcn,.media-xb,.media-xb360 { padding: 7px 8px 7px 0; width: 110px; height: 154px; }
+    .media-cd { padding: 2px 4px 2px 12px; width: 112px; height: 102px; }
+    .media-cd-tl { padding: 2px 4px 2px 12px; width: 112px; height: 156px; }
+    .media-xbone { padding: 17px 4px 7px 0; width: 110px; height: 134px; }
+    .media-wiiu { padding: 7px 6px 7px 0; width: 110px; height: 154px; }
+    .media-switch { padding: 4px 4px 4px 0; width: 90px; height: 134px; }
+    .media-3ds { padding: 5px 5px 5px 0; width: 110px; height: 104px; }
+    .media-ds { padding: 7px 8px 7px 0; width: 110px; height: 104px; }
+    .media-ps4 { padding: 7px 8px 7px 0; width: 110px; height: 134px; }
+    .media-ps3 { padding: 14px 4px 4px 0; width: 110px; height: 134px; }
+    .media-psv { padding: 5px 5px 5px 0; width: 90px; height: 118px; }
+    .media-psp { padding: 4px 4px 4px 0; width: 88px; height: 138px; }
+    [x-cloak] { @apply hidden; }
+  }
+`
 
 // alpinejs
 import Alpine from 'alpinejs';
