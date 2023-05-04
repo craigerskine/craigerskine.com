@@ -1,0 +1,19 @@
+﻿---
+layout: 'layouts/default.njk'
+title: qShoot
+desc: Prototype SHMUP made with PICO-8. Procedurally generated starfield, dual animated bullets with muzzle flashes, banking sprites, exhaust animation...
+ico: mdi:microsoft-xbox-controller
+color: blue
+tags:
+  - games
+date: 0001-01-01
+---
+
+{%- import 'components/hero.njk' as hero -%}
+
+<section class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
+  {% call hero.x(title=title,lead=desc) %}{% endcall %}
+  <div class="py-16">
+    <iframe src="https://craigerskine.github.io/qshoot/" class="mx-auto w-full max-w-2xl aspect-square">Your browser does not support iframes</iframe>
+  </div>
+</section>
