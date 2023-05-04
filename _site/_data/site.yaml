@@ -7,23 +7,23 @@ meta:
 social:
   - title: Dribbble
     url: https://dribbble.com/craigerskine
-    ico: fa6-brands:dribbble
+    ico: mdi:dribbble
     color: pink
   - title: GitHub
     url: https://github.com/craigerskine
-    ico: fa6-brands:github
+    ico: mdi:github
     color: gray
   - title: LinkedIn
     url: https://linkedin.com/in/craigerskine/
-    ico: fa6-brands:linkedin
+    ico: mdi:linkedin
     color: blue
   - title: Angel List
     url: https://wellfound.com/craigerskine
-    ico: fa6-brands:angellist
+    ico: mdi:water-well-outline
     color: red
   - title: Behance
     url: https://behance.net/craigerskine
-    ico: fa6-brands:behance
+    ico: mdi:behance
     color: purple
 book:
   title: Foundation Fireworks CS4
