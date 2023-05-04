@@ -15,12 +15,19 @@ eleventyNavigation:
     <ul class="grid-(& cols-1) gap-16 sm:(grid-cols-2) lg:(grid-cols-3)">
       {%- for item in collections.games -%}
       <li class="relative flex flex-col items-start">
-        <a href="{{ item.url }}" class="group">
+        <a href="{% if item.url %}{{ item.url }}{% else %}#{% endif %}" class="group{% if not item.url %} cursor-not-allowed{% endif %}"{% if not item.url %} @click.prevent{% endif %}>
           <div class="h-12 w-12 text-2xl btn-{{ item.data.color }}" aria-hidden="true">
             <iconify-icon icon="{{ item.data.ico }}" inline="false" class="iconify"></iconify-icon>
           </div>
           <div class="pt-6">
-            <strong class="text-gray-900">{{ item.data.title }}</strong>
+            <p class="flex items-center justify-between">
+              <strong class="text-gray-900">{{ item.data.title }}</strong>
+              {%- if item.url %}
+              <small class="uppercase opacity-50">In progress</small>
+              {%- else %}
+              <small class="uppercase opacity-50">Planning</small>
+              {%- endif %}
+            </p>
             <p class="pt-2 text-sm leading-normal opacity-80">{{ item.data.desc }}</p>
             <div class="pt-4 text-xl flex-(& wrap) items-center justify-between">
               <ul class="flex gap-3 opacity-50">
@@ -30,7 +37,7 @@ eleventyNavigation:
               </ul>
               <p class="flex items-center gap-1">
                 {%- if item.data.status %}<small class="text-xs uppercase opacity-50">{{ item.data.status }}</small>{%- endif %}
-                <iconify-icon icon="mdi:link-variant" width="1em" height="1em" inline="false" class="iconify opacity-30"></iconify-icon>
+                <iconify-icon icon="{% if item.url %}mdi:link-variant{% else %}mdi:link-variant-off{% endif %}" width="1em" height="1em" inline="false" class="iconify opacity-30"></iconify-icon>
               </p>
             </div>
           </div>
