@@ -20,16 +20,9 @@
   <ul class="ml-auto px-5 bg-gray-50/50 text-sm font-semibold flex gap-1 ring-(1 gray-200) rounded-full shadow md:(text-base gap-3)">
     {%- for item in collections.all | eleventyNavigation %}
       <li class="flex">
-        <a href="{{ item.url }}" class="py-2.5 px-1.5 flex relative{% if page.url == '/' and item.url == '/' %} text-pri-500{% elseif item.url == page.url and item.url in page.url %} text-pri-500{% endif %} motion-safe:(transition) hover:(text-pri-500) md:(px-2)"{% if page.url == '/' and item.url == '/' %} aria-current="page" {% elseif item.url == page.url and item.url in page.url %} aria-current="page"{% endif %}>
-          {%- if item.url == '/' %}
-          <iconify-icon icon="mdi:home-roof" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)" title="Home"></iconify-icon>
-          {%- else %}
+        <a href="{{ item.url }}" class="py-2.5 px-1.5 flex relative{% if item.url == page.url or item.url in page.url %} text-pri-500{% endif %} motion-safe:(transition) hover:(text-pri-500) md:(px-2)"{% if item.url == page.url or item.url in page.url %} aria-current="page"{% endif %}>
           {{ item.key }}
-          {%- endif %}
-          {%- if page.url == '/' and item.url == '/' %}
-            {#- home page #}
-            {{ active | safe -}}
-          {%- elseif item.url == page.url and item.url in page.url %}
+          {%- if item.url == page.url or item.url in page.url %}
             {#- other pages #}
             {{ active | safe -}}
           {%- endif %}
