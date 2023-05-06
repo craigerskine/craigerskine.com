@@ -12,7 +12,7 @@ date: 0001-01-01
 {%- import 'components/hero.njk' as hero -%}
 
 <section class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-  {% call hero.x(title=title,lead=desc) %}{% endcall %}
+  {% call hero.x(title='Game: '+title,lead=desc) %}{% endcall %}
   <div class="pt-12">
     <iframe src="https://craigerskine.github.io/qshoot/" class="mx-auto w-full aspect-video">Your browser does not support iframes</iframe>
   </div>
