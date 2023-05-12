@@ -40,8 +40,12 @@ experience:
     - title: Product
       time: 2017
   work:
-    - start: 2017
+    - start: 2023
       end: Present
+      position: UX Designer & Engineer
+      company: Macmillan Learning
+    - start: 2017
+      end: 2023
       position: UX Product Designer & Engineer
       company: Meridian Knowledge Solutions
     - start: 2010

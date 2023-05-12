@@ -116,6 +116,7 @@ eleventyNavigation:
                 </svg>
               </li>
               {%- for exp in resume.experience.work %}
+              {%- if loop.index < 5 %}  
               <li class="flex space-x-5 relative">
                 <b class="flex items-center">
                   <b class="w-3 h-3 bg-current ring-(2 gray-50) relative rounded-full"></b>
@@ -125,17 +126,21 @@ eleventyNavigation:
                     {{ exp.start }} - {{ exp.end }}
                     <sup class="ml-1 text-xs italic inline-block opacity-80">
                       {%- if exp.end !== 'Present' %}
-                        {{ exp.end - exp.start }}
+                        {{ exp.end - exp.start }} yrs
                       {%- else %}
-                        {{ time - exp.start }}
+                        {%- if time - exp.start <= 1 %}
+                          ~yr
+                        {%- else %}
+                          {{ exp.end - exp.start }} yrs
+                        {%- endif %}
                       {%- endif %}
-                      yrs
                     </sup>
                   </li>
                   <li>{{ exp.position }}</li>
                   <li class="pt-1 text-xs font-bold opacity-80">{{ exp.company }}</li>
                 </ul>
               </li>
+              {%- endif %}
               {%- endfor %}
             </ul>
           {%- endcall %}
