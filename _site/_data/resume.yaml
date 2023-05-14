@@ -40,15 +40,15 @@ experience:
     - title: Product
       time: 2017
   work:
-    - start: 2023
+    - start: 2023 # may 15
       end: Present
       position: UX Designer & Engineer
       company: Macmillan Learning
-    - start: 2017
+    - start: 2017 # june 1
       end: 2023
       position: UX Product Designer & Engineer
       company: Meridian Knowledge Solutions
-    - start: 2010
+    - start: 2010 # feb 1
       end: 2017
       position: Sr. UX Designer & Engineer
       company: 'Infinity Technology, Inc.'
