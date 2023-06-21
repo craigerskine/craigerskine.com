@@ -7,15 +7,15 @@
 {%- for item in data %}
 <li class="flex-1 justify-center {% if loop.index == 3 %}hidden xs:(flex){% else %}flex{% endif %}">
   <a href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
-    <figure class="flex w-full">
+    <div class="flex w-full">
       <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
       <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
-      {%- call tooltip.x(as='figcaption') %}
+      {%- call tooltip.x(as='div') %}
         {%- if category == 'music' %}<small class="pb-px font-semibold leading-none block opacity-75">{{ item.sub }}:</small>{%- endif %}
         {{ item.title }}
         {%- if category == 'games' %}<small class="pt-px font-semibold leading-none block opacity-75">{{ item.sub }}</small>{%- endif %}
       {%- endcall %}
-    </figure>
+    </div>
   </a>
 </li>
 {%- endfor %}
@@ -93,15 +93,15 @@
               <div class="flex-(& col) items-center gap-6 lg:(flex-row-reverse)">
                 <p class="w-full lg:(flex-1)">{{ site.book.desc }}</p>
                 <a href="https://amzn.com/dp/1430216182?tag=qrayg-20" class="fw-book group w-[207px] inline-flex flex-none transform [perspective:33rem] motion-safe:(transition) hover:(-rotate-3)">
-                  <figure role="group" class="fw-book-inner flex flex-row-reverse [transform-style:preserve-3d]">
-                    <figcaption class="sr-only">{{ site.book.title }}</figcaption>
-                    <figure class="fw-book-cover origin-left [transform:rotateY(35deg)] motion-safe:transition group-hover:([transform:rotateY(0)])">
+                  <div role="group" class="fw-book-inner flex flex-row-reverse [transform-style:preserve-3d]">
+                    <div class="sr-only">{{ site.book.title }}</div>
+                    <div class="fw-book-cover origin-left [transform:rotateY(35deg)] motion-safe:transition group-hover:([transform:rotateY(0)])">
                       <img src="/_assets/img/foundation-fw-cover.jpg" alt="Book cover" class="rounded-r motion-safe:transition group-hover:(rounded-sm shadow-lg)" />
-                    </figure>
-                    <figure class="fw-book-binding origin-right [transform:rotateY(-35deg)] motion-safe:transition group-hover:([transform:rotateY(-90deg)] opacity-0)">
+                    </div>
+                    <div class="fw-book-binding origin-right [transform:rotateY(-35deg)] motion-safe:transition group-hover:([transform:rotateY(-90deg)] opacity-0)">
                       <img src="/_assets/img/foundation-fw-binding.png" alt="Book binding" class="rounded-l" />
-                    </figure>
-                  </figure>
+                    </div>
+                  </div>
                 </a>
               </div>
               {%- call heading.x(sub='Social Media', ico='fa6-solid:share') %}
