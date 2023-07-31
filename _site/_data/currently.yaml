@@ -12,6 +12,10 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: Final Fantasy XVI
+    sub: PS5
+    media: ps5
+    url: https://amzn.com/dp/B0BPMTJJ6D?tag=qrayg-20
   - title: 'Ys: IX Monstrum Nox'
     sub: PS4
     media: ps4
@@ -20,10 +24,6 @@ playing:
     sub: Switch
     media: switch
     url: https://amzn.com/dp/B099TPXB8D?tag=qrayg-20
-  - title: 'Tales of Innocence R'
-    sub: PS Vita
-    media: psv
-    url: https://amzn.com/dp/B005ZNJWXS?tag=qrayg-20
 listening:
   - title: 'Solveig'
     sub: 'Seven Spires'

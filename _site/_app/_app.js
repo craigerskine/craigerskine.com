@@ -73,7 +73,7 @@ injectGlobal`
     .media-switch { padding: 4px 4px 4px 0; width: 90px; height: 134px; }
     .media-3ds { padding: 5px 5px 5px 0; width: 110px; height: 104px; }
     .media-ds { padding: 7px 8px 7px 0; width: 110px; height: 104px; }
-    .media-ps4 { padding: 7px 8px 7px 0; width: 110px; height: 134px; }
+    .media-ps5,.media-ps4 { padding: 7px 8px 7px 0; width: 110px; height: 134px; }
     .media-ps3 { padding: 14px 4px 4px 0; width: 110px; height: 134px; }
     .media-psv { padding: 5px 5px 5px 0; width: 90px; height: 118px; }
     .media-psp { padding: 4px 4px 4px 0; width: 88px; height: 138px; }
