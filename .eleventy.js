@@ -8,6 +8,11 @@ const yaml = require("js-yaml");
 const CleanCSS = require("clean-css");
 
 module.exports = function (eleventyConfig) {
+
+  eleventyConfig.setServerOptions({
+    domdiff: false,
+  });
+
   eleventyConfig.setDataFileBaseName('_data');
 
   eleventyConfig.addPassthroughCopy({
