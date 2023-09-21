@@ -22,7 +22,7 @@
 {%- endmacro -%}
 
 <!doctype html>
-<html lang="en" x-data="{% renderblock 'data' -%}" {% if page.url == '/' %}@work-modal.window="workData = $event.detail.data" {% endif %}x-cloak>
+<html lang="en" class="antialiased" x-data="{% renderblock 'data' -%}" {% if page.url == '/' %}@work-modal.window="workData = $event.detail.data" {% endif %}x-cloak>
 
   <head>
     <meta charset="utf-8" />
