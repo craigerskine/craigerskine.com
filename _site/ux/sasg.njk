@@ -1,0 +1,130 @@
+---
+layout: false
+tags: ux
+title: SASG + Twind
+desc: A recreation of a the classic SASG website home page using modern HTML, Twind, and Alpine.
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+  - title: Alpine
+    ico: simple-icons:alpinedotjs
+ico: mdi:checkerboard
+color: purple
+date: 0007-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-transparent" x-data="app">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title x-text="meta_title"></title>
+    <meta name="description" :content="meta_desc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  </head>
+
+  <body class="bg-(brand top repeat-y fixed) text-content leading-tight font-(serif) !block" style="display: none; background-image: url('/_assets/img/ux/sasg/pattern_card.gif');">
+    <div id="app" class="mx-auto py-3 max-w-[566px] min-h-screen flex-(& col)">
+      <header class="py-2 flex-none"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/header_sasg.gif" :alt="meta_desc" /></a></header>
+      <main class="px-4 flex-1">
+        <section class="mx-auto max-w-[448px]">
+          <p><span class="text-2xl">W</span>elcome to the <img src="/_assets/img/ux/sasg/logo_sasg_tiny.gif" :alt="meta_title" class="inline-block align-baseline" /> <i>INTERNET SERVICES</i>. SASG is an alliance of well-known Amiga shareware authors with the spirit to enrich the shareware community with an unprecedented service & performance. If you are a first-time visitor of our website we advise you to read our introductory <a href="#">help</a> page and the SASG <a href="#">news</a> summary before you proceed.</p>
+        </section>
+        <section>
+          <ul class="mx-auto pt-6 pb-12 max-w-[440px] text-center grid-(& cols-1) justify-items-center gap-2 sm:(grid-cols-3)">
+            <li class="sm:order-3 text-2xl leading-none uppercase">SASG <span class="text-4xl">p</span>roduct<span class="text-4xl">s</span></li>
+            <li class="order-1 sm:(col-span-3 order-1)"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_mui.gif" alt="MUI" /></a></li>
+            <li class="sm:order-2"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_mwb.gif" alt="MWB" /></a></li>
+            <li class="sm:order-4"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_mcx.gif" alt="MCX" /></a></li>
+            <li class="sm:(col-span-3 order-5)"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_dfa.gif" alt="DFA" /></a></li>
+          </ul>
+        </section>
+        <section>
+          <ul class="mx-auto pb-12 max-w-[468px] text-(center [13px]) grid-(& cols-1) gap-6 sm:(grid-cols-3 gap-2)">
+            <template x-for="item in info">
+              <li class="mx-auto max-w-[150px] sm:(mx-0 max-w-none)">
+                <a href="#" @click.prevent><img :src="'/_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" class="mx-auto" /></a>
+                <p class="pt-1" x-text="item.desc"></p>
+              </li>
+            </template>
+          </ul>
+        </section>
+      </main>
+      <footer class="mx-auto pt-3 w-full max-w-[548px] bg-(top no-repeat) text-[13px] flex-(& col none) items-center justify-between sm:(flex-row)" style="background-image: url('/_assets/img/ux/sasg/ruler_rain.gif');">
+        <p><a href="#" @click.prevent>Copyright</a> 2003, SASG</p>
+        <nav class="py-1.5">
+          <ul class="flex">
+            <template x-for="(item, index) in footer">
+              <li><a href="#" @click.prevent><img :src="'/_assets/img/ux/sasg/footer_'+ (index + 1) +'.gif'" :alt="item" /></a></li>
+            </template>
+          </ul>
+        </nav>
+        <p>Visitors so far: <span class="text-(link base)">467,709</span></p>
+      </footer>
+    </div>
+    
+    <script type="module">
+      // twind
+      import { install, injectGlobal } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        hash: false,
+        theme: {
+          extend: {
+            colors: ({ theme }) => ({
+              brand: '#040635',
+              content: '#EBE5FF',
+              link: '#FFD34F',
+            }),
+            fontFamily: ({ theme }) => ({
+              serif: 'Times New Roman,'+ theme('fontFamily.serif'),
+            }),
+          },
+        },
+        rules: [],
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          a { @apply text-link underline; }
+          [x-cloak] { @apply hidden; }
+        }
+      `
+
+      // alpine
+      import 'https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          meta_title: 'SASG International',
+          meta_desc: 'Standardized Amiga Shareware Group',
+          info: [
+            {
+              title: 'Introduction',
+              desc: 'Click here to read a short introduction to the SASG and what it stands for',
+            },
+            {
+              title: 'Background',
+              desc: 'Click to find out more about the historical motives of our foundation back in 1994',
+            },
+            {
+              title: 'Services',
+              desc: 'Click to see how you will benefit from our unique and powerful achievements',
+            },
+          ],
+          footer: ['Home', 'Help', 'Guestbook', 'News', 'About',],
+        }));
+      });
+      import Alpine from 'https://esm.run/alpinejs';
+      window.Alpine = Alpine;
+      Alpine.start();
+    </script>
+  </body>
+
+</html>
