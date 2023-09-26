@@ -1,9 +1,9 @@
 {% macro x(title='',lead='') %}
 <div class="hero max-w-xl space-y-8">
-  <h1 class="text-(gray-900 3xl) font-bold tracking-tight md:(text-4xl leading-tight)">
+  <h1 class="text-(gray-900 3xl wrap-balance) font-bold tracking-tight md:(text-4xl leading-tight)">
     {{ title | safe }}
   </h1>
-  {%- if lead !== '' %}<h2 class="leading-relaxed opacity-80">{{ lead | safe }}</h2>{%- endif %}
+  {%- if lead !== '' %}<h2 class="text-wrap-balance leading-relaxed opacity-80">{{ lead | safe }}</h2>{%- endif %}
   {{ caller() }}
 </div>
 {% endmacro %}

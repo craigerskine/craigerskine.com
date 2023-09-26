@@ -1,8 +1,8 @@
 ---
 meta:
-  title: 'Craig Erskine'
-  description: 'UX Designer & Engineer'
-  author: 'Craig Erskine'
+  title: Craig Erskine
+  description: UX Designer & Engineer
+  author: Craig Erskine
   url: https://craigerskine.com
 social:
   - title: Dribbble
@@ -31,23 +31,23 @@ book:
     I co-wrote a book with an amazing group of talented designers. Some of the design techniques carry over to other design software like Sketch and Figma.
   url: https://amazon.com/dp/1430216182?tag=qrayg-20
 tech:
-  - title: 'VS Code'
+  - title: VS Code
     sub: Editor
     url: https://code.visualstudio.com/
     ico: simple-icons:visualstudiocode
-  - title: 'Twind'
+  - title: Twind
     sub: CSS
-    url: 'https://twind.style/'
+    url: https://twind.style/
     ico: simple-icons:tailwindcss
   - title: '11ty'
     sub: SSG
     url: https://11ty.dev/
     ico: simple-icons:eleventy
-  - title: 'GitHub'
+  - title: GitHub
     sub: Source
     url: https://github.com/craigerskine/craigerskine.com
     ico: simple-icons:git
-  - title: 'Netlify'
+  - title: Netlify
     sub: Host
     url: https://netlify.com/
     ico: simple-icons:netlify
