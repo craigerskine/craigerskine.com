@@ -37,18 +37,19 @@ date: 0007-01-01
         </section>
         <section>
           <ul class="mx-auto pt-6 pb-12 max-w-[440px] text-center grid-(& cols-1) justify-items-center gap-2 sm:(grid-cols-3)">
-            <li class="sm:order-3 text-2xl leading-none uppercase">SASG <span class="text-4xl">p</span>roduct<span class="text-4xl">s</span></li>
-            <li class="order-1 sm:(col-span-3 order-1)"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_mui.gif" alt="MUI" /></a></li>
-            <li class="sm:order-2"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_mwb.gif" alt="MWB" /></a></li>
-            <li class="sm:order-4"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_mcx.gif" alt="MCX" /></a></li>
-            <li class="sm:(col-span-3 order-5)"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/button_dfa.gif" alt="DFA" /></a></li>
+            <li class="order-first text-2xl leading-none uppercase sm:(order-3)">SASG <span class="text-4xl">p</span>roduct<span class="text-4xl">s</span></li>
+            <template x-for="(item, index) in products">
+              <li :class="[item.order === 1 ? 'order-first sm:col-span-3 sm:order-'+ item.order : 'sm:(order-'+ item.order +')', item.order === 5 ? 'sm:col-span-3' : '']">
+                <a href="#" @click.prevent class="inline-block motion-safe:(transition) hover:(-translate-y-1)"><img :src="'/_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" /></a>
+              </li>
+            </template>
           </ul>
         </section>
         <section>
           <ul class="mx-auto pb-12 max-w-[468px] text-(center [13px]) grid-(& cols-1) gap-6 sm:(grid-cols-3 gap-2)">
             <template x-for="item in info">
               <li class="mx-auto max-w-[150px] sm:(mx-0 max-w-none)">
-                <a href="#" @click.prevent><img :src="'/_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" class="mx-auto" /></a>
+                <a href="#" @click.prevent class="inline-block motion-safe:(transition) hover:(-translate-y-1)"><img :src="'/_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" class="mx-auto" /></a>
                 <p class="pt-1 text-wrap-balance" x-text="item.desc"></p>
               </li>
             </template>
@@ -73,6 +74,12 @@ date: 0007-01-01
         Alpine.data('app', () => ({
           meta_title: 'SASG International',
           meta_desc: 'Standardized Amiga Shareware Group',
+          products: [
+            { title: 'MUI', order: 1, },
+            { title: 'MWB', order: 2, },
+            { title: 'MCX', order: 4, },
+            { title: 'DFA', order: 5, },
+          ],
           info: [
             {
               title: 'Introduction',
