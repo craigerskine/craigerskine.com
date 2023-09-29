@@ -83,6 +83,13 @@ module.exports = function (eleventyConfig) {
       minify: true,
       sourcemap: false,
     });
+    await esbuild.build({
+      entryPoints: ['_site/_app/sasg.js'],
+      outfile: 'public/_assets/js/sasg.js',
+      bundle: true,
+      minify: true,
+      sourcemap: false,
+    });
   });
 
 

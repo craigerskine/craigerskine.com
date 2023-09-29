@@ -28,7 +28,8 @@ date: 0007-01-01
   </head>
 
   <body class="bg-(brand top repeat-y fixed) text-content leading-tight font-(serif) !block" style="display: none; background-image: url('/_assets/img/ux/sasg/pattern_card.gif');">
-    <div id="app" class="mx-auto py-3 max-w-[566px] min-h-screen flex-(& col)">
+    <div class="bg-top fixed inset-0 opacity-25" style="background-image: url('/_assets/img/ux/sasg/pattern_card.gif');" aria-hidden="true"></div>
+    <div id="app" class="mx-auto py-3 max-w-[566px] min-h-screen flex-(& col) relative">
       <header class="py-2 flex-none"><a href="#" @click.prevent><img src="/_assets/img/ux/sasg/header_sasg.gif" :alt="meta_desc" /></a></header>
       <main class="px-4 flex-1">
         <section class="mx-auto max-w-[448px]">
@@ -48,7 +49,7 @@ date: 0007-01-01
             <template x-for="item in info">
               <li class="mx-auto max-w-[150px] sm:(mx-0 max-w-none)">
                 <a href="#" @click.prevent><img :src="'/_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" class="mx-auto" /></a>
-                <p class="pt-1" x-text="item.desc"></p>
+                <p class="pt-1 text-wrap-balance" x-text="item.desc"></p>
               </li>
             </template>
           </ul>
@@ -67,39 +68,7 @@ date: 0007-01-01
       </footer>
     </div>
     
-    <script type="module">
-      // twind
-      import { install, injectGlobal } from 'https://esm.run/@twind/core';
-      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
-      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
-      install({
-        presets: [presetAutoprefix(), presetTailwind()],
-        darkMode: 'class',
-        hash: false,
-        theme: {
-          extend: {
-            colors: ({ theme }) => ({
-              brand: '#040635',
-              content: '#EBE5FF',
-              link: '#FFD34F',
-            }),
-            fontFamily: ({ theme }) => ({
-              serif: 'Times New Roman,'+ theme('fontFamily.serif'),
-            }),
-          },
-        },
-        rules: [],
-      });
-      // global css
-      injectGlobal`
-        @layer base {
-          a { @apply text-link underline; }
-          [x-cloak] { @apply hidden; }
-        }
-      `
-
-      // alpine
-      import 'https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js';
+    <script>
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
           meta_title: 'SASG International',
@@ -107,24 +76,22 @@ date: 0007-01-01
           info: [
             {
               title: 'Introduction',
-              desc: 'Click here to read a short introduction to the SASG and what it stands for',
+              desc: 'Read a short introduction to the SASG and what it stands for',
             },
             {
               title: 'Background',
-              desc: 'Click to find out more about the historical motives of our foundation back in 1994',
+              desc: 'Find out more about the historical motives of our foundation back in 1994',
             },
             {
               title: 'Services',
-              desc: 'Click to see how you will benefit from our unique and powerful achievements',
+              desc: 'See how you will benefit from our unique and powerful achievements',
             },
           ],
           footer: ['Home', 'Help', 'Guestbook', 'News', 'About',],
         }));
       });
-      import Alpine from 'https://esm.run/alpinejs';
-      window.Alpine = Alpine;
-      Alpine.start();
     </script>
+    <script src="/_assets/js/sasg.js?v={% bust %}"></script>
   </body>
 
 </html>
