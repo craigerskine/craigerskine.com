@@ -40,7 +40,7 @@ install({
         pri: theme('colors.orange'),
       }),
       fontFamily: ({ theme }) => ({
-        sans: 'Inter,'+ theme('fontFamily.sans'),
+        sans: ['Inter', ...theme('fontFamily.sans')],
       }),
       keyframes: {
         blob: {
