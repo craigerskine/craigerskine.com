@@ -1,0 +1,179 @@
+---
+layout: false
+tags: ux
+title: Alpine.js + Elasticlunr
+desc: Example of how to use Alpine.js & Elasticlunr together as well as an external data file.
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+  - title: Alpine.js
+    ico: simple-icons:alpinedotjs
+ico: mdi:selection-search
+color: zinc
+date: 0008-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased" x-data="app" x-init="searchData()">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title x-text="site.title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+
+    <script>
+      if (localStorage.getItem('color-mode') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('color-mode'))) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+
+  </head>
+
+  <body class="bg-gray-50 text-gray-700 !block" style="display: none;" @keydown.ctrl.k.prevent.document="search.bar = true" @keydown.meta.k.prevent.document="search.bar = true">
+    <div id="app" class="min-h-screen flex-(& col)" x-cloak>
+      <header class="fixed top-2 right-2">
+        <button class="color-mode py-2.5 px-2 flex motion-safe:(transition) hover:(text-gray-500)" aria-label="Toggle color mode">
+          <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
+          <span class="hidden dark:(block)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
+        </button>
+      </header>
+      <main class="mx-auto py-12 px-4 w-full max-w-xl flex-auto">
+        <div class="flex-(& col) gap-12">
+          <hgroup class="space-y-1">
+            <h1 x-text="site.title" class="text-2xl font-black md:(text-3xl tracking-tight)"></h1>
+            <p x-text="site.sub" class="text-(gray-500 lg)"></p>
+          </hgroup>
+          <div class="form-group relative">
+            <input x-model="query" @input="search()" type="search" placeholder="Search video games: pokemon, monster hunter, final fantasy, etc." class="py-2 pl-9 pr-3 border-(1 gray-500/20) w-full block rounded-full dark:(bg-gray-500/20)" />
+            <span class="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 opacity-50"><iconify-icon icon="mdi:magnify" inline class="iconify"></iconify-icon></span>
+          </div>
+          <template x-if="results.length" hidden>
+            <section>
+              <div class="pb-1 border-(b gray-500/20) text-(sm gray-500) flex items-center justify-between">
+                <h2 class="font-semibold uppercase">Results</h2>
+                <small x-text="results.length" class="italic"></small>
+              </div>
+              <ul class="divide-y-(1 gray-500/20)">
+                <template x-for="result in results" hidden>
+                  <li class="py-4 flex-(& col)">
+                    <h3 x-text="result.title" class="text-lg font-bold"></h3>
+                    <p x-text="result.platform" class="text-sm"></p>
+                    <template x-if="result.note" hidden>
+                      <small x-html="'~ '+ result.note" class="text-(xs end wrap-balance) italic opacity-70 md:(ml-auto w-1/2)"></small>
+                    </template>
+                  </li>
+                </template>
+              </ul>
+            </section>
+          </template>
+          <template x-if="query.length > 0 && !results.length">
+            <section class="flex-(& col) items-center gap-4">
+              <iconify-icon icon="mdi:emoticon-sad" inline class="iconify text-5xl opacity-20"></iconify-icon>
+              <p class="text-gray-500 font-semibold uppercase">No results...</p>
+            </section>
+          </template>
+        </div>
+      </main>
+      <footer class="py-8 text-(gray-500 sm center) font-semibold uppercase">
+        <small>by</small> <a href="../" class="mx-2 text-indigo-500 hover:(underline)">Craig Erskine</a>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/elasticlunr/elasticlunr.js"></script>
+    <script type="module">
+      // color mode
+      const toggleColorMode = function() {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-mode', 'light')
+          return;
+        }
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-mode', 'dark');
+      };
+      document.querySelectorAll('.color-mode').forEach(btn => {
+        btn.addEventListener('click', toggleColorMode);
+      });
+
+      // icons
+      import 'https://esm.run/iconify-icon';
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          site: {
+            title: 'Alpine.js + Elasticlunr: Example',
+            sub: 'Uses external data file...',
+          },
+          query: '',
+          results: [],
+          data: [],
+          index: null,
+          searchData() {
+            fetch('./data.json')
+              .then((response) => response.json())
+              .then((data) => {
+                this.data = data;
+                this.index = elasticlunr(function() {
+                  this.addField('id');
+                  this.addField('title');
+                  this.addField('note');
+                  this.setRef('id');
+                  this.saveDocument(false);
+                });
+                data.forEach((item) => {
+                  this.index.addDoc(item);
+                });
+              });
+          },
+          search() {
+            if (this.index) {
+              this.results = this.index
+                .search(this.query, {
+                  expand: true,
+                  bool: 'AND',
+                })
+                .map((result) => this.data.find((item) => item.id === result.ref));
+            }
+          },
+        }));
+      });
+      window.Alpine = Alpine;
+      Alpine.start();
+
+      // twind
+      import { install, injectGlobal, autoDarkColor } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        darkColor: autoDarkColor,
+        hash: false,
+        theme: {
+          extend: {
+            fontFamily: ({ theme }) => ({
+              sans: ['Inter', ...theme('fontFamily.sans')],
+            }),
+          },
+        },
+        rules: [
+          ['text-wrap-(unset|wrap|nowrap|balance)', 'textWrap'],
+        ],
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          [x-cloak] { @apply hidden; }
+        }
+      `
+    </script>
+  </body>
+
+</html>
