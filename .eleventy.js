@@ -48,6 +48,11 @@ module.exports = function (eleventyConfig) {
   });
 
   // filters
+  // md {{ some.content | md | safe }}
+  eleventyConfig.addFilter('md', function(content) {
+    return markdownLibrary.render(content);
+  });
+
   // cssmin
   eleventyConfig.addFilter("cssmin", function(code) {
     return new CleanCSS({}).minify(code).styles;

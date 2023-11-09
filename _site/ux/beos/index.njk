@@ -1,0 +1,86 @@
+---
+layout: false
+tags: ux
+title: BeOS
+desc: Let's use modern web tech to recreate BeOS UI chrome. No images. Just JSS/Twind and HTML...
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+  - title: Alpine.js
+    ico: simple-icons:alpinedotjs
+ico: mdi:selection-search
+color: yellow
+date: 0009-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased" x-data="app" x-init="searchData()">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title x-text="site.title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  </head>
+
+  <body class="bg-blue-500 text-(gray-800 sm) !block" style="display: none;" @keydown.ctrl.k.prevent.document="search.bar = true" @keydown.meta.k.prevent.document="search.bar = true">
+    <div id="app" class="min-h-screen flex-(& col)" x-cloak>
+      <section class="m-auto w-full max-w-md flex-(& col)">
+        <header class="-mb-px py-1 px-2 border-(l t r gray-700) bg-yellow-400 self-start flex items-center gap-3 relative z-20">
+          <button class="ui-gadget w-4 h-4"></button>
+          Title Bar
+          <button class="ui-gadget w-4 h-4"></button>
+        </header>
+        <div class="p-4 border-(1 gray-700) bg-white relative z-10">Content</div>
+        <footer class="p-2 border-(l b r gray-700) bg-gray-200 text-xs">Status bar</footer>
+      </section>
+    </div>
+    <script type="module">
+      // icons
+      import 'https://esm.run/iconify-icon';
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          site: {
+            title: 'BeOS UI',
+          },
+        }));
+      });
+      window.Alpine = Alpine;
+      Alpine.start();
+
+      // twind
+      import { install, injectGlobal } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        hash: false,
+        theme: {
+          extend: {
+            fontFamily: ({ theme }) => ({
+              sans: ['Tahoma', ...theme('fontFamily.sans')],
+            }),
+          },
+        },
+        rules: [
+          ['text-wrap-(unset|wrap|nowrap|balance)', 'textWrap'],
+        ],
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          [x-cloak] { @apply hidden; }
+          .ui-gadget { @apply border-(l t black/25) flex relative shadow-[inset_0_0_0_1px_rgba(255,255,255,.5)] before:(border-(b r black/25) bg-gradient-to-br from-white/50 to-black/20 absolute inset-px content-['']); }
+        }
+      `
+    </script>
+  </body>
+
+</html>
