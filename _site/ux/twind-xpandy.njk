@@ -1,0 +1,81 @@
+---
+layout: false
+tags: ux
+title: Xpandy via Twind
+desc: An interesting horizontal accordion effect for columns with background images.
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+  - title: Vue
+    ico: mdi:vuejs
+ico: mdi:arrow-expand-horizontal
+color: neutral
+date: 0010-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Xpandy - Twind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  </head>
+
+  <body class="bg-neutral-900 text-neutral-200 !block" style="display: none;">
+    <div id="app" class="min-h-screen flex-(& col)" v-cloak>
+      
+      <main class="w-full flex-(& auto)">
+        <section class="w-full flex">
+          <a v-for="(i, index) in 4" @click.prevent href="#" class="group w-1/4 px-4 text-white flex items-center justify-center relative motion-safe:(transition-all) hover:(w-full)" :class="'bg-pri-800/'+ (index + 1)*2*10">
+            Hover
+            <div class="bg-(center cover) flex items-center justify-center absolute inset-0 opacity-20 blur motion-safe:(transition duration-1000) group-hover:(blur-none)" :style="'background-image: url(\'https://loremflickr.com/800/600/grass?random='+ (index + 1) +'\');'"></div>
+          </a>
+        </section>
+      </main>
+
+    </div>
+    <script type="module">
+      // vue
+      import { createApp } from 'https://esm.run/vue@3/dist/vue.esm-browser.js'
+      createApp({
+        data() {
+          return {
+          }
+        },
+      })
+      .mount('#app')
+
+      // twind
+      import { install, injectGlobal } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        hash: false,
+        theme: {
+          extend: {
+            colors: ({ theme }) => ({
+              pri: theme('colors.slate'),
+            }),
+          },
+        },
+        rules: [
+          ['text-wrap-(unset|wrap|nowrap|balance)', 'textWrap'],
+        ],
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          [v-cloak] { @apply hidden; }
+        }
+      `
+    </script>
+  </body>
+
+</html>
