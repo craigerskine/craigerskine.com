@@ -33,7 +33,7 @@ layout: 'layouts/default.njk'
     <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "png" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
       <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
       <div class="w-full h-full flex relative">
-        <img src="/_assets/img/work-{{ item.data.title | slugify }}.png" alt="{{ item.data.title }} image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+        <img src="/_assets/img/work-{{ item.data.title | slugify }}.png" alt="{{ item.data.title }} illustration" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
       </div>
     </a>
     {%- endfor %}
@@ -48,7 +48,7 @@ layout: 'layouts/default.njk'
     {%- for item in collections.web %}
     <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "jpg" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
       <div class="w-full h-full flex">
-        <img src="/_assets/img/work-{{ item.data.title | slugify }}.jpg" alt="{{ item.data.title }} image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+        <img src="/_assets/img/work-{{ item.data.title | slugify }}.jpg" alt="{{ item.data.title }} website" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
       </div>
     </a>
     {%- endfor %}
@@ -61,7 +61,7 @@ layout: 'layouts/default.njk'
   x-transition:leave-start="opacity-100"
   x-transition:leave-end="opacity-0 blur-lg">
   <div @click.outside="workModal = false" class="relative" role="dialog" aria-modal="true">
-    <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><iconify-icon icon="fa6-solid:xmark" inline="false"></iconify-icon></button>
+    <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><iconify-icon icon="fa6-solid:xmark" inline="false"></iconify-icon> <span class="sr-only">Close</span></button>
     <template x-if="workModal"> <!-- ** alpine needs this or it will just try to render things even if they have not dispatched yet? seems like a bug to me ** -->
     <div class="w-screen max-w-xl bg-gray-200 overflow-hidden rounded-2xl shadow-2xl">
       <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full h-96 bg-(cover center) object-(center cover) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
