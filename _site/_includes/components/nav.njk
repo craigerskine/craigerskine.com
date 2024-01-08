@@ -30,7 +30,7 @@
       </li>
     {%- endfor %}
     {%- if page.url == '/resume/' %}
-      <li class="flex"><button type="button" @click.prevent.stop="window.print();" class="py-2.5 px-2 flex relative motion-safe:(transition) hover:(text-pri-300)"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></button></li>
+      <li class="flex"><button type="button" @click.prevent.stop="window.print();" class="py-2.5 px-2 flex relative motion-safe:(transition) hover:(text-pri-300)" aria-label="Print"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></button></li>
     {%- else %}      
       <li class="flex">
         <button class="color-mode py-2.5 px-2 flex motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
