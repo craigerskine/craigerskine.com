@@ -8,16 +8,18 @@ layout: 'layouts/default.njk'
 
 <article class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
   {%- set heroTitle %}
-    {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-500 font-black">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}...
+    {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-600 font-black dark:text-pri-500">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}...
   {%- endset %}
   {%- call hero.x(title=heroTitle,lead=home.lead) %}
     {{ social.x(social=site.social) }}
   {%- endcall %}
 </article>
 <nav class="mx-auto pt-6 px-4 max-w-7xl flex justify-center relative lg:px-8">
-  <ul class="px-1 py-2 bg-gray-50/50 inline-flex ring-(1 gray-200) rounded-full shadow" role="tablist">
+  <ul class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner" role="tablist">
     <template x-for="(item, index) in workTypes" class="hidden">
-      <li class="mx-1" role="presentation"><a @click.prevent.stop="workActive = index" href="#" :class="['py-1.5 px-2.5 text-sm font-semibold uppercase block rounded-full motion-safe:(transition)', workActive == index ? 'tab-pri' : 'hover:text-gray-500']" role="tab" :aria-expanded="workActive == index" x-text="item"></a></li>
+      <li role="presentation">
+        <a @click.prevent.stop="workActive = index" href="#" :class="['py-3 px-6 text-sm leading-none font-semibold uppercase block rounded-full motion-safe:(transition)', workActive == index ? 'bg-white/90 dark:bg-black/50' : 'hover:text-gray-500']" role="tab" :aria-expanded="workActive == index" x-text="item"></a>
+      </li>
     </template>
   </ul>
 </nav>
