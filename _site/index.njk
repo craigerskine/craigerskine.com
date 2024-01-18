@@ -18,7 +18,7 @@ layout: 'layouts/default.njk'
   <ul class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner" role="tablist">
     <template x-for="(item, index) in workTypes" class="hidden">
       <li role="presentation">
-        <a @click.prevent.stop="workActive = index" href="#" :class="['py-3 px-6 text-sm leading-none font-semibold uppercase block rounded-full motion-safe:(transition)', workActive == index ? 'bg-white/90 dark:bg-black/50' : 'hover:text-gray-500']" role="tab" :aria-expanded="workActive == index" x-text="item"></a>
+        <a @click.prevent.stop="workActive = index" href="#" :class="['py-3 px-6 text-sm leading-none font-semibold uppercase block motion-safe:(transition)', workActive === index ? 'bg-white/90 dark:bg-black/50' : 'hover:text-gray-500', index === 0 ? 'rounded-l-3xl rounded-r-lg' : 'rounded-l-lg rounded-r-3xl']" role="tab" :aria-expanded="workActive === index" x-text="item"></a>
       </li>
     </template>
   </ul>
