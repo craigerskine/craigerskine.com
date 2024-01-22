@@ -32,7 +32,7 @@ date: 0002-01-01
 
       <div class="bg-gradient-to-b from-transparent via-transparent to-gray-300 fixed inset-0"><div class="bg-grid absolute inset-0 opacity-30"></div></div>
 
-      <nav class="fixed top-10 inset-x-10">
+      <nav class="fixed top-10 inset-x-10" role="navigation" aria-label="Theme styles">
         <ul class="flex justify-center gap-x-3 leading-none md:(gap-x-12)">
           <li v-for="(i, index) in ['Simple', 'Fun', 'Elegant', 'Brutal']" :class="[{ 'order-last' : index === 1 }]">
             <a @click.prevent="theme = index" :href="'#'+ slug(i)" :class="['py-2 w-24 flex(& col) items-center relative rounded-md transition', index === theme ? 'bg-gray-900 text-white' : '']" :tabindex="index === 1 ? '4' : (index === 2) ? '2' : (index === 3) ? '3' : '1'">

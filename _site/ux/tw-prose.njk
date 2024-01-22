@@ -44,7 +44,7 @@ date: 0004-01-01
               <small class="text-xs block opacity-50 lg:(text-base)">Some slogan</small>
             </span>
           </h1>
-          <nav class="py-5 lg:(ml-auto)">
+          <nav class="py-5 lg:(ml-auto)" role="navigation" aria-label="Site navigation">
             <ul class="text-sm flex(& wrap) items-center justify-center gap-5 font-bold uppercase lg:(text-base justify-end)">
               <li v-for="(item, index) in nav">
                 <a :href="item.href" @click.prevent class="group flex(& col) motion-safe:(transition) hover:(text-pri-100)">

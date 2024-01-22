@@ -60,7 +60,7 @@ date: 0007-01-01
       </main>
       <footer class="mx-auto pt-3 w-full max-w-[548px] bg-(top no-repeat) text-[13px] flex-(& col none) items-center justify-between sm:(flex-row)" style="background-image: url('/_assets/img/ux/sasg/ruler_rain.gif');">
         <p><a href="#" @click.prevent>Copyright</a> 2003, SASG</p>
-        <nav class="py-1.5">
+        <nav class="py-1.5" role="navigation" aria-label="Footer navigation">
           <ul class="flex">
             <template x-for="(item, index) in footer">
               <li><a href="#" @click.prevent><img :src="'/_assets/img/ux/sasg/footer_'+ (index + 1) +'.gif'" :alt="item" /></a></li>
