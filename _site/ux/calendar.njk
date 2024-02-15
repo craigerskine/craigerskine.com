@@ -1,0 +1,120 @@
+---
+layout: false
+tags: ux
+title: Calendar
+desc: Every day of the calendar year in a nice grid format, printable on a single page.
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+ico: mdi:calendar-text
+color: teal
+date: 0011-01-01
+---
+{%- macro blank() -%}
+  <li class="border-(b transparent)">&nbsp;</li>
+{%- endmacro -%}
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased" x-data="app">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+    <style>
+      @media print {
+        @page {
+          margin: 0;
+          padding: 1em;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-(gray-700 [10px]) !block" style="display: none;">
+    <div id="app" class="p-4 min-h-screen flex-(& col)" x-cloak>
+      <header class="flex-none">
+        <h1 class="pb-4 text-(xl center) font-black">{{ calendar.year }}</h1>
+      </header>
+      <main class="flex-(& 1)">
+        <section class="w-full grid-(& cols-12) gap-2">
+          {%- for month, days in calendar.grid %}
+            <ul class="h-full flex-(& col)">
+              <li class="h-full flex-(& col)">
+                <h2 class="border-(b gray-700/50) text-center uppercase font-black flex-none">{{ month }}</h2>
+                <ul class="flex-1 grid-(& flow-row)">
+                  {%- for day in days %}
+                    <li class="px-2 border-(b gray-700/50) flex items-center{{ ' bg-gray-500/20' if (day.weekday === 'Sat' or day.weekday === 'Sun') }}">
+                      <strong class="w-4 font-semibold flex-none">{{ day.day }}</strong>
+                      <small class="flex-1">{{ day.weekday.substring(0, 1) }}</small>
+                    </li>
+                    {# 30 day month #}
+                    {%- if loop.last and loop.index === 30 %}
+                      {{ blank() }}
+                    {%- endif %}
+                    {# feb - leap year #}
+                    {%- if loop.last and loop.index === 29 %}
+                      {{ blank() }}
+                      {{ blank() }}
+                    {%- endif %}
+                    {# feb - normal #}
+                    {%- if loop.last and loop.index === 28 %}
+                      {{ blank() }}
+                      {{ blank() }}
+                      {{ blank() }}
+                    {%- endif %}
+                  {%- endfor %}
+                </ul>
+              </li>
+            </ul>
+          {%- endfor %}
+        </section>
+      </main>
+    </div>
+    <script type="module">
+      // icons
+      import 'https://esm.run/iconify-icon';
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+
+      // twind
+      import { install, injectGlobal } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        hash: false,
+        theme: {
+          extend: {
+            colors: ({ theme }) => ({
+              brand: theme('colors.indigo'),
+            }),
+            fontFamily: ({ theme }) => ({
+              sans: ['Oswald', ...theme('fontFamily.sans')],
+            }),
+          },
+        },
+        rules: [
+          ['text-wrap-(unset|wrap|nowrap|balance)', 'textWrap'],
+        ],
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          hr { @apply border-gray-500/25; }
+          [x-cloak] { @apply hidden; }
+        }
+      `
+    </script>
+  </body>
+
+</html>

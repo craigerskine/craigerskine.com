@@ -12,6 +12,10 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: 'The Legend of Zelda: Tears of the Kingdom'
+    sub: Switch
+    media: switch
+    url: https://amazon.com/dp/B097B2YWFX?tag=qrayg-20
   - title: Final Fantasy VII Remake
     sub: PS5
     media: ps5
@@ -20,10 +24,6 @@ playing:
     sub: PS5
     media: ps5
     url: https://amazon.com/dp/B0BPMTJJ6D?tag=qrayg-20
-  - title: 'Ys: IX Monstrum Nox'
-    sub: PS4
-    media: ps4
-    url: https://amazon.com/dp/B08BQRYJF6?tag=qrayg-20
 listening:
   - title: Solveig
     sub: Seven Spires
