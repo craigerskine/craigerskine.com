@@ -31,8 +31,8 @@ personal:
       url: https://github.com/craigerskine
     - title: linkedin.com/in/craigerskine
       url: https://linkedin.com/in/craigerskine/
-    - title: angel.co/u/craigerskine
-      url: https://angel.co/u/craigerskine
+    - title: wellfound.com/u/craigerskine
+      url: https://wellfound.com/u/craigerskine
 experience:
   totals:
     - title: Screen
@@ -75,11 +75,11 @@ skills:
   - title: CSS
     rating: 95
   - title: Js
-    rating: 70
+    rating: 75
   - title: Tailwind
     rating: 90
-  - title: Vue
-    rating: 65
+  - title: Alpine
+    rating: 85
   - title: Sketch
     rating: 90
   - title: Figma

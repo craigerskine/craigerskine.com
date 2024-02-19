@@ -27,6 +27,12 @@ eleventyNavigation:
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <style>
+      @page {
+        margin: 2rem 1rem 1rem;
+        padding: 0;
+      }
+    </style>
   </head>
   <body class="print:(!m-0 !py-0 !px-0 bg-white text-xs) p-2 bg-gray-100 text-gray-700 md:(py-12 px-5)" style="display: none;">
     <b class="print:(hidden) bg-paper fixed inset-0 z-[-1]" aria-hidden="true"></b>
@@ -35,7 +41,7 @@ eleventyNavigation:
         {% include "components/nav.njk" %}
       </div>
       <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
-        <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500 opacity-20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
+        <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500/20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
           <a href="/" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block">
               <title>{{ resume.applicant }} logo</title>
@@ -53,7 +59,7 @@ eleventyNavigation:
             <ul class="ml-auto md:(flex gap-x-5) print:(flex gap-x-5)">
               <li class="flex-(& col)">
                 <b class="pb-2 w-full block">Contact:</b>
-                <ul class="mb-5 border-(l gray-500 opacity-25 dashed) pl-5 flex-(& 1 col) justify-center gap-y-2 md:(pr-12 mb-0)">
+                <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 flex-(& 1 col) justify-center gap-y-2 md:(pr-12 mb-0)">
                   <li>
                     <a href="mailto:{{ resume.email }}" class="group inline-block relative trnasition hover:(text-blue-500) focus:(text-blue-500)">
                       {{ resume.email }}
@@ -64,7 +70,7 @@ eleventyNavigation:
               </li>
               <li class="flex-(& col)">
                 <b class="pb-2 w-full block">@{{ resume.username }}</b>
-                <ul class="mb-5 border-(l gray-500 opacity-25 dashed) pl-5 text-4xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
+                <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 text-4xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
                   {%- for soc in resume.social %}
                   <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
                   {%- endfor %}
@@ -97,7 +103,7 @@ eleventyNavigation:
           {%- endcall %}
           {%- call region(title='Experience') %}
             {% set time %}{% year %}{% endset %}
-            <div class="mb-5 border-(b dashed gray-500 opacity-25) flex justify-center divide-(x dashed gray-500 opacity-25)">
+            <div class="mb-5 border-(b dashed gray-500/25) flex justify-center divide-(x dashed gray-500/25)">
               {%- for total in resume.experience.totals %}
               <p class="px-10 pb-5 text-center">
                 <b class="print:(!text-[60px]) text-[75px] font-normal block tracking-tighter leading-none relative md:(text-[100px])">
@@ -119,7 +125,7 @@ eleventyNavigation:
               {%- if loop.index < 5 %}  
               <li class="flex space-x-5 relative">
                 <b class="flex items-center">
-                  <b class="w-3 h-3 bg-current ring-(2 gray-50) relative rounded-full"></b>
+                  <b class="w-3 h-3 bg-gray-{{ 7 - loop.index }}00 ring-(2 gray-50/100) relative rounded-full"></b>
                 </b>
                 <ul class="py-3 self-center">
                   <li class="text-sm">
@@ -146,20 +152,19 @@ eleventyNavigation:
           {%- endcall %}
           <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
             <b class="h-px bg-gray-500/25 flex-1"></b>
-            <iconify-icon icon="fa6-solid:arrow-down" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
-            <span>Continue to next page...</span>
-            <iconify-icon icon="fa6-solid:arrow-down" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
+            <span class="flex-none">Continue to next page...</span>
+            <iconify-icon icon="mdi:flip-vertical" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
             <b class="h-px bg-gray-500/25 flex-1"></b>
           </div>
           {%- call region(title='Specialties') %}
             <ul class="flex justify-center -space-x-2 md:(-space-x-4)">
               {% for spec in resume.specialties %}
-              <li class="flex-(& col) items-center motion-safe:transition hover:(scale-110 text-red-500)">
-                <b class="w-16 h-16 ring-(1 inset current) flex items-center justify-center rounded-full md:(w-24 h-24)">
+              <li class="group flex-(& col) items-center motion-safe:(transition) hover:(scale-110 text-red-500)">
+                <b class="w-16 h-16 ring-(2 inset current) flex items-center justify-center rounded-full group-hover:(ring-4) md:(w-24 h-24)">
                   <iconify-icon icon="{{ spec.ico }}" width="1em" height="1em" inline="false" class="iconify text-2xl md:(text-4xl)"></iconify-icon>
                 </b>
-                <i class="-mt-4 w-px bg-current relative {% if loop.index % 2 == 0 %}h-12{% else %}h-24{% endif %}">
-                  <i class="-mt-1 -ml-1 w-2 h-2 bg-current absolute top-0 left-0 rounded-full"></i>
+                <i class="-mt-4 w-0.5 bg-current relative {% if loop.index % 2 == 0 %}h-12{% else %}h-24{% endif %}">
+                  <i class="ml-px w-2 h-2 bg-current absolute -top-1 -left-1 rounded-full"></i>
                 </i>
                 <p>{{ spec.title }}</p>
               </li>
@@ -167,7 +172,7 @@ eleventyNavigation:
             </ul>
           {%- endcall %}
           {%- call region(title='Skills Levels') %}
-            <ul class="divide-(y dashed gray-500 opacity-25)">
+            <ul class="divide-(y dashed gray-500/25)">
               {%- for skill in resume.skills %}
               <li class="group flex items-center cursor-default mt-2 pt-2">
                 <b class="mr-2 min-w-0 font-normal truncate">{{ skill.title }}</b>
@@ -205,7 +210,7 @@ eleventyNavigation:
             <ul class="flex-(& wrap) justify-center gap-5">
               {%- for hobby in resume.hobbies %}
               <li>
-                <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(1 gray-500 opacity-20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-400) scale-110) focus:(ring-(4 blue-400) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
+                <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(2 gray-500/20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-500/100) scale-110) focus:(ring-(4 blue-500/100) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
                   <iconify-icon icon="{{ hobby.ico }}" width="1em" height="1em" inline="false" class="iconify text-4xl print:(text-lg)"></iconify-icon>
                   <small class="mt-2 text-xs tracking-tight opacity-80 print:(!mt-0 text-[6px])">{{ hobby.title }}</small>
                 </a>
@@ -214,7 +219,7 @@ eleventyNavigation:
             </ul>
           {%- endcall %}
         </main>
-        <footer class="print:(!py-2 !fixed !bottom-0 !inset-x-0) py-12 border-(t dashed gray-500 opacity-20) text-(xs center) uppercase tracking-wider relative opacity-80">
+        <footer class="print:(!py-2 !fixed !bottom-0 !inset-x-0) py-12 border-(t dashed gray-500/20) text-(xs center) uppercase tracking-wider relative opacity-80">
           Made with
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" role="img" class="-mt-1 mx-1 fill-current text-red-500 inline-block">
             <title>Love</title>
