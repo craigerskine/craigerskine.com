@@ -72,7 +72,7 @@ date: 0008-01-01
               </ul>
             </section>
           </template>
-          <template x-if="query.length > 0 && !results.length">
+          <template x-if="query.length > 0 && !results.length" hidden>
             <section class="flex-(& col) items-center gap-4">
               <iconify-icon icon="mdi:emoticon-sad" inline class="iconify text-5xl opacity-20"></iconify-icon>
               <p class="text-gray-500 font-semibold uppercase">No results...</p>

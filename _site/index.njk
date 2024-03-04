@@ -14,11 +14,18 @@ layout: 'layouts/default.njk'
     {{ social.x(social=site.social) }}
   {%- endcall %}
 </article>
-<nav class="mx-auto pt-6 px-4 max-w-7xl flex justify-center relative lg:px-8" role="navigation" aria-label="Work types">
+<nav class="mx-auto pt-6 px-4 max-w-7xl flex relative lg:px-8" role="navigation" aria-label="Work types">
   <ul class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner" role="tablist">
-    <template x-for="(item, index) in workTypes" class="hidden">
+    <template x-for="(item, index) in workTypes" hidden>
       <li role="presentation">
-        <a @click.prevent.stop="workActive = index" href="#" :class="['py-3 px-6 text-sm leading-none font-semibold uppercase block motion-safe:(transition)', workActive === index ? 'bg-white/90 dark:bg-black/50' : 'hover:text-gray-500', index === 0 ? 'rounded-l-3xl rounded-r-lg' : 'rounded-l-lg rounded-r-3xl']" role="tab" :aria-expanded="workActive === index" x-text="item"></a>
+        <a
+          href="#"
+          @click.prevent.stop="workActive = index"
+          class="py-3 px-6 text-sm leading-none font-semibold uppercase block rounded-full motion-safe:(transition)"
+          :class="workActive === index ? 'bg-white/90 dark:bg-black/50 dark:ring-1 dark:ring-gray-500/25' : 'hover:text-gray-500'"
+          role="tab"
+          :aria-expanded="workActive === index"
+          x-text="item"></a>
       </li>
     </template>
   </ul>
@@ -64,7 +71,7 @@ layout: 'layouts/default.njk'
   x-transition:leave-end="opacity-0 blur-lg">
   <div @click.outside="workModal = false" class="relative" role="dialog" aria-modal="true">
     <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><iconify-icon icon="fa6-solid:xmark" inline="false"></iconify-icon> <span class="sr-only">Close</span></button>
-    <template x-if="workModal"> <!-- ** alpine needs this or it will just try to render things even if they have not dispatched yet? seems like a bug to me ** -->
+    <template x-if="workModal" hidden> <!-- ** alpine needs this or it will just try to render things even if they have not dispatched yet? seems like a bug to me ** -->
     <div class="w-screen max-w-xl bg-gray-200 overflow-hidden rounded-2xl shadow-2xl">
       <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full h-96 bg-(cover center) object-(center cover) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
       <div class="py-6 px-8 relative">
@@ -73,7 +80,7 @@ layout: 'layouts/default.njk'
           <p x-text="workData.sub" class="text-(sm gray-500) flex-none"></p>
         </div>
         <ul class="text-xl leading-none flex -space-x-2 absolute -top-5 right-5">
-          <template x-for="(t, index) in workData.tech">
+          <template x-for="(t, index) in workData.tech" hidden>
           <li class="w-10 h-10 text-pri-50 dark:(text-pri-50) bg-pri-500 flex ring-(2 inset white) rounded-full shadow-lg">
             <template x-if="t == 'Fireworks'">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="m-auto w-6 fill-current">
@@ -81,7 +88,7 @@ layout: 'layouts/default.njk'
                 <path x-show="t == 'Fireworks'" d="m40 16.64c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-12.4 0c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-3.44-11.68v6c-5.3504 0-7.231488 4.677376-9.173289 9.9160371l-.2654988.7174554c-2.3988442 6.4814515-5.1308122 13.5265075-14.7212122 13.5265075v-6c3.46826668-.0092181 6.00160001-2.0358848 7.6-6.08h-4.56v-6h6.96c2.6666666-8.05333336 7.3866666-12.08 14.16-12.08z"></path>
               </svg>
             </template>
-            <template x-if="t == 'CSS' || t == 'Figma' || t == 'HTML' || t == 'Js' || t == '11ty' || t == 'Alpine' || t == 'Sketch' || t == 'Vue'">
+            <template x-if="t == 'CSS' || t == 'Figma' || t == 'HTML' || t == 'Js' || t == '11ty' || t == 'Alpine' || t == 'Sketch' || t == 'Vue'" hidden>
               <iconify-icon :icon="[t == 'CSS' ? 'fa6-brands:css3-alt' :
                 (t == 'Figma') ? 'fa6-brands:figma' :
                 (t == 'HTML') ? 'fa6-brands:html5' :
