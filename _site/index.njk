@@ -64,7 +64,7 @@ layout: 'layouts/default.njk'
   </section>
 </div>
 
-<div x-show="workModal" x-trap.noscroll.inert="workModal" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)"
+<div x-show="workModal" x-trap.noscroll.inert="workModal" x-on:keydown.window.prevent.escape="workModal = false" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)"
   x-transition:enter-start="opacity-0 blur-lg"
   x-transition:enter-end="opacity-100"
   x-transition:leave-start="opacity-100"
