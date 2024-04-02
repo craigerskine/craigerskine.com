@@ -1,98 +1,98 @@
 <main class="w-full flex-1 relative">
   <article class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-    <div class="hero max-w-2xl space-y-8">
-      <h1 class="text-4xl font-semibold tracking-tight md:(text-5xl leading-tight)">
+    <div class="hero max-w-xl space-y-8">
+      <h1 class="text-(gray-900 3xl wrap-balance) font-bold tracking-tight [&>b]:(text-pri-600 font-black dark:text-pri-500) md:(text-4xl leading-tight)">
         Craig Erskine is a
-        <b class="text-pri-500 font-black">designer</b>,
-        <b class="text-pri-500 font-black">artist</b>,
-        <b class="text-pri-500 font-black">author</b>,
-        <b class="text-pri-500 font-black">guitarist</b>,
-        <b class="text-pri-500 font-black">gamer</b>, and
-        <b class="text-pri-500 font-black">tech nerd</b>...
+        <b>designer</b>,
+        <b>artist</b>,
+        <b>author</b>,
+        <b>guitar nerd</b>,
+        and <b>gamer</b>...
       </h1>
-      <h2 class="text-gray-600 leading-relaxed">I'm passionate about UX design, front-end website engineering, paper & pencil sketching, noodling around on guitars, playing nerdy RPG's... oh, and I co-authored a book about designing in good ol' Macromedia Fireworks.</h2>
-      <ul class="text-xl flex gap-2 lg:(gap-5)">
-        <li><a href="https://dribbble.com/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-pink-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><iconify-icon icon="fa6-brands:dribbble" title="Dribbble"></iconify-icon></a></li>
-        <li><a href="https://github.com/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-gray-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><iconify-icon icon="fa6-brands:github" title="GitHub"></iconify-icon></a></li>
-        <li><a href="https://linkedin.com/in/craigerskine/" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-blue-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><iconify-icon icon="fa6-brands:linkedin-in" title="LinkedIn"></iconify-icon></a></li>
-        <li><a href="https://angel.co/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-yellow-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><iconify-icon icon="fa6-brands:angellist" title="Angel List"></iconify-icon></a></li>
-        <li><a href="https://behance.net/craigerskine" class="w-10 h-10 bg-gray-50/50 text-xl flex items-center justify-center ring-(1 gray-200) rounded-full shadow text-gray-500 hover:(bg-red-500 text-white ring-0 motion-safe:(animate-blob)) motion-safe:(transition) "><iconify-icon icon="fa6-brands:behance" title="Behance"></iconify-icon></a></li>
+      <h2 class="text-wrap-balance leading-relaxed opacity-80">I'm passionate about UX design, front-end website engineering, paper & pencil sketching, noodling around on guitars, playing nerdy RPG's... oh, and I co-authored a book about designing in good ol' Macromedia Fireworks.</h2>
+      <ul class="flex gap-2 lg:(gap-5)">
+        <li><a href="https://dribbble.com/craigerskine" class="group flex rounded-full" aria-label="Dribbble"><span class="btn-pink w-12 h-12 text-2xl"><iconify-icon icon="mdi:dribbble" class="iconify"></iconify-icon></span></a></li>
+        <li><a href="https://github.com/craigerskine" class="group flex rounded-full" aria-label="GitHub"><span class="btn-gray w-12 h-12 text-2xl"><iconify-icon icon="mdi:github" class="iconify"></iconify-icon></span></a></li>
+        <li><a href="https://codepen.io/craigerskine" class="group flex rounded-full" aria-label="CodePen"><span class="btn-red w-12 h-12 text-2xl"><iconify-icon icon="ri:codepen-fill" class="iconify"></iconify-icon></span></a></li>
+        <li><a href="https://linkedin.com/in/craigerskine/" class="group flex rounded-full" aria-label="LinkedIn"><span class="btn-blue w-12 h-12 text-2xl"><iconify-icon icon="mdi:linkedin" class="iconify"></iconify-icon></span></a></li>
+        <li><a href="https://behance.net/craigerskine" class="group flex rounded-full" aria-label="Behance"><span class="btn-purple w-12 h-12 text-2xl"><iconify-icon icon="mdi:behance" class="iconify"></iconify-icon></span></a></li>
       </ul>
     </div>
   </article>
-  <nav class="mx-auto pt-6 px-4 max-w-7xl flex justify-center relative lg:px-8">
-    <div class="px-1 py-2 bg-gray-50/50 inline-flex ring-(1 gray-200) rounded-full shadow" role="tablist">
+  <nav class="mx-auto pt-6 px-4 max-w-7xl flex relative lg:px-8" role="navigation" aria-label="Work types">
+    <ul class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner" role="tablist">
       <template x-for="(item, index) in workTypes" hidden>
-        <div class="mx-1"><a @click.prevent.stop="workTypeActive = index" href="#" :class="['py-1.5 px-2.5 block rounded-full motion-safe:(transition)', workTypeActive == index ? 'bg-gray-700 text-gray-50 hover:text-gray-300' : 'hover:text-gray-500']" role="tab" :aria-expanded="workTypeActive == index" x-text="item">TAB</a></div>
+        <li role="presentation">
+          <a href="#" @click.prevent.stop="workActive = index" class="py-3 px-6 text-sm leading-none font-semibold uppercase block rounded-full motion-safe:(transition)" :class="workActive === index ? 'bg-white/90 dark:bg-black/50 dark:ring-1 dark:ring-gray-500/25' : 'hover:text-gray-500'" role="tab" :aria-expanded="workActive === index" x-text="item"></a>
+        </li>
       </template>
-    </div>
+    </ul>
   </nav>
   <div class="pb-16 relative">
-    <section x-show="workTypeActive == 0" id="panel-work-ill" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" x-transition:enter="absolute top-0 inset-x-0" x-transition:enter-start="opacity-0 scale-110 blur-lg" x-transition:enter-end="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-110 blur-lg">
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "PCE 8bitdo", sub: "Controller Illustration", url: "https://dribbble.com/shots/11534393-PC-Engine-Wireless-Controller", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+    <section x-show="workActive == 0" id="panel-work-ill" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" x-transition:enter="absolute top-0 inset-x-0" x-transition:enter-start="opacity-0 scale-110 blur-lg" x-transition:enter-end="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-110 blur-lg">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "PCE 8bitdo", sub: "Controller Illustration", url: "https://dribbble.com/shots/11534393-PC-Engine-Wireless-Controller", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
         <div class="w-full h-full flex relative">
-          <img src="/_assets/img/work-pce-8bitdo.png" alt="PCE 8bitdo image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-pce-8bitdo.png" alt="PCE 8bitdo illustration" class="w-full h-full object-(cover center) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Dreamcast", sub: "Controller Illustration", url: "https://dribbble.com/shots/5788344-Dreamcast-Controller-Final", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Dreamcast", sub: "Controller Illustration", url: "https://dribbble.com/shots/5788344-Dreamcast-Controller-Final", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
         <div class="w-full h-full flex relative">
-          <img src="/_assets/img/work-dreamcast.png" alt="Dreamcast image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-dreamcast.png" alt="Dreamcast illustration" class="w-full h-full object-(cover center) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Gamecube", sub: "Controller Illustration", url: "https://dribbble.com/shots/5814093-Gamecube-Controller-Final", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Gamecube", sub: "Controller Illustration", url: "https://dribbble.com/shots/5814093-Gamecube-Controller-Final", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
         <div class="w-full h-full flex relative">
-          <img src="/_assets/img/work-gamecube.png" alt="Gamecube image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-gamecube.png" alt="Gamecube illustration" class="w-full h-full object-(cover center) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "PS Vita", sub: "System Illustration", url: "https://dribbble.com/shots/2460543-PS-Vita", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "PS Vita", sub: "System Illustration", url: "https://dribbble.com/shots/2460543-PS-Vita", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
         <div class="w-full h-full flex relative">
-          <img src="/_assets/img/work-ps-vita.png" alt="PS Vita image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-ps-vita.png" alt="PS Vita illustration" class="w-full h-full object-(cover center) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Neo Geo Pocket color", sub: "System Illustration", url: "https://dribbble.com/shots/1823003-Neo-Geo-Pocket-Color-Sketch", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Neo Geo Pocket color", sub: "System Illustration", url: "https://dribbble.com/shots/1823003-Neo-Geo-Pocket-Color-Sketch", tech: ["Sketch","Figma"], type: "png" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
         <div class="w-full h-full flex relative">
-          <img src="/_assets/img/work-neo-geo-pocket-color.png" alt="Neo Geo Pocket color image" class="w-full h-full object-(cover center) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-neo-geo-pocket-color.png" alt="Neo Geo Pocket color illustration" class="w-full h-full object-(cover center) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
     </section>
-    <section x-show="workTypeActive == 1" id="panel-work-web" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" x-transition:enter="absolute top-0 inset-x-0" x-transition:enter-start="opacity-0 scale-90 blur-lg" x-transition:enter-end="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90 blur-lg">
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "bioplan", sub: "[OFFLINE] Web UX + CMS", url: "https://craigerskine.github.io/bioplan.se/", tech: ["Figma","HTML","CSS","Js"], type: "jpg" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+    <section x-show="workActive == 1" id="panel-work-web" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" x-transition:enter="absolute top-0 inset-x-0" x-transition:enter-start="opacity-0 scale-90 blur-lg" x-transition:enter-end="opacity-100 scale-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90 blur-lg">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "bioplan", sub: "[OFFLINE] Web UX + CMS", url: "https://craigerskine.github.io/bioplan.se/", tech: ["Figma","HTML","CSS","Js"], type: "jpg" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <div class="w-full h-full flex">
-          <img src="/_assets/img/work-bioplan.jpg" alt="bioplan image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-bioplan.jpg" alt="bioplan website" class="w-full h-full object-(cover top) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Legend of Mana", sub: "Web UX + CMS", url: "https://legendofmana.info/", tech: ["Sketch","HTML","CSS","Alpine","11ty"], type: "jpg" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Legend of Mana", sub: "Web UX + CMS", url: "https://legendofmana.info/", tech: ["Sketch","HTML","CSS","Alpine","11ty"], type: "jpg" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <div class="w-full h-full flex">
-          <img src="/_assets/img/work-legend-of-mana.jpg" alt="Legend of Mana image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-legend-of-mana.jpg" alt="Legend of Mana website" class="w-full h-full object-(cover top) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "OpenEmu", sub: "Web UX", url: "https://openemu.org/", tech: ["HTML","CSS","Js","Vue"], type: "jpg" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "OpenEmu", sub: "Web UX", url: "https://openemu.org/", tech: ["HTML","CSS","Js","Vue"], type: "jpg" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <div class="w-full h-full flex">
-          <img src="/_assets/img/work-openemu.jpg" alt="OpenEmu image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-openemu.jpg" alt="OpenEmu website" class="w-full h-full object-(cover top) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "pxl media", sub: "Web UX", url: "https://pxl.media", tech: ["Sketch","HTML","CSS","Alpine","11ty"], type: "jpg" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "pxl media", sub: "Web UX", url: "https://pxl.media", tech: ["Sketch","HTML","CSS","Alpine","11ty"], type: "jpg" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <div class="w-full h-full flex">
-          <img src="/_assets/img/work-pxl-media.jpg" alt="pxl media image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-pxl-media.jpg" alt="pxl media website" class="w-full h-full object-(cover top) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
-      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Wisconsin Music", sub: "Web UX + CMS", url: "https://wisconsinmusic.net/", tech: ["Sketch","HTML","CSS","Vue"], type: "jpg" } })' href="#" class="group relative w-44 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+      <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "Wisconsin Music", sub: "Web UX + CMS", url: "https://wisconsinmusic.net/", tech: ["Sketch","HTML","CSS","Vue"], type: "jpg" } })' href="#" class="group relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-[calc(20vw)] h-[calc(15vw)] first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
         <div class="w-full h-full flex">
-          <img src="/_assets/img/work-wisconsin-music.jpg" alt="Wisconsin Music image" class="w-full h-full object-(cover top) transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
+          <img src="/_assets/img/work-wisconsin-music.jpg" alt="Wisconsin Music website" class="w-full h-full object-(cover top) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
         </div>
       </a>
     </section>
   </div>
-  <div x-show="workModal" x-trap.noscroll.inert="workModal" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)" role="dialog" x-transition:enter-start="opacity-0 blur-lg" x-transition:enter-end="opacity-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 blur-lg">
-    <div class="relative" @click.outside="workModal = false">
-      <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><i class="fa-regular fa-fw fa-times" title="Close"></i></button>
+  <div x-show="workModal" x-trap.noscroll.inert="workModal" x-on:keydown.window.prevent.escape="workModal = false" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)" x-transition:enter-start="opacity-0 blur-lg" x-transition:enter-end="opacity-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 blur-lg">
+    <div @click.outside="workModal = false" class="relative" role="dialog" aria-modal="true">
+      <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><iconify-icon icon="fa6-solid:xmark" inline="false"></iconify-icon> <span class="sr-only">Close</span></button>
       <template x-if="workModal" hidden>
-        <!-- ** alpine needs this or it will just try to render things even if they have not dispatched yet? seems like a bug to me ** -->
         <div class="w-screen max-w-xl bg-gray-200 overflow-hidden rounded-2xl shadow-2xl">
           <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full h-96 bg-(cover center) object-(center cover) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
           <div class="py-6 px-8 relative">
@@ -103,32 +103,27 @@
             <ul class="text-xl leading-none flex -space-x-2 absolute -top-5 right-5">
               <template x-for="(t, index) in workData.tech" hidden>
                 <li class="w-10 h-10 text-pri-50 dark:(text-pri-50) bg-pri-500 flex ring-(2 inset white) rounded-full shadow-lg">
-                  <template x-if="t == '11ty' || t == 'Alpine' || t == 'Fireworks'" hidden>
+                  <template x-if="t == 'Fireworks'" hidden>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="m-auto w-6 fill-current">
                       <title x-text="t"></title>
-                      <path x-show="t == '11ty'" d="m39.2055268 11.7046632h-1.5544042c-.3279094 0-.6022462.1344644-.7944732.3799655-.1725371.2234789-.2698365.5295636-.3108808.9326425l-.0345423.0690846-1.5198619 10.3972366-2.0034542-10.5008636v-.0345423c-.0773655-.4144343-.1915285-.7174483-.3799655-.9326425-.2119436-.1971686-.4795744-.3074246-.7944732-.3108808h-2.2452504c-.3032158.0034562-.5361752.1899713-.656304.4835924-.0699113.161957-.1016821.3793456-.1036269.656304v.0345423c0 .0978104.0124061.2372798.0345423.4145078v.0690846l3.6614853 15.1986183.0690846.2417962c.182221.9277875.2869381 1.5096196.3108808 1.6925734v.0345423.0345423c-.0189872.7695954-.1146132 1.3444912-.2763385 1.7271158-.0933665.1817166-.1743958.3049306-.2417962.3799654-.0279954.0143454-.0464709.026861-.0690846.0345423.0028884.0006743.0007894.0011613 0 0-.0324884-.0005918-.0940262-.0108245-.1727116-.0345423h-.0345423c-.1156542-.0298369-.2547364-.0680634-.4145078-.1036269l-.0690846-.0345423-.2763385-.0690847c-.3381509-.1097932-.4374407-.1341554-.5181347-.1381692h-.0345423c-.3966379.013816-.6509332.2864899-.7944733.6908463-.0734894.2802321-.114798.6574486-.1036269 1.1398963v.0690847.0345423c-.007557.5141853.0514659.8485979.2417962 1.0708117v.0345423c.4727875.6541218 1.2950506.9671848 2.417962.9671848h.2072539c.7247475-.0159316 1.3258032-.1842474 1.7962003-.5181347.4601679-.3252302.8468064-.8898646 1.1744387-1.6925734l.0345423-.0690846c.3187043-.7658857.6053352-1.8467748.8635579-3.2469776l.0345423-.1036269 3.3160622-17.2711572v-.0345423c.0198811-.1875139.0345423-.3497056.0345423-.4835924 0-.3019429-.0356749-.5445011-.1036269-.7253886-.142728-.2985341-.3857056-.4835924-.6908463-.4835924zm-15.6476684-8.7046632h-1.8307427c-.3544955 0-.6215797.19120968-.7944732.51813472-.0988407.20856958-.161506.50317479-.1727116.86355785v.06908463l-.3454231 7.253886h-.8635579c-.3599.0130341-.6394892.1951963-.7944732.5181347-.1218963.2182534-.1727116.5162251-.1727116.8981002v1.0017271c.0019935.3777453.0547514.6680038.1727116.8981002.1720118.3017187.4460883.4706128.7944732.4835924h.8635579v9.4645941c-.004065 1.0432767.0801767 1.9583559.2417962 2.7288428.1728575.8211408.3975415 1.4602435.6908463 1.9343697.2899539.4869953.6700663.8739774 1.1398963 1.1398963.4391253.2870894.8726572.4639553 1.312608.5526771.3850205.0668575.8430217.1036269 1.3816926.1036269h1.8652849c.34453-.0034526.6287275-.1379711.8290156-.4145078.1402905-.2062608.2072539-.4905558.2072539-.8290155v-1.1053541c0-.3373407-.0647909-.6047884-.2072539-.8290155-.1887505-.2320423-.4616952-.3575218-.7599309-.3454232h-1.3471503c-.1981681-.0138408-.3440721-.0376957-.4490501-.0690846l-.0345423-.0345423c-.0803653-.0246707-.1969851-.1229573-.3454232-.2763385-.1033375-.156346-.2120512-.4373416-.2763385-.8635579h-.0345423c-.068649-.4420929-.1105354-1.0027237-.1036269-1.6925734v-9.4645941h2.1070812c.3363773-.0129796.6122244-.1838721.7599309-.4835924.1352028-.2190717.1893214-.5053451.2072539-.8635579v-.0345423-1.0017271c-.013817-.3818751-.0646323-.6798468-.1727116-.8981002l-.0345423-.0345423c-.1428764-.293958-.4191191-.4705583-.7599309-.4835924h-2.1070812v-7.253886c-.0034543-.37662861-.0526212-.68786815-.1727116-.93264248-.1479849-.32088741-.4284199-.51813472-.7944732-.51813472zm-17.54749571.75993092c-.10848701.00139046-.19349196.01079572-.27633851.03454231l-4.90500864 1.27806563h-.03454231c-.2713301.05596082-.49035926.22917085-.62176166.4835924-.12108595.21901751-.17271157.48739808-.17271157.79447323v1.83074266c.00176707.33451555.04761898.60821184.17271157.82901554.14415453.29721698.41978065.46199471.75993092.44905009h.03454231c.04238356-.02212403.10050946-.03654558.31088083-.10362694l.86355786-.20725389v20.58721935c.00047735.4503936.04694572.8082721.13816926 1.0708117.15437228.3797738.43040455.6217617.79447323.6217617h2.86701209c.37649542 0 .656842-.234041.79447323-.5872193.11905066-.2802561.16887797-.6346572.17271157-1.1053541v-.0345423-24.59412783c0-.34659309-.04370051-.62889628-.13816926-.86355785-.15226535-.29415872-.41865988-.4835924-.75993092-.4835924zm9.36096721-.03454232c-.1089911.00139046-.1940386.01079572-.2763385.03454232l-4.9050087 1.24352331-.0345423.03454232c-.27106812.05250833-.49020696.22571836-.62176164.4835924-.12106011.21556503-.17271158.48394559-.17271158.79447323v1.79620034c.00176796.36560542.04764283.63930172.17271158.86355786.1443132.29376454.42007734.45854227.75993094.44905009h.0345423v-.03454232h.0345423c.0182624.0061039.0772207-.00807015.2417962-.03454231l.1381693-.06908463.7599309-.17271157v20.58721936c.00155.4469414.0480416.8048199.1381692 1.0708117.1555912.3763217.4317617.6183095.8290156.6217617h2.8324698c.3834586 0 .6657282-.241929.8290155-.6217617.0883552-.2661468.1361607-.6225426.1381693-1.0708117v-24.62867014c-.0017589-.3616664-.0467077-.63989988-.1381693-.86355786-.1571471-.29772371-.4223852-.4835924-.7599309-.4835924z" />
-                      <g x-show="t == 'Alpine'" transform="translate(0 11)">
-                        <path d="m31 0 9 9-9 9-9-9z" opacity=".5" />
-                        <path d="m9 0 18 18h-18l-9-9z" />
-                      </g>
                       <path x-show="t == 'Fireworks'" d="m40 16.64c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-12.4 0c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-3.44-11.68v6c-5.3504 0-7.231488 4.677376-9.173289 9.9160371l-.2654988.7174554c-2.3988442 6.4814515-5.1308122 13.5265075-14.7212122 13.5265075v-6c3.46826668-.0092181 6.00160001-2.0358848 7.6-6.08h-4.56v-6h6.96c2.6666666-8.05333336 7.3866666-12.08 14.16-12.08z" />
                     </svg>
                   </template>
-                  <template x-if="t == 'CSS' || t == 'Figma' || t == 'HTML' || t == 'Js' || t == 'Sketch' || t == 'Vue'" hidden>
-                    <i :class="['m-auto fab fa-fw',
-                      t == 'CSS' ? 'fa-css3-alt' :
-                        (t == 'Figma') ? 'fa-figma' :
-                          (t == 'HTML') ? 'fa-html5' :
-                            (t == 'Js') ? 'fa-js' :
-                              (t == 'Sketch') ? 'fa-sketch' : 'fa-vuejs'
-                      ]" :title="t">
-                    </i>
+                  <template x-if="t == 'CSS' || t == 'Figma' || t == 'HTML' || t == 'Js' || t == '11ty' || t == 'Alpine' || t == 'Sketch' || t == 'Vue'" hidden>
+                    <iconify-icon :icon="[t == 'CSS' ? 'fa6-brands:css3-alt' :
+                      (t == 'Figma') ? 'fa6-brands:figma' :
+                        (t == 'HTML') ? 'fa6-brands:html5' :
+                          (t == 'Js') ? 'fa6-brands:js' :
+                            (t == '11ty') ? 'simple-icons:eleventy' :
+                              (t == 'Alpine') ? 'simple-icons:alpinedotjs' :
+                                (t == 'Sketch') ? 'fa6-brands:sketch' : 'fa6-brands:vuejs'
+                    ]" inline="false" class="m-auto" :title="t"></iconify-icon>
                   </template>
                 </li>
               </template>
             </ul>
-            <a :href="workData.url" class="p-1 w-24 h-24 bg-pri-500 text-(xl white) flex absolute -bottom-12 -right-12 transform rotate-45">
-              <i class="my-auto -rotate-45 fal fa-fw fa-arrow-right"></i>
+            <a :href="workData.url" class="p-1 w-20 h-20 bg-pri-500 text-(xl white) flex items-end justify-end absolute bottom-0 right-0 [clip-path:polygon(100%_0%,100%_100%,100%_100%,0%_100%)] motion-safe:(transition) hover:(bg-white text-black) focus:(bg-white text-black)">
+              <iconify-icon icon="fa6-solid:arrow-right" class="m-2"></iconify-icon>
               <span class="sr-only">Learn More</span>
             </a>
           </div>

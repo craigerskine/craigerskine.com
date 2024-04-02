@@ -8,7 +8,7 @@ layout: 'layouts/default.njk'
 
 <article class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
   {%- set heroTitle %}
-    {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b class="text-pri-600 font-black dark:text-pri-500">{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}...
+    {{ site.meta.title }} is a {% for i in home.is %}{% if loop.last %}and {% endif %}<b>{{ i }}</b>{% if not loop.last %}, {% endif %}{% endfor -%}...
   {%- endset %}
   {%- call hero.x(title=heroTitle,lead=home.lead) %}
     {{ social.x(social=site.social) }}
@@ -82,20 +82,20 @@ layout: 'layouts/default.njk'
         <ul class="text-xl leading-none flex -space-x-2 absolute -top-5 right-5">
           <template x-for="(t, index) in workData.tech" hidden>
           <li class="w-10 h-10 text-pri-50 dark:(text-pri-50) bg-pri-500 flex ring-(2 inset white) rounded-full shadow-lg">
-            <template x-if="t == 'Fireworks'">
+            <template x-if="t == 'Fireworks'" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="m-auto w-6 fill-current">
                 <title x-text="t"></title>
-                <path x-show="t == 'Fireworks'" d="m40 16.64c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-12.4 0c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-3.44-11.68v6c-5.3504 0-7.231488 4.677376-9.173289 9.9160371l-.2654988.7174554c-2.3988442 6.4814515-5.1308122 13.5265075-14.7212122 13.5265075v-6c3.46826668-.0092181 6.00160001-2.0358848 7.6-6.08h-4.56v-6h6.96c2.6666666-8.05333336 7.3866666-12.08 14.16-12.08z"></path>
+                <path x-show="t == 'Fireworks'" d="m40 16.64c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-12.4 0c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-3.44-11.68v6c-5.3504 0-7.231488 4.677376-9.173289 9.9160371l-.2654988.7174554c-2.3988442 6.4814515-5.1308122 13.5265075-14.7212122 13.5265075v-6c3.46826668-.0092181 6.00160001-2.0358848 7.6-6.08h-4.56v-6h6.96c2.6666666-8.05333336 7.3866666-12.08 14.16-12.08z" />
               </svg>
             </template>
             <template x-if="t == 'CSS' || t == 'Figma' || t == 'HTML' || t == 'Js' || t == '11ty' || t == 'Alpine' || t == 'Sketch' || t == 'Vue'" hidden>
               <iconify-icon :icon="[t == 'CSS' ? 'fa6-brands:css3-alt' :
                 (t == 'Figma') ? 'fa6-brands:figma' :
-                (t == 'HTML') ? 'fa6-brands:html5' :
-                (t == 'Js') ? 'fa6-brands:js' :
-                (t == '11ty') ? 'simple-icons:eleventy' :
-                (t == 'Alpine') ? 'simple-icons:alpinedotjs' :
-                (t == 'Sketch') ? 'fa6-brands:sketch' : 'fa6-brands:vuejs'
+                  (t == 'HTML') ? 'fa6-brands:html5' :
+                    (t == 'Js') ? 'fa6-brands:js' :
+                      (t == '11ty') ? 'simple-icons:eleventy' :
+                        (t == 'Alpine') ? 'simple-icons:alpinedotjs' :
+                          (t == 'Sketch') ? 'fa6-brands:sketch' : 'fa6-brands:vuejs'
               ]" inline="false" class="m-auto" :title="t"></iconify-icon>
             </template>
           </li>
