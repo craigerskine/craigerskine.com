@@ -2,9 +2,9 @@
 <ul class="flex gap-2 lg:(gap-5)">
   {%- for soc in social %}
   <li>
-    <a href="{{ soc.url }}" class="group inline-block" title="{{ soc.title }}">
+    <a href="{{ soc.url }}" class="group flex rounded-full" title="{{ soc.title }}">
       <div class="btn-{{ soc.color }} w-12 h-12 text-2xl {{ css }}">
-        <iconify-icon icon="{{ soc.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
+        <iconify-icon icon="{{ soc.ico }}" class="iconify"></iconify-icon>
       </div>
     </a>
   </li>
