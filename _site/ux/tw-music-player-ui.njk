@@ -1,0 +1,131 @@
+---
+layout: false
+tags: ux
+title: Music Player UI
+desc: A pure HTML/CSS music player UI created entirely in Twind/Tailwind and Alpine.js.
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+  - title: Alpine.js
+    ico: simple-icons:alpinedotjs
+ico: mdi:music
+color: sky
+date: 0012-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased" x-data="app">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Music Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <script>
+      // color mode init
+      if (localStorage.getItem('color-mode') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('color-mode'))) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  </head>
+
+  <body class="bg-ui-50 text-ui-600 !block" style="display: none;">
+    <div id="app" class="min-h-screen flex-(& col)" x-cloak>
+      <main class="w-full flex-(& 1 col) items-center justify-center gap-8">
+        <h1 class="mb-5 text-(ui-500 4xl) font-black">Tailwind Music UI</h1>
+        <button @click.prevent="theme" class="color-mode w-12 h-12 text-(ui-500 [48px]) flex rounded-full motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
+          <span class="flex dark:(hidden)"><iconify-icon icon="mdi:toggle-switch-outline" class="m-auto"></iconify-icon></span>
+          <span class="hidden dark:(flex)"><iconify-icon icon="mdi:toggle-switch-off" class="m-auto"></iconify-icon></span>
+        </button>
+        <section class="music-player px-2 w-full h-24 max-w-xs bg-(ui-200 gradient-to-b) from-white/10 to-black/10 text-xs flex gap-2 rounded-full ring-(1 inset black/20) shadow-2xl dark:(ring-white/[.15])">
+          <div class="controls p-2 w-20 h-20 flex-(& shrink-0) self-center relative rounded-full ring-(1 ui-900/20) shadow-[0_2px_0_rgb(255_255_255/.15)] dark:(ring-ui-800/100)">
+            <button aria-label="Volume" class="knob border-(1 ui-900/50) w-1 h-1 bg-ui-200 absolute top-[2px] left-1/2 rounded-full -translate-x-1/2 dark:(border-ui-900)"></button>
+            <div class="inner w-full h-full bg-ui-50/50 text-ui-500 flex items-center justify-center gap-px rounded-full shadow-[inset_0_0_0_1px_rgb(0_0_0/.2),0_1px_0_rgb(255_255_255/.15),inset_0_4px_8px_rgb(0_0_0/.2)]">
+              <button aria-label="Previous" class="flex text-base aspect-square"><iconify-icon icon="mdi:skip-previous"></iconify-icon></button>
+              <button aria-label="Play/Pause" x-data="{ play: false }" @click.stop="play = !play" class="border-(1 ui-900/30) w-7 h-7 bg-gradient-to-b from-white/5 text-[24px] flex items-center justify-center rounded-full shadow-[0_1px_0_rgb(255_255_255/.1)] dark:(border-ui-900/50)">
+                <span x-show="play"><iconify-icon icon="mdi:play"></iconify-icon></span>
+                <span x-show="!play"><iconify-icon icon="mdi:pause"></iconify-icon></span>
+              </button>
+              <button aria-label="Next" class="flex text-base aspect-square"><iconify-icon icon="mdi:skip-next"></iconify-icon></button>
+            </div>
+          </div>
+          <div class="meta my-3 mr-1 py-1 bg-(yellow-300 gradient-to-t) from-black/10 to-white/50 flex-(& 1) items-end relative overflow-hidden rounded-full shadow-[0_1px_0_rgb(255_255_255/.15),inset_0_4px_6px_rgb(0_0_0/.4)] dark:(bg-ui-900/50 to-transparent)">
+            <div class="h-1/2 bg-gradient-to-b from-transparent to-white/50 absolute inset-x-0.5 top-0.5 z-10 opacity-75 rounded-t-full dark:(from-white/5 to-white/10)" aria-hidden="true"></div>
+            <div class="ui w-full flex-(& col) items-center relative z-20">
+              <a href="https://youtu.be/DpRkmXOL6zU" class="title w-full min-w-0 max-w-[80%] text-center truncate">DragonForce: Gloria</a>
+              <label for="range" class="sr-only">Volume</label>
+              <input type="range" id="range" min="1" max="100" value="25" class="scrubber appearance-none mt-2.5 mb-1 w-4/5 h-1.5 bg-ui-900/30 relative rounded-full cursor-pointer [&::-webkit-slider-thumb]:(appearance-none w-1.5 h-1.5 bg-ui-500 ring-(1 ui-900) rounded-full cursor-pointer dark:(bg-transparent ring-white)) dark:(bg-ui-900/80)" />
+              <div class="options w-2/3 flex items-center">
+                <button aria-label="Shuffle" x-data="{ disabled: true }" @click.stop="disabled = !disabled" class="w-4 h-4 text-base leading-none flex-(none shrink-0)" :class="{ 'opacity-30': disabled }"><iconify-icon icon="mdi:shuffle-variant"></iconify-icon></button>
+                <button aria-label="Time" x-data="{ remaining: true }" @click.stop="remaining = !remaining" class="flex-1 text-center" x-text="remaining ? '-9:40' : '1:23'"></button>
+                <button aria-label="Repeat"x-data="{ disabled: false }" @click.stop="disabled = !disabled" class="w-4 h-4 text-base leading-none flex-(none shrink-0)" :class="{ 'opacity-30': disabled }"><iconify-icon icon="mdi:repeat-variant"></iconify-icon></button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <p class="text-xs">Inspired by <a href="https://marioaguzman.github.io/musicwidget/" class="text-pri-700 font-semibold relative motion-safe:(transition) after:(content-[''] border-(t current dashed) w-0 h-px absolute -bottom-1 left-0 motion-safe:(transition-all)) hover:(after:(w-full))">Music Widget</a></p>
+      </main>
+
+    </div>
+    <script type="module">
+      // icons
+      import 'https://esm.run/iconify-icon';
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          theme: () => {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-mode', 'light');
+              return;
+            }
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-mode', 'dark');
+          }
+        }));
+      });
+      window.Alpine = Alpine;
+      Alpine.start();
+
+      // twind
+      import { install, injectGlobal, autoDarkColor } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        darkColor: autoDarkColor,
+        hash: false,
+        theme: {
+          extend: {
+            colors: ({ theme }) => ({
+              ui: theme('colors.neutral'),
+              pri: theme('colors.sky'),
+            }),
+            fontFamily: ({ theme }) => ({
+              sans: ['Inter', ...theme('fontFamily.sans')],
+            }),
+          },
+        },
+        rules: [
+          ['text-wrap-(unset|wrap|nowrap|balance|pretty)', 'textWrap'],
+        ],
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          [x-cloak] { @apply hidden; }
+        }
+      `
+    </script>
+  </body>
+
+</html>
