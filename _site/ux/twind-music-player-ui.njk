@@ -38,7 +38,10 @@ date: 0012-01-01
   <body class="bg-ui-50 text-ui-600 !block" style="display: none;">
     <div id="app" class="min-h-screen flex-(& col)" x-cloak>
       <main class="p-4 w-full flex-(& 1 col) items-center justify-center gap-8">
-        <h1 class="mb-5 text-(ui-500 2xl) font-black md:(text-4xl)" x-text="site.title"></h1>
+        <hgroup class="text-center">
+          <h1 class="mb-2 text-2xl font-black md:(text-4xl)" x-text="site.title"></h1>
+          <p class="text-(ui-500 sm)">Pure HTML and Tailwind syntax (no CSS)</p>
+        </hgroup>
         <button @click.prevent="theme" class="color-mode w-12 h-12 text-(ui-500 [48px]) flex rounded-full motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
           <span class="flex dark:(hidden)"><iconify-icon icon="mdi:toggle-switch-outline" class="m-auto"></iconify-icon></span>
           <span class="hidden dark:(flex)"><iconify-icon icon="mdi:toggle-switch-off" class="m-auto"></iconify-icon></span>
