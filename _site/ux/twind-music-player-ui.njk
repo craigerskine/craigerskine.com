@@ -22,7 +22,7 @@ date: 0012-01-01
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Music Player</title>
+    <title x-text="site.title"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" />
@@ -38,7 +38,7 @@ date: 0012-01-01
   <body class="bg-ui-50 text-ui-600 !block" style="display: none;">
     <div id="app" class="min-h-screen flex-(& col)" x-cloak>
       <main class="w-full flex-(& 1 col) items-center justify-center gap-8">
-        <h1 class="mb-5 text-(ui-500 4xl) font-black">Tailwind Music UI</h1>
+        <h1 class="mb-5 text-(ui-500 4xl) font-black" x-text="site.title"></h1>
         <button @click.prevent="theme" class="color-mode w-12 h-12 text-(ui-500 [48px]) flex rounded-full motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
           <span class="flex dark:(hidden)"><iconify-icon icon="mdi:toggle-switch-outline" class="m-auto"></iconify-icon></span>
           <span class="hidden dark:(flex)"><iconify-icon icon="mdi:toggle-switch-off" class="m-auto"></iconify-icon></span>
@@ -81,6 +81,9 @@ date: 0012-01-01
       import Alpine from 'https://esm.run/alpinejs';
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
+          site: {
+            title: 'Twind Music Player UI',
+          },
           theme: () => {
             if (document.documentElement.classList.contains('dark')) {
               document.documentElement.classList.remove('dark');
