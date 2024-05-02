@@ -24,9 +24,6 @@ date: 0012-01-01
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title x-text="site.title"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <script>
       // color mode init
       if (localStorage.getItem('color-mode') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('color-mode'))) {
@@ -115,9 +112,6 @@ date: 0012-01-01
             colors: ({ theme }) => ({
               ui: theme('colors.neutral'),
               pri: theme('colors.sky'),
-            }),
-            fontFamily: ({ theme }) => ({
-              sans: ['Inter', ...theme('fontFamily.sans')],
             }),
           },
         },
