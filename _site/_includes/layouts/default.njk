@@ -49,11 +49,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link onload="this.onload=null;this.rel='stylesheet'" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
 
-    {% set css %}
-      {% include 'css/prism.css' %}
-    {% endset %}
-    <{{ 'style' }}>{{ css | cssmin | safe }}</{{ 'style' }}>
-    {% renderblock 'css' %}
+    <link rel="stylesheet" href="/_assets/css/prism.css" />
+    
+    {%- renderblock 'css' %}
 
     <script>
       if (localStorage.getItem('color-mode') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('color-mode'))) {

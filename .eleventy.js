@@ -1,11 +1,11 @@
-const { EleventyRenderPlugin } = require("@11ty/eleventy");
-const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const esbuild = require("esbuild");
-const markdownIt = require("markdown-it");
-const markdownItAttrs = require("markdown-it-attrs");
-const yaml = require("js-yaml");
-const CleanCSS = require("clean-css");
+const { EleventyRenderPlugin } = require('@11ty/eleventy');
+const CleanCSS = require('clean-css');
+const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
+const esbuild = require('esbuild');
+const markdownIt = require('markdown-it');
+const markdownItAttrs = require('markdown-it-attrs');
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
+const yaml = require('js-yaml');
 
 module.exports = function (eleventyConfig) {
 
@@ -17,6 +17,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({
     '_site/_assets/img': '_assets/img',
+    '_site/_assets/css': '_assets/css',
     '_site/_assets/_root': './',
   });
 
@@ -54,7 +55,7 @@ module.exports = function (eleventyConfig) {
   });
 
   // cssmin
-  eleventyConfig.addFilter("cssmin", function(code) {
+  eleventyConfig.addFilter('cssmin', function(code) {
     return new CleanCSS({}).minify(code).styles;
   });
 
@@ -96,7 +97,6 @@ module.exports = function (eleventyConfig) {
       sourcemap: false,
     });
   });
-
 
   return {
     jsDataFileSuffix: '.data',
