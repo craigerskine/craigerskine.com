@@ -17,7 +17,7 @@ color: yellow
 date: 0009-01-01
 ---
 <!doctype html>
-<html lang="en" class="bg-transparent antialiased" x-data="app" x-init="searchData()">
+<html lang="en" class="bg-transparent antialiased" x-data="app">
 
   <head>
     <meta charset="utf-8" />
@@ -29,24 +29,30 @@ date: 0009-01-01
   <body class="bg-sky-700 text-(gray-800 xs) !block" style="display: none;">
     <div id="app" class="min-h-screen flex-(& col)" x-cloak>
       <header class="flex-none">
-        <a href="#" class="text-(white xl) flex">
-          <span class="py-1 pl-2 pr-1 bg-blue-700 font-serif">Be</span>
-          <span class="py-1 pr-2 pl-1 bg-red-700 font-serif">OS</span>
-        </a>
+        <h1 class="fixed motion-safe:(transition-all)" :class="window.open ? 'top-0 left-0' : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'">
+          <a href="#" @click.prevent="window.open = true; window.expanded = true" class="text-(white xl) flex">
+            <span class="py-1 pl-2 pr-1 bg-blue-700 font-serif">Be</span>
+            <span class="py-1 pr-2 pl-1 bg-red-700 font-serif">OS</span>
+          </a>
+        </h1>
       </header>
       <main class="flex-(& col auto) items-center justify-center">
-        <section class="ui-window m-auto w-full max-w-md bg-gray-200 flex-(& col) relative shadow-lg">
+        <section x-id="['window']" x-show="window.open" x-transition class="ui-window m-auto w-full max-w-md bg-gray-200 flex-(& col) relative shadow-lg">
           <header class="mt-[2px] px-2 border-(l t r black/75) h-7 bg-yellow-400 font-bold self-start flex items-center gap-2 absolute -top-7 left-0 z-20 shadow-[inset_1px_1px_0_rgba(255,255,255,.75),inset_-1px_0_0_rgba(0,0,0,.3)]">
-            <button class="ui-gadget w-4 h-4"></button>
-            Window Title
+            <button @click="window.expanded = !window.expanded" class="ui-gadget w-4 h-4" :aria-expanded="window.expanded" :aria-controls="$id('window')"><span class="sr-only">Close</span></button>
+            BeOS Window Title
           </header>
-          <article class="p-1 border-(1 black/75) relative z-10 shadow-[inset_1px_1px_0_white,inset_-1px_-1px_rgba(0,0,0,.3)]">
-            <div class="p-2 border-(1 black/30) bg-white shadow-[inset_1px_1px_0_rgba(0,0,0,.75),1px_1px_0_white]">Window content goes here...</div>
-          </article>
-          <footer class="-mt-[2px] py-1 px-2 border-(l b r black/75) bg-gray-200 text-xs flex items-center justify-end gap-2 relative z-20 shadow-[inset_1px_0_0_white,inset_-1px_-1px_rgba(0,0,0,.3)]">
-            <button class="btn">Action</button>
-            <button class="btn">Action</button>
-          </footer>
+          <div :id="$id('window')" x-show="window.expanded" x-collapse>
+            <article class="p-1 border-(1 black/75) relative z-10 shadow-[inset_1px_1px_0_white,inset_-1px_-1px_rgba(0,0,0,.3)]">
+              <div class="p-2 border-(1 black/30) bg-white shadow-[inset_1px_1px_0_rgba(0,0,0,.75),1px_1px_0_white]">
+                BeOS window content looks like this. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed massa metus, tempus sit amet rhoncus nec, suscipit et ligula. Donec in sem libero, quis dapibus nisi.
+              </div>
+            </article>
+            <footer class="-mt-[2px] py-1 px-2 border-(l b r black/75) bg-gray-200 text-xs flex items-center justify-end gap-2 relative z-20 shadow-[inset_1px_0_0_white,inset_-1px_-1px_rgba(0,0,0,.3)]">
+              <button @click="window.expanded = false" class="btn" :aria-expanded="window.expanded" :aria-controls="$id('window')">Collapse</button>
+              <button @click="window.open = false" class="btn">Close</button>
+            </footer>
+          </div>
         </section>
       </main>
       <footer class="flex-none"></footer>
@@ -57,13 +63,19 @@ date: 0009-01-01
 
       // alpine
       import Alpine from 'https://esm.run/alpinejs';
+      import collapse from 'https://esm.run/@alpinejs/collapse';
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
           site: {
             title: 'BeOS UI',
           },
+          window: {
+            open: true,
+            expanded: true,
+          },
         }));
       });
+      Alpine.plugin(collapse);
       window.Alpine = Alpine;
       Alpine.start();
 
@@ -91,7 +103,7 @@ date: 0009-01-01
         @layer base {
           [x-cloak] { @apply hidden; }
           .ui-gadget { @apply border-(l t black/25) flex relative shadow-[inset_0_0_0_1px_rgba(255,255,255,.5)] before:(border-(b r black/25) bg-gradient-to-br from-white/50 to-black/20 absolute inset-px content-['']); }
-          .btn { @apply py-1 px-3 border-(1 black/50) rounded-sm shadow-[inset_1px_1px_0_#F3F4F6,inset_-1px_-1px_0_rgba(0,0,0,.25),inset_2.5px_2.5px_0_white]; }
+          .btn { @apply py-1 px-3 border-(1 black/50) bg-gray-100 rounded-sm shadow-[inset_1px_1px_0_#F3F4F6,inset_-1px_-1px_0_rgba(0,0,0,.25),inset_2.5px_2.5px_0_white]; }
         }
       `
     </script>
