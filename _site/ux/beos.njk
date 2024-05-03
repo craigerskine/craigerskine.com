@@ -38,7 +38,7 @@ date: 0009-01-01
       </header>
       <main class="flex-(& col auto) items-center justify-center">
         <section x-id="['window']" x-show="window.open" x-transition class="ui-window m-auto w-full max-w-md bg-gray-200 flex-(& col) relative shadow-lg">
-          <header :class="window.expanded ? 'border-b-0 shadow-[inset_1px_1px_0_rgba(255,255,255,.75),inset_-1px_0_0_rgba(0,0,0,.3)]' : 'border-(b black/75) shadow-[inset_1px_1px_0_rgba(255,255,255,.75),inset_-1px_-1px_0_rgba(0,0,0,.3)]'" class="mt-[2px] px-2 border-(l t r black/75) h-7 bg-yellow-400 font-bold self-start flex items-center gap-2 absolute -top-7 left-0 z-20">
+          <header :class="window.expanded ? 'shadow-[inset_1px_1px_0_rgba(255,255,255,.75),inset_-1px_0_0_rgba(0,0,0,.3)]' : 'border-b border-black/75 shadow-[inset_1px_1px_0_rgba(255,255,255,.75),inset_-1px_-1px_0_rgba(0,0,0,.3)]'" class="mt-[2px] px-2 border-(l t r black/75) h-7 bg-yellow-400 font-bold self-start flex items-center gap-2 absolute -top-7 left-0 z-20">
             <button @click="window.expanded = !window.expanded" class="ui-gadget w-4 h-4" :aria-expanded="window.expanded" :aria-controls="$id('window')"><span class="sr-only">Close</span></button>
             BeOS Window Title
           </header>
