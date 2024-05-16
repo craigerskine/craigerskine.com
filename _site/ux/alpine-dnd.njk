@@ -1,0 +1,236 @@
+---
+layout: false
+tags: ux
+title: Alpine.js Drag & Drop
+desc: Pure Alpine.js drag & drop with full keyboard controls and hooks in place for a11y...
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+  - title: Alpine.js
+    ico: simple-icons:alpinedotjs
+ico: mdi:selection-search
+color: gray
+date: 0013-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased" x-data="app">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title x-text="site.title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  </head>
+
+  <body class="bg-gray-50 text-gray-900 !block" style="display: none;">
+    <div id="app" class="min-h-screen flex-(& col) items-center justify-center" x-cloak>
+      <header class="w-full flex-shrink-0"></header>
+      <main class="w-full max-w-sm flex-(& 1 col) justify-center gap-12">
+        <hgroup class="space-y-2">
+          <h1 class="text-3xl font-black" x-text="site.title"></h1>
+          <p class="text-(gray-600 sm)" x-text="site.lead"></p>
+        </hgroup>
+
+<!-- START -->
+        <div class="w-full" x-data="{
+          items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'],
+          activeIndex: null,
+          draggedIndex: null,
+          draggedItemTransfer: null,
+          initialOrder: null,
+  
+          // dnd
+          dragStart(index, event) {
+            this.activeIndex = index;
+            this.draggedIndex = index;
+            //this.draggedItemTransfer = event.dataTransfer.setData('text/plain', null);
+          },
+          dragEnd(index, event) {
+            if (this.draggedIndex !== null && index !== this.draggedIndex) {
+              const items = [...this.items];
+              const draggedItem = items.splice(this.draggedIndex, 1)[0];
+              items.splice(index, 0, draggedItem);
+              this.items = items;
+            }
+            this.activeIndex = null;
+            this.draggedIndex = null;
+            this.draggedItemTransfer = null;
+            document.activeElement.blur();
+          },
+  
+          // keyboard
+          startReorder(index) {
+            this.activeIndex = index;
+            if (this.initialOrder === null) {
+              this.initialOrder = [...this.items];
+            }
+          },
+          moveUp(index) {
+            if (index > 0 && this.initialOrder) {
+              const items = [...this.items];
+              const temp = items[index - 1];
+              items[index - 1] = items[index];
+              items[index] = temp;
+              this.items = items;
+              this.activeIndex = index - 1;
+              // update the focus
+              const activeElement = document.activeElement;
+              if (activeElement) {
+                const nextElement = activeElement.previousElementSibling;
+                if (nextElement) {
+                  nextElement.focus();
+                }
+              }
+              this.announceChange();
+            }
+          },
+          moveDown(index) {
+            if (index < this.items.length - 1 && this.initialOrder) {
+              const items = [...this.items];
+              const temp = items[index + 1];
+              items[index + 1] = items[index];
+              items[index] = temp;
+              this.items = items;
+              this.activeIndex = index + 1;
+              // update the focus
+              const activeElement = document.activeElement;
+              if (activeElement) {
+                const nextElement = activeElement.nextElementSibling;
+                if (nextElement) {
+                  nextElement.focus();
+                }
+              }
+              this.announceChange();
+            }
+          },
+          saveReorder() {
+            document.activeElement.blur();
+            this.activeIndex = null;
+            this.initialOrder = null;
+            this.announceSave();
+          },
+          cancelReorder() {
+            if (this.initialOrder) {
+              document.activeElement.blur();
+              this.items = this.initialOrder;
+              this.activeIndex = null;
+              this.initialOrder = null;
+              this.announceCancel();
+            }
+          },
+  
+          // a11y
+          announceChange() {
+            // Announce the change using live regions or similar techniques
+          },
+          announceSave() {
+            // Announce the save using live regions or similar techniques
+          },
+          announceCancel() {
+            // Announce the cancellation using live regions or similar techniques
+          },
+        }">
+          <p class="mb-3 text-xs" x-html="activeIndex !== null ? 'Reorder mode' : '&nbsp;'"></p>
+          <ul x-trap.inert.noreturn="activeIndex !== null" class="border-(& gray-300) bg-white divide-(y gray-300) rounded-lg shadow-xl [&>li:first-child,&>template+li]:(rounded-t-lg) [&>li:last-child]:(rounded-b-lg)" role="listbox" aria-activedescendant="active-item">
+            <template x-for="(item, index) in items" :key="index" hidden>
+              <li
+                class="transition-all relative focus:(bg-blue-100) [&.drag-over]:(before:(content-[''] -mt-px border-(2 dashed blue-500) h-2 bg-blue-300 absolute inset-x-0 rounded-full -translate-y-1))"
+                :class="[draggedIndex !== null ? 'cursor-grabbing' : 'cursor-grab']"
+                role="option"
+                tabindex="0"
+                draggable="true"
+                :id="`item-${index}`"
+                :aria-selected="activeIndex === index"
+                @keydown.space.prevent="startReorder(index)"
+                @keydown.up.prevent="moveUp(index)"
+                @keydown.down.prevent="moveDown(index)"
+                @keydown.enter.prevent="saveReorder()"
+                @keydown.esc.prevent="cancelReorder()"
+                @dragstart="dragStart(index, $event)"
+                @dragover.prevent="$event.target.classList.add(['drag-over']);"
+                @dragleave.prevent="$event.target.classList.remove(['drag-over']);"
+                @drop.prevent="dragEnd(index, $event); $event.target.classList.remove(['drag-over']);">
+                <div class="p-2 pr-4 flex items-center gap-2 pointer-events-none">
+                  <span class="w-6 h-6 text-(gray-400 [24px]) flex-(& shrink-0) items-center jusify-center"><iconify-icon icon="mdi:drag-vertical"></iconify-icon></span>
+                  <span class="flex-1" x-text="item"></span>
+                  <button @keydown.stop class="w-6 h-6 text-(gray-400 [24px]) pointer-events-auto flex-(& shrink-0) items-center jusify-center rounded-full" aria-label="Menu"><iconify-icon icon="mdi:dots-vertical"></iconify-icon></button>
+                </div>
+              </li>
+            </template>
+          </ul>
+        </div>
+<!-- END -->
+
+        <h2 class="text-lg font-semibold">Drag &amp; Drop, or...</h2>
+        <ol class="list-decimal ml-5 space-y-2 [&_kbd]:(px-1 border-(1 current) text-(gray-600 xs) inline-block rounded)">
+          <li>Press <kbd>Tab</kbd> to focus item in list</li>
+          <li>Press <kbd>Space</kbd> to enter "reorder" mode</li>
+          <li>Use <kbd>Up</kbd> or <kbd>Down</kbd> arrow keys</li>
+          <li>Press <kbd>Tab</kbd> to select other items, repeat</li>
+          <li>Press <kbd>Esc</kbd> to restore original order</li>
+          <li>Press <kbd>Enter</kbd> to save order</li>
+        </ol>
+
+      </main>
+      <footer class="w-full flex-shrink-0"></footer>
+
+    </div>
+    <script type="module">
+      // icons
+      import 'https://esm.run/iconify-icon';
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+      import focus from 'https://esm.run/@alpinejs/focus';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          site: {
+            title: 'Alpine.js Drag & Drop + Keyboard Controls',
+            lead: 'Focus trap when in reorder mode, announce functions for important events, other Easter eggs...',
+          },
+        }));
+      });
+      window.Alpine = Alpine;
+      Alpine.plugin([focus]);
+      Alpine.start();
+
+      // twind
+      import { install, injectGlobal } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        hash: false,
+        theme: {
+          extend: {
+            colors: ({ theme }) => ({
+              brand: theme('colors.indigo'),
+            }),
+            fontFamily: ({ theme }) => ({
+              sans: ['Inter', ...theme('fontFamily.sans')],
+            }),
+          },
+        },
+        rules: [
+          ['text-wrap-(unset|wrap|nowrap|balance|pretty)', 'textWrap'],
+          ['btn-', ({ $$ }) => `py-1.5 px-3 bg-${$$}-200 text-${$$}-800 inline-flex items-center gap-1.5 rounded-md motion-safe:(transition) hover:(bg-${$$}-700 text-${$$}-50 ring-(4 ${$$}-500/50))`],
+        ],
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          [x-cloak] { @apply hidden; }
+        }
+      `
+    </script>
+  </body>
+
+</html>
