@@ -30,7 +30,7 @@ date: 0013-01-01
   </head>
 
   <body class="bg-gray-50 text-gray-900 !block" style="display: none;">
-    <div id="app" class="min-h-screen flex-(& col) items-center justify-center" x-cloak>
+    <div id="app" class="p-4 min-h-screen flex-(& col) items-center justify-center" x-cloak>
       <header class="w-full flex-shrink-0"></header>
       <main class="w-full max-w-sm flex-(& 1 col) justify-center gap-12">
         <hgroup class="space-y-2">
@@ -45,6 +45,7 @@ date: 0013-01-01
           draggedIndex: null,
           draggedItemTransfer: null,
           initialOrder: null,
+          status: '',
   
           // dnd
           dragStart(index, event) {
@@ -71,10 +72,12 @@ date: 0013-01-01
             if (this.initialOrder === null) {
               this.initialOrder = [...this.items];
             }
+            this.announceChange('You are now in reorder mode');
           },
           moveUp(index) {
             if (index > 0 && this.initialOrder) {
               const items = [...this.items];
+              const item = this.items[this.activeIndex];
               const temp = items[index - 1];
               items[index - 1] = items[index];
               items[index] = temp;
@@ -88,12 +91,13 @@ date: 0013-01-01
                   nextElement.focus();
                 }
               }
-              this.announceChange();
+              this.announceChange(item +' has been moved to position '+ (this.activeIndex + 1));
             }
           },
           moveDown(index) {
             if (index < this.items.length - 1 && this.initialOrder) {
               const items = [...this.items];
+              const item = this.items[this.activeIndex];
               const temp = items[index + 1];
               items[index + 1] = items[index];
               items[index] = temp;
@@ -107,14 +111,14 @@ date: 0013-01-01
                   nextElement.focus();
                 }
               }
-              this.announceChange();
+              this.announceChange(item +' has been moved to position '+ (this.activeIndex + 1));
             }
           },
           saveReorder() {
             document.activeElement.blur();
             this.activeIndex = null;
             this.initialOrder = null;
-            this.announceSave();
+            this.announceChange('Positions saved', true);
           },
           cancelReorder() {
             if (this.initialOrder) {
@@ -122,22 +126,21 @@ date: 0013-01-01
               this.items = this.initialOrder;
               this.activeIndex = null;
               this.initialOrder = null;
-              this.announceCancel();
+              this.announceChange('Reorder cancelled', true);
             }
           },
   
           // a11y
-          announceChange() {
-            // Announce the change using live regions or similar techniques
-          },
-          announceSave() {
-            // Announce the save using live regions or similar techniques
-          },
-          announceCancel() {
-            // Announce the cancellation using live regions or similar techniques
+          announceChange(message, timeout) {
+            this.status = message;
+            if (timeout) {
+              setTimeout(() => {
+                this.status = '';
+              }, 5000);
+            }
           },
         }">
-          <p class="mb-3 text-xs" x-html="activeIndex !== null ? 'Reorder mode' : '&nbsp;'"></p>
+          <p aria-live="polite" aria-atomic="true" class="mb-3 text-xs" x-html="status !== '' ? status : '&nbsp;'"></p>
           <ul x-trap.inert.noreturn="activeIndex !== null" class="border-(& gray-300) bg-white divide-(y gray-300) rounded-lg shadow-xl [&>li:first-child,&>template+li]:(rounded-t-lg) [&>li:last-child]:(rounded-b-lg)" role="listbox" aria-activedescendant="active-item">
             <template x-for="(item, index) in items" :key="index" hidden>
               <li
@@ -156,7 +159,8 @@ date: 0013-01-01
                 @dragstart="dragStart(index, $event)"
                 @dragover.prevent="$event.target.classList.add(['drag-over']);"
                 @dragleave.prevent="$event.target.classList.remove(['drag-over']);"
-                @drop.prevent="dragEnd(index, $event); $event.target.classList.remove(['drag-over']);">
+                @drop.prevent="dragEnd(index, $event); $event.target.classList.remove(['drag-over']);"
+                >
                 <div class="p-2 pr-4 flex items-center gap-2 pointer-events-none">
                   <span class="w-6 h-6 text-(gray-400 [24px]) flex-(& shrink-0) items-center jusify-center"><iconify-icon icon="mdi:drag-vertical"></iconify-icon></span>
                   <span class="flex-1" x-text="item"></span>
