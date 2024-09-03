@@ -130,14 +130,16 @@ eleventyNavigation:
                 <ul class="py-3 self-center">
                   <li class="text-sm">
                     {{ exp.start }} - {{ exp.end }}
+                    {%- set exp_present = time - exp.start -%}
+                    {%- set exp_past = exp.end - exp.start -%}
                     <sup class="ml-1 text-xs italic inline-block opacity-80">
                       {%- if exp.end !== 'Present' %}
-                        {{ exp.end - exp.start }} yrs
+                        {{ exp_past }} yr{{ 's' if exp_past > 1 }}
                       {%- else %}
-                        {%- if time - exp.start <= 1 %}
+                        {%- if exp_present < 1 %}
                           ~yr
                         {%- else %}
-                          {{ exp.end - exp.start }} yrs
+                          {{ exp_present }} yr{{ 's' if exp_present > 1 }}
                         {%- endif %}
                       {%- endif %}
                     </sup>
