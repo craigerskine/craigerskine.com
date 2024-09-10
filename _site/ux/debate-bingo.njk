@@ -65,11 +65,11 @@ title: Debate Bingo
             <template x-for="row in 5" hidden>
               <tr>
                 <template x-for="col in 5" hidden>
-                  <td x-data="{ stamped: false }" class="border-r text-(center xs) font-semibold relative md:(text-base) lg:(text-xl)">
+                  <td class="border-r text-(center xs) font-semibold relative md:(text-base) lg:(text-xl)">
                     <button
-                      @click.prevent="stamped = !stamped"
+                      @click.prevent="selectedSquares[(row-1)*5 + (col-1)] = !selectedSquares[(row-1)*5 + (col-1)]; checkBingo()"
                       x-text="squares[(row-1)*5 + (col-1)]"
-                      :class="stamped && 'bg-error/10 text-error'"
+                      :class="selectedSquares[(row-1)*5 + (col-1)] && 'bg-error/10 text-error'"
                       class="p-2 absolute inset-0 break-words [hyphens:auto]"
                     ></button>
                   </td>
@@ -78,6 +78,12 @@ title: Debate Bingo
             </template>
           </tbody>
         </table>
+        <div x-show="bingo" x-transition class="bg-green-500 flex items-center justify-center fixed inset-0 backdrop-blur-sm">
+          <h2 class="text-(6xl white) font-black">BINGO!</h2>
+          <div class="absolute top-2 right-2">
+            <button @click.prevent="bingo = false; selectedSquares = Array(25).fill(false); squares = shuffleArray(squares);" class="btn btn-ghost btn-circle text-white" aria-label="Start over"><iconify-icon icon="mdi:reload" width="24px" height="24px" class="iconify"></iconify-icon></button>
+          </div>
+        </div>
       </main>
     </div>
     <script type="module">
@@ -115,12 +121,36 @@ title: Debate Bingo
             'Securing our future',
             'Foreign policy failure',
           ],
+          selectedSquares: Array(25).fill(false),
+          bingo: false,
           shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
               [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
+          },
+          checkBingo() {
+            // Check rows
+            for (let i = 0; i < 5; i++) {
+              if (this.selectedSquares.slice(i*5, i*5+5).every(x => x)) {
+                this.bingo = true;
+                return;
+              }
+            }
+            // Check columns
+            for (let i = 0; i < 5; i++) {
+              if ([0,1,2,3,4].every(j => this.selectedSquares[i + j*5])) {
+                this.bingo = true;
+                return;
+              }
+            }
+            // Check diagonals
+            if ([0,6,12,18,24].every(i => this.selectedSquares[i]) ||
+                [4,8,12,16,20].every(i => this.selectedSquares[i])) {
+              this.bingo = true;
+              return;
+            }
           },
           init() {
             this.squares = this.shuffleArray(this.squares)
