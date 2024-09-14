@@ -12,6 +12,10 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: 'The Legend of Zelda: Link''s Awakening'
+    sub: Switch
+    media: switch
+    url: https://amazon.com/dp/B07SG15148?tag=qrayg-20
   - title: 'The Legend of Zelda: Tears of the Kingdom'
     sub: Switch
     media: switch
@@ -20,10 +24,6 @@ playing:
     sub: PS5
     media: ps5
     url: https://amazon.com/dp/B08XNRM6QN?tag=qrayg-20
-  - title: Final Fantasy XVI
-    sub: PS5
-    media: ps5
-    url: https://amazon.com/dp/B0BPMTJJ6D?tag=qrayg-20
 listening:
   - title: Solveig
     sub: Seven Spires
