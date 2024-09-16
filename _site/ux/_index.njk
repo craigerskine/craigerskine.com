@@ -7,10 +7,10 @@ eleventyNavigation:
   order: 2
 ---
 
-{%- import 'components/hero.njk' as hero -%}
+{%- from 'components/hero.njk' import hero -%}
 
 <section class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-  {% call hero.x(title=title +' and other fun web/screen exercises',lead='Sometimes I need to build out web-based interfaces to measure the possibilities or to fully visualize design gaps and interaction issues. Here are a few that are not under embargo...') %}{% endcall %}
+  {% call hero(title=title +' and other fun web/screen exercises',lead='Sometimes I need to build out web-based interfaces to measure the possibilities or to fully visualize design gaps and interaction issues. Here are a few that are not under embargo...') %}{% endcall %}
   <div class="py-16 sm:(py-32)">
     <ul class="grid-(& cols-1) gap-16 sm:(grid-cols-2) lg:(grid-cols-3)">
       {%- for item in collections.ux -%}

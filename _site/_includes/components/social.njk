@@ -1,4 +1,4 @@
-{% macro x(social='',css='') %}
+{%- macro social(social='',css='') -%}
 <ul class="flex gap-2 lg:(gap-5)">
   {%- for soc in social %}
   <li>
@@ -10,4 +10,4 @@
   </li>
   {%- endfor %}
 </ul>
-{% endmacro %}
+{%- endmacro -%}

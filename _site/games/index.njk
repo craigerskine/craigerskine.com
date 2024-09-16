@@ -6,10 +6,10 @@ eleventyNavigation:
   order: 3
 ---
 
-{%- import 'components/hero.njk' as hero -%}
+{%- from 'components/hero.njk' import hero -%}
 
 <section class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
-  {% call hero.x(title=title +' stuff',lead='I hope to possibly make a video game one day before I die. This is my current progress along with other amazing, or maybe not so amazing, video game related garbage...') %}
+  {% call hero(title=title +' stuff',lead='I hope to possibly make a video game one day before I die. This is my current progress along with other amazing, or maybe not so amazing, video game related garbage...') %}
   {% endcall %}
   <div class="py-16 sm:(py-32)">
     <ul class="grid-(& cols-1) gap-16 sm:(grid-cols-2) lg:(grid-cols-3)">

@@ -1,4 +1,4 @@
-{% macro x(as='h3',sub='',ico='text') %}
+{%- macro heading(as='h3',sub='',ico='text') -%}
 <{{ as }} class="mx-auto space-x-4 w-full text-xl font-bold flex items-center lg:(text-3xl)">
   <span class="text-pri-500 flex items-center justify-center opacity-50">
     <iconify-icon icon="{{ ico }}" inline="false"></iconify-icon>
@@ -9,4 +9,4 @@
   </span>
   <i class="h-1 bg-current flex-1 opacity-20" aria-hidden="true"></i>
 </{{ as }}>
-{% endmacro %}
+{%- endmacro -%}
