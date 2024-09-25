@@ -12,6 +12,10 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: The Cruel King and the Great Hero
+    sub: Switch
+    media: switch
+    url: https://amazon.com/dp/B099TPXB8D?tag=qrayg-20
   - title: 'The Legend of Zelda: Link''s Awakening'
     sub: Switch
     media: switch
@@ -20,10 +24,6 @@ playing:
     sub: Switch
     media: switch
     url: https://amazon.com/dp/B097B2YWFX?tag=qrayg-20
-  - title: Final Fantasy VII Remake
-    sub: PS5
-    media: ps5
-    url: https://amazon.com/dp/B08XNRM6QN?tag=qrayg-20
 listening:
   - title: Solveig
     sub: Seven Spires
