@@ -1,13 +1,13 @@
-const { EleventyRenderPlugin } = require('@11ty/eleventy');
-const CleanCSS = require('clean-css');
-const eleventyNavigationPlugin = require('@11ty/eleventy-navigation');
-const esbuild = require('esbuild');
-const markdownIt = require('markdown-it');
-const markdownItAttrs = require('markdown-it-attrs');
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
-const yaml = require('js-yaml');
+import { EleventyRenderPlugin } from '@11ty/eleventy';
+import CleanCSS from 'clean-css';
+import eleventyNavigationPlugin from '@11ty/eleventy-navigation';
+import esbuild from 'esbuild';
+import markdownIt from 'markdown-it';
+import markdownItAttrs from 'markdown-it-attrs';
+import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
+import yaml from 'js-yaml';
 
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
 
   eleventyConfig.setServerOptions({
     domdiff: false,
@@ -23,7 +23,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addWatchTarget('./_site/_app/_app.js');
-  
+
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);

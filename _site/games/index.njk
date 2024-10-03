@@ -19,10 +19,10 @@ eleventyNavigation:
           <p class="flex items-center justify-between">
             <a href="{% if item.url %}{{ item.url }}{% else %}#{% endif %}" class="group font-bold{% if not item.url %} cursor-not-allowed{% endif %}"{% if not item.url %} @click.prevent{% endif %}>
               {{ item.data.title }}
-              <span class="bg-{{ item.data.color }}-500/10 absolute -inset-3 z-10 opacity-0 rounded-2xl shadow-(xl {{ item.data.color}}-500/5) transform scale-75 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true"></span>
               <span class="h-12 w-12 text-2xl btn-{{ item.data.color }} absolute top-0 left-0" aria-hidden="true">
                 <iconify-icon icon="{{ item.data.ico }}" inline class="iconify"></iconify-icon>
               </span>
+              <span class="bg-{{ item.data.color }}-500/10 absolute -inset-3 z-10 opacity-0 rounded-2xl shadow-(xl {{ item.data.color}}-500/5) transform scale-95 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true"></span>
             </a>
             {%- if item.url %}
             <small class="uppercase opacity-50">In progress</small>
