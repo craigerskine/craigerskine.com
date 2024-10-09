@@ -8,6 +8,7 @@ tech:
   - CSS
   - Js
 date: 0001-01-01
+hidden: true
 ---
 
 ...
