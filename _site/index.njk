@@ -40,7 +40,7 @@ layout: 'layouts/default.njk'
   >
     {%- for item in collections.illustrations %}
     {%- if not item.data.hidden %}
-    <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "png" } })' href="#" class="group aspect-[4/3] relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-1/5 first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+    <a @click.prevent='$refs.dialog.showModal(); $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "png" } })' href="#" class="group aspect-[4/3] relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl relative [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-1/5 first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
       <b class="bg-(center cover) absolute inset-0" aria-hidden="true" style="background-image: url('/_assets/img/bg-wood.png');"></b>
       <div class="w-full h-full flex relative">
         <img src="/_assets/img/work-{{ item.data.title | slugify }}.png" alt="{{ item.data.title }} illustration" class="w-full h-full object-(cover center) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-150)" />
@@ -58,7 +58,7 @@ layout: 'layouts/default.njk'
   >
     {%- for item in collections.web %}
     {%- if not item.data.hidden %}
-    <a @click.prevent='workModal = !workModal; $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "jpg" } })' href="#" class="group aspect-[4/3] relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-1/5 first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
+    <a @click.prevent='$refs.dialog.showModal(); $dispatch("work-modal", { data: { title: "{{ item.data.title }}", sub: "{{ item.data.sub }}", url: "{{ item.data.url }}", tech: {{ item.data.tech | dump | safe }}, type: "jpg" } })' href="#" class="group aspect-[4/3] relative w-1/3 flex-(& none) first-child:hidden last-child:hidden overflow-hidden rounded-xl [&:nth-child(odd)]:rotate-2 [&:nth-child(even)]:-rotate-2 shadow-xl lg:(w-1/5 first-child:flex last-child:flex rounded-2xl) motion-safe:(transition) hover:(rotate-0)">
       <div class="w-full h-full flex">
         <img src="/_assets/img/work-{{ item.data.title | slugify }}.jpg" alt="{{ item.data.title }} website" class="w-full h-full object-(cover top) pointer-events-none transform scale-110 motion-safe:(transition-all) group-hover:(scale-100)" />
       </div>
@@ -68,52 +68,76 @@ layout: 'layouts/default.njk'
   </section>
 </div>
 
-<div x-show="workModal" x-trap.noscroll.inert="workModal" x-on:keydown.window.prevent.escape="workModal = false" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)"
-  x-transition:enter-start="opacity-0 blur-lg"
-  x-transition:enter-end="opacity-100"
-  x-transition:leave-start="opacity-100"
-  x-transition:leave-end="opacity-0 blur-lg">
-  <div @click.outside="workModal = false" class="relative" role="dialog" aria-modal="true">
-    <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><iconify-icon icon="fa6-solid:xmark" inline="false"></iconify-icon> <span class="sr-only">Close</span></button>
-    <template x-if="workModal" hidden> <!-- ** alpine needs this or it will just try to render things even if they have not dispatched yet? seems like a bug to me ** -->
-    <div class="w-screen max-w-xl bg-gray-200 overflow-hidden rounded-2xl shadow-2xl">
-      <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full h-96 bg-(cover top) object-(cover top) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
-      <div class="py-6 px-8 relative">
-        <div class="flex-(& col) gap-1">
-          <p x-text="workData.title" class="text-2xl font-black flex-1 lg:(text-4xl tracking-tight)"></p>
-          <p x-text="workData.sub" class="text-(sm gray-500) flex-none"></p>
-        </div>
-        <ul class="text-xl leading-none flex -space-x-2 absolute -top-5 right-5">
-          <template x-for="(t, index) in workData.tech" hidden>
-          <li class="w-10 h-10 text-pri-50 dark:(text-pri-50) bg-pri-500 flex ring-(2 inset white) rounded-full shadow-lg">
-            <template x-if="t == 'Fireworks'" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="m-auto w-6 fill-current">
-                <title x-text="t"></title>
-                <path x-show="t == 'Fireworks'" d="m40 16.64c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-12.4 0c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-3.44-11.68v6c-5.3504 0-7.231488 4.677376-9.173289 9.9160371l-.2654988.7174554c-2.3988442 6.4814515-5.1308122 13.5265075-14.7212122 13.5265075v-6c3.46826668-.0092181 6.00160001-2.0358848 7.6-6.08h-4.56v-6h6.96c2.6666666-8.05333336 7.3866666-12.08 14.16-12.08z" />
-              </svg>
-            </template>
-            <template x-if="t == 'CSS' || t == 'Figma' || t == 'HTML' || t == 'Js' || t == '11ty' || t == 'Alpine' || t == 'Sketch' || t == 'Vue'" hidden>
-              <iconify-icon :icon="[t == 'CSS' ? 'fa6-brands:css3-alt' :
-                (t == 'Figma') ? 'fa6-brands:figma' :
-                  (t == 'HTML') ? 'fa6-brands:html5' :
-                    (t == 'Js') ? 'fa6-brands:js' :
-                      (t == '11ty') ? 'simple-icons:eleventy' :
-                        (t == 'Alpine') ? 'simple-icons:alpinedotjs' :
-                          (t == 'Sketch') ? 'fa6-brands:sketch' : 'fa6-brands:vuejs'
-              ]" inline="false" class="m-auto" :title="t"></iconify-icon>
-            </template>
-          </li>
-          </template>
-        </ul>
-        <a :href="workData.url" class="p-1 w-20 h-20 bg-pri-500 text-(xl white) flex items-end justify-end absolute bottom-0 right-0 [clip-path:polygon(100%_0%,100%_100%,100%_100%,0%_100%)] motion-safe:(transition) hover:(bg-white text-black) focus:(bg-white text-black)">
-          <iconify-icon icon="fa6-solid:arrow-right" class="m-2"></iconify-icon>
-          <span class="sr-only">Learn More</span>
-        </a>
+<dialog
+  x-ref="dialog"
+  class="
+    dialog
+    m-0
+    p-0
+    w-full
+    max-w-none
+    h-full
+    max-h-none
+    min-h-screen
+    bg-transparent
+    text-[inherit]
+    invisible
+    grid
+    items-center
+    justify-items-center
+    fixed
+    inset-0
+    pointer-events-none
+    overflow-y-hidden
+    [overscroll-behavior:contain]
+    opacity-0
+    motion-safe:(transition-all)
+    [&[open]]:(pointer-events-auto visible opacity-100)
+    [&[open]_.dialog-box]:(translate-y-0 scale-100)
+    [&::backdrop]:(bg-black/40 dark:(bg-black/70))
+  "
+>
+  <div class="dialog-box w-11/12 max-w-xl max-h-[calc(100vh-5em)] bg-gray-200 text-(gray-900) col-start-1 row-start-1 overflow-y-auto [overscroll-behavior:contain] translate-y-3 rounded-3xl shadow-2xl scale-90 motion-safe:(transition-all)">
+    <form method="dialog" class="absolute top-2 right-2"><button class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center shadow rounded-full ring-(inset 2 gray-50)"><iconify-icon icon="fa6-solid:xmark"></iconify-icon> <span class="sr-only">Close</span></button></form>
+    <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full aspect-[4/3] bg-(cover top) object-(cover top) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
+    <div class="py-6 px-8 relative">
+      <div class="flex-(& col) gap-1">
+        <p x-text="workData.title" class="text-2xl font-black flex-1 lg:(text-4xl tracking-tight)"></p>
+        <p x-text="workData.sub" class="text-(sm gray-500) flex-none"></p>
       </div>
+      <ul class="text-xl leading-none flex -space-x-2 absolute -top-5 right-5">
+        <template x-for="(t, index) in workData.tech" hidden>
+        <li class="w-10 h-10 text-pri-50 dark:(text-pri-50) bg-pri-500 flex ring-(2 inset white) rounded-full shadow-lg">
+          <template x-if="t == 'Fireworks'" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" class="m-auto w-6 fill-current">
+              <title x-text="t"></title>
+              <path x-show="t == 'Fireworks'" d="m40 16.64c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-12.4 0c0 9.7043815-6.0494604 18.3063356-14.8524047 18.4774042l-.2675953.0025958v-6.0342857c5.0241209 0 8.9919496-5.5077194 9.0708038-12.2412957l.0011962-.2044186zm-3.44-11.68v6c-5.3504 0-7.231488 4.677376-9.173289 9.9160371l-.2654988.7174554c-2.3988442 6.4814515-5.1308122 13.5265075-14.7212122 13.5265075v-6c3.46826668-.0092181 6.00160001-2.0358848 7.6-6.08h-4.56v-6h6.96c2.6666666-8.05333336 7.3866666-12.08 14.16-12.08z" />
+            </svg>
+          </template>
+          <template x-if="t == 'CSS' || t == 'Figma' || t == 'HTML' || t == 'Js' || t == '11ty' || t == 'Alpine' || t == 'Sketch' || t == 'Vue'" hidden>
+            <iconify-icon :icon="[t == 'CSS' ? 'fa6-brands:css3-alt' :
+              (t == 'Figma') ? 'fa6-brands:figma' :
+                (t == 'HTML') ? 'fa6-brands:html5' :
+                  (t == 'Js') ? 'fa6-brands:js' :
+                    (t == '11ty') ? 'simple-icons:eleventy' :
+                      (t == 'Alpine') ? 'simple-icons:alpinedotjs' :
+                        (t == 'Sketch') ? 'fa6-brands:sketch' : 'fa6-brands:vuejs'
+            ]" inline="false" class="m-auto" :title="t"></iconify-icon>
+          </template>
+        </li>
+        </template>
+      </ul>
+      <a :href="workData.url" class="p-1 w-20 h-20 bg-pri-500 text-(xl white) flex items-end justify-end absolute bottom-0 right-0 [clip-path:polygon(100%_0%,100%_100%,100%_100%,0%_100%)] motion-safe:(transition) hover:(bg-white text-black) focus:(bg-white text-black)">
+        <iconify-icon icon="fa6-solid:arrow-right" class="m-2"></iconify-icon>
+        <span class="sr-only">Learn More</span>
+      </a>
     </div>
-    </template>
   </div>
-</div>
+  <form method="dialog" class="text-transparent grid col-start-1 row-start-1 self-stretch justify-self-stretch fixed inset-0 -z-[1]">
+    <button>Close</button>
+  </form>
+</dialog>
+
 
 {% setblock 'js' %}
 <script>
