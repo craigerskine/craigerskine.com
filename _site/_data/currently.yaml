@@ -12,6 +12,10 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: 'The Legend of Zelda: Echoes of Wisdom'
+    sub: Switch
+    media: switch
+    url: https://amazon.com/dp/B0D8SDKKVW?tag=qrayg-20
   - title: The Cruel King and the Great Hero
     sub: Switch
     media: switch
@@ -20,10 +24,6 @@ playing:
     sub: Switch
     media: switch
     url: https://amazon.com/dp/B07SG15148?tag=qrayg-20
-  - title: 'The Legend of Zelda: Tears of the Kingdom'
-    sub: Switch
-    media: switch
-    url: https://amazon.com/dp/B097B2YWFX?tag=qrayg-20
 listening:
   - title: Solveig
     sub: Seven Spires
