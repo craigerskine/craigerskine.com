@@ -25,9 +25,10 @@ document.querySelectorAll(".color-mode").forEach((btn) => {
 import { install, injectGlobal, autoDarkColor } from "@twind/core";
 import presetAutoprefix from "@twind/preset-autoprefix";
 import presetTailwind from "@twind/preset-tailwind";
+import presetLineClamp from "@twind/preset-line-clamp";
 
 install({
-  presets: [presetAutoprefix(), presetTailwind()],
+  presets: [presetAutoprefix(), presetTailwind(), presetLineClamp()],
   darkMode: "class",
   darkColor: autoDarkColor,
   hash: false,
