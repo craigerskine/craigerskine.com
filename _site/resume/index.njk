@@ -28,9 +28,12 @@ eleventyNavigation:
     <link href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
     <style>
-      @page {
-        margin: 2rem 1rem 1rem;
-        padding: 0;
+      @media print {
+        @page {
+          margin: 2rem 1rem 1rem;
+          padding: 0;
+          size: portrait;
+        }
       }
     </style>
   </head>
