@@ -88,8 +88,8 @@
               {%- call heading(sub='My Book', ico='fa6-solid:book') %}
               Foundation Fw
               {%- endcall %}
-              <div class="flex-(& col) items-center gap-6 lg:(flex-row-reverse)">
-                <p class="w-full text-wrap-balance lg:(flex-1)">{{ site.book.desc }}</p>
+              <figure class="flex-(& col) items-center gap-6 lg:(flex-row-reverse)">
+                <figcaption class="w-full text-wrap-balance flex items-end before:(w-3 h-3 bg-gray-500/10 shrink-0 block [clip-path:polygon(100%_0,0%_100%,100%_100%)] content-['']) lg:(flex-1)"><em class="p-4 bg-gray-500/10 font-serif flex-1 block rounded-xl rounded-bl-none">{{ site.book.desc }}</em></figcaption>
                 <a href="https://amazon.com/dp/1430216182?tag=qrayg-20" class="fw-book group w-[207px] inline-flex flex-none transform [perspective:33rem] motion-safe:(transition) hover:(-rotate-3)">
                   <div role="group" class="fw-book-inner flex flex-row-reverse [transform-style:preserve-3d]">
                     <div class="sr-only">{{ site.book.title }}</div>
@@ -101,7 +101,7 @@
                     </div>
                   </div>
                 </a>
-              </div>
+              </figure>
               {%- call heading(sub='Social Media', ico='fa6-solid:share') %}
               Stalk Me
               {%- endcall %}
