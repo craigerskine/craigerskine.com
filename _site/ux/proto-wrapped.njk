@@ -5,79 +5,103 @@ title: Wrapped
 desc: A super simple template to mimic Spotify's "Wrapped" yearly usage experience.
 tech:
   - title: HTML
-    ico: fa6-brands:html5
+    ico: mdi:language-html5
   - title: CSS
-    ico: fa6-brands:css3-alt
+    ico: mdi:language-css3
   - title: Twind
     ico: mdi:tailwind
-  - title: Vue
-    ico: mdi:vuejs
+  - title: Alpine
+    ico: simple-icons:alpinedotjs
 ico: mdi:gift-open
 color: pink
 date: 0006-01-01
 ---
 <!doctype html>
-<html lang="en" class="bg-gradient-to-b from-gray-200 via-gray-200 to-white text-gray-700" hidden>
+<html lang="en" class="bg-transparent antialiased" x-data="app">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Craig #Wrapped 2022</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
-  </head>
-  <body>
+    <title x-text="'Craig #wrapped - '+ (new Date().getFullYear())"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
 
-    <div id="snow" class="snow text-white hidden motion-safe:block opacity-75 fixed inset-0"></div>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+
+    <script>
+      // color mode init
+      if (localStorage.getItem('color-mode') === 'dark' || (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('color-mode'))) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+
+    <style data-twind></style>
+  </head>
+  <body class="py-4 px-12 bg-gray-200 text-gray-700 !block" style="display: none;">
+
+    <div class="bg-gradient-to-b from-gray-200 via-gray-200 to-gray-50 hidden fixed inset-0 motion-safe:block" aria-hidden="true">
+      <div id="snow" class="snow fixed inset-0 opacity-75 dark:opacity-20"></div>
+    </div>
+
+    <button @click.prevent="theme" class="w-10 h-10 text-3xl flex items-center justify-center fixed top-2 right-2 z-50 rounded-full transition hover:bg-gray-500/50">
+      <iconify-icon icon="mdi:weather-sunny" class="iconify hidden dark:block"></iconify-icon>
+      <iconify-icon icon="mdi:weather-night" class="iconify block dark:hidden"></iconify-icon>
+    </button>
 
     <main class="page p-4 min-h-screen flex items-center justify-center relative">
       <section class="w-full max-w-prose relative">
-        <a href="https://craigerskine.com/" class="-ml-24 bg-gray-900 text-white inline-flex rounded-full absolute -top-24 left-1/2 z-10 shadow-2xl animate-bounce"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="p-4 w-48 h-48 fill-current"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg></a>
-        <article class="w-full max-w-prose bg-gray-50 rounded-2xl overflow-hidden relative shadow-2xl">
-          <h1 v-text="'#'+ (new Date().getFullYear())" class="text-3xl leading-none font-thin absolute top-12 right-0 opacity-25 transform rotate-90"></h1>
-          <ul class="border(t white) pt-32 p-6 text-5xl font-black grid grid-cols-2 gap-y-16 gap-x-10 relative">
-            <li v-for="(stat, index) in [
-              { name: 'Pixels pushed', total: '11.1M', ico: 'mdi:border-none', },
-              { name: 'Prototypes built', total: '23', ico: 'mdi:group', },
-              { name: 'Classes written', total: '45.6K', ico: 'fa6-brands:css3-alt', },
-              { name: 'Tags auto-completed', total: '78.9K', ico: 'fa6-brands:html5', },
-            ]" :class="[
-              'border(b-2 opacity-25) flex items-center transition hover:(scale-110)',
-              index == 0 ? 'text-blue-500 border-blue-500' :
-              (index == 1) ? 'text-orange-500 border-orange-500' :
-              (index == 2) ? 'text-green-500 border-green-500' :
-              'text-red-500 border-red-500'
-            ]">
-              <iconify-icon :icon="stat.ico" width="1em" height="1em" inline="false" class="text-4xl opacity-50"></iconify-icon>
-              <p class="mb-3 pl-3 flex-1">
-                <span v-text="stat.total"></span>
-                <small class="pt-1 text-sm font-bold uppercase block opacity-60" v-text="stat.name"></small>
-              </p>
-            </li>
+        <a href="https://craigerskine.com/" class="-ml-24 bg-gray-950 text-white inline-flex rounded-full absolute -top-24 left-1/2 z-10 shadow-[0_-4px_0_rgb(255_255_255_/_.5)] animate-bounce dark:(bg-gray-950)">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="p-4 w-48 h-48 fill-current"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg>
+        </a>
+        <article class="border-(t-4 white) w-full max-w-prose bg-gray-50 relative rounded-2xl shadow-2xl dark:(border-white/50)">
+          <h1 x-text="'#'+ (new Date().getFullYear())" class="text-3xl leading-none font-thin absolute top-12 right-0 opacity-25 transform rotate-90"></h1>
+          <ul
+            x-data="{
+              stats: [
+                { name: 'Pixels pushed', total: '11.1M', color: 'sky', ico: 'mdi:border-none', },
+                { name: 'Prototypes built', total: '23', color: 'orange', ico: 'mdi:group', },
+                { name: 'Classes written', total: '45.6K', color: 'emerald', ico: 'mdi:language-css3', },
+                { name: 'A.I. corrections', total: '78.9K', color: 'rose', ico: 'mdi:language-html5', },
+              ],
+            }"
+            class="pt-32 px-6 pb-12 text-5xl font-black grid-(& cols-1) gap-y-16 gap-x-10 relative md:(grid-cols-2)"
+          >
+            <template x-for="item in stats" hidden>
+              <li class="border-b-2 flex items-center transition hover:(scale-110)" :class="'text-'+ item.color +'-500 border-'+ item.color +'-500/25'">
+                <iconify-icon :icon="item.ico" class="text-5xl opacity-50"></iconify-icon>
+                <p class="mb-3 pl-3 flex-1">
+                  <span x-text="item.total"></span>
+                  <small class="pt-1 text-sm font-bold uppercase block opacity-60" x-text="item.name"></small>
+                </p>
+              </li>
+            </template>
           </ul>
         </article>
       </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.js,npm/twind/observe/observe.umd.js,npm/twind/colors/colors.umd.js"></script>
-    <script src="https://unpkg.com/iconify-icon/dist/iconify-icon.min.js"></script>
-    <script src="https://unpkg.com/vue@2/dist/vue.min.js"></script>
     <script src="https://unpkg.com/particles.js"></script>
-    <script>
-      // data
-      var app = new Vue({
-        el: '.page',
-      });
+    <script type="module">
+      // icons
+      import 'https://esm.run/iconify-icon';
 
-      twind.setup({
-        mode: "silent",
+      // twind
+      import { install, injectGlobal, autoDarkColor } from 'https://esm.run/@twind/core';
+      import presetAutoprefix from 'https://esm.run/@twind/preset-autoprefix';
+      import presetTailwind from 'https://esm.run/@twind/preset-tailwind';
+      install({
+        presets: [presetAutoprefix(), presetTailwind()],
+        darkMode: 'class',
+        darkColor: autoDarkColor,
+        hash: false,
         theme: {
           extend: {
-            colors: {
-              gray: twindColors.blueGray,
-              orange: twindColors.orange,
-            },
-            fontFamily: (theme) => ({ sans: 'Inter,'+ theme('fontFamily.sans') }),
+            colors: ({ theme }) => ({
+              gray: { 950: '#030712' },
+            }),
+            fontFamily: ({ theme }) => ({
+              sans: ['Inter', ...theme('fontFamily.sans')],
+            }),
             keyframes: {
               'bounce': {
                 '0%, 100%': { transform: 'translateY(0%)' },
@@ -89,26 +113,41 @@ date: 0006-01-01
             },
           },
         },
-        plugins: {
-          'scroll-smooth': { 'scroll-behavior': 'smooth' },
-        },
-      })
-      twind.tw(() => ({
-        '@global': {
-          //':root [v-cloak]': { '@apply': 'hidden', },
+      });
+      // global css
+      injectGlobal`
+        @layer base {
+          hr { @apply border-gray-500/25; }
+          [x-cloak] { @apply hidden; }
         }
-      }))
-      twindObserve.observe(document.documentElement);
-      document.documentElement.removeAttribute('hidden');
+      `
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          theme: () => {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+              localStorage.setItem('color-mode', 'light');
+              return;
+            }
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-mode', 'dark');
+          },
+        }));
+      });
+      window.Alpine = Alpine;
+      Alpine.start();
 
       // snow
-      particlesJS("snow", {
+      particlesJS('snow', {
         particles: {
           number: { value: 200 },
-          color: { value: "#FFFFFF" },
+          color: { value: '#FFFFFF' },
           shape: {
-            type: "circle",
-            stroke: { width: 0, color: "#FFFFFF" },
+            type: 'circle',
+            stroke: { width: 0, color: '#FFFFFF' },
             polygon: { nb_sides: 5 }
           },
           opacity: {
@@ -117,7 +156,7 @@ date: 0006-01-01
             anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
           },
           size: {
-            value: 10,
+            value: 5,
             random: true,
             anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
           },
@@ -127,7 +166,7 @@ date: 0006-01-01
           move: {
             enable: true,
             speed: 3,
-            direction: "bottom"
+            direction: 'bottom'
           }
         },
         retina_detect: true
