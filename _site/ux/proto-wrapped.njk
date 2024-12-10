@@ -39,7 +39,7 @@ date: 0006-01-01
   </head>
   <body class="py-4 px-12 bg-gray-200 text-gray-700 !block" style="display: none;">
 
-    <div class="bg-gradient-to-b from-gray-200 via-gray-200 to-gray-50 hidden fixed inset-0 motion-safe:block" aria-hidden="true">
+    <div class="bg-gradient-to-b from-gray-200 via-gray-200 to-gray-50 hidden fixed inset-0 motion-safe:(block transition)" aria-hidden="true">
       <div id="snow" class="snow fixed inset-0 opacity-75 dark:opacity-20"></div>
     </div>
 
@@ -53,8 +53,8 @@ date: 0006-01-01
         <a href="https://craigerskine.com/" class="-ml-24 bg-gray-950 text-white inline-flex rounded-full absolute -top-24 left-1/2 z-10 shadow-[0_-4px_0_rgb(255_255_255_/_.5)] animate-bounce dark:(bg-gray-950)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="p-4 w-48 h-48 fill-current"><title>Craig Erskine logo</title><g fill-rule="evenodd"><path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z"></path></g></svg>
         </a>
-        <article class="border-(t-4 white) w-full max-w-prose bg-gray-50 relative rounded-2xl shadow-2xl dark:(border-white/50)">
-          <h1 x-text="'#'+ (new Date().getFullYear())" class="text-3xl leading-none font-thin absolute top-12 right-0 opacity-25 transform rotate-90"></h1>
+        <article class="w-full max-w-prose bg-gray-50/50 backdrop-blur-sm relative rounded-2xl shadow-[0_-4px_0_rgb(255_255_255_/_.5)]">
+          <h1 x-text="'#'+ (new Date().getFullYear())" class="text-3xl leading-none font-light absolute top-12 -right-4 opacity-25 transform rotate-90"></h1>
           <ul
             x-data="{
               stats: [
@@ -67,7 +67,7 @@ date: 0006-01-01
             class="pt-32 px-6 pb-12 text-5xl font-black grid-(& cols-1) gap-y-16 gap-x-10 relative md:(grid-cols-2)"
           >
             <template x-for="item in stats" hidden>
-              <li class="border-b-2 flex items-center transition hover:(scale-110)" :class="'text-'+ item.color +'-500 border-'+ item.color +'-500/25'">
+              <li class="border-b-2 flex items-center cursor-default transition hover:(scale-110)" :class="'text-'+ item.color +'-500 border-'+ item.color +'-500/25'">
                 <iconify-icon :icon="item.ico" class="text-5xl opacity-50"></iconify-icon>
                 <p class="mb-3 pl-3 flex-1">
                   <span x-text="item.total"></span>
@@ -167,6 +167,43 @@ date: 0006-01-01
             enable: true,
             speed: 3,
             direction: 'bottom'
+          }
+        },
+        interactivity: {
+          detect_on: 'window',
+          events: {
+            onhover: {
+              enable: true,
+              mode: 'repulse'
+            },
+            onclick: {
+              enable: true,
+              mode: 'push'
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 200,
+              line_linked: false
+            },
+            bubble: {
+              distance: 400,
+              size: 5,
+              duration: 2,
+              opacity: 0.2,
+              speed: 3
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4
+            },
+            push: {
+              particles_nb: 4
+            },
+            remove: {
+              particles_nb: 2
+            }
           }
         },
         retina_detect: true
