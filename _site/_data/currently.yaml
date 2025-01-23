@@ -12,27 +12,32 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: 'Ys X: Nordics'
+    sub: Switch
+    media: switch
+    url: https://amazon.com/dp/B0CW84DNM4?tag=qrayg-20
+
   - title: 'Dragon Quest III: HD-2D Remake'
     sub: Switch
     media: switch
     url: https://amazon.com/dp/B0D71SHR5B?tag=qrayg-20
+
   - title: 'The Legend of Zelda: Echoes of Wisdom'
     sub: Switch
     media: switch
     url: https://amazon.com/dp/B0D8SDKKVW?tag=qrayg-20
-  - title: The Cruel King and the Great Hero
-    sub: Switch
-    media: switch
-    url: https://amazon.com/dp/B099TPXB8D?tag=qrayg-20
+
 listening:
   - title: Solveig
     sub: Seven Spires
     media: cd
     url: https://amazon.com/dp/B072ZCNFGP?tag=qrayg-20
+
   - title: Emerald Seas
     sub: Seven Spires
     media: cd
     url: https://amazon.com/dp/B07ZWBQK5L?tag=qrayg-20
+
   - title: Gods of Debauchery
     sub: Seven Spires
     media: cd
