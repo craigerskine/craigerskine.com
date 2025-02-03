@@ -7,6 +7,7 @@ eleventyNavigation:
 ---
 
 {%- from 'components/hero.njk' import hero -%}
+{%- from 'components/card.njk' import card -%}
 
 <section class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
   {% call hero(title=title +' stuff',lead='I hope to possibly make a video game one day before I die. This is my current progress along with other amazing, or maybe not so amazing, video game related garbage...') %}
@@ -14,36 +15,14 @@ eleventyNavigation:
   <div class="py-16 sm:(py-32)">
     <ul class="grid-(& cols-1) gap-16 sm:(grid-cols-2) lg:(grid-cols-3)">
       {%- for item in collections.games -%}
-      <li class="p-3 border-(r b dotted gray-500/20) flex flex-col items-start relative rounded-br-2xl">
-        <div class="pt-16">
-          <p class="flex items-center justify-between">
-            <a href="{% if item.url %}{{ item.url }}{% else %}#{% endif %}" class="group font-bold{% if not item.url %} cursor-not-allowed{% endif %}"{% if not item.url %} @click.prevent{% endif %}>
-              {{ item.data.title }}
-              <span class="h-12 w-12 text-2xl btn-{{ item.data.color }} absolute top-3 left-3" aria-hidden="true">
-                <iconify-icon icon="{{ item.data.ico }}" inline class="iconify"></iconify-icon>
-              </span>
-              <span class="bg-{{ item.data.color }}-500/10 absolute inset-0 z-10 opacity-0 rounded-br-2xl shadow-(xl {{ item.data.color}}-500/5) transform scale-95 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true"></span>
-            </a>
-            {%- if item.url %}
-            <small class="uppercase opacity-50">In progress</small>
-            {%- else %}
-            <small class="uppercase opacity-50">Planning</small>
-            {%- endif %}
-          </p>
-          <p class="pt-2 text-(sm wrap-balance) leading-normal line-clamp-3 opacity-80">{{ item.data.desc }}</p>
-          <div class="pt-4 text-xl flex-(& wrap) items-center justify-between">
-            <ul class="flex gap-4 opacity-50">
-              {%- for tech in item.data.tech %}
-              <li><iconify-icon icon="{{ tech.ico }}" width="1em" height="1em" inline class="iconify"></iconify-icon></li>
-              {%- endfor %}
-            </ul>
-            <p class="flex items-center gap-1">
-              {%- if item.data.status %}<small class="text-xs uppercase opacity-50">{{ item.data.status }}</small>{%- endif %}
-              <iconify-icon icon="{% if item.url %}mdi:link-variant{% else %}mdi:link-variant-off{% endif %}" width="1em" height="1em" inline class="iconify opacity-30"></iconify-icon>
-            </p>
-          </div>
-        </div>
-      </li>
+      {{ card({
+        title: item.data.title,
+        ico: item.data.ico,
+        url: item.url if item.url else '#',
+        color: item.data.color,
+        desc: item.data.desc,
+        status: 'In progress' if item.url else 'Planning'
+      }) }}
       {%- endfor -%}
     </ul>
   </div>
