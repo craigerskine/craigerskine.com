@@ -18,7 +18,7 @@ eleventyNavigation:
       {{ card({
         title: item.data.title,
         ico: item.data.ico,
-        url: item.url if item.url else '#',
+        url: item.data.url if item.data.url else item.url,
         color: item.data.color,
         desc: item.data.desc,
         tech: item.data.tech,
