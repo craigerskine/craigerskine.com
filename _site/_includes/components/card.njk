@@ -1,12 +1,12 @@
 {%- macro card(param) -%}
-<li class="p-3 border-(r b dotted gray-500/20) flex flex-col items-start relative rounded-br-2xl">
+<li class="p-3 border-(& gray-500/10) flex flex-col items-start relative rounded-2xl">
   <div class="pt-16">
     <a{% if param.url === '#' %} @click.prevent{% endif %} href="{{ param.url }}" class="group text-gray-900 font-bold{% if param.url === '#' %} cursor-not-allowed{% endif %}">
       {{ param.title }}
       <span class="h-12 w-12 text-2xl btn-{{ param.color }} absolute top-3 left-3" aria-hidden="true">
         <iconify-icon icon="{{ param.ico }}" class="iconify"></iconify-icon>
       </span>
-      <span class="bg-{{ param.color }}-500/10 absolute inset-0 z-10 opacity-0 rounded-br-2xl shadow-[10px_10px_10px_rgb(0_0_0/.1)] scale-95 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true"></span>
+      <span class="bg-{{ param.color }}-500/10 absolute inset-0 z-10 opacity-0 rounded-2xl shadow-[0.25rem_0.25rem_0_0.25rem_rgb(0_0_0/.1)] scale-95 motion-safe:(transition) group-hover:(opacity-100 scale-100)" aria-hidden="true"></span>
     </a>
     <p class="pt-2 text-(sm wrap-balance) leading-normal line-clamp-2 opacity-80">{{ param.desc }}</p>
     <div class="pt-4 text-xl flex-(& wrap) items-center justify-between">
