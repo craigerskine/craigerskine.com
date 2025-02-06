@@ -6,7 +6,7 @@
       <span class="h-12 w-12 text-2xl btn-{{ param.color }} absolute top-3 left-3" aria-hidden="true">
         <iconify-icon icon="{{ param.ico }}" class="iconify"></iconify-icon>
       </span>
-      <span class="border-(& gray-500/10) bg-transparent absolute inset-0 z-10 rounded-2xl motion-safe:(transition) group-hover:(border-gray-500/20 bg-{{ param.color }}-500/10 shadow-[0.25rem_0.25rem_0_0.25rem_rgb(0_0_0/.1)])" aria-hidden="true"></span>
+      <span class="border-(& gray-500/10) bg-transparent bg-gradient-to-t from-gray-500/5 absolute inset-0 z-10 rounded-2xl motion-safe:(transition) group-hover:(border-gray-500/20 bg-{{ param.color }}-500/10 from-white/5 shadow-[0.25rem_0.25rem_0_0.25rem_rgb(0_0_0/.1)]) dark:(from-white/5)" aria-hidden="true"></span>
     </a>
     <p class="pt-2 text-(sm wrap-balance) leading-normal line-clamp-2 opacity-80">{{ param.desc }}</p>
     <div class="mt-4 pt-4 border-(t gray-500/10) text-xl leading-none flex-(& wrap) items-center justify-between">
