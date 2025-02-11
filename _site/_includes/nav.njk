@@ -5,7 +5,7 @@
 {%- endset -%}
 
 <nav class="flex items-center justify-between" role="navigation" aria-label="Main navigation">
-  {%- if page.url !== '/resume/' %}  
+  {%- if page.url !== '/resume/' %}
     <a href="/" class="group flex-none rounded-full" aria-hidden="true">
       <div class="btn-gray p-2 w-12 h-12 text-2xl lg:(w-14 h-14)">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="w-full h-full fill-current">
@@ -31,7 +31,7 @@
     {%- endfor %}
     {%- if page.url == '/resume/' %}
       <li class="flex"><button type="button" @click.prevent.stop="window.print();" class="py-2.5 px-2 flex relative motion-safe:(transition) hover:(text-pri-300)" aria-label="Print"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:(text-2xl)"></iconify-icon></button></li>
-    {%- else %}      
+    {%- else %}
       <li class="flex">
         <button class="color-mode py-2.5 px-2 flex motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
           <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
