@@ -1,0 +1,64 @@
+---
+layout: layouts/default.njk
+title: Colophon
+eleventyNavigation:
+  key: Co
+  order: 4
+---
+
+{%- from 'components/hero.njk' import hero -%}
+{%- from 'components/card.njk' import card -%}
+
+<section class="mx-auto py-6 px-4 max-w-7xl relative lg:px-8">
+  {% call hero(title=title,lead='The following lists include all of the tech hardware and related gear that I use on a daily basis to complete my UX/UI design as well as other creative work...') %}
+  {% endcall %}
+  <div class="py-16 sm:(py-32)">
+    {%- for group in collections.gear %}
+    <section id="{{ group.data.title | slugify }}" class="mb-10 py-4 xl:(mb-32 py-8)">
+      <article>
+        <a href="#{{ group.data.title | slugify }}" class="text-{{ group.data.color.title +'-'+ group.data.color.shade }} mb-5 text-xl uppercase flex items-center">
+          <em class="mr-4 text-5xl"><iconify-icon icon="{{ group.data.ico }}" inline="false"></iconify-icon></em>
+          <b class="tracking-widest flex-1 flex items-center justify-center"> <b class="font-black">{{ group.data.title }}</b> <b class="ml-4 border-(t current) flex-1 opacity-25"></b></b>
+        </a>
+        {%- if group.data.hardware %}
+        <ul class="grid-(& flow-row cols-1) gap-x-6 lg:(pl-16 grid-cols-2){% if group.data.title == 'Obsolete' %} line-through opacity-50{% endif %}">
+          {%- for hardware in group.data.hardware %}
+          <li class="flex">
+            <div class="py-3 px-5 border-(l b {{ group.data.color.title +'-'+ group.data.color.shade }}/25) w-full relative md:(px-0 flex space-x-4)">
+              <span class="tracking-wider uppercase block opacity-80 md:(w-1/4 text-end)">
+                <span class="text-({{ group.data.color.title }}-500 xs) font-bold">{{ hardware.type }}</span>
+                {% if hardware.soon %}
+                <small class="uppercase leading-none tracking-wider flex md:(justify-end)">
+                  <b class="px-1 py-px text-yellow-300 ring-(1 current inset) block relative">Pending <b class="ring-(1 current inset) absolute inset-0 motion-safe:(animate-ping-sm) z-[-1]" aria-hidden="true"></b></b>
+                </small>
+                {%- endif %}
+              </span>
+              <div class="border-{{ group.data.color.title +'-'+ group.data.color.shade }} mt-2 border w-2 h-2 rounded-full relative top-px hidden md:(block)"></div>
+              <i class="not-italic flex-1 md:(tracking-tight)">
+                <a href="{{ hardware.url }}" class="group text-({{ group.data.color.title }}-600 sm) font-semibold">
+                  {{ hardware.name }}
+                  <b class="absolute inset-0 z-10" aria-hidden="true">
+                    <b class="w-0 bg-transparent absolute left-0 inset-y-0 motion-safe:(transition-all duration-200) group-hover:(bg-({{ group.data.color.title +'-'+ group.data.color.shade }}/10) w-full)" aria-hidden="true"></b>
+                    <b class="!m-0 w-[4px] bg-{{ group.data.color.title +'-'+ group.data.color.shade }} absolute inset-y-0 left-0 transform scale-0 motion-safe:(transition) group-hover:(scale-100)" aria-hidden="true"></b>
+                  </b>
+                </a>
+                {%- if hardware.sub %}
+                <small class="text-xs uppercase leading-none tracking-wider flex flex-wrap">
+                  {% for sub in hardware.sub %}
+                  <i class="mb-1 mr-1 py-px text-current opacity-60 inline-block">
+                    {{ sub }}{% if not loop.last %}<i>, </i>{% endif %}
+                  </i>
+                  {%- endfor %}
+                </small>
+                {%- endif %}
+              </i>
+            </div>
+          </li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
+      </article>
+    </section>
+    {%- endfor %}
+  </div>
+</section>
