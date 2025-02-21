@@ -64,6 +64,7 @@ hardware:
     name: PolyChrome › DSP
     sub:
       - McRocklin Suite
+      - HyperRig Kiesel
     url: https://polychromedsp.com/
 
   - type: Plugin

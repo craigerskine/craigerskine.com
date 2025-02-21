@@ -1,9 +1,12 @@
 ---
 layout: layouts/default.njk
 title: Gaming
-eleventyNavigation:
-  key: Gm
-  order: 3
+eleventyComputed:
+  eleventyNavigation:
+    key: "{{ title }}"
+    title: Gm
+    icon: mdi:gamepad-variant-outline
+    order: 3
 ---
 
 {%- from 'components/hero.njk' import hero -%}

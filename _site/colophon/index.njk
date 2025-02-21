@@ -1,9 +1,12 @@
 ---
 layout: layouts/default.njk
 title: Colophon
-eleventyNavigation:
-  key: Co
-  order: 4
+eleventyComputed:
+  eleventyNavigation:
+    key: "{{ title }}"
+    title: Co
+    icon: mdi:account-box-outline
+    order: 4
 ---
 
 {%- from 'components/hero.njk' import hero -%}

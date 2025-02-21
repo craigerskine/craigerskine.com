@@ -2,9 +2,12 @@
 layout: layouts/default.njk
 title: UX Experiments
 permalink: /ux/
-eleventyNavigation:
-  key: Ux
-  order: 2
+eleventyComputed:
+  eleventyNavigation:
+    key: "{{ title }}"
+    title: Ux
+    icon: mdi:drawing
+    order: 2
 ---
 
 {%- from 'components/hero.njk' import hero -%}

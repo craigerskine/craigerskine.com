@@ -1,4 +1,95 @@
-{%- set active -%}
+<nav
+  x-data="{
+    open: false,
+    toggle() {
+      if (this.open) {
+        return this.close();
+      }
+      this.$refs.button.focus();
+      this.open = true;
+    },
+    close(focusAfter) {
+      if (!this.open) return;
+      this.open = false;
+      focusAfter && focusAfter.focus();
+    }
+  }"
+  x-id="['nav-dropdown']"
+  @keydown.escape.prevent="close($refs.button)"
+  @focusin.window="!$refs.panel.contains($event.target) && close()"
+  class="flex items-center justify-between gap-1" role="navigation" aria-label="Main navigation"
+>
+  {%- if page.url !== '/resume/' %}
+    <a href="/" class="group flex-none rounded-full" aria-hidden="true">
+      <div class="btn-gray p-2 w-12 h-12 text-2xl lg:(w-14 h-14)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="w-full h-full fill-current">
+          <title>Craig Erskine</title>
+          <g fill-rule="evenodd">
+            <path d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" opacity=".25"></path><path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
+          </g>
+        </svg>
+      </div>
+    </a>
+  {%- endif %}
+  <div class="ml-auto relative">
+    <button
+      @click.prevent.stop="menu = !menu"
+      x-ref="button"
+      @click="toggle()"
+      :aria-pressed="open"
+      :aria-expanded="open"
+      :aria-controls="$id('nav-dropdown')"
+      class="group w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))"
+    >
+      <span class="sr-only">Menu</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-4 h-4 fill-current pointer-events-none">
+        <rect width="9" height="2" y="7" rx="1" class="origin-center -translate-y-[5px] translate-x-[7px] group-[[aria-pressed=true]]:(translate-x-0 translate-y-0 rotate-[315deg]) motion-safe:(transition-all duration-300)" />
+        <rect width="16" height="2" y="7" rx="1" class="origin-center group-[[aria-pressed=true]]:(rotate-45) motion-safe:(transition-all duration-300)" />
+        <rect width="9" height="2" y="7" rx="1" class="origin-center translate-y-[5px] group-[[aria-pressed=true]]:(translate-y-0 rotate-[135deg]) motion-safe:(transition-all duration-300)" />
+      </svg>
+    </button>
+    <ul
+      x-ref="panel"
+      x-show="open"
+      x-transition:enter-start="opacity-0 blur-md -translate-y-2"
+      x-transition:enter-end="opacity-100 blur-0 translate-y-0"
+      x-transition:leave-start="opacity-100 blur-0 translate-y-0"
+      x-transition:leave-end="opacity-0 blur-md -translate-y-2"
+      @click.outside="close($refs.button)"
+      :id="$id('nav-dropdown')"
+      class="p-1.5 bg-gray-950 flex-(& col) gap-2 fixed top-20 inset-x-2 z-50 rounded-3xl shadow-lg motion-safe:(transition) md:(w-48 absolute top-full left-auto right-0) dark:(bg-gray-950)"
+    >
+      {%- for item in collections.all | eleventyNavigation %}
+      {%- if item.url === '/' and page.url === '/' %}
+      {%- else %}
+      <li class="nav-item text-xs font-semibold">
+        <a href="{{ item.url }}" class="h-10 px-3 text-white flex items-center gap-2 relative opacity-75 rounded-full motion-safe:(transition) hover:(bg-white/10 opacity-100) [&.active]:(bg-white/10 opacity-100) [&.active_b>b]:(w-full opacity-100){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+          <iconify-icon icon="{{ item.icon }}" width="24px" height="24px" class="flex-shrink-0 opacity-60"></iconify-icon>
+          <span class="flex-(& col 1)">
+            <small class="mb-px text-[11px] leading-none opacity-60">{{ item.title }}</small>
+            <span>{{ item.key }}</span>
+          </span>
+        </a>
+      </li>
+      {%- endif %}
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- if page.url == '/resume/' %}
+    <span class="flex"><button type="button" @click.prevent.stop="window.print();" class="w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Print"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify text-lg md:(text-2xl)"></iconify-icon></button></span>
+  {%- else %}
+    <span class="flex">
+      <button class="color-mode w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Toggle color mode">
+        <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
+        <span class="hidden dark:(block)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
+      </button>
+    </span>
+  {%- endif %}
+</nav>
+
+
+
+{# {%- set active -%}
   {%- for i in range(0, 2) -%}
     <b class="h-px bg-gradient-to-r from-transparent via-pri-500 to-transparent absolute inset-x-0 {% if i == 0 %}top{% else %}bottom{% endif %}-0 opacity-75"></b>
   {%- endfor -%}
@@ -23,7 +114,7 @@
         <a href="{{ item.url }}" class="py-2.5 px-1.5 flex relative{% if item.url == page.url or item.url in page.url %} text-pri-500{% endif %} motion-safe:(transition) hover:(text-pri-500) md:(px-2)"{% if item.url == page.url or item.url in page.url %} aria-current="page"{% endif %}>
           {{ item.key }}
           {%- if item.url == page.url or item.url in page.url %}
-            {#- other pages #}
+            <!-- other pages -->
             {{ active | safe -}}
           {%- endif %}
         </a>
@@ -40,4 +131,4 @@
       </li>
     {%- endif %}
   </ul>
-</nav>
+</nav> #}

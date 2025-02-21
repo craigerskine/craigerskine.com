@@ -1,8 +1,11 @@
 ---
 title: CV / Résumé
-eleventyNavigation:
-  key: Cv
-  order: 5
+eleventyComputed:
+  eleventyNavigation:
+    key: "{{ title }}"
+    title: Cv
+    icon: mdi:file-document-outline
+    order: 5
 ---
 
 {%- macro region(title='') -%}
