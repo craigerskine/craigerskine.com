@@ -79,9 +79,9 @@
     <span class="flex"><button type="button" @click.prevent.stop="window.print();" class="w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Print"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify text-lg md:(text-2xl)"></iconify-icon></button></span>
   {%- else %}
     <span class="flex">
-      <button class="color-mode w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Toggle color mode">
-        <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
-        <span class="hidden dark:(block)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
+      <button class="color-mode w-10 h-10 flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Toggle color mode">
+        <span class="flex dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
+        <span class="hidden dark:(flex)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
       </button>
     </span>
   {%- endif %}
