@@ -63,8 +63,8 @@
       {%- if item.url === '/' and page.url === '/' %}
       {%- else %}
       <li class="nav-item text-sm font-semibold">
-        <a href="{{ item.url }}" class="group h-10 px-1 text-white flex items-center gap-3 relative opacity-75 rounded-lg motion-safe:(transition) hover:(bg-white/10 opacity-100) [&.active]:(bg-white/10 opacity-100) [&.active_b>b]:(w-full opacity-100){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
-          <small class="border-(1 white/25) w-8 h-8 text-(white/75 xs) leading-none font-black flex items-center justify-center rounded-md motion-safe:(transition) group-hover:(border-transparent bg-white/10)">{{ item.title }}</small>
+        <a href="{{ item.url }}" class="group h-10 px-1 text-white flex items-center gap-3 relative rounded-lg motion-safe:(transition) hover:(bg-gray-200/20 dark:(bg-gray-500/30)) [&.active]:(bg-gray-200/20 dark:(bg-gray-500/30)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+          <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) rounded-md group-hover:text-white">{{ item.title }}</small>
           <span>{{ item.key }}</span>
         </a>
       </li>
