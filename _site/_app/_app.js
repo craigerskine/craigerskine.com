@@ -90,6 +90,7 @@ install({
 injectGlobal`
   @layer base {
     body { @apply !block; }
+    :focus-visible { @apply outline-(& 2 solid current) outline-offset-1; }
     .media-dvd,.media-ps2,.media-wii,.media-gcn,.media-xb,.media-xb360 { padding: 7px 8px 7px 0; width: 110px; height: 154px; }
     .media-cd { padding: 2px 4px 2px 12px; width: 112px; height: 102px; }
     .media-cd-tl { padding: 2px 4px 2px 12px; width: 112px; height: 156px; }

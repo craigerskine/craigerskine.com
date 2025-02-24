@@ -21,23 +21,35 @@ eleventyComputed:
   {%- endcall %}
 </article>
 <nav class="mx-auto pt-6 px-4 max-w-7xl flex relative lg:px-8" role="navigation" aria-label="Work types">
-  <ul class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner" role="tablist">
+  <ul
+    @keydown.right.prevent.stop="$focus.wrap().next()"
+    @keydown.home.prevent.stop="$focus.first()"
+    @keydown.page-up.prevent.stop="$focus.first()"
+    @keydown.left.prevent.stop="$focus.wrap().prev()"
+    @keydown.end.prevent.stop="$focus.last()"
+    @keydown.page-down.prevent.stop="$focus.last()"
+    class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner"
+    role="tablist"
+  >
     <template x-for="(item, index) in workTypes" hidden>
       <li role="presentation">
-        <a
-          href="#"
-          @click.prevent.stop="workActive = index"
-          class="py-3 px-6 text-sm leading-none font-semibold uppercase block rounded-full motion-safe:(transition)"
+        <button
+          x-text="item"
+          @click="workActive = index"
+          @focus="workActive = index"
+          :id="'tab-work-type-'+ index"
+          :tabindex="workActive === index ? 0 : -1"
+          :aria-selected="workActive === index"
           :class="workActive === index ? 'bg-white/90 dark:bg-black/50 dark:ring-1 dark:ring-gray-500/25' : 'hover:text-gray-500'"
+          class="py-3 px-6 text-sm leading-none font-semibold uppercase block rounded-full motion-safe:(transition)"
           role="tab"
-          :aria-expanded="workActive === index"
-          x-text="item"></a>
+          ></button>
       </li>
     </template>
   </ul>
 </nav>
 <div class="pb-16 relative">
-  <section x-show="workActive == 0" id="panel-work-ill" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel"
+  <section x-show="workActive === 0" id="panel-work-ill" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" aria-labelledby="tab-work-type-0"
     x-transition:enter="absolute top-0 inset-x-0"
     x-transition:enter-start="opacity-0 scale-110 blur-lg"
     x-transition:enter-end="opacity-100 scale-100"
@@ -55,7 +67,7 @@ eleventyComputed:
     {%- endif %}
     {%- endfor %}
   </section>
-  <section x-show="workActive == 1" id="panel-work-web" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel"
+  <section x-show="workActive === 1" id="panel-work-web" class="py-12 flex justify-center gap-5 overflow-hidden motion-safe:(transition duration-500 ease-in-out) sm:gap-8" role="tabpanel" aria-labelledby="tab-work-type-1"
     x-transition:enter="absolute top-0 inset-x-0"
     x-transition:enter-start="opacity-0 scale-90 blur-lg"
     x-transition:enter-end="opacity-100 scale-100"
