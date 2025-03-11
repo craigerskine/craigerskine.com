@@ -13,7 +13,15 @@ hardware:
       - 2021
       - Custom 6
       - Fishman Fluence
-    url: https://craigerskine.com/ux/proto-kiesel-itemization/
+    url: https://kieselguitars.com/series/guitar/vader
+
+  - type: Guitar
+    name: Kiesel › Zeus
+    sub:
+      - Custom 6
+      - Multiscale
+      - Onyx + white
+    url: https://kieselguitars.com/series/guitar/z2
 
   - type: Guitar
     name: .strandberg* › Boden
