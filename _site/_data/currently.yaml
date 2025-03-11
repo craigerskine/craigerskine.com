@@ -12,6 +12,11 @@
 # psv: 170x216
 # psp: 168x260
 playing:
+  - title: 'Monster Hunter: Wilds'
+    sub: PS5
+    media: ps5
+    url: https://amazon.com/dp/B0DHX2V7TX?tag=qrayg-20
+
   - title: 'Ys X: Nordics'
     sub: Switch
     media: switch
@@ -21,11 +26,6 @@ playing:
     sub: Switch
     media: switch
     url: https://amazon.com/dp/B0D71SHR5B?tag=qrayg-20
-
-  - title: 'The Legend of Zelda: Echoes of Wisdom'
-    sub: Switch
-    media: switch
-    url: https://amazon.com/dp/B0D8SDKKVW?tag=qrayg-20
 
 listening:
   - title: Solveig
