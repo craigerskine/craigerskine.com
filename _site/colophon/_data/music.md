@@ -73,6 +73,7 @@ hardware:
     sub:
       - McRocklin Suite
       - HyperRig Kiesel
+      - Nutcracker
     url: https://polychromedsp.com/
 
   - type: Plugin
