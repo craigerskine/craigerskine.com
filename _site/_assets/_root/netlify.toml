@@ -1,0 +1,57 @@
+[[redirects]]
+  from = "http://solardreamstudios.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://solardreamstudios.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.solardreamstudios.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.solardreamstudios.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://solarpoweredsun.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://solarpoweredsun.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.solarpoweredsun.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.solarpoweredsun.com/*"
+  to = "https://craigerskine.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cv"
+  to = "/resume/"
+  status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/404/"
+  status = 404
