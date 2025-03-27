@@ -117,7 +117,9 @@ eleventyComputed:
 >
   <div class="dialog-box w-11/12 max-w-xl max-h-[calc(100vh-5em)] bg-gray-200 text-(gray-900) col-start-1 row-start-1 overflow-y-auto [overscroll-behavior:contain] translate-y-3 rounded-3xl shadow-2xl scale-90 motion-safe:(transition-all)">
     <form method="dialog" class="absolute top-2 right-2"><button class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center shadow rounded-full ring-(inset 2 gray-50)"><iconify-icon icon="fa6-solid:xmark"></iconify-icon> <span class="sr-only">Close</span></button></form>
-    <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full aspect-[4/3] bg-(cover top) object-(cover top) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
+    <template x-if="workData.title" hidden>
+      <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full aspect-[4/3] bg-(cover top) object-(cover top) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
+    </template>
     <div class="py-6 px-8 relative">
       <div class="flex-(& col) gap-1">
         <p x-text="workData.title" class="text-2xl font-black flex-1 lg:(text-4xl tracking-tight)"></p>
