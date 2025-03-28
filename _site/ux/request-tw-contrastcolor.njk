@@ -17,7 +17,7 @@ tech:
     ico: mdi:jquery
 ico: mdi:jquery
 color: red
-date: 0003-01-01
+date: 0004-01-01
 ---
 <!doctype html>
 <html lang="en" class="bg-gray-900" hidden>
@@ -54,10 +54,10 @@ date: 0003-01-01
     if(target === undefined){ target = this; }
     var bg = $(this).css('background-color');
     // use first opaque parent bg if element is transparent
-    if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)'){ 
+    if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)'){
       $(this).parents().each(function(){
         bg = $(this).css('background-color')
-        if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false; 
+        if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false;
       });
       // exit if all parents are transparent
       if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') return false;
@@ -169,10 +169,10 @@ $(function(){
           if(target === undefined){ target = this; }
           var bg = $(this).css('background-color');
           // use first opaque parent bg if element is transparent
-          if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)'){ 
+          if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)'){
             $(this).parents().each(function(){
               bg = $(this).css('background-color')
-              if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false; 
+              if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false;
             });
             // exit if all parents are transparent
             if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') return false;

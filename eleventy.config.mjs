@@ -20,6 +20,7 @@ export default function (eleventyConfig) {
     '_site/_assets/css': '_assets/css',
     '_site/_assets/font': '_assets/font',
     '_site/_assets/qnx': '_assets/qnx',
+    '_site/_assets/twitch': '_assets/twitch',
     '_site/_assets/_root': './',
   });
 

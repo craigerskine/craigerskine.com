@@ -14,7 +14,7 @@ tech:
     ico: simple-icons:alpinedotjs
 ico: mdi:selection-search
 color: gray
-date: 0013-01-01
+date: 0014-01-01
 ---
 <!doctype html>
 <html lang="en" class="bg-transparent antialiased" x-data="app">
@@ -46,7 +46,7 @@ date: 0013-01-01
           draggedItemTransfer: null,
           initialOrder: null,
           status: '',
-  
+
           // dnd
           dragStart(index, event) {
             this.activeIndex = index;
@@ -65,7 +65,7 @@ date: 0013-01-01
             this.draggedItemTransfer = null;
             document.activeElement.blur();
           },
-  
+
           // keyboard
           startReorder(index) {
             this.activeIndex = index;
@@ -129,7 +129,7 @@ date: 0013-01-01
               this.announceChange('Reorder cancelled', true);
             }
           },
-  
+
           // a11y
           announceChange(message, timeout) {
             this.status = message;
