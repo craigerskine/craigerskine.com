@@ -41,49 +41,35 @@ date: 0012-01-01
   <body class="bg-white text-(gray-700 [10px]) !block" style="display: none;">
     <div id="app" class="p-4 min-h-screen flex-(& col)" x-cloak>
       <header class="flex-none">
-        <h1 class="pb-4 text-(xl center) font-black">{{ calendar.year }}</h1>
+        <h1 class="pb-4 text-(xl center) font-black" x-text="year"></h1>
       </header>
       <main class="flex-(& 1)">
-        <section class="w-full grid-(& cols-12) gap-2">
-          {%- for month, days in calendar.grid %}
+        <section class="w-full [font-variant-numeric:tabular-nums] grid-(& cols-12) gap-2">
+          <template x-for="(days, month) in grid" hidden>
             <ul class="h-full flex-(& col)">
               <li class="h-full flex-(& col)">
-                <h2 class="border-(b gray-700/50) text-center uppercase font-black flex-none">{{ month }}</h2>
+                <h2 class="border-(b gray-700/50) text-center uppercase font-black flex-none" x-text="month"></h2>
                 <ul class="flex-1 grid-(& flow-row)">
-                  {%- for day in days %}
-                    <li class="px-2 border-(b gray-700/50) flex items-center{{ ' bg-gray-500/20' if (day.weekday === 'Sat' or day.weekday === 'Sun') }}">
-                      <strong class="w-4 font-semibold flex-none">{{ day.day }}</strong>
-                      <small class="flex-1">{{ day.weekday.substring(0, 1) }}</small>
+                  <template x-for="(day, index) in days" hidden>
+                    <li
+                      class="px-2 border-(b gray-700/50) flex items-center relative"
+                      :class="{ 'bg-gray-500/20': day.weekday && ['Sat', 'Sun'].includes(day.weekday) }"
+                    >
+                      <template x-if="day.day" hidden><strong class="w-4 font-semibold flex-none" x-text="day.day"></strong></template>
+                      <template x-if="day.weekday" hidden><small class="flex-1" x-text="day.weekday.substring(0, 1)"></small></template>
+                      <template x-if="!day.day" hidden><span class="opacity-50">&#10005;</span></template>
                     </li>
-                    {# 30 day month #}
-                    {%- if loop.last and loop.index === 30 %}
-                      {{ blank() }}
-                    {%- endif %}
-                    {# feb - leap year #}
-                    {%- if loop.last and loop.index === 29 %}
-                      {{ blank() }}
-                      {{ blank() }}
-                    {%- endif %}
-                    {# feb - normal #}
-                    {%- if loop.last and loop.index === 28 %}
-                      {{ blank() }}
-                      {{ blank() }}
-                      {{ blank() }}
-                    {%- endif %}
-                  {%- endfor %}
+                  </template>
                 </ul>
               </li>
             </ul>
-          {%- endfor %}
+          </template>
         </section>
       </main>
     </div>
     <script type="module">
       // icons
       import 'https://esm.run/iconify-icon';
-
-      // alpine
-      import Alpine from 'https://esm.run/alpinejs';
 
       // twind
       import { install, injectGlobal } from 'https://esm.run/@twind/core';
@@ -114,6 +100,55 @@ date: 0012-01-01
           [x-cloak] { @apply hidden; }
         }
       `
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          grid: {},
+          year: null,
+          init() {
+            const year = new Date().getFullYear();
+            this.year = year;
+            const startDate = new Date(year, 0, 1);
+            const endDate = new Date(year, 11, 31);
+            let current = new Date(startDate);
+
+            while (current <= endDate) {
+              const month = current.toLocaleString('default', { month: 'short' });
+              if (!this.grid[month]) this.grid[month] = [];
+              const numericDay = current.getDate();
+              const shortWeekdayName = current.toLocaleDateString('en-US', { weekday: 'short' });
+              this.grid[month].push({
+                date: new Date(current),
+                day: numericDay,
+                weekday: shortWeekdayName,
+              });
+              current.setDate(current.getDate() + 1);
+            }
+
+            // pad each month to 31 if needed
+            for (const month in this.grid) {
+              const days = this.grid[month];
+              const count = days.length;
+              // feb in a leap year
+              if (month === 'Feb' && count === 29) {
+                this.grid[month].push({}, {});
+              }
+              // feb in a normal year
+              else if (month === 'Feb' && count === 28) {
+                this.grid[month].push({}, {}, {});
+              }
+              // 30-day months
+              else if (count === 30) {
+                this.grid[month].push({});
+              }
+            }
+          },
+        }));
+      });
+      window.Alpine = Alpine;
+      Alpine.start();
     </script>
   </body>
 
