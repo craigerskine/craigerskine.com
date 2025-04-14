@@ -40,8 +40,10 @@ date: 0012-01-01
 
   <body class="bg-white text-(gray-700 [10px]) !block" style="display: none;">
     <div id="app" class="p-4 min-h-screen flex-(& col)" x-cloak>
-      <header class="flex-none">
-        <h1 class="pb-4 text-(xl center) font-black" x-text="year"></h1>
+      <header class="pb-4 flex-(& none) items-center justify-center gap-4">
+        <button @click="setYear(year - 1)" class="p-1 text-xl flex items-center justify-center opacity-50 transition hover:(opacity-100) print:hidden"><iconify-icon icon="mdi:arrow-left-circle-outline" class="iconify"></iconify-icon></button>
+        <h1 class="text-xl font-black" x-text="year"></h1>
+        <button @click="setYear(year + 1)" class="p-1 text-xl flex items-center justify-center opacity-50 transition hover:(opacity-100) print:hidden"><iconify-icon icon="mdi:arrow-right-circle-outline" class="iconify"></iconify-icon></button>
       </header>
       <main class="flex-(& 1)">
         <section class="w-full [font-variant-numeric:tabular-nums] grid-(& cols-12) gap-2">
@@ -108,8 +110,19 @@ date: 0012-01-01
           grid: {},
           year: null,
           init() {
-            const year = new Date().getFullYear();
+            const hashYear = parseInt(window.location.hash.replace('#', ''));
+            const currentYear = new Date().getFullYear();
+            const year = !isNaN(hashYear) ? hashYear : currentYear;
+            this.setYear(year);
+            window.addEventListener('hashchange', () => {
+              const newHash = parseInt(window.location.hash.replace('#', ''));
+              if (!isNaN(newHash)) this.setYear(newHash);
+            });
+          },
+          setYear(year) {
             this.year = year;
+            window.location.hash = year;
+            this.grid = {};
             const startDate = new Date(year, 0, 1);
             const endDate = new Date(year, 11, 31);
             let current = new Date(startDate);
@@ -131,20 +144,11 @@ date: 0012-01-01
             for (const month in this.grid) {
               const days = this.grid[month];
               const count = days.length;
-              // feb in a leap year
-              if (month === 'Feb' && count === 29) {
-                this.grid[month].push({}, {});
-              }
-              // feb in a normal year
-              else if (month === 'Feb' && count === 28) {
-                this.grid[month].push({}, {}, {});
-              }
-              // 30-day months
-              else if (count === 30) {
-                this.grid[month].push({});
-              }
+              if (month === 'Feb' && count === 29) this.grid[month].push({}, {});
+              else if (month === 'Feb' && count === 28) this.grid[month].push({}, {}, {});
+              else if (count === 30) this.grid[month].push({});
             }
-          },
+          }
         }));
       });
       window.Alpine = Alpine;
