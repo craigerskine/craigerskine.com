@@ -27,28 +27,30 @@ date: 0012-01-01
     <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <style>
       @media print {
         @page {
           margin: 0;
           padding: 1em;
+          size: landscape;
         }
       }
     </style>
   </head>
 
-  <body class="bg-white text-(gray-700 [10px]) !block" style="display: none;">
+  <body class="bg-white text-(gray-700 [10px]) !block" @keydown.left.window="setYear(year - 1)" @keydown.right.window="setYear(year + 1)" style="display: none;">
     <div id="app" class="p-4 min-h-screen flex-(& col)" x-cloak>
       <header class="pb-4 flex-(& none) items-center justify-center gap-4">
-        <button @click="setYear(year - 1)" class="p-1 text-xl flex items-center justify-center opacity-50 transition hover:(opacity-100) print:hidden"><iconify-icon icon="mdi:arrow-left-circle-outline" class="iconify"></iconify-icon></button>
-        <h1 class="text-xl font-black" x-text="year"></h1>
-        <button @click="setYear(year + 1)" class="p-1 text-xl flex items-center justify-center opacity-50 transition hover:(opacity-100) print:hidden"><iconify-icon icon="mdi:arrow-right-circle-outline" class="iconify"></iconify-icon></button>
+        <h1 class="text-xl font-black [font-variant-numeric:tabular-nums]" x-text="year"></h1>
+        <button @click="setYear(year - 1)" class="btn-circle order-first" aria-label="Previous year"><iconify-icon icon="mdi:arrow-left" class="iconify"></iconify-icon></button>
+        <button @click="setYear(year + 1)" class="btn-circle" aria-label="Next year"><iconify-icon icon="mdi:arrow-right" class="iconify"></iconify-icon></button>
+        <button @click.prevent="setYear(new Date().getFullYear())" class="btn-circle fixed right-4" aria-label="Reset to this year"><iconify-icon icon="mdi:restore" class="iconify"></iconify-icon></button>
       </header>
       <main class="flex-(& 1)">
         <section class="w-full [font-variant-numeric:tabular-nums] grid-(& cols-12) gap-2">
           <template x-for="(days, month) in grid" hidden>
-            <ul class="h-full flex-(& col)">
+            <ul class="h-full flex-(& col) relative [&:not(:last-child)]:(after:(w-px h-full bg-gray-700/50 absolute -right-1 inset-y-0 content-['']))">
               <li class="h-full flex-(& col)">
                 <h2 class="border-(b gray-700/50) text-center uppercase font-black flex-none" x-text="month"></h2>
                 <ul class="flex-1 grid-(& flow-row)">
@@ -98,8 +100,9 @@ date: 0012-01-01
       // global css
       injectGlobal`
         @layer base {
-          hr { @apply border-gray-500/25; }
           [x-cloak] { @apply hidden; }
+          hr { @apply border-gray-500/25; }
+          .btn-circle { @apply border-(2 transparent) w-8 h-8 text-(gray-500 xl) flex items-center justify-center rounded-full transition hover:(border-current text-current) focus-visible:(text-current outline-(& 2 current offset-1)) print:hidden; }
         }
       `
 
@@ -140,13 +143,12 @@ date: 0012-01-01
               current.setDate(current.getDate() + 1);
             }
 
-            // pad each month to 31 if needed
-            for (const month in this.grid) {
-              const days = this.grid[month];
-              const count = days.length;
-              if (month === 'Feb' && count === 29) this.grid[month].push({}, {});
-              else if (month === 'Feb' && count === 28) this.grid[month].push({}, {}, {});
-              else if (count === 30) this.grid[month].push({});
+            // pad each month to 31 days
+            for (const days of Object.values(this.grid)) {
+              const padCount = 31 - days.length;
+              if (padCount > 0) {
+                days.push(...Array(padCount).fill({}));
+              }
             }
           }
         }));
