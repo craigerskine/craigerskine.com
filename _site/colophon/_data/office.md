@@ -29,10 +29,17 @@ hardware:
     url: https://amazon.com/dp/B07MYW4Q8S?tag=qrayg-20
 
   - type: Headphones
-    name: Bowers & Wilkins › PX-7
+    name: Beats › Studio Pro
     sub:
       - Over Ear
-    url: https://amazon.com/dp/B07WK6SGZC?tag=qrayg-20
+      - Black
+    url: https://amazon.com/dp/B0C8PR4W22?tag=qrayg-20
+
+  # - type: Headphones
+  #   name: Bowers & Wilkins › PX-7
+  #   sub:
+  #     - Over Ear
+  #   url: https://amazon.com/dp/B07WK6SGZC?tag=qrayg-20
 
   - type: Cam
     name: Insta360 › Link
