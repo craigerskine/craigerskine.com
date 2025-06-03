@@ -89,6 +89,7 @@ install({
 
 injectGlobal`
   @layer base {
+    [x-cloak] { @apply hidden; }
     body { @apply !block; }
     :focus-visible { @apply outline-(& 2 solid current) outline-offset-1; }
     .media-dvd,.media-ps2,.media-wii,.media-gcn,.media-xb,.media-xb360 { padding: 7px 8px 7px 0; width: 110px; height: 154px; }
@@ -103,13 +104,38 @@ injectGlobal`
     .media-ps3 { padding: 14px 4px 4px 0; width: 110px; height: 134px; }
     .media-psv { padding: 5px 5px 5px 0; width: 90px; height: 118px; }
     .media-psp { padding: 4px 4px 4px 0; width: 88px; height: 138px; }
-    [x-cloak] { @apply hidden; }
+    .tippy-box[data-state="hidden"] { @apply opacity-0 translate-y-1; }
+    [data-tippy-root] { @apply max-w-[calc(100vw-10px)]; }
+    .tippy-box { @apply bg-black text-(white xs) font-normal relative outline-0 opacity-100 rounded shadow-[0_0_0_1px_currentColor] translate-y-0 motion-safe:(transition duration-75); }
+    .tippy-box[data-placement^="top"] > .tippy-arrow { @apply [filter:drop-shadow(0_1px_0_white)] bottom-0 before:(bottom-[-7px] left-0 border-(t-[8px] r-[8px] b-0 l-[8px] t-[initial])) origin-top; }
+    .tippy-box[data-placement^="bottom"] > .tippy-arrow { @apply [filter:drop-shadow(0_-1px_0_white)] top-0 before:(top-[-7px] left-0 border-(t-0 r-[8px] b-[8px] l-[8px] b-[initial])) origin-bottom; }
+    .tippy-box[data-placement^="left"] > .tippy-arrow {@apply [filter:drop-shadow(1px_0_0_white)] right-0 before:(right-[-7px] border-(t-[8px] r-0 b-[8px] l-[8px] l-[initial])) origin-left; }
+    .tippy-box[data-placement^="right"] > .tippy-arrow { @apply [filter:drop-shadow(-1px_0_0_white)] left-0 before:(left-[-7px] border-(t-[8px] r-[8px] b-[8px] l-0 r-[initial]) origin-right); }
+    .tippy-arrow { @apply w-4 h-4 text-black absolute before:(content-[''] absolute border-(transparent solid)); }
+    .tippy-content { @apply py-1.5 px-3 relative z-[1]; }
   }
 `;
 
 // alpinejs
 import Alpine from 'alpinejs';
 import focus from '@alpinejs/focus';
+import tippy from 'tippy.js';
+document.addEventListener('alpine:init', () => {
+  // tooltip
+  // magic: $tooltip
+  Alpine.magic('tooltip', el => message => {
+    let instance = tippy(el, { content: message, trigger: 'manual' })
+    instance.show()
+    setTimeout(() => {
+      instance.hide()
+      setTimeout(() => instance.destroy(), 150)
+    }, 2000)
+  });
+  // directive: x-tooltip
+  Alpine.directive('tooltip', (el, { expression }, { evaluate }) => {
+    tippy(el, { content: evaluate(expression) })
+  });
+});
 Alpine.plugin(focus);
 window.Alpine = Alpine;
 Alpine.start();

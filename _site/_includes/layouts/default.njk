@@ -1,20 +1,14 @@
 {%- from 'components/heading.njk' import heading -%}
 {%- from 'components/social.njk' import social -%}
-{%- from 'components/tooltip.njk' import tooltip -%}
 {%- from 'components/ui-grunge.njk' import grunge -%}
 
 {%- macro media(data=[], category='games') -%}
 {%- for item in data %}
 <li class="flex-1 justify-center {% if loop.index == 3 %}hidden xs:(flex){% else %}flex{% endif %}">
-  <a href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
+  <a x-tooltip="'{{ item.sub if category == 'music' }}{{ ': '+ item.title if category == 'music' else item.title }}'" href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
     <div class="flex w-full">
       <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
       <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
-      {%- call tooltip(as='div') %}
-        {%- if category == 'music' %}<small class="pb-px font-semibold leading-none block opacity-75">{{ item.sub }}:</small>{%- endif %}
-        {{ item.title }}
-        {%- if category == 'games' %}<small class="pt-px font-semibold leading-none block opacity-75">{{ item.sub }}</small>{%- endif %}
-      {%- endcall %}
     </div>
   </a>
 </li>
@@ -133,11 +127,8 @@
             <ul class="p-2 flex items-center gap-x-4 md:(gap-x-6)">
               {%- for nav in site.tech %}
               <li>
-                <a href="{{ nav.url }}" class="group block relative motion-safe:(transition) hover:(text-pri-500)">
-                  {%- call tooltip() %}
-                    {{ nav.sub }}: {{ nav.title }}
-                  {%- endcall %}
-                  <iconify-icon icon="{{ nav.ico }}" inline="false" class="text-2xl"></iconify-icon>
+                <a x-tooltip="'{{ nav.sub }}: {{ nav.title }}'" href="{{ nav.url }}" class="group block relative motion-safe:(transition) hover:(text-pri-500)">
+                  <iconify-icon icon="{{ nav.ico }}" width="1rem" height="1rem"></iconify-icon>
                 </a>
               </li>
               {%- endfor %}
