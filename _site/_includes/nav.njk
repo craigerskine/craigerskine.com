@@ -32,6 +32,21 @@
     </a>
   {%- endif %}
   <div class="ml-auto relative">
+
+    {%- if page.url !== '/resume/' %}
+    <ul class="hidden lg:(flex gap-3)">
+      {%- for item in collections.all | eleventyNavigation %}
+      {%- if item.url !== '/' %}
+      <li class="nav-item text-sm font-semibold">
+        <a href="{{ item.url }}" class="group py-1.5 px-3 relative rounded-lg motion-safe:(transition) hover:(bg-gray-500/10 dark:(bg-gray-500/30)) [&.active]:(bg-gray-500/10 dark:(bg-gray-500/30)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+          <span>{{ item.key }}</span>
+        </a>
+      </li>
+      {%- endif %}
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+
     <button
       @click.prevent.stop="menu = !menu"
       x-ref="button"
@@ -39,7 +54,7 @@
       :aria-pressed="open"
       :aria-expanded="open"
       :aria-controls="$id('nav-dropdown')"
-      class="group w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))"
+      class="group w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0)){% if page.url !== '/resume/' %} lg:hidden{% endif %}"
     >
       <span class="sr-only">Menu</span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-4 h-4 fill-current pointer-events-none">
@@ -57,7 +72,7 @@
       x-transition:leave-end="opacity-0 blur-md -translate-y-2"
       @click.outside="close($refs.button)"
       :id="$id('nav-dropdown')"
-      class="p-1.5 bg-gray-950 flex-(& col) gap-2 fixed top-20 inset-x-2 z-50 rounded-xl shadow-lg motion-safe:(transition) md:(w-48 absolute top-full left-auto right-0) dark:(bg-gray-950)"
+      class="p-1.5 bg-gray-950 flex-(& col) gap-2 fixed top-20 inset-x-2 z-50 rounded-xl shadow-lg motion-safe:(transition) md:(w-48 absolute top-full left-auto right-0) {% if page.url !== '/resume/' %} lg:hidden{% endif %} dark:(bg-gray-950)"
     >
       {%- for item in collections.all | eleventyNavigation %}
       {%- if item.url === '/' and page.url === '/' %}

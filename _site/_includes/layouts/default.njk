@@ -2,19 +2,6 @@
 {%- from 'components/social.njk' import social -%}
 {%- from 'components/ui-grunge.njk' import grunge -%}
 
-{%- macro media(data=[], category='games') -%}
-{%- for item in data %}
-<li class="flex-1 justify-center {% if loop.index == 3 %}hidden xs:(flex){% else %}flex{% endif %}">
-  <a x-tooltip="'{{ item.sub if category == 'music' }}{{ ': '+ item.title if category == 'music' else item.title }}'" href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
-    <div class="flex w-full">
-      <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
-      <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
-    </div>
-  </a>
-</li>
-{%- endfor %}
-{%- endmacro -%}
-
 <!doctype html>
 <html lang="en" class="antialiased [&:has(:is(dialog[open]))]:(overflow-hidden [scrollbar-gutter:stable])" x-data="{% renderblock 'data' -%}" {% if page.url == '/' %}@work-modal.window="workData = $event.detail.data" {% endif %}x-cloak>
 
@@ -71,6 +58,20 @@
         </main>
       </div>
       <div class="h-72" aria-hidden="true"></div>
+
+{%- macro media(data=[], category='games') -%}
+{%- for item in data %}
+<li class="flex-1 justify-center {% if loop.index == 3 %}hidden xs:(flex){% else %}flex{% endif %}">
+  <a x-tooltip="'{{ item.sub if category == 'music' }}{{ ': '+ item.title if category == 'music' else item.title }}'" href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
+    <div class="flex w-full">
+      <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
+      <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
+    </div>
+  </a>
+</li>
+{%- endfor %}
+{%- endmacro -%}
+
       <footer class="w-full bg-(paper gray-100) flex-none relative z-10">
         {{ grunge(pos='bot') }}
         <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
