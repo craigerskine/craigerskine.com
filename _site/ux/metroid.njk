@@ -39,6 +39,7 @@ date: 0017-01-01
         --font-mono: 'NARPASSWORD00000 fixed.width', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       }
       @layer base {
+        [x-cloak] { display: none; }
         h2 { @apply text-(--color-warning) mb-6 pb-2 border-b border-current/30; }
         img { @apply transition; }
         label { @apply relative transition; }
@@ -57,22 +58,15 @@ date: 0017-01-01
         </hgroup>
       </header>
 
-      <main class="w-full space-y-12 grow">
+      <main class="pb-12 w-full space-y-12 grow">
 
         <!-- password -->
         <header class="text-info text-xl flex justify-center normal-case sm:text-2xl md:text-4xl">
-          <!--
-            <span class="p-4 pt-6 bg-neutral-800 inline-grid grid-cols-2 justify-center gap-4">
-              <template x-for="(line, lineIndex) in password" :key="lineIndex" hidden>
-                <span><template x-for="(char, charIndex) in line.split('')" :key="charIndex" hidden><span x-text="char"></span></template></span>
-              </template>
-            </span>
-          -->
-            <textarea
-              class="appearance-none border-0 w-fit text-center resize-none selection:bg-sky-300 selection:text-sky-900 focus-visible:outline-none"
-              readonly
-              :value="maskedPassword"
-              @click="$event.target.select()"></textarea>
+          <textarea
+            class="appearance-none border-0 w-fit text-center resize-none selection:bg-sky-300 selection:text-sky-900 focus-visible:outline-none"
+            readonly
+            :value="maskedPassword"
+            @mouseup="$el.select()"></textarea>
         </header>
 
         <div class="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-3">
