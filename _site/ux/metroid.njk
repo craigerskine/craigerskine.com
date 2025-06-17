@@ -43,7 +43,7 @@ date: 0017-01-01
         h2 { @apply text-(--color-warning) mb-6 pb-2 border-b border-current/30; }
         img { @apply transition; }
         label { @apply relative transition; }
-        input[type=checkbox] { @apply cursor-pointer appearance-none border-0 absolute inset-0 z-10 focus-visible:outline-offset-1 focus-visible:outline-2 focus-visible:outline-(--color-primary); }
+        input[type=checkbox] { @apply cursor-pointer appearance-none border-0 absolute inset-0 z-10 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-current; }
       }
     </style>
   </head>
@@ -69,95 +69,89 @@ date: 0017-01-01
             @mouseup="$el.select()"></textarea>
         </header>
 
-        <div class="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div class="container mx-auto flex flex-wrap justify-center gap-8">
 
-          <div class="flex flex-col gap-8 lg:flex-row">
-            <!-- start in -->
-            <section class="lg:grow">
-              <h2>Start In</h2>
-              <div class="text-sm flex flex-col gap-2.5">
-                <label class="label text-white leading-none whitespace-normal opacity-50 [&:has(:checked)]:opacity-100"><input type="radio" class="hidden" name="start" value="brinstar" x-model="startLocation" @change="updatePassword()" />Brinstar</label>
-                <label class="label text-white leading-none whitespace-normal opacity-50 [&:has(:checked)]:opacity-100"><input type="radio" class="hidden" name="start" value="norfair" x-model="startLocation" @change="updatePassword()" />Norfair</label>
-                <label class="label text-white leading-none whitespace-normal opacity-50 [&:has(:checked)]:opacity-100"><input type="radio" class="hidden" name="start" value="kraidsLair" x-model="startLocation" @change="updatePassword()" />Kraid's Lair</label>
-                <label class="label text-white leading-none whitespace-normal opacity-50 [&:has(:checked)]:opacity-100"><input type="radio" class="hidden" name="start" value="ridleysLair" x-model="startLocation" @change="updatePassword()" />Ridley's Lair</label>
-                <label class="label text-white leading-none whitespace-normal opacity-50 [&:has(:checked)]:opacity-100"><input type="radio" class="hidden" name="start" value="tourian" x-model="startLocation" @change="updatePassword()" />Tourian</label>
-              </div>
-            </section>
+          <!-- start in -->
+          <section>
+            <h2>Start In</h2>
+            <div class="text-sm flex flex-col gap-2.5">
+              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="brinstar" x-model="startLocation" @change="updatePassword()" aria-label="Brinstar" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="norfair" x-model="startLocation" @change="updatePassword()" aria-label="Norfair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="kraidsLair" x-model="startLocation" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="ridleysLair" x-model="startLocation" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="tourian" x-model="startLocation" @change="updatePassword()" aria-label="Tourian" /></label>
+            </div>
+          </section>
 
-            <!-- suit -->
-            <section class="lg:shrink-0">
-              <h2>Suit</h2>
+          <!-- suit -->
+          <section class="lg:shrink-0">
+            <h2>Suit</h2>
+            <div class="flex flex-wrap justify-center gap-4">
               <label>
                 <input type="checkbox" x-model="options.swimsuit" @change="updatePassword()" title="Suit" />
                 <img src="/_assets/img/ux/metroid/samus.png" alt="Suit" :class="options.swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
               </label>
-            </section>
-          </div>
+            </div>
+          </section>
 
-          <div class="flex flex-col gap-8">
-            <!-- power-ups -->
-            <section>
-              <h2>Power-Ups</h2>
-              <div class="flex">
-                <div class="flex flex-wrap gap-4">
-                  <label>
-                    <input type="checkbox" x-model="options.morphBall" @change="updatePassword()" title="Morph Ball" />
-                    <img src="/_assets/img/ux/metroid/morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.bombs" @change="updatePassword()"  title="Bombs" />
-                    <img src="/_assets/img/ux/metroid/bombs.png" alt="Bombs" :class="options.bombs || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.highJump" @change="updatePassword()" title="High Jump" />
-                    <img src="/_assets/img/ux/metroid/high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.variaSuit" @change="updatePassword()" title="Varia Suit" />
-                    <img src="/_assets/img/ux/metroid/varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.screwAttack" @change="updatePassword()" title="Screw Attack" />
-                    <img src="/_assets/img/ux/metroid/screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-50'" class="w-8" />
-                  </label>
-                </div>
-              </div>
-            </section>
+          <!-- power-ups -->
+          <section>
+            <h2>Power-Ups</h2>
+            <div class="flex flex-wrap gap-4">
+              <label>
+                <input type="checkbox" x-model="options.morphBall" @change="updatePassword()" title="Morph Ball" />
+                <img src="/_assets/img/ux/metroid/morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.bombs" @change="updatePassword()"  title="Bombs" />
+                <img src="/_assets/img/ux/metroid/bombs.png" alt="Bombs" :class="options.bombs || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.highJump" @change="updatePassword()" title="High Jump" />
+                <img src="/_assets/img/ux/metroid/high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.variaSuit" @change="updatePassword()" title="Varia Suit" />
+                <img src="/_assets/img/ux/metroid/varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.screwAttack" @change="updatePassword()" title="Screw Attack" />
+                <img src="/_assets/img/ux/metroid/screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-50'" class="w-8" />
+              </label>
+            </div>
+          </section>
 
-            <!-- loadout -->
-            <section>
-              <h2>Loadout</h2>
-              <div class="flex">
-                <div class="flex flex-wrap gap-4">
-                  <label>
-                    <input type="checkbox" x-model="options.longBeam" @change="updatePassword()" title="Long Beam" />
-                    <img src="/_assets/img/ux/metroid/long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.iceBeam" @change="updatePassword()" title="Ice Beam" />
-                    <img src="/_assets/img/ux/metroid/ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.waveBeam" @change="updatePassword()" title="Wave Beam" />
-                    <img src="/_assets/img/ux/metroid/wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.missiles" @change="updatePassword()" title="All Missiles" />
-                    <img src="/_assets/img/ux/metroid/missile.png" alt="Missiles" :class="options.missiles || 'opacity-50'" class="w-8" />
-                  </label>
-                  <label>
-                    <input type="checkbox" x-model="options.energyTanks" @change="updatePassword()" title="All Energy Tanks" />
-                    <img src="/_assets/img/ux/metroid/etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-50'" class="w-8" />
-                  </label>
-                </div>
-              </div>
-            </section>
-          </div>
+          <!-- loadout -->
+          <section>
+            <h2>Loadout</h2>
+            <div class="flex flex-wrap gap-4">
+              <label>
+                <input type="checkbox" x-model="options.longBeam" @change="updatePassword()" title="Long Beam" />
+                <img src="/_assets/img/ux/metroid/long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.iceBeam" @change="updatePassword()" title="Ice Beam" />
+                <img src="/_assets/img/ux/metroid/ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.waveBeam" @change="updatePassword()" title="Wave Beam" />
+                <img src="/_assets/img/ux/metroid/wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.missiles" @change="updatePassword()" title="All Missiles" />
+                <img src="/_assets/img/ux/metroid/missile.png" alt="Missiles" :class="options.missiles || 'opacity-50'" class="w-8" />
+              </label>
+              <label>
+                <input type="checkbox" x-model="options.energyTanks" @change="updatePassword()" title="All Energy Tanks" />
+                <img src="/_assets/img/ux/metroid/etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-50'" class="w-8" />
+              </label>
+            </div>
+          </section>
 
           <!-- bosses -->
           <section>
             <h2>Bosses</h2>
-            <div class="flex flex-wrap items-end gap-4">
+            <div class="flex flex-wrap items-end justify-center gap-4">
               <label>
                 <input type="checkbox" x-model="bosses.kraid" @change="updatePassword()" title="Kraid" />
                 <img src="/_assets/img/ux/metroid/kraid.png" alt="Kraid" :class="bosses.kraid && 'opacity-50'" class="h-16" />
