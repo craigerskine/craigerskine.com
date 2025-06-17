@@ -44,6 +44,7 @@ date: 0017-01-01
         img { @apply transition; }
         label { @apply relative transition; }
         input[type=checkbox] { @apply cursor-pointer appearance-none border-0 absolute inset-0 z-10 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-current; }
+        .tippy-content { @apply text-xs; }
       }
     </style>
   </head>
@@ -75,11 +76,11 @@ date: 0017-01-01
           <section>
             <h2>Start In</h2>
             <div class="text-sm flex flex-col gap-2.5">
-              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="brinstar" x-model="startLocation" @change="updatePassword()" aria-label="Brinstar" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="norfair" x-model="startLocation" @change="updatePassword()" aria-label="Norfair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="kraidsLair" x-model="startLocation" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="ridleysLair" x-model="startLocation" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="tourian" x-model="startLocation" @change="updatePassword()" aria-label="Tourian" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="brinstar" x-model="startLocation" @change="updatePassword()" aria-label="Brinstar" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="norfair" x-model="startLocation" @change="updatePassword()" aria-label="Norfair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="kraidsLair" x-model="startLocation" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="ridleysLair" x-model="startLocation" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="tourian" x-model="startLocation" @change="updatePassword()" aria-label="Tourian" /></label>
             </div>
           </section>
 
@@ -100,23 +101,23 @@ date: 0017-01-01
             <div class="flex flex-wrap gap-4">
               <label>
                 <input type="checkbox" x-model="options.morphBall" @change="updatePassword()" title="Morph Ball" />
-                <img src="/_assets/img/ux/metroid/morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/power-morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.bombs" @change="updatePassword()"  title="Bombs" />
-                <img src="/_assets/img/ux/metroid/bombs.png" alt="Bombs" :class="options.bombs || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/power-bombs.png" alt="Bombs" :class="options.bombs || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.highJump" @change="updatePassword()" title="High Jump" />
-                <img src="/_assets/img/ux/metroid/high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/power-high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.variaSuit" @change="updatePassword()" title="Varia Suit" />
-                <img src="/_assets/img/ux/metroid/varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/power-varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.screwAttack" @change="updatePassword()" title="Screw Attack" />
-                <img src="/_assets/img/ux/metroid/screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/power-screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-70 grayscale'" class="w-8" />
               </label>
             </div>
           </section>
@@ -127,23 +128,23 @@ date: 0017-01-01
             <div class="flex flex-wrap gap-4">
               <label>
                 <input type="checkbox" x-model="options.longBeam" @change="updatePassword()" title="Long Beam" />
-                <img src="/_assets/img/ux/metroid/long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/loadout-long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.iceBeam" @change="updatePassword()" title="Ice Beam" />
-                <img src="/_assets/img/ux/metroid/ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/loadout-ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.waveBeam" @change="updatePassword()" title="Wave Beam" />
-                <img src="/_assets/img/ux/metroid/wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/loadout-wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.missiles" @change="updatePassword()" title="All Missiles" />
-                <img src="/_assets/img/ux/metroid/missile.png" alt="Missiles" :class="options.missiles || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/loadout-missile.png" alt="Missiles" :class="options.missiles || 'opacity-70 grayscale'" class="w-8" />
               </label>
               <label>
                 <input type="checkbox" x-model="options.energyTanks" @change="updatePassword()" title="All Energy Tanks" />
-                <img src="/_assets/img/ux/metroid/etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-50'" class="w-8" />
+                <img src="/_assets/img/ux/metroid/loadout-etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-70 grayscale'" class="w-8" />
               </label>
             </div>
           </section>
@@ -151,29 +152,46 @@ date: 0017-01-01
           <!-- bosses -->
           <section>
             <h2>Bosses</h2>
-            <div class="flex flex-wrap items-end justify-center gap-4">
-              <label>
-                <input type="checkbox" x-model="bosses.kraid" @change="updatePassword()" title="Kraid" />
-                <img src="/_assets/img/ux/metroid/kraid.png" alt="Kraid" :class="bosses.kraid && 'opacity-50'" class="h-16" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="bosses.ridley" @change="updatePassword()" title="Ridley" />
-                <img src="/_assets/img/ux/metroid/ridley.png" alt="Ridley" :class="bosses.ridley && 'opacity-50'" class="h-16" />
-              </label>
-              <div class="flex gap-1.5">
-                <template x-for="(z, i) in zebetites" :key="i" hidden>
-                  <label class="flex flex-col items-center">
-                    <input type="checkbox" :checked="z" @change="zebetites[i] = !zebetites[i]; updatePassword()" />
-                    <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4" />
-                    <img src="/_assets/img/ux/metroid/zebetite.png" :alt="'Zebetite '+ (i + 1)" class="h-8 transition-all" :class="zebetites[i] ? 'w-0' : 'w-full'" />
-                    <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4 [transform:scaleY(-1)]" />
-                  </label>
-                </template>
+            <div class="flex flex-col gap-4">
+              <div class="flex items-end gap-4">
+                <label>
+                  <input type="checkbox" x-model="bosses.kraid" @change="updatePassword()" title="Kraid" />
+                  <img src="/_assets/img/ux/metroid/boss-kraid.png" alt="Kraid" :class="bosses.kraid && 'opacity-70 grayscale'" class="h-16" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="bosses.ridley" @change="updatePassword()" title="Ridley" />
+                  <img src="/_assets/img/ux/metroid/boss-ridley.png" alt="Ridley" :class="bosses.ridley && 'opacity-70 grayscale'" class="h-16" />
+                </label>
+                <label class="ml-auto flex flex-col items-center">
+                  <input type="checkbox" x-model="statues.kraid" @change="updatePassword()" title="Kraid Statue" />
+                  <img src="/_assets/img/ux/metroid/statue-kraid.png" alt="Kraid" :class="statues.kraid ? '' : 'opacity-70 grayscale'" class="h-6" />
+                  <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Kraid" :class="statues.kraid ? 'h-4' : 'h-0'" class="transition-all" />
+                  <img src="/_assets/img/ux/metroid/statue-base.png" alt="Kraid" :class="statues.kraid ? '' : 'opacity-70 grayscale'" class="h-4" />
+                </label>
+                <label class="flex flex-col items-center">
+                  <input type="checkbox" x-model="statues.ridley" @change="updatePassword()" title="Ridley Statue" />
+                  <img src="/_assets/img/ux/metroid/statue-ridley.png" alt="Ridley" :class="statues.ridley ? '' : 'opacity-70 grayscale'" class="w-4" />
+                  <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Ridley" :class="statues.ridley ? 'h-4' : 'h-0'" class="transition-all" />
+                  <img src="/_assets/img/ux/metroid/statue-base.png" alt="Ridley" :class="statues.ridley ? '' : 'opacity-70 grayscale'" class="h-4" />
+                </label>
               </div>
-              <label>
-                <input type="checkbox" x-model="bosses.brain" @change="updatePassword()" title="Mother Brain" />
-                <img src="/_assets/img/ux/metroid/motherbrain.png" alt="Mother Brain" :class="bosses.brain && 'opacity-50'" class="h-24" />
-              </label>
+              <div class="flex items-center gap-4">
+                <label>
+                  <input type="checkbox" x-model="bosses.brain" @change="updatePassword()" title="Mother Brain" />
+                  <img src="/_assets/img/ux/metroid/boss-motherbrain.png" alt="Mother Brain" :class="bosses.brain ? 'hidden' : 'block'" class="h-24" />
+                  <img src="/_assets/img/ux/metroid/boss-motherbrain-x.png" alt="Mother Brain" :class="bosses.brain ? 'block opacity-70 grayscale' : 'hidden'" class="h-24" />
+                </label>
+                <div class="flex flex-row-reverse gap-1.5">
+                  <template x-for="(z, i) in zebetites" :key="i" hidden>
+                    <label class="flex flex-col items-center">
+                      <input type="checkbox" x-tooltip="'Zebetite '+ (i + 1)" :checked="z" @change="zebetites[i] = !zebetites[i]; updatePassword()" />
+                      <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4" />
+                      <img src="/_assets/img/ux/metroid/zebetite.png" :alt="'Zebetite '+ (i + 1)" class="h-8 transition-all" :class="zebetites[i] ? 'w-0' : 'w-full'" />
+                      <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4 [transform:scaleY(-1)]" />
+                    </label>
+                  </template>
+                </div>
+              </div>
             </div>
           </section>
         </div>
@@ -235,7 +253,6 @@ date: 0017-01-01
       }
 
       import Alpine from 'https://esm.run/alpinejs';
-      // import mask from 'https://esm.run/@alpinejs/mask';
       import tippy from 'https://esm.run/tippy.js';
       import 'https://esm.run/tippy.js/dist/tippy.css';
       document.addEventListener('alpine:init', () => {
@@ -259,6 +276,10 @@ date: 0017-01-01
             ridley: false,
             kraid: false,
             brain: false,
+          },
+          statues: {
+            ridley: false,
+            kraid: false,
           },
           zebetites: [false, false, false, false, false],
 
@@ -318,13 +339,18 @@ date: 0017-01-01
 
             if (this.bosses.kraid) {
               setBit(buffer, 126, 1);
-              setBit(buffer, 127, 1);
             }
             if (this.bosses.ridley) {
               setBit(buffer, 124, 1);
-              setBit(buffer, 125, 1);
             }
             setBit(buffer, 58, this.bosses.brain);
+
+            if (this.statues.kraid) {
+              setBit(buffer, 127, 1);
+            }
+            if (this.statues.ridley) {
+              setBit(buffer, 125, 1);
+            }
 
             this.zebetites.forEach((active, index) => {
               setBit(buffer, 53 + index, active ? 1 : 0);
@@ -347,9 +373,65 @@ date: 0017-01-01
               : '';
           }
         }));
+
+        Alpine.magic('tooltip', el => message => {
+        let instance = tippy(el, {
+          content: message,
+          trigger: 'manual',
+        });
+
+        // esc
+        const onEscape = (e) => {
+          if (e.key === 'Escape') cleanup();
+        };
+
+        const cleanup = () => {
+          instance.hide();
+          setTimeout(() => instance.destroy(), 150);
+          document.removeEventListener('keydown', onEscape);
+          el.removeEventListener('mouseleave', cleanup);
+          el.removeEventListener('blur', cleanup);
+        };
+
+        document.addEventListener('keydown', onEscape);
+        el.addEventListener('mouseleave', cleanup);
+        el.addEventListener('blur', cleanup);
+
+        instance.show();
+
+        // fallback timeout
+        setTimeout(cleanup, 2000);
+      });
+
+      Alpine.directive('tooltip', (el, { expression }, { evaluate }) => {
+        const instance = tippy(el, {
+          content: evaluate(expression),
+        });
+
+        const onEscape = (e) => {
+          if (e.key === 'Escape') {
+            instance.hide();
+          }
+        };
+
+        document.addEventListener('keydown', onEscape);
+
+        el._tippyCleanup = () => {
+          document.removeEventListener('keydown', onEscape);
+          instance.destroy();
+        };
+      });
+
+      document.addEventListener('alpine:clean', (e) => {
+        const el = e.target;
+        if (el._tippyCleanup) {
+          el._tippyCleanup();
+          delete el._tippyCleanup;
+        }
+      });
       });
       window.Alpine = Alpine;
-      // Alpine.plugin([mask]);
+      // Alpine.plugin([blah]);
       Alpine.start();
     </script>
 
