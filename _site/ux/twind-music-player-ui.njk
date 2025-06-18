@@ -22,7 +22,7 @@ date: 0013-01-01
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title x-text="site.title"></title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
     <script>
       // color mode init
@@ -30,14 +30,15 @@ date: 0013-01-01
         document.documentElement.classList.add('dark');
       }
     </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
   </head>
 
   <body class="bg-ui-50 text-ui-600 !block" style="display: none;">
     <div id="app" class="min-h-screen flex-(& col)" x-cloak>
       <main class="p-4 w-full flex-(& 1 col) items-center justify-center gap-8">
         <hgroup class="text-center">
-          <h1 class="mb-2 text-2xl font-black md:(text-4xl)" x-text="site.title"></h1>
-          <p class="text-(ui-500 sm)">Pure HTML and Tailwind syntax (no CSS)</p>
+          <h1 class="mb-2 text-2xl font-black md:(text-4xl)">{{ title }}</h1>
+          <p class="text-(ui-500 sm)">Pure HTML/CSS (no images)</p>
         </hgroup>
         <button @click.prevent="theme" class="color-mode w-12 h-12 text-(ui-500 [48px]) flex rounded-full motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
           <span class="flex dark:(hidden)"><iconify-icon icon="mdi:toggle-switch-outline" class="m-auto"></iconify-icon></span>
@@ -48,9 +49,9 @@ date: 0013-01-01
             <button aria-label="Volume" class="knob border-(1 ui-900/50) w-1 h-1 bg-ui-200 absolute top-[2px] left-1/2 rounded-full -translate-x-1/2 dark:(border-ui-900)"></button>
             <div class="inner w-full h-full bg-ui-50/50 text-ui-500 flex items-center justify-center gap-px rounded-full shadow-[inset_0_0_0_1px_rgb(0_0_0/.2),0_1px_0_rgb(255_255_255/.15),inset_0_4px_8px_rgb(0_0_0/.2)]">
               <button aria-label="Previous" class="flex text-base aspect-square"><iconify-icon icon="mdi:skip-previous"></iconify-icon></button>
-              <button aria-label="Play/Pause" x-data="{ play: false }" @click.stop="play = !play" class="border-(1 ui-900/30) w-7 h-7 bg-gradient-to-b from-white/5 text-[24px] flex items-center justify-center rounded-full shadow-[0_1px_0_rgb(255_255_255/.1)] dark:(border-ui-900/50)">
-                <span x-show="play"><iconify-icon icon="mdi:play"></iconify-icon></span>
-                <span x-show="!play"><iconify-icon icon="mdi:pause"></iconify-icon></span>
+              <button aria-label="Play/Pause" @click.stop="togglePlay" class="border-(1 ui-900/30) w-7 h-7 bg-gradient-to-b from-white/5 text-[24px] flex items-center justify-center rounded-full shadow-[0_1px_0_rgb(255_255_255/.1)] dark:(border-ui-900/50)">
+                <template x-if="!isPlaying" hidden><iconify-icon icon="mdi:play"></iconify-icon></template>
+                <template x-if="isPlaying" hidden><iconify-icon icon="mdi:pause"></iconify-icon></template>
               </button>
               <button aria-label="Next" class="flex text-base aspect-square"><iconify-icon icon="mdi:skip-next"></iconify-icon></button>
             </div>
@@ -58,12 +59,22 @@ date: 0013-01-01
           <div class="meta my-3 mr-1 py-1 bg-(yellow-300 gradient-to-t) from-black/10 to-white/50 flex-(& 1) items-end relative overflow-hidden rounded-full shadow-[0_1px_0_rgb(255_255_255/.15),inset_0_4px_6px_rgb(0_0_0/.4)] dark:(bg-ui-900/50 to-transparent)">
             <div class="h-1/2 bg-gradient-to-b from-transparent to-white/50 absolute inset-x-0.5 top-0.5 z-10 opacity-75 rounded-t-full dark:(from-white/5 to-white/10)" aria-hidden="true"></div>
             <div class="ui w-full flex-(& col) items-center relative z-20">
-              <a href="https://youtu.be/DpRkmXOL6zU" class="title w-full min-w-0 max-w-[80%] text-center truncate">DragonForce: Gloria</a>
+              <a href="https://youtu.be/5OWNULA5zrg" target="_blank" class="title w-full min-w-0 max-w-[80%] text-center truncate">Gunship: "The Video Game Champion"</a>
               <label for="range" class="sr-only">Volume</label>
-              <input type="range" id="range" min="1" max="100" value="25" class="scrubber appearance-none mt-2.5 mb-1 w-4/5 h-1.5 bg-ui-900/30 relative rounded-full cursor-pointer [&::-webkit-slider-thumb]:(appearance-none w-1.5 h-1.5 bg-ui-500 ring-(1 ui-900) rounded-full cursor-pointer dark:(bg-transparent ring-white)) dark:(bg-ui-900/80)" />
+              <input
+                @input="scrubbing = true; currentTime = parseFloat($event.target.value)"
+                @change="scrubbing = false; player.seekTo(currentTime, true)"
+                :max="duration"
+                :value="scrubbing ? $el.value : currentTime"
+                type="range"
+                step="0.1"
+                min="0"
+                class="scrubber appearance-none mt-2.5 mb-1 w-4/5 h-1.5 bg-ui-900/30 relative rounded-full cursor-pointer
+                  [&::-webkit-slider-thumb]:(appearance-none w-1.5 h-1.5 bg-ui-500 ring-(1 ui-900) rounded-full cursor-pointer dark:(bg-transparent ring-white))
+                  dark:(bg-ui-900/80)" />
               <div class="options w-2/3 flex items-center">
                 <button aria-label="Shuffle" x-data="{ disabled: true }" @click.stop="disabled = !disabled" class="w-4 h-4 text-base leading-none flex-(none shrink-0)" :class="{ 'opacity-30': disabled }"><iconify-icon icon="mdi:shuffle-variant"></iconify-icon></button>
-                <button aria-label="Time" x-data="{ remaining: true }" @click.stop="remaining = !remaining" class="flex-1 text-center" x-text="remaining ? '-9:40' : '1:23'"></button>
+                <button aria-label="Time" class="flex-1 text-center" x-text="formatTime(currentTime) + ' / ' + formatTime(duration)"></button>
                 <button aria-label="Repeat"x-data="{ disabled: false }" @click.stop="disabled = !disabled" class="w-4 h-4 text-base leading-none flex-(none shrink-0)" :class="{ 'opacity-30': disabled }"><iconify-icon icon="mdi:repeat-variant"></iconify-icon></button>
               </div>
             </div>
@@ -73,6 +84,9 @@ date: 0013-01-01
       </main>
 
     </div>
+
+    <div class="hidden"><div id="youtube-player"></div></div>
+
     <script type="module">
       // icons
       import 'https://esm.run/iconify-icon';
@@ -81,22 +95,83 @@ date: 0013-01-01
       import Alpine from 'https://esm.run/alpinejs';
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
-          site: {
-            title: 'Twind Music Player UI',
+          player: null,
+          isPlaying: false,
+          currentTime: 0,
+          duration: 0,
+          scrubbing: false,
+
+          theme() {
+            const mode = document.documentElement.classList;
+            mode.toggle('dark');
+            localStorage.setItem('color-mode', mode.contains('dark') ? 'dark' : 'light');
           },
-          theme: () => {
-            if (document.documentElement.classList.contains('dark')) {
-              document.documentElement.classList.remove('dark');
-              localStorage.setItem('color-mode', 'light');
+
+          init() {
+            window.__alpineAppInstance = this;
+            if (window.YT && window.YT.Player && !this.player) {
+              this.initYTPlayer();
+            }
+          },
+
+          initYTPlayer() {
+            this.player = new YT.Player('youtube-player', {
+              height: '0',
+              width: '0',
+              videoId: '5OWNULA5zrg',
+              events: {
+                onReady: () => {
+                  this.duration = this.player.getDuration();
+                  console.log('YT ready, duration:', this.duration);
+
+                  // Start syncing time
+                  setInterval(() => {
+                    if (this.player && this.player.getPlayerState() === YT.PlayerState.PLAYING && !this.scrubbing) {
+                      this.currentTime = this.player.getCurrentTime();
+                    }
+                  }, 500);
+                },
+                onStateChange: (event) => {
+                  this.isPlaying = event.data === YT.PlayerState.PLAYING;
+                  if (event.data === YT.PlayerState.PLAYING) {
+                    this.duration = this.player.getDuration();
+                  }
+                },
+              },
+            });
+          },
+
+          togglePlay() {
+            if (!this.player) {
+              console.warn('Player not ready');
               return;
             }
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-mode', 'dark');
-          }
+            const state = this.player.getPlayerState();
+            if (state === YT.PlayerState.PLAYING) {
+              this.player.pauseVideo();
+            } else {
+              this.player.playVideo();
+            }
+          },
+
+          formatTime(seconds) {
+            const mins = Math.floor(seconds / 60) || 0;
+            const secs = Math.floor(seconds % 60) || 0;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+          },
+
         }));
       });
       window.Alpine = Alpine;
       Alpine.start();
+
+      window.onYouTubeIframeAPIReady = () => {
+        if (window.__alpineAppInstance && window.__alpineAppInstance.initYTPlayer) {
+          window.__alpineAppInstance.initYTPlayer();
+        } else {
+          console.warn('Alpine instance not ready when YT API loaded');
+        }
+      };
 
       // twind
       import { install, injectGlobal, autoDarkColor } from 'https://esm.run/@twind/core';
