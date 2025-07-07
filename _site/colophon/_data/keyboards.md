@@ -94,6 +94,16 @@ hardware:
     url: https://store.morgrie.com/
 
   - type: KB
+    name: NuPhy › Air60 v2
+    sub:
+      - 60%
+      - Hotswap
+      - RGB
+      - White
+      - Aloe
+    url: https://nuphy.com/products/air60-v2
+
+  - type: KB
     name: NuPhy › Air60
     sub:
       - 60%
