@@ -97,7 +97,7 @@ injectGlobal`
     .media-cd-tl { padding: 2px 4px 2px 12px; width: 112px; height: 156px; }
     .media-xbone { padding: 17px 4px 7px 0; width: 110px; height: 134px; }
     .media-wiiu { padding: 7px 6px 7px 0; width: 110px; height: 154px; }
-    .media-switch { padding: 4px 4px 4px 0; width: 83px; height: 134px; }
+    .media-switch,.media-switch-2 { padding: 4px 4px 4px 0; width: 83px; height: 134px; }
     .media-3ds { padding: 5px 5px 5px 0; width: 110px; height: 104px; }
     .media-ds { padding: 7px 8px 7px 0; width: 110px; height: 104px; }
     .media-ps5,.media-ps4 { padding: 7px 8px 7px 0; width: 110px; height: 134px; }

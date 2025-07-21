@@ -65,7 +65,7 @@
   <a x-tooltip="'{{ item.sub if category == 'music' }}{{ ': '+ item.title if category == 'music' else item.title }}'" href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
     <div class="flex w-full">
       <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
-      <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media}}.png');"></i>
+      <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media }}.png');"></i>
     </div>
   </a>
 </li>
