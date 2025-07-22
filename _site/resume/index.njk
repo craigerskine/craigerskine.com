@@ -78,7 +78,7 @@ eleventyComputed:
                 <b class="pb-2 w-full block">@{{ resume.username }}</b>
                 <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 text-4xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
                   {%- for soc in resume.social %}
-                  <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" width="1em" height="1em" inline="false" class="iconify"></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
+                  <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" class="iconify"></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
                   {%- endfor %}
                 </ul>
               </li>
@@ -97,7 +97,7 @@ eleventyComputed:
                   <a href="{{ site.url }}" class="group font-bold inline-block opacity-80 motion-safe:transition hover:(text-blue-500 opacity-100) focus:(text-blue-500 opacity-100)">
                     {# <i class="mr-1 text-xs font-mono inline-block opacity-50" aria-hidden="true">//</i> #}
                     <span class="inline-flex items-center gap-2">
-                      <iconify-icon icon="fa6-solid:globe" width="1em" height="1em" inline="false" class="iconify opacity-50"></iconify-icon>
+                      <iconify-icon icon="fa6-solid:globe" class="iconify opacity-50"></iconify-icon>
                       {{ site.title }}
                     </span>
                     {{ underline() }}
@@ -161,7 +161,7 @@ eleventyComputed:
           <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
             <b class="h-px bg-gray-500/25 flex-1"></b>
             <span class="flex-none">Continue to next page...</span>
-            <iconify-icon icon="mdi:flip-vertical" width="1em" height="1em" inline="false" class="iconify"></iconify-icon>
+            <iconify-icon icon="mdi:flip-vertical" class="iconify"></iconify-icon>
             <b class="h-px bg-gray-500/25 flex-1"></b>
           </div>
           {%- call region(title='Specialties') %}
@@ -169,7 +169,7 @@ eleventyComputed:
               {% for spec in resume.specialties %}
               <li class="group flex-(& col) items-center motion-safe:(transition) hover:(scale-110 text-red-500)">
                 <b class="w-16 h-16 ring-(2 inset current) flex items-center justify-center rounded-full group-hover:(ring-4) md:(w-24 h-24)">
-                  <iconify-icon icon="{{ spec.ico }}" width="1em" height="1em" inline="false" class="iconify text-2xl md:(text-4xl)"></iconify-icon>
+                  <iconify-icon icon="{{ spec.ico }}" class="iconify text-2xl md:(text-4xl)"></iconify-icon>
                 </b>
                 <i class="-mt-4 w-0.5 bg-current relative {% if loop.index % 2 == 0 %}h-12{% else %}h-24{% endif %}">
                   <i class="ml-px w-2 h-2 bg-current absolute -top-1 -left-1 rounded-full"></i>
@@ -219,7 +219,7 @@ eleventyComputed:
               {%- for hobby in resume.hobbies %}
               <li>
                 <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(2 gray-500/20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-500/100) scale-110) focus:(ring-(4 blue-500/100) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
-                  <iconify-icon icon="{{ hobby.ico }}" width="1em" height="1em" inline="false" class="iconify text-4xl print:(text-lg)"></iconify-icon>
+                  <iconify-icon icon="{{ hobby.ico }}" class="iconify text-4xl print:(text-lg)"></iconify-icon>
                   <small class="mt-2 text-xs tracking-tight opacity-80 print:(!mt-0 text-[6px])">{{ hobby.title }}</small>
                 </a>
               </li>
