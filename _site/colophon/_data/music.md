@@ -74,6 +74,7 @@ hardware:
       - McRocklin Suite
       - HyperRig Kiesel
       - Nutcracker
+      - Lumos
     url: https://polychromedsp.com/
 
   - type: Plugin
