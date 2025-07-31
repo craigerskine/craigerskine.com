@@ -88,7 +88,7 @@ eleventyComputed:
         <main class="print:(!px-0 grid-cols-2 gap-6) pb-12 px-6 grid-(& cols-1) gap-16 relative md:(px-12) lg:(grid-cols-2)">
           {%- call region(title='Personal Statement') %}
             <article class="space-y-8">
-              <p class="print:(!pb-0 !text-base) pb-4 text-(lg gray-900) font-bold lg:(text-xl leading-relaxed)">{{ resume.personal.lead }}</p>
+              <p class="print:(!pb-0 !text-base) pb-4 text-(lg gray-900 wrap-balance) font-bold lg:(text-xl leading-relaxed)">{{ resume.personal.lead }}</p>
               <p class="print:(text-xs)">{{ resume.personal.body | safe }}</p>
               <p class="print:(text-xs)">{{ resume.personal.closing | safe }}</p>
               <ul class="print:(text-xs) text-sm space-y-2">
