@@ -43,9 +43,9 @@ date: 0012-01-01
     <div id="app" class="p-4 min-h-screen flex-(& col)" x-cloak>
       <header class="pb-4 flex-(& none) items-center justify-center gap-4">
         <h1 class="text-xl font-black [font-variant-numeric:tabular-nums]" x-text="year"></h1>
-        <button @click="setYear(year - 1)" class="btn-circle order-first" aria-label="Previous year"><iconify-icon icon="mdi:arrow-left" class="iconify"></iconify-icon></button>
-        <button @click="setYear(year + 1)" class="btn-circle" aria-label="Next year"><iconify-icon icon="mdi:arrow-right" class="iconify"></iconify-icon></button>
-        <button @click.prevent="setYear(new Date().getFullYear())" class="btn-circle fixed right-4" aria-label="Reset to this year"><iconify-icon icon="mdi:restore" class="iconify"></iconify-icon></button>
+        <button @click="setYear(year - 1)" class="btn-circle order-first" aria-label="Previous year"><iconify-icon icon="mdi:arrow-left" class="iconify" noobserver></iconify-icon></button>
+        <button @click="setYear(year + 1)" class="btn-circle" aria-label="Next year"><iconify-icon icon="mdi:arrow-right" class="iconify" noobserver></iconify-icon></button>
+        <button @click.prevent="setYear(new Date().getFullYear())" class="btn-circle fixed right-4" aria-label="Reset to this year"><iconify-icon icon="mdi:restore" class="iconify" noobserver></iconify-icon></button>
       </header>
       <main class="flex-(& 1)">
         <section class="w-full [font-variant-numeric:tabular-nums] grid-(& cols-12) gap-2">

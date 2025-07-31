@@ -81,7 +81,7 @@ title: Debate Bingo
         <div x-show="bingo" x-transition class="bg-green-500 flex items-center justify-center fixed inset-0 backdrop-blur-sm">
           <h2 class="text-(6xl white) font-black">BINGO!</h2>
           <div class="absolute top-2 right-2">
-            <button @click.prevent="init()" class="btn btn-ghost btn-circle text-white" aria-label="Start over"><iconify-icon icon="mdi:reload" width="24px" height="24px" class="iconify"></iconify-icon></button>
+            <button @click.prevent="init()" class="btn btn-ghost btn-circle text-white" aria-label="Start over"><iconify-icon icon="mdi:reload" width="24px" height="24px" class="iconify" noobserver></iconify-icon></button>
           </div>
         </div>
       </main>

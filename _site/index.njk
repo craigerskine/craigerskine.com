@@ -116,7 +116,7 @@ eleventyComputed:
   "
 >
   <div class="dialog-box w-11/12 max-w-xl max-h-[calc(100vh-5em)] bg-gray-200 text-(gray-900) col-start-1 row-start-1 overflow-y-auto [overscroll-behavior:contain] translate-y-3 rounded-3xl shadow-2xl scale-90 motion-safe:(transition-all)">
-    <form method="dialog" class="absolute top-2 right-2"><button class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center shadow rounded-full ring-(inset 2 gray-50)"><iconify-icon icon="fa6-solid:xmark"></iconify-icon> <span class="sr-only">Close</span></button></form>
+    <form method="dialog" class="absolute top-2 right-2"><button class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center shadow rounded-full ring-(inset 2 gray-50)"><iconify-icon icon="fa6-solid:xmark" noobserver></iconify-icon> <span class="sr-only">Close</span></button></form>
     <template x-if="workData.title" hidden>
       <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full aspect-[4/3] bg-(cover top) object-(cover top) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
     </template>
@@ -142,13 +142,13 @@ eleventyComputed:
                     (t == '11ty') ? 'simple-icons:eleventy' :
                       (t == 'Alpine') ? 'simple-icons:alpinedotjs' :
                         (t == 'Sketch') ? 'fa6-brands:sketch' : 'fa6-brands:vuejs'
-            ]" inline="false" class="m-auto" :title="t"></iconify-icon>
+            ]" inline="false" class="m-auto" :title="t" noobserver></iconify-icon>
           </template>
         </li>
         </template>
       </ul>
       <a :href="workData.url" class="p-1 w-20 h-20 bg-pri-500 text-(xl white) flex items-end justify-end absolute bottom-0 right-0 [clip-path:polygon(100%_0%,100%_100%,100%_100%,0%_100%)] motion-safe:(transition) hover:(bg-white text-black) focus:(bg-white text-black)">
-        <iconify-icon icon="fa6-solid:arrow-right" class="m-2"></iconify-icon>
+        <iconify-icon icon="fa6-solid:arrow-right" class="m-2" noobserver></iconify-icon>
         <span class="sr-only">Learn More</span>
       </a>
     </div>

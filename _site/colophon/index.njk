@@ -20,7 +20,7 @@ eleventyComputed:
     <section id="{{ group.data.title | slugify }}" class="mb-10 py-4 xl:(mb-32 py-8)">
       <article>
         <a href="#{{ group.data.title | slugify }}" class="text-{{ group.data.color.title +'-'+ group.data.color.shade }} mb-5 text-xl uppercase flex items-center">
-          <em class="mr-4 text-5xl"><iconify-icon icon="{{ group.data.ico }}" inline="false"></iconify-icon></em>
+          <em class="mr-4 text-5xl"><iconify-icon icon="{{ group.data.ico }}" inline="false" noobserver></iconify-icon></em>
           <b class="tracking-widest flex-1 flex items-center justify-center"> <b class="font-black">{{ group.data.title }}</b> <b class="ml-4 border-(t current) flex-1 opacity-25"></b></b>
         </a>
         {%- if group.data.hardware %}

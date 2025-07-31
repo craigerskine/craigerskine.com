@@ -47,17 +47,17 @@ date: 0006-01-01
           </svg>
         </section>
         <section class="model border-r-1 space-x-4 p-4 flex-1 flex items-center justify-center lg:(space-x-8 p-8) md:(border-l-0)">
-          <iconify-icon icon="mdi:directions" inline="false" class="opacity-25 text-lg lg:text-4xl"></iconify-icon>
+          <iconify-icon icon="mdi:directions" inline="false" class="opacity-25 text-lg lg:text-4xl" noobserver></iconify-icon>
           <h1 class="text-[calc(1vw+1vh+.5vmin)] leading-tight">
             <b>Vader 6</b>
             <small class="text-[calc(.5vw+.5vh+.5vmin)] block opacity-50">Right Handed</small>
           </h1>
         </section>
         <section class="for space-x-4 p-4 flex-1 flex items-center justify-center lg:(space-x-8 p-8)">
-          <iconify-icon icon="mdi:list-box" inline="false" class="opacity-25 text-lg lg:text-4xl"></iconify-icon>
+          <iconify-icon icon="mdi:list-box" inline="false" class="opacity-25 text-lg lg:text-4xl" noobserver></iconify-icon>
           <h2 class="text-[calc(1vw+1vh+.5vmin)] leading-tight">
             <b>desired specs</b>
-            <small class="text-[calc(.5vw+.5vh+.5vmin)] block opacity-50"><a href="mailto:user@domain.com?Subject=Kiesel+Vader+6+Order" class="text-current hover:(underline) focus:(underline)" onclick="window.open(this.href,'Email','width=800,height=600,scrollbars,resizable'); return false;"><iconify-icon icon="mdi:at" inline="false" class="mr-1 opacity-50"></iconify-icon> <span v-text="user_name"></span></a></small>
+            <small class="text-[calc(.5vw+.5vh+.5vmin)] block opacity-50"><a href="mailto:user@domain.com?Subject=Kiesel+Vader+6+Order" class="text-current hover:(underline) focus:(underline)" onclick="window.open(this.href,'Email','width=800,height=600,scrollbars,resizable'); return false;"><iconify-icon icon="mdi:at" inline="false" class="mr-1 opacity-50" noobserver></iconify-icon> <span v-text="user_name"></span></a></small>
           </h2>
         </section>
       </header>
@@ -65,14 +65,14 @@ date: 0006-01-01
         <section class="mx-auto w-full max-w-lg lg:(mx-0)"><a href="#" class="py-5 block sticky top-0 transition duration-300 transform hover:(-rotate-6) focus:(-rotate-6)"><img src="/_assets/img/ux/kiesel/v6.png" alt="Vader 6" class="m-auto px-4" /></a></section>
         <section class="mx-auto w-full max-w-prose lg:(mx-0)">
           <fieldset class="px-4 relative hidden">
-            <label for="search" class="w-8 h-8 flex items-center justify-center absolute z-10 right-5 top-1/2 transform -translate-y-1/2"><iconify-icon icon="mdi:magnify" width="1em" height="1em" inline="false" class="m-auto"></iconify-icon></label>
+            <label for="search" class="w-8 h-8 flex items-center justify-center absolute z-10 right-5 top-1/2 transform -translate-y-1/2"><iconify-icon icon="mdi:magnify" width="1em" height="1em" inline="false" class="m-auto" noobserver></iconify-icon></label>
             <input type="search" id="search" v-model="option_search" class="appearance-none py-3 px-6 w-full bg-gray-500 bg-opacity-10 block rounded-md transition duration-300 focus:(bg-white outline-none shadow-xl ring(& white)) relative z-20" placeholder="Search" />
           </fieldset>
-          <section v-if="!option_results.length" class="py-8 text(gray-500 opacity-50) font-bold text-2xl uppercase tracking-tight text-center"><iconify-icon icon="mdi:cancel" width="1em" height="1em" inline="false" class="opacity-50"></iconify-icon> No Results</section>
+          <section v-if="!option_results.length" class="py-8 text(gray-500 opacity-50) font-bold text-2xl uppercase tracking-tight text-center"><iconify-icon icon="mdi:cancel" width="1em" height="1em" inline="false" class="opacity-50" noobserver></iconify-icon> No Results</section>
           <ul class="py-4">
             <li v-for="(item, index) in option_results" :class="[{'p-4 flex items-center relative rounded': true, 'ring(1 red-500 opacity-25) text-red-500 bg(red-500 opacity-10) shadow-2xl animate-pulse': item.question}]">
               <b class="text-xs"><b v-for="(tag, index) in item.tags" class="w-16 px-1 py-px inline-flex justify-center rounded bg(gray-500 opacity-20)" v-text="tag.title"></b></b>
-              <i class="mx-6 ring(1 inset green-500 opacity-25) w-12 h-12 text(green-500 2xl) flex rounded-full"><iconify-icon :icon="item.ico" inline="false" class="m-auto"></iconify-icon></i>
+              <i class="mx-6 ring(1 inset green-500 opacity-25) w-12 h-12 text(green-500 2xl) flex rounded-full"><iconify-icon :icon="item.ico" inline="false" class="m-auto" noobserver></iconify-icon></i>
               <p class="flex-1 flex flex-wrap truncate">
                 <b v-text="item.title"></b>
                 <small v-if="item.desc" class="truncate w-full min-w-0 block opacity-60" v-text="item.desc"></small>

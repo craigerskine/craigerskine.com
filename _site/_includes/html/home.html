@@ -11,11 +11,11 @@
       </h1>
       <h2 class="text-wrap-balance leading-relaxed opacity-80">I'm passionate about UX design, front-end website engineering, paper & pencil sketching, noodling around on guitars, playing nerdy RPG's... oh, and I co-authored a book about designing in good ol' Macromedia Fireworks.</h2>
       <ul class="flex gap-2 lg:(gap-5)">
-        <li><a href="https://dribbble.com/craigerskine" class="group flex rounded-full" aria-label="Dribbble"><span class="btn-pink w-12 h-12 text-2xl"><iconify-icon icon="mdi:dribbble" class="iconify"></iconify-icon></span></a></li>
-        <li><a href="https://github.com/craigerskine" class="group flex rounded-full" aria-label="GitHub"><span class="btn-gray w-12 h-12 text-2xl"><iconify-icon icon="mdi:github" class="iconify"></iconify-icon></span></a></li>
-        <li><a href="https://codepen.io/craigerskine" class="group flex rounded-full" aria-label="CodePen"><span class="btn-red w-12 h-12 text-2xl"><iconify-icon icon="ri:codepen-fill" class="iconify"></iconify-icon></span></a></li>
-        <li><a href="https://linkedin.com/in/craigerskine/" class="group flex rounded-full" aria-label="LinkedIn"><span class="btn-blue w-12 h-12 text-2xl"><iconify-icon icon="mdi:linkedin" class="iconify"></iconify-icon></span></a></li>
-        <li><a href="https://behance.net/craigerskine" class="group flex rounded-full" aria-label="Behance"><span class="btn-purple w-12 h-12 text-2xl"><iconify-icon icon="mdi:behance" class="iconify"></iconify-icon></span></a></li>
+        <li><a href="https://dribbble.com/craigerskine" class="group flex rounded-full" aria-label="Dribbble"><span class="btn-pink w-12 h-12 text-2xl"><iconify-icon icon="mdi:dribbble" class="iconify" noobserver></iconify-icon></span></a></li>
+        <li><a href="https://github.com/craigerskine" class="group flex rounded-full" aria-label="GitHub"><span class="btn-gray w-12 h-12 text-2xl"><iconify-icon icon="mdi:github" class="iconify" noobserver></iconify-icon></span></a></li>
+        <li><a href="https://codepen.io/craigerskine" class="group flex rounded-full" aria-label="CodePen"><span class="btn-red w-12 h-12 text-2xl"><iconify-icon icon="ri:codepen-fill" class="iconify" noobserver></iconify-icon></span></a></li>
+        <li><a href="https://linkedin.com/in/craigerskine/" class="group flex rounded-full" aria-label="LinkedIn"><span class="btn-blue w-12 h-12 text-2xl"><iconify-icon icon="mdi:linkedin" class="iconify" noobserver></iconify-icon></span></a></li>
+        <li><a href="https://behance.net/craigerskine" class="group flex rounded-full" aria-label="Behance"><span class="btn-purple w-12 h-12 text-2xl"><iconify-icon icon="mdi:behance" class="iconify" noobserver></iconify-icon></span></a></li>
       </ul>
     </div>
   </article>
@@ -91,7 +91,7 @@
   </div>
   <div x-show="workModal" x-trap.noscroll.inert="workModal" x-on:keydown.window.prevent.escape="workModal = false" class="modal bg-black/80 flex justify-center items-center overflow-y-auto fixed inset-0 z-[9999] motion-safe:(transition duration-300 ease-in-out)" x-transition:enter-start="opacity-0 blur-lg" x-transition:enter-end="opacity-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 blur-lg">
     <div @click.outside="workModal = false" class="relative" role="dialog" aria-modal="true">
-      <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><iconify-icon icon="fa6-solid:xmark" inline="false"></iconify-icon> <span class="sr-only">Close</span></button>
+      <button type="button" @click="workModal = false" class="w-8 h-8 bg-gray-200 font-black flex items-center justify-center absolute top-2 right-2 shadow rounded-full ring-(inset 2 gray-50) lg:(-top-4 -right-4)"><iconify-icon icon="fa6-solid:xmark" inline="false" noobserver></iconify-icon> <span class="sr-only">Close</span></button>
       <template x-if="workModal" hidden>
         <div class="w-screen max-w-xl bg-gray-200 overflow-hidden rounded-2xl shadow-2xl">
           <img @click.prevent.stop @touchstart.prevent.stop :src="'/_assets/img/work-' + slugify(workData.title) +'.'+ workData.type" :alt="workData.title" class="w-full h-96 bg-(cover center) object-(center cover) pointer-events-none" :style="workData.type == 'png' ? 'background-image: url(\'/_assets/img/bg-wood.png\')' : ''" />
@@ -117,13 +117,13 @@
                             (t == '11ty') ? 'simple-icons:eleventy' :
                               (t == 'Alpine') ? 'simple-icons:alpinedotjs' :
                                 (t == 'Sketch') ? 'fa6-brands:sketch' : 'fa6-brands:vuejs'
-                    ]" inline="false" class="m-auto" :title="t"></iconify-icon>
+                    ]" inline="false" class="m-auto" :title="t" noobserver></iconify-icon>
                   </template>
                 </li>
               </template>
             </ul>
             <a :href="workData.url" class="p-1 w-20 h-20 bg-pri-500 text-(xl white) flex items-end justify-end absolute bottom-0 right-0 [clip-path:polygon(100%_0%,100%_100%,100%_100%,0%_100%)] motion-safe:(transition) hover:(bg-white text-black) focus:(bg-white text-black)">
-              <iconify-icon icon="fa6-solid:arrow-right" class="m-2"></iconify-icon>
+              <iconify-icon icon="fa6-solid:arrow-right" class="m-2" noobserver></iconify-icon>
               <span class="sr-only">Learn More</span>
             </a>
           </div>

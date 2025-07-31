@@ -39,8 +39,8 @@ date: 0009-01-01
     <div id="app" class="min-h-screen flex-(& col)" x-cloak>
       <header class="fixed top-2 right-2">
         <button class="color-mode py-2.5 px-2 flex motion-safe:(transition) hover:(text-gray-500)" aria-label="Toggle color mode">
-          <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
-          <span class="hidden dark:(block)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl"></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
+          <span class="block dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl" noobserver></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
+          <span class="hidden dark:(block)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify m-auto text-lg md:text-xl" noobserver></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
         </button>
       </header>
       <main class="mx-auto py-12 px-4 w-full max-w-xl flex-auto">
@@ -51,7 +51,7 @@ date: 0009-01-01
           </hgroup>
           <div class="form-group relative">
             <input x-model="query" @input="search()" type="search" placeholder="Search video games: pokemon, monster hunter, final fantasy, etc." class="py-2 pl-9 pr-3 border-(1 gray-500/20) w-full block rounded-full dark:(bg-gray-500/20)" />
-            <span class="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 opacity-50"><iconify-icon icon="mdi:magnify" inline class="iconify"></iconify-icon></span>
+            <span class="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 opacity-50"><iconify-icon icon="mdi:magnify" inline class="iconify" noobserver></iconify-icon></span>
           </div>
           <template x-if="results.length" hidden>
             <section>
@@ -74,7 +74,7 @@ date: 0009-01-01
           </template>
           <template x-if="query.length > 0 && !results.length" hidden>
             <section class="flex-(& col) items-center gap-4">
-              <iconify-icon icon="mdi:emoticon-sad" inline class="iconify text-5xl opacity-20"></iconify-icon>
+              <iconify-icon icon="mdi:emoticon-sad" inline class="iconify text-5xl opacity-20" noobserver></iconify-icon>
               <p class="text-gray-500 font-semibold uppercase">No results...</p>
             </section>
           </template>

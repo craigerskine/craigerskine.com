@@ -129,7 +129,7 @@
               {%- for nav in site.tech %}
               <li>
                 <a x-tooltip="'{{ nav.sub }}: {{ nav.title }}'" href="{{ nav.url }}" class="group block relative motion-safe:(transition) hover:(text-pri-500)">
-                  <iconify-icon icon="{{ nav.ico }}" width="1rem" height="1rem"></iconify-icon>
+                  <iconify-icon icon="{{ nav.ico }}" width="1rem" height="1rem" noobserver></iconify-icon>
                 </a>
               </li>
               {%- endfor %}

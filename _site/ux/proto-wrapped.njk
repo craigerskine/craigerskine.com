@@ -44,8 +44,8 @@ date: 0007-01-01
     </div>
 
     <button @click.prevent="theme" class="w-10 h-10 text-3xl flex items-center justify-center fixed top-2 right-2 z-50 rounded-full transition hover:bg-gray-500/50">
-      <iconify-icon icon="mdi:weather-sunny" class="iconify hidden dark:block"></iconify-icon>
-      <iconify-icon icon="mdi:weather-night" class="iconify block dark:hidden"></iconify-icon>
+      <iconify-icon icon="mdi:weather-sunny" class="iconify hidden dark:block" noobserver></iconify-icon>
+      <iconify-icon icon="mdi:weather-night" class="iconify block dark:hidden" noobserver></iconify-icon>
     </button>
 
     <main class="page pt-32 p-4 min-h-screen flex items-center justify-center relative md:pt-4">
@@ -68,7 +68,7 @@ date: 0007-01-01
           >
             <template x-for="item in stats" hidden>
               <li class="border-b-2 flex items-center cursor-default transition hover:(scale-110)" :class="'text-'+ item.color +'-500 border-'+ item.color +'-500/25'">
-                <iconify-icon :icon="item.ico" class="text-5xl opacity-50"></iconify-icon>
+                <iconify-icon :icon="item.ico" class="text-5xl opacity-50" noobserver></iconify-icon>
                 <p class="mb-3 pl-3 flex-1">
                   <span x-text="item.total"></span>
                   <small class="pt-1 text-sm font-bold uppercase block opacity-60" x-text="item.name"></small>
