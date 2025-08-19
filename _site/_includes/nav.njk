@@ -1,4 +1,4 @@
-{%- set active -%}bg-(gray-500/10 gradient-to-b) from-white/10 via-transparent text-black shadow-[inset_0_0_2px_rgba(0,0,0,.25)] dark:(text-white shadow-[inset_0_1px_0_rgba(255,255,255,.2),0_2px_2px_rgba(0,0,0,.25)]){%- endset -%}
+{%- set bubble -%}bg-(gray-500/10 gradient-to-b) from-white/10 via-transparent text-black pointer-events-none absolute inset-0 opacity-0 scale-125 rounded-[inherit] shadow-[inset_0_0_2px_rgba(0,0,0,.25)] transition dark:(text-white shadow-[inset_0_1px_0_rgba(255,255,255,.2),0_2px_2px_rgba(0,0,0,.25)]){%- endset -%}
 
 <div
   x-data="{
@@ -39,7 +39,7 @@
         {%- for item in collections.all | eleventyNavigation %}
         {%- if item.url !== '/' %}
         <li class="nav-item text-sm">
-          <a href="{{ item.url }}" class="group py-1.5 px-4 block relative rounded-full motion-safe:(transition) hover:({{ active }}) [&.active]:({{ active }}){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+          <a href="{{ item.url }}" class="group py-1.5 px-4 block relative after:({{ bubble }}) rounded-full motion-safe:(transition) hover:(after:(opacity-100 scale-100)) [&.active]:(after:(opacity-100 scale-100)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
             <span>{{ item.key }}</span>
           </a>
         </li>
