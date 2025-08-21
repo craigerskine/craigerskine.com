@@ -23,7 +23,7 @@
 >
   {%- if page.url !== '/resume/' %}
     <a href="/" class="group flex-none rounded-full" aria-hidden="true">
-      <div class="btn-gray p-2 w-12 h-12 text-2xl md:(w-14 h-14)">
+      <div class="btn btn-gray p-2 w-12 h-12 text-2xl md:(w-14 h-14)">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="w-full h-full fill-current">
           <title>Craig Erskine</title>
           <g fill-rule="evenodd">
@@ -93,9 +93,11 @@
     <span class="flex"><button type="button" @click.prevent.stop="window.print();" class="w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Print"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify text-lg md:(text-2xl)" noobserver></iconify-icon></button></span>
   {%- else %}
     <span class="flex">
-      <button class="color-mode w-12 h-12 flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0)) md:(w-14 h-14)" aria-label="Toggle color mode">
-        <span class="flex dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl" noobserver></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
-        <span class="hidden dark:(flex)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl" noobserver></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
+      <button class="color-mode group p-1 rounded-full" aria-label="Toggle color mode">
+        <div class="btn w-11 aspect-square">
+          <span class="flex dark:(hidden)"><iconify-icon icon="mdi:weather-sunny" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl" noobserver></iconify-icon> <span class="sr-only">Switch to dark mode</span></span>
+          <span class="hidden dark:(flex)"><iconify-icon icon="mdi:weather-night" width="1em" height="1em" inline="false" class="iconify text-lg md:text-xl" noobserver></iconify-icon> <span class="sr-only">Switch to light mode</span></span>
+        </div>
       </button>
     </span>
   {%- endif %}

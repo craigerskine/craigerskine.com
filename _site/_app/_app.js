@@ -80,7 +80,8 @@ install({
   },
   rules: [
     ['text-wrap-(unset|wrap|nowrap|balance|pretty)', 'textWrap'],
-    ['btn-', ({ $$ }) => `bg-white/50 flex items-center justify-center relative rounded-full ring-(inset 1 black/10) shadow motion-safe:(transition) group-hover:(motion-safe:(animate-blob) after:(border-(t white/50) absolute inset-0 content-[''] [border-radius:inherit]) bg-${$$}-500/50 bg-gradient-to-b from-white/30 via-transparent to-${$$}-500/30 text-${$$}-800 ring-${$$}-900/20 shadow-(lg ${$$}-500/30)) dark:(bg-black/20 ring-white/10)`],
+    ['btn', {'@apply': 'ring-(inset 1 transparent) flex items-center justify-center relative rounded-full after:(border-(t transparent) absolute inset-0 content-[\'\'] [border-radius:inherit]) group-hover:(bg-(black/20 gradient-to-b) from-white/20 via-transparent ring-white/5 motion-safe:(animate-blob) after:border-white/50)'}],
+    ['btn-', ({ $$ }) => `bg-white/50 ring-(inset 1 black/10) shadow motion-safe:(transition) group-hover:(bg-${$$}-500/50 bg-gradient-to-b from-white/30 via-transparent to-${$$}-500/30 text-${$$}-800 ring-${$$}-900/20 shadow-(lg ${$$}-500/30)) dark:(bg-black/20 ring-white/10)`],
     ['tab-', ({ $$ }) => `flex items-center justify-center relative rounded-full ring-(1 gray-200 inset) shadow motion-safe:(transition) after:(border-(t white/50) absolute inset-0 content-[''] rounded-full) bg-${$$}-500/50 bg-gradient-to-b from-white/30 via-transparent to-${$$}-500/30 text-${$$}-800 ring-${$$}-900/20 shadow-(lg ${$$}-500/30)`],
     ['bg-grid', { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 6 6\' width=\'6\' height=\'6\' fill=\'currentColor\'><path d=\'m6 5v1h-1v-1zm-4 0v1h-1v-1zm3-1v1h-1v-1zm-2 0v1h-1v-1zm1-1v1h-1v-1zm-1-1v1h-1v-1zm2 0v1h-1v-1zm-3-1v1h-1v-1zm4 0v1h-1v-1zm-5-1v1h-1v-1z\' /></svg>")' }],
     ['bg-paper', { 'background-image': 'url(/_assets/img/bg-paper.png)', '@apply': 'bg-fixed' }],
