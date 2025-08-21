@@ -4,7 +4,7 @@
     <a{% if param.url === '#' %} @click.prevent{% endif %} href="{{ param.url }}" class="group text-gray-900 font-bold{% if param.url === '#' %} cursor-not-allowed{% endif %}">
       {{ param.title }}
       {%- if param.ico %}
-        <span class="h-12 w-12 text-2xl btn-{{ param.color }} absolute top-3 left-3" aria-hidden="true">
+        <span class="h-12 w-12 text-2xl btn btn-{{ param.color }} absolute top-3 left-3" aria-hidden="true">
           <iconify-icon icon="{{ param.ico }}" class="iconify" noobserver></iconify-icon>
         </span>
       {%- endif %}
