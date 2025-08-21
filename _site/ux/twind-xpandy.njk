@@ -24,6 +24,7 @@ date: 0011-01-01
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Xpandy - Twind</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <style>[v-cloak] { display: none; }</style>
   </head>
 
   <body class="bg-neutral-900 text-neutral-200 !block" style="display: none;">
@@ -31,9 +32,11 @@ date: 0011-01-01
 
       <main class="w-full flex-(& auto)">
         <section class="w-full flex">
-          <a v-for="(i, index) in 4" @click.prevent href="#" class="group w-1/4 px-4 text-white flex items-center justify-center relative motion-safe:(transition-all) hover:(w-full)" :class="'bg-pri-800/'+ (index + 1)*2*10">
-            Hover
-            <div class="bg-(center cover) flex items-center justify-center absolute inset-0 opacity-20 blur motion-safe:(transition duration-1000) group-hover:(blur-none)" :style="'background-image: url(\'https://loremflickr.com/800/600/grass?random='+ (index + 1) +'\');'"></div>
+          <a v-for="i in imgs" @click.prevent href="#" class="group w-1/4 px-4 text-white flex items-center justify-center relative motion-safe:(transition-all duration-300) hover:(w-full)">
+            <span class="flex absolute inset-0 motion-safe:(transition duration-500)">
+              <span class="border-l-(1 white/25) border-r-(1 black/50) bg-zinc-900/70 bg-gradient-to-br from-white/20 via-transparent backdrop-blur-lg flex items-center justify-center absolute inset-0 transition duration-500 group-hover:opacity-0">Hover</span>
+              <img :src="'https://placehold.net/'+ (i + 3) +'.png'" :alt="'image' + i" class="w-full h-full object-(center cover)" />
+            </span>
           </a>
         </section>
       </main>
@@ -45,6 +48,7 @@ date: 0011-01-01
       createApp({
         data() {
           return {
+            imgs: 4
           }
         },
       })
@@ -60,19 +64,14 @@ date: 0011-01-01
         hash: false,
         theme: {
           extend: {
-            colors: ({ theme }) => ({
-              pri: theme('colors.slate'),
-            }),
           },
         },
         rules: [
-          ['text-wrap-(unset|wrap|nowrap|balance)', 'textWrap'],
         ],
       });
       // global css
       injectGlobal`
         @layer base {
-          [v-cloak] { @apply hidden; }
         }
       `
     </script>
