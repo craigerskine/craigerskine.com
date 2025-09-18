@@ -56,6 +56,8 @@ date: 0017-01-01
         input[type=checkbox] { @apply cursor-pointer appearance-none border-0 absolute inset-0 z-10 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-current; }
         .tippy-content { @apply text-xs; }
       }
+
+      .btn-text { @apply p-0 border-0 h-auto text-gray-500 uppercase no-underline underline-offset-4 rounded-sm checked:text-white checked:underline hover:underline; }
     </style>
   </head>
   <body class="bg-black font-mono uppercase !block" style="display: none;" x-data="app" x-init="updatePassword()">
@@ -73,11 +75,13 @@ date: 0017-01-01
 
         <!-- password -->
         <header class="text-info text-xl flex justify-center normal-case sm:text-2xl md:text-4xl">
-          <textarea
-            class="appearance-none pt-4 pb-2 border-1 border-current/30 w-[260px] text-center resize-none selection:bg-sky-300 selection:text-sky-900 focus-visible:outline-none sm:w-[300px] md:w-[440px]"
-            readonly
-            :value="maskedPassword"
-            @mouseup="$el.select()"></textarea>
+          <div class="pt-4 pb-2 border-1 border-current/30 w-[260px] text-center grid grid-cols-2 items-center justify-center gap-2 select-none relative selection:bg-sky-300 selection:text-sky-900 sm:w-[300px] md:w-[440px]">
+            <span x-text="maskedPassword[0]"></span>
+            <span x-text="maskedPassword[1]"></span>
+            <span x-text="maskedPassword[2]"></span>
+            <span x-text="maskedPassword[3]"></span>
+            <button class="appearance-none border border-current/30 w-9 h-9 bg-black text-2xl flex items-center justify-center absolute top-0 right-0 cursor-pointer -translate-y-1/2 translate-x-1/2 transition hover:border-success hover:bg-success hover:text-black" @click="copyPassword"><iconify-icon icon="pixelarticons:clipboard" class="iconify" noobserver></iconify-icon></button>
+          </div>
         </header>
 
         <div class="container mx-auto flex flex-wrap justify-center gap-8">
@@ -85,12 +89,12 @@ date: 0017-01-01
           <!-- start in -->
           <section>
             <h2>Start In</h2>
-            <div class="text-sm flex flex-col gap-2.5">
-              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="brinstar" x-model="startLocation" @change="updatePassword()" aria-label="Brinstar" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="norfair" x-model="startLocation" @change="updatePassword()" aria-label="Norfair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="kraidsLair" x-model="startLocation" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="ridleysLair" x-model="startLocation" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm p-0 border-0 h-auto text-gray-500 uppercase no-underline rounded-sm checked:text-white" name="start" value="tourian" x-model="startLocation" @change="updatePassword()" aria-label="Tourian" /></label>
+            <div class="text-sm flex flex-col items-start gap-2.5">
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="brinstar" x-model="startLocation" @change="updatePassword()" aria-label="Brinstar" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="norfair" x-model="startLocation" @change="updatePassword()" aria-label="Norfair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="kraidsLair" x-model="startLocation" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="ridleysLair" x-model="startLocation" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="tourian" x-model="startLocation" @change="updatePassword()" aria-label="Tourian" /></label>
             </div>
           </section>
 
@@ -211,8 +215,15 @@ date: 0017-01-01
       <footer class="mt-auto pt-4 border-t border-dashed border-neutral-500/50 w-full text-neutral-500 text-xs text-center shrink-0">By <a href="https://craigerskine.com" class="transition hover:text-white hover:underline">Craig Erskine</a></footer>
     </div>
 
+    <div x-show="toastCopy" x-transition class="toast toast-top toast-end" style="display: none;" x-cloak>
+      <div class="alert alert-success pb-2 rounded-lg"><span>Password copied to clipboard!</span></div>
+    </div>
+
 
     <script type="module">
+      // icons
+      import 'https://esm.run/iconify-icon';
+
       const METROID_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz?-";
 
       function makeBuffer() {
@@ -268,6 +279,7 @@ date: 0017-01-01
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
           password: [],
+          toastCopy: false,
           startLocation: 'brinstar',
           options: {
             morphBall: false,
@@ -379,9 +391,20 @@ date: 0017-01-01
           get maskedPassword() {
             const p = this.password.join('');
             return p.length === 24
-              ? `${p.slice(0,6)} ${p.slice(6,12)}\n${p.slice(12,18)} ${p.slice(18,24)}`
-              : '';
-          }
+              ? [p.slice(0, 6), p.slice(6, 12), p.slice(12, 18), p.slice(18, 24)]
+              : ['', '', '', ''];
+          },
+
+          copyPassword() {
+            const p = this.password.join('');
+            if (p.length === 24) {
+              navigator.clipboard.writeText(p).then(() => {
+                this.toastCopy = true;
+                setTimeout(() => this.toastCopy = false, 1500);
+              });
+            }
+          },
+
         }));
 
         Alpine.magic('tooltip', el => message => {
