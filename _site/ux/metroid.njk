@@ -35,9 +35,19 @@ date: 0017-01-01
         --depth: 0;
         --noise: 0;
       }
+
       @theme {
+        /* font */
         --font-mono: 'NARPASSWORD00000 fixed.width', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+        /* animate */
+        --animate-climb: climb 6s linear infinite;
+        @keyframes climb {
+          from { background-position: 0 0; }
+          to { background-position: 0 78px; }
+        }
       }
+
       @layer base {
         [x-cloak] { display: none; }
         h2 { @apply mb-6 pb-2 border-b border-current/30 text-(--color-warning) text-xs; }
@@ -50,7 +60,7 @@ date: 0017-01-01
   </head>
   <body class="bg-black font-mono uppercase !block" style="display: none;" x-data="app" x-init="updatePassword()">
 
-    <div class="pb-4 px-12 min-h-screen flex flex-col relative before:fixed before:left-0 before:inset-y-0 before:w-8 before:[background-image:url(/_assets/img/ux/metroid/wall.png)] after:fixed after:right-0 after:inset-y-0 after:w-8 after:[transform:scaleX(-1)] after:[background-image:url(/_assets/img/ux/metroid/wall.png)]" x-cloak>
+    <div class="pb-4 px-12 min-h-screen flex flex-col relative before:fixed before:left-0 before:inset-y-0 before:w-8 before:[background-image:url(/_assets/img/ux/metroid/wall.png)] motion-safe:before:animate-climb after:fixed after:right-0 after:inset-y-0 after:w-8 after:[transform:scaleX(-1)] after:[background-image:url(/_assets/img/ux/metroid/wall.png)] motion-safe:after:animate-climb" x-cloak>
 
       <header class="pt-12 mb-12 w-full shrink-0">
         <hgroup class="flex flex-col items-center gap-2">
