@@ -53,7 +53,7 @@ date: 0017-01-01
         h2 { @apply mb-6 pb-2 border-b border-current/30 text-(--color-warning) text-xs; }
         img { @apply transition; }
         label { @apply relative transition; }
-        input[type=checkbox] { @apply cursor-pointer appearance-none border-0 absolute inset-0 z-10 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-current; }
+        input[type=checkbox] { @apply border-0 absolute inset-0 z-10 cursor-pointer appearance-none opacity-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-current; }
         .tippy-content { @apply text-xs; }
       }
 
@@ -86,15 +86,15 @@ date: 0017-01-01
 
         <div class="container mx-auto flex flex-wrap justify-center gap-8">
 
-          <!-- start in -->
+          <!-- location -->
           <section>
-            <h2>Start In</h2>
+            <h2>Location</h2>
             <div class="text-sm flex flex-col items-start gap-2.5">
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="brinstar" x-model="startLocation" @change="updatePassword()" aria-label="Brinstar" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="norfair" x-model="startLocation" @change="updatePassword()" aria-label="Norfair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="kraidsLair" x-model="startLocation" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="ridleysLair" x-model="startLocation" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="start" value="tourian" x-model="startLocation" @change="updatePassword()" aria-label="Tourian" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="brinstar" x-model="location" @change="updatePassword()" aria-label="Brinstar" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="norfair" x-model="location" @change="updatePassword()" aria-label="Norfair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="kraidsLair" x-model="location" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="ridleysLair" x-model="location" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
+              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="tourian" x-model="location" @change="updatePassword()" aria-label="Tourian" /></label>
             </div>
           </section>
 
@@ -109,59 +109,61 @@ date: 0017-01-01
             </div>
           </section>
 
-          <!-- power-ups -->
-          <section>
-            <h2>Power-Ups</h2>
-            <div class="flex flex-wrap gap-4">
-              <label>
-                <input type="checkbox" x-model="options.morphBall" @change="updatePassword()" title="Morph Ball" />
-                <img src="/_assets/img/ux/metroid/power-morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.bombs" @change="updatePassword()"  title="Bombs" />
-                <img src="/_assets/img/ux/metroid/power-bombs.png" alt="Bombs" :class="options.bombs || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.highJump" @change="updatePassword()" title="High Jump" />
-                <img src="/_assets/img/ux/metroid/power-high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.variaSuit" @change="updatePassword()" title="Varia Suit" />
-                <img src="/_assets/img/ux/metroid/power-varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.screwAttack" @change="updatePassword()" title="Screw Attack" />
-                <img src="/_assets/img/ux/metroid/power-screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-            </div>
-          </section>
+          <div class="grid grid-cols-1 gap-8">
+            <!-- power-ups -->
+            <section>
+              <h2>Power-Ups</h2>
+              <div class="flex flex-wrap gap-4">
+                <label>
+                  <input type="checkbox" x-model="options.morphBall" @change="updatePassword()" title="Morph Ball" />
+                  <img src="/_assets/img/ux/metroid/power-morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.bombs" @change="updatePassword()"  title="Bombs" />
+                  <img src="/_assets/img/ux/metroid/power-bombs.png" alt="Bombs" :class="options.bombs || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.highJump" @change="updatePassword()" title="High Jump" />
+                  <img src="/_assets/img/ux/metroid/power-high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.variaSuit" @change="updatePassword()" title="Varia Suit" />
+                  <img src="/_assets/img/ux/metroid/power-varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.screwAttack" @change="updatePassword()" title="Screw Attack" />
+                  <img src="/_assets/img/ux/metroid/power-screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+              </div>
+            </section>
 
-          <!-- loadout -->
-          <section>
-            <h2>Loadout</h2>
-            <div class="flex flex-wrap gap-4">
-              <label>
-                <input type="checkbox" x-model="options.longBeam" @change="updatePassword()" title="Long Beam" />
-                <img src="/_assets/img/ux/metroid/loadout-long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.iceBeam" @change="updatePassword()" title="Ice Beam" />
-                <img src="/_assets/img/ux/metroid/loadout-ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.waveBeam" @change="updatePassword()" title="Wave Beam" />
-                <img src="/_assets/img/ux/metroid/loadout-wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.missiles" @change="updatePassword()" title="All Missiles" />
-                <img src="/_assets/img/ux/metroid/loadout-missile.png" alt="Missiles" :class="options.missiles || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-              <label>
-                <input type="checkbox" x-model="options.energyTanks" @change="updatePassword()" title="All Energy Tanks" />
-                <img src="/_assets/img/ux/metroid/loadout-etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-70 grayscale'" class="w-8" />
-              </label>
-            </div>
-          </section>
+            <!-- loadout -->
+            <section>
+              <h2>Loadout</h2>
+              <div class="flex flex-wrap gap-4">
+                <label>
+                  <input type="checkbox" x-model="options.longBeam" @change="updatePassword()" title="Long Beam" />
+                  <img src="/_assets/img/ux/metroid/loadout-long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.iceBeam" @change="updatePassword()" title="Ice Beam" />
+                  <img src="/_assets/img/ux/metroid/loadout-ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.waveBeam" @change="updatePassword()" title="Wave Beam" />
+                  <img src="/_assets/img/ux/metroid/loadout-wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.missiles" @change="updatePassword()" title="All Missiles" />
+                  <img src="/_assets/img/ux/metroid/loadout-missile.png" alt="Missiles" :class="options.missiles || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+                <label>
+                  <input type="checkbox" x-model="options.energyTanks" @change="updatePassword()" title="All Energy Tanks" />
+                  <img src="/_assets/img/ux/metroid/loadout-etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-70 grayscale'" class="w-8" />
+                </label>
+              </div>
+            </section>
+          </div>
 
           <!-- bosses -->
           <section>
@@ -280,7 +282,7 @@ date: 0017-01-01
         Alpine.data('app', () => ({
           password: [],
           toastCopy: false,
-          startLocation: 'brinstar',
+          location: 'brinstar',
           options: {
             morphBall: false,
             bombs: false,
@@ -313,11 +315,11 @@ date: 0017-01-01
               setBit(buffer, 66, b2);
             };
 
-            switch (this.startLocation) {
-              case "norfair":     setStartBits(1, 0, 0); break;
-              case "kraidsLair":  setStartBits(0, 1, 0); break;
-              case "ridleysLair": setStartBits(0, 0, 1); break;
-              case "tourian":     setStartBits(1, 1, 0); break;
+            switch (this.location) {
+              case 'norfair':     setStartBits(1, 0, 0); break;
+              case 'kraidsLair':  setStartBits(0, 1, 0); break;
+              case 'ridleysLair': setStartBits(0, 0, 1); break;
+              case 'tourian':     setStartBits(1, 1, 0); break;
               default:            setStartBits(0, 0, 0); break;
             }
 
