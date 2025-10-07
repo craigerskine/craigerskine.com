@@ -1,0 +1,293 @@
+---
+layout: false
+tags: ux
+title: Terminal UI
+desc: A simple dark terminal/cmd UI style using Tailwind, daisyUI, and AlpineJS.
+tech:
+  - title: HTML
+    ico: fa6-brands:html5
+  - title: CSS
+    ico: fa6-brands:css3-alt
+  - title: Twind
+    ico: mdi:tailwind
+  - title: Alpine
+    ico: simple-icons:alpinedotjs
+ico: mdi:terminal-line
+color: zinc
+date: 0018-01-01
+---
+<!doctype html>
+<html lang="en" class="bg-transparent antialiased" data-theme x-data="app">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title x-text="site.title"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=overlays-content" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="//fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      :root {
+        /* daisy */
+        --color-base-100: #111;
+        --color-base-200: color-mix(in oklab, var(--color-base-100), #FFF 5%);
+        --color-base-300: color-mix(in oklab, var(--color-base-100), #FFF 10%);
+        --color-base-content: color-mix(in oklab, var(--color-base-100), #FFF 75%);
+        --color-primary: #FB5638;
+        --color-primary-content: #111;
+        --color-secondary: #333;
+        --color-secondary-content: #CCC;
+        --color-neutral: #555;
+        --color-neutral-content: #CCC;
+        --radius-selector: 0;
+        --radius-field: 0;
+        --radius-box: 0;
+        --size-selector: 0.25rem;
+        --size-field: 0.1875rem;
+        --border: 1px;
+        --depth: 0;
+        --noise: 0;
+
+        --card-p: 1.5rem;
+
+        /* mine */
+        --color-border: color-mix(in srgb, var(--color-neutral) 33%, transparent);
+        --prose-spacing: 1.625em;
+      }
+
+      @theme {
+        --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+
+      /* elements */
+      h2 {
+        @apply
+          text-white
+          text-[calc(var(--text-base))]
+          leading-none
+          tracking-tight
+          font-bold
+          flex
+          flex-wrap
+          items-center
+          gap-2.5
+          [&>small]:text-(--color-base-content)/70
+          [&>small]:font-normal
+          [&>small]:flex
+          [&>small]:gap-2.5
+          [&>small]:before:content-['/']
+          [&>small]:before:opacity-50;
+      }
+      button {
+        &:where(:not(.btn)) {
+          @apply uppercase cursor-pointer [&>small]:text-(--color-base-content)/70 transition hover:bg-(--color-border);
+          &:where(:focus-visible) {
+            @apply bg-(--color-border);
+            outline: 2px solid currentColor;
+            outline-offset: -3px;
+          }
+        }
+      }
+      section {
+        @apply border border-(--color-border) bg-(--color-base-200)/30 grid grid-cols-1;
+      }
+      .prose {
+        @apply leading-7 space-y-(--prose-spacing);
+        & :where(h2) { @apply text-lg; }
+        & :where(ul,ol) { @apply pl-(--prose-spacing) [&>li::marker]:text-(--color-neutral); }
+        & :where(ul) { @apply list-disc; }
+        & :where(ul ul) { @apply list-[circle]; }
+        & :where(ol) { @apply list-decimal; }
+        & :where(ol ol) { @apply list-[upper-alpha]; }
+        & :where(blockquote) { @apply p-[calc(var(--prose-spacing)/1.25)] border border-dashed border-(--color-border) border-l-(--color-primary) max-w-fit bg-(--color-base-200) space-y-[calc(var(--prose-spacing)/1.25)]; }
+        & :where(cite) { @apply text-xs text-(--color-neutral) block before:content-['~_']; }
+        & :where(hr) { @apply border-(--color-border) border-dashed; }
+      }
+
+      /* daisy overrides */
+      .btn {
+        @apply uppercase;
+        &:where(:focus-visible) {
+          outline: 2px solid currentColor;
+          outline-offset: -3px;
+        }
+        &:where(.btn-outline) {
+          @apply border-(--color-border) text-(--color-neutral);
+          &:where(:hover,:focus-visible) {
+            @apply border-(--color-primary)/50 bg-(--color-primary)/10 text-(--color-primary);
+          }
+        }
+        &:where(.btn-square,.btn-circle) {
+          --size-field: 0.25rem;
+        }
+        &:where(:not(.btn-square,.btn-circle)) {
+          @apply text-xs;
+          clip-path: polygon(0 0, calc(100% - 10px) 0, 100% calc(0% + 10px), 100% 100%, calc(0% + 10px) 100%, 0 calc(100% - 10px));
+        }
+      }
+      .card { @apply grow flex; }
+      .card-header {
+        @apply px-(--card-p) border-b border-(--color-border) min-h-[3.75rem] bg-(--color-base-200) shrink-0 grid grid-cols-[auto_auto] items-center justify-between;
+      }
+      .card-body { @apply grow; }
+      .card-ui {
+        @apply shrink-0;
+        &>div {
+          @apply border-current w-4 h-4 absolute;
+          &:first-child { @apply border-t border-l top-0 left-0; }
+          &:last-child { @apply border-t border-r top-0 right-0; }
+        }
+        &:before,&:after { @apply border-current w-4 h-4 block absolute content-['']; }
+        &:before { @apply border-b border-l bottom-0 left-0; }
+        &:after { @apply border-b border-r bottom-0 right-0; }
+      }
+      .collapse-content { @apply px-0; }
+      .collapse-title { @apply px-0 text-white font-bold select-none after:transition; }
+      .collapse-arrow[open] .collapse-title:after {
+        transform: translateY(-50%)rotate(225deg);
+      }
+
+    </style>
+  </head>
+
+  <body class="bg-base-100 text-base-content text-sm font-mono uppercase !block" style="display: none;">
+    <div class="p-2.5 min-h-screen grid grid-cols-[auto_1fr] gap-2.5 relative" x-cloak>
+      <header class="shrink-0">
+        <nav class="flex flex-col gap-1.5">
+          <template x-for="item in navMain" hidden>
+            <button class="btn btn-primary btn-outline btn-square"><iconify-icon :icon="item" width="1.25rem" height="1.25rem" class="iconify" noobserver></iconify-icon></button>
+          </template>
+        </nav>
+      </header>
+      <main class="grow grid grid-cols-1 gap-2.5 lg:grid-cols-[minmax(20rem,.33fr)_1fr]">
+        <section>
+          <div class="card">
+            <div class="card-header"><h2>Card Header</h2></div>
+            <div class="card-body">
+              <details class="collapse collapse-arrow" open>
+                <summary class="collapse-title">Tools</summary>
+                <div class="collapse-content">
+                  <div class="border-t border-l border-(--color-border) grid grid-cols-3">
+                    <template x-for="i in grid" hidden>
+                      <button class="border-b border-r border-(--color-border) aspect-square flex flex-col items-center justify-center gap-2">
+                        <iconify-icon :icon="i.ico" width="2.5rem" height="2.5rem" class="iconify" noobserver></iconify-icon>
+                        <small x-text="'/'+ i.label"></small>
+                      </button>
+                    </template>
+                  </div>
+                </div>
+              </details>
+              <details class="collapse collapse-arrow" open>
+                <summary class="collapse-title">Manage</summary>
+                <div class="collapse-content">
+                  <ul class="list border border-(--color-border) [&>li.list-row:not(:last-child)]:after:border-(--color-border)">
+                    <template x-for="i in list" hidden>
+                      <li class="list-row items-center">
+                        <iconify-icon icon="mdi:code" width="1rem" height="1rem" class="iconify text-(--color-neutral)" noobserver></iconify-icon>
+                        <span x-text="i.label"></span>
+                        <iconify-icon :icon="i.ico" width="1.5rem" height="1.5rem" class="iconify" noobserver></iconify-icon>
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+              </details>
+            </div>
+            <div class="card-ui" aria-hidden="true"><div></div><div></div></div>
+          </div>
+        </section>
+        <section>
+          <div class="card">
+            <div class="card-header">
+              <h2>Card Header <small>Sub header</small></h2>
+              <div class="flex flex-wrap gap-4">
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-primary">Primary</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <article class="prose">
+                <h2>Heading</h2>
+                <p>Paragraph. Lorem ipsum dolor sit amet. Qui commodo tempor pariatur laborum laborum.</p>
+                <ul>
+                  <li>List</li>
+                  <li>List
+                    <ul>
+                      <li>Nested list</li>
+                    </ul>
+                  </li>
+                  <li>List</li>
+                </ul>
+                <hr />
+                <ol>
+                  <li>List</li>
+                  <li>List
+                    <ol>
+                      <li>Nested list</li>
+                    </ol>
+                  </li>
+                  <li>List</li>
+                </ol>
+                <blockquote>
+                  <p><strong>Example quote:</strong> Lorem ipsum dolor sit amet. Qui commodo tempor pariatur laborum laborum.</p>
+                  <cite>Example citation: Qui commodo tempor pariatur laborum laborum.</cite>
+                </blockquote>
+              </article>
+            </div>
+            <div class="card-ui" aria-hidden="true"><div></div><div></div></div>
+          </div>
+        </section>
+      </main>
+      <footer class="p-2.5 absolute left-0 bottom-0">
+        <nav class="flex flex-col gap-1.5">
+          <template x-for="item in navFooter" hidden>
+            <button class="btn btn-primary btn-outline btn-square"><iconify-icon :icon="item" width="1.25rem" height="1.25rem" class="iconify" noobserver></iconify-icon></button>
+          </template>
+        </nav>
+      </footer>
+    </div>
+    <script type="module">
+      // elements
+      import 'https://esm.run/@tailwindplus/elements';
+
+      // icons
+      import 'https://esm.run/iconify-icon';
+
+      // alpine
+      import Alpine from 'https://esm.run/alpinejs';
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('app', () => ({
+          site: {
+            title: 'TerminalUI',
+          },
+          navMain: ['mdi:cloud-outline', 'mdi:view-grid-outline', 'mdi:star-four-points', 'mdi:clippy', 'mdi:asterisk'],
+          navFooter: ['mdi:information-outline', 'mdi:cog-outline'],
+          grid: [
+            { ico: 'mdi:vector-square', label: 'Rect', },
+            { ico: 'mdi:vector-triangle', label: 'Triangle', },
+            { ico: 'mdi:vector-bezier', label: 'Bezier', },
+            { ico: 'mdi:vector-curve', label: 'Curve', },
+            { ico: 'mdi:vector-line', label: 'Line', },
+            { ico: 'mdi:vector-square-close', label: 'Close', },
+          ],
+          list: [
+            { ico: 'mdi:sort-ascending', label: 'Sequence', },
+            { ico: 'mdi:list-box-outline', label: 'List', },
+            { ico: 'mdi:shopping', label: 'Deals', },
+            { ico: 'mdi:auto-mode', label: 'AI Prompt', },
+            { ico: 'mdi:cloud-download-outline', label: 'Fetch Data', },
+            { ico: 'mdi:data-matrix', label: 'Enrich', },
+            { ico: 'mdi:check-all', label: 'Task', },
+            { ico: 'mdi:comment-outline', label: 'Notification', },
+          ],
+        }));
+      });
+      window.Alpine = Alpine;
+      Alpine.start();
+    </script>
+  </body>
+
+</html>
