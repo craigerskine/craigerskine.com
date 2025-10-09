@@ -40,10 +40,6 @@ date: 0013-01-01
           <h1 class="mb-2 text-2xl font-black md:(text-4xl)">{{ title }}</h1>
           <p class="text-(ui-500 sm)">Pure HTML/CSS (no images)</p>
         </hgroup>
-        <button @click.prevent="theme" class="color-mode w-12 h-12 text-(ui-500 [48px]) flex rounded-full motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
-          <span class="flex dark:(hidden)"><iconify-icon icon="mdi:toggle-switch-outline" class="m-auto" noobserver></iconify-icon></span>
-          <span class="hidden dark:(flex)"><iconify-icon icon="mdi:toggle-switch-off" class="m-auto" noobserver></iconify-icon></span>
-        </button>
         <section class="music-player px-2 w-full h-24 max-w-xs bg-(ui-200 gradient-to-b) from-white/10 to-black/10 text-xs flex gap-2 rounded-full ring-(1 inset black/20) shadow-2xl dark:(ring-white/[.15])">
           <div class="controls p-2 w-20 h-20 flex-(& shrink-0) self-center relative rounded-full ring-(1 ui-900/20) shadow-[0_2px_0_rgb(255_255_255/.15)] dark:(ring-ui-800/100)">
             <button aria-label="Volume" class="knob border-(1 ui-900/50) w-1 h-1 bg-ui-200 absolute top-[2px] left-1/2 rounded-full -translate-x-1/2 dark:(border-ui-900)"></button>
@@ -80,6 +76,12 @@ date: 0013-01-01
             </div>
           </div>
         </section>
+        <button @click.prevent="theme" class="color-mode text-(ui-500 [48px]) flex items-center justify-center gap-3 motion-safe:(transition) hover:(text-pri-500)" aria-label="Toggle color mode">
+          <strong class="text-xs uppercase opacity-0 dark:opacity-60">Dark</strong>
+          <span class="flex dark:(hidden)"><iconify-icon icon="mdi:toggle-switch-outline" class="m-auto" noobserver></iconify-icon></span>
+          <span class="hidden dark:(flex)"><iconify-icon icon="mdi:toggle-switch-off" class="m-auto" noobserver></iconify-icon></span>
+          <strong class="text-xs uppercase opacity-60 dark:opacity-0">Light</strong>
+        </button>
         <p class="text-xs">Inspired by <a href="https://marioaguzman.github.io/musicwidget/" class="text-pri-700 font-semibold relative motion-safe:(transition) after:(content-[''] border-(t current dashed) w-0 h-px absolute -bottom-1 left-0 motion-safe:(transition-all)) hover:(after:(w-full))">Music Widget</a></p>
       </main>
 
