@@ -92,11 +92,10 @@ date: 0018-01-01
           }
         }
       }
-      section {
-        @apply border border-(--color-border) bg-(--color-base-200)/30 grid grid-cols-1;
-      }
+      section { @apply border border-(--color-border) bg-(--color-base-200)/30 grid grid-cols-1; }
+      summary { @apply transition hover:text-(--color-primary); }
       .prose {
-        @apply leading-7 space-y-(--prose-spacing);
+        @apply leading-6 space-y-(--prose-spacing);
         & :where(h2) { @apply text-lg; }
         & :where(ul,ol) { @apply pl-(--prose-spacing) [&>li::marker]:text-(--color-neutral); }
         & :where(ul) { @apply list-disc; }
@@ -131,7 +130,8 @@ date: 0018-01-01
       }
       .label { @apply select-none cursor-pointer; }
       :checked + .label { @apply text-current; }
-      .input { @apply placeholder:italic; }
+      .input,.textarea { @apply uppercase placeholder:italic; }
+      .select { @apply uppercase bg-gradient-to-b from-current/50 to-current/50 [background-size:.25rem_.25rem] [background-position:calc(100%-.75rem)_50%]; }
       .checkbox { @apply [--size:calc(var(--size-field)*10)] checked:border-current before:transition-all before:rotate-0 before:[clip-path:polygon(0_0,0%_100%,100%_100%)] before:bg-(--color-primary); }
       .radio { @apply [--size:calc(var(--size-field)*10)] rounded-(--radius-field) before:rounded-(--radius-field) checked:before:bg-(--color-primary); }
       .card {
@@ -218,7 +218,7 @@ date: 0018-01-01
                 <legend class="fieldset-legend">Fields</legend>
                 <div class="grid grid-cols-2 items-start gap-8">
                   <div class="grid grid-cols-1 gap-4">
-                    <input type="text" class="input w-full" placeholder="Text input" />
+                    <input type="text" class="input w-full" placeholder="Placeholder" />
                     <select class="select w-full"><option selected disabled>Choose:</option><option>Option</option></select>
                     <button class="btn btn-secondary">Secondary</button>
                     <button class="btn btn-primary">Primary</button>
@@ -258,6 +258,10 @@ date: 0018-01-01
                   <cite>Example citation: Qui commodo tempor pariatur laborum laborum.</cite>
                 </blockquote>
               </article>
+            </div>
+            <div class="p-(--card-p) flex items-center justify-end gap-4">
+              <button class="btn btn-secondary">Secondary</button>
+              <button class="btn btn-primary">Primary</button>
             </div>
           </div>
         </section>
