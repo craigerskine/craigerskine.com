@@ -130,10 +130,17 @@ date: 0018-01-01
       }
       .label { @apply select-none cursor-pointer; }
       :checked + .label { @apply text-current; }
-      .input,.textarea { @apply uppercase placeholder:italic; }
-      .select { @apply uppercase bg-gradient-to-b from-current/50 to-current/50 [background-size:.25rem_.25rem] [background-position:calc(100%-.75rem)_50%]; }
+      .input,.textarea { @apply text-xs uppercase placeholder:italic; }
+      .textarea { @apply min-h-[calc(var(--size-field)*25.5)]; }
+      .select {
+        @apply uppercase text-xs bg-gradient-to-b from-current/50 to-current/50 [background-size:.25rem_.25rem] [background-position:calc(100%-.75rem)_50%];
+        &::picker(select) {
+          @apply border-(--color-border) bg-(--color-base-200);
+        }
+      }
       .checkbox { @apply [--size:calc(var(--size-field)*10)] checked:border-current before:transition-all before:rotate-0 before:[clip-path:polygon(0_0,0%_100%,100%_100%)] before:bg-(--color-primary); }
       .radio { @apply [--size:calc(var(--size-field)*10)] rounded-(--radius-field) before:rounded-(--radius-field) checked:before:bg-(--color-primary); }
+      .toggle { @apply checked:before:bg-(--color-primary); }
       .card {
         @apply grow flex;
         &:before,&:after { @apply border-current w-4 h-4 block absolute content-['']; }
@@ -216,18 +223,34 @@ date: 0018-01-01
             <div class="card-body">
               <fieldset class="fieldset mb-(--prose-spacing) p-4 border border-(--color-border)">
                 <legend class="fieldset-legend">Fields</legend>
-                <div class="grid grid-cols-2 items-start gap-8">
-                  <div class="grid grid-cols-1 gap-4">
+                <div class="grid grid-cols-2 items-start gap-4">
+                  <div class="grid grid-cols-2 gap-4">
                     <input type="text" class="input w-full" placeholder="Placeholder" />
+                    <input type="text" class="input w-full" placeholder="Placeholder" disabled />
                     <select class="select w-full"><option selected disabled>Choose:</option><option>Option</option></select>
-                    <button class="btn btn-secondary">Secondary</button>
-                    <button class="btn btn-primary">Primary</button>
+                    <select class="select w-full" disabled><option selected disabled>Choose:</option><option>Option</option></select>
+                    <textarea class="textarea w-full" placeholder="Placeholder"></textarea>
+                    <textarea class="textarea w-full" placeholder="Placeholder" disabled></textarea>
                   </div>
-                  <div class="grid grid-cols-1 gap-4">
-                    <label class="flex items-center gap-2.5"><input type="radio" name="options" class="radio" /> <span class="label">Radio</span></label>
-                    <label class="flex items-center gap-2.5"><input type="radio" name="options" class="radio" checked /> <span class="label">Radio</span></label>
-                    <label class="flex items-center gap-2.5"><input type="checkbox" class="checkbox" /> <span class="label">Checkbox</span></label>
-                    <label class="flex items-center gap-2.5"><input type="checkbox" class="checkbox" checked /> <span class="label">Checkbox</span></label>
+                  <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+                    <div class="grid grid-cols-1 gap-4">
+                      <label class="label gap-2.5"><input type="checkbox" class="checkbox" /> <span class="label-text">Checkbox</span></label>
+                      <label class="label gap-2.5"><input type="checkbox" class="checkbox" checked /> <span class="label-text">Checkbox</span></label>
+                      <label class="label gap-2.5"><input type="checkbox" class="checkbox" disabled /> <span class="label-text">Checkbox</span></label>
+                      <label class="label gap-2.5"><input type="checkbox" class="checkbox" checked disabled /> <span class="label-text">Checkbox</span></label>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4">
+                      <label class="label gap-2.5"><input type="radio" name="options" class="radio" /> <span class="label-text">Radio</span></label>
+                      <label class="label gap-2.5"><input type="radio" name="options" class="radio" checked /> <span class="label-text">Radio</span></label>
+                      <label class="label gap-2.5"><input type="radio" name="options" class="radio" disabled /> <span class="label-text">Radio</span></label>
+                      <label class="label gap-2.5"><input type="radio" name="options" class="radio" checked disabled /> <span class="label-text">Radio</span></label>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4">
+                      <label class="label gap-2.5"><input type="checkbox" class="toggle" /> <span class="label-text">Toggle</span></label>
+                      <label class="label gap-2.5"><input type="checkbox" class="toggle" checked /> <span class="label-text">Toggle</span></label>
+                      <label class="label gap-2.5"><input type="checkbox" class="toggle" disabled /> <span class="label-text">Toggle</span></label>
+                      <label class="label gap-2.5"><input type="checkbox" class="toggle" checked disabled /> <span class="label-text">Toggle</span></label>
+                    </div>
                   </div>
                 </div>
               </fieldset>
