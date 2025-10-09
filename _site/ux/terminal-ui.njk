@@ -140,7 +140,7 @@ date: 0018-01-01
       }
       .checkbox { @apply [--size:calc(var(--size-field)*10)] checked:border-current before:transition-all before:rotate-0 before:[clip-path:polygon(0_0,0%_100%,100%_100%)] before:bg-(--color-primary); }
       .radio { @apply [--size:calc(var(--size-field)*10)] rounded-(--radius-field) before:rounded-(--radius-field) checked:before:bg-(--color-primary); }
-      .toggle { @apply checked:before:bg-(--color-primary); }
+      .toggle { @apply [--size:calc(var(--size-field)*10)] checked:before:bg-(--color-primary); }
       .card {
         @apply grow flex;
         &:before,&:after { @apply border-current w-4 h-4 block absolute content-['']; }
