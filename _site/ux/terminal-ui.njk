@@ -128,6 +128,11 @@ date: 0018-01-01
           clip-path: polygon(0 0, calc(100% - 10px) 0, 100% calc(0% + 10px), 100% 100%, calc(0% + 10px) 100%, 0 calc(100% - 10px));
         }
       }
+      .list-row {
+        &:is(button:hover,.active) {
+          @apply bg-(--color-primary)/10 text-(--color-primary) relative z-10;
+        }
+      }
       .label { @apply select-none cursor-pointer [&:has(:disabled)]:cursor-not-allowed; }
       :checked + .label { @apply text-current; }
       .input,.textarea { @apply text-xs uppercase placeholder:italic; }
@@ -138,9 +143,9 @@ date: 0018-01-01
           @apply border-(--color-border) bg-(--color-base-200);
         }
       }
-      .checkbox { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) [&:checked]:border-(--color-primary) before:transition-all before:rotate-0 before:[clip-path:polygon(0_0,0%_100%,100%_100%)] before:bg-(--color-primary); }
+      .checkbox { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) [&:checked]:border-(--color-primary) before:delay-0 before:rotate-0 before:[clip-path:polygon(0_0,0%_100%,100%_100%)] before:bg-(--color-primary); }
       .radio { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) [&:checked]:border-(--color-primary) rounded-(--radius-field) before:rounded-(--radius-field) checked:border-current checked:before:bg-(--color-primary); }
-      .toggle { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) [&:checked]:border-(--color-primary) checked:before:border-0 checked:before:bg-(--color-primary) [&[disabled]:not(:checked)]:before:border-0 [&[disabled]:not(:checked)]:before:bg-current [&[disabled]:not(:checked)]:before:opacity-50; }
+      .toggle { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) transition-all [&:checked]:border-(--color-primary) checked:before:border-0 checked:before:bg-(--color-primary) [&[disabled]:not(:checked)]:before:border-0 [&[disabled]:not(:checked)]:before:bg-current [&[disabled]:not(:checked)]:before:opacity-50; }
       .checkbox-sm,.radio-sm,.toggle-sm { @apply [--size:calc(var(--size-field)*6)]; }
       .card {
         @apply grow flex;
@@ -170,8 +175,8 @@ date: 0018-01-01
     <div class="p-2.5 min-h-screen grid grid-cols-[auto_1fr] gap-2.5 relative" x-cloak>
       <header class="shrink-0">
         <nav class="flex flex-col gap-1.5">
-          <template x-for="item in navMain" hidden>
-            <button class="btn btn-primary btn-outline btn-square"><iconify-icon :icon="item" width="1.25rem" height="1.25rem" class="iconify" noobserver></iconify-icon></button>
+          <template x-for="(item, index) in navMain" hidden>
+            <button @click.prevent="navMainActive = index" class="btn btn-primary btn-outline btn-square" :class="index === navMainActive && 'active'"><iconify-icon :icon="item" width="1.25rem" height="1.25rem" class="iconify" noobserver></iconify-icon></button>
           </template>
         </nav>
       </header>
@@ -198,15 +203,15 @@ date: 0018-01-01
               <details class="collapse collapse-arrow" open>
                 <summary class="collapse-title">Manage</summary>
                 <div class="collapse-content">
-                  <ul class="list border border-(--color-border) [&>li.list-row:not(:last-child)]:after:border-(--color-border)">
-                    <template x-for="i in list" hidden>
-                      <li class="list-row items-center">
+                  <div class="list border border-(--color-border) [&>.list-row:not(:last-child)]:after:border-(--color-border)">
+                    <template x-for="(i, index) in list" hidden>
+                      <button @click.prevent="listActive = index" class="list-row text-start items-center" :class="index === listActive && 'active'">
                         <iconify-icon icon="mdi:code" width="1rem" height="1rem" class="iconify text-(--color-neutral)" noobserver></iconify-icon>
                         <span x-text="i.label"></span>
                         <iconify-icon :icon="i.ico" width="1.5rem" height="1.5rem" class="iconify" noobserver></iconify-icon>
-                      </li>
+                      </button>
                     </template>
-                  </ul>
+                  </div>
                 </div>
               </details>
             </div>
@@ -323,6 +328,7 @@ date: 0018-01-01
           site: {
             title: 'TerminalUI',
           },
+          navMainActive: 0,
           navMain: ['mdi:cloud-outline', 'mdi:view-grid-outline', 'mdi:star-four-points', 'mdi:clippy', 'mdi:asterisk'],
           navFooter: ['mdi:information-outline', 'mdi:cog-outline'],
           gridActive: 0,
@@ -334,6 +340,7 @@ date: 0018-01-01
             { ico: 'mdi:vector-line', label: 'Line', },
             { ico: 'mdi:vector-square-close', label: 'Close', },
           ],
+          listActive: 0,
           list: [
             { ico: 'mdi:sort-ascending', label: 'Sequence', },
             { ico: 'mdi:list-box-outline', label: 'List', },
