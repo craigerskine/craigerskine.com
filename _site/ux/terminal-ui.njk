@@ -52,7 +52,7 @@ date: 0018-01-01
         --depth: 0;
         --noise: 0;
 
-        --card-p: 1.5rem;
+        --card-p: 1rem;
 
         /* mine */
         --color-border: color-mix(in srgb, var(--color-neutral) 50%, black);
@@ -128,7 +128,7 @@ date: 0018-01-01
           clip-path: polygon(0 0, calc(100% - 10px) 0, 100% calc(0% + 10px), 100% 100%, calc(0% + 10px) 100%, 0 calc(100% - 10px));
         }
       }
-      .label { @apply select-none cursor-pointer; }
+      .label { @apply select-none cursor-pointer [&:has(:disabled)]:cursor-not-allowed; }
       :checked + .label { @apply text-current; }
       .input,.textarea { @apply text-xs uppercase placeholder:italic; }
       .textarea { @apply min-h-[calc(var(--size-field)*25.5)]; }
@@ -138,9 +138,10 @@ date: 0018-01-01
           @apply border-(--color-border) bg-(--color-base-200);
         }
       }
-      .checkbox { @apply [--size:calc(var(--size-field)*10)] checked:border-current before:transition-all before:rotate-0 before:[clip-path:polygon(0_0,0%_100%,100%_100%)] before:bg-(--color-primary); }
-      .radio { @apply [--size:calc(var(--size-field)*10)] rounded-(--radius-field) before:rounded-(--radius-field) checked:before:bg-(--color-primary); }
-      .toggle { @apply [--size:calc(var(--size-field)*10)] checked:before:bg-(--color-primary); }
+      .checkbox { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) [&:checked]:border-(--color-primary) before:transition-all before:rotate-0 before:[clip-path:polygon(0_0,0%_100%,100%_100%)] before:bg-(--color-primary); }
+      .radio { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) [&:checked]:border-(--color-primary) rounded-(--radius-field) before:rounded-(--radius-field) checked:border-current checked:before:bg-(--color-primary); }
+      .toggle { @apply [--size:calc(var(--size-field)*10)] border-(--color-border) bg-transparent text-(--color-base-content) [&:checked]:border-(--color-primary) checked:before:border-0 checked:before:bg-(--color-primary) [&[disabled]:not(:checked)]:before:border-0 [&[disabled]:not(:checked)]:before:bg-current [&[disabled]:not(:checked)]:before:opacity-50; }
+      .checkbox-sm,.radio-sm,.toggle-sm { @apply [--size:calc(var(--size-field)*6)]; }
       .card {
         @apply grow flex;
         &:before,&:after { @apply border-current w-4 h-4 block absolute content-['']; }
@@ -221,6 +222,9 @@ date: 0018-01-01
               </div>
             </div>
             <div class="card-body">
+              <article class="prose">
+                <h2>Form</h2>
+              </article>
               <fieldset class="fieldset mb-(--prose-spacing) p-4 border border-(--color-border)">
                 <legend class="fieldset-legend">Fields</legend>
                 <div class="grid grid-cols-2 items-start gap-4">
@@ -296,6 +300,14 @@ date: 0018-01-01
           </template>
         </nav>
       </footer>
+
+      <div class="text-base-200 fixed inset-0 z-[-1]" aria-hidden="true">
+        <svg class="w-full h-full fill-current text-current pointer-events-none absolute inset-0" aria-hidden="true">
+          <defs><pattern id="pattern_grid" width="5" height="5" patternUnits="userSpaceOnUse" patternContentUnits="userSpaceOnUse" x="0" y="0"><circle id="pattern-circle" cx="1" cy="1" r="1"></circle></pattern></defs>
+          <rect width="100%" height="100%" strokewidth="0" fill="url(#pattern_grid)"></rect>
+        </svg>
+      </div>
+
     </div>
     <script type="module">
       // elements
