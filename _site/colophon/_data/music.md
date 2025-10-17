@@ -73,6 +73,7 @@ hardware:
     sub:
       - McRocklin Suite
       - HyperRig Kiesel
+      - Nunchuck
       - Nutcracker
       - Lumos
     url: https://polychromedsp.com/
