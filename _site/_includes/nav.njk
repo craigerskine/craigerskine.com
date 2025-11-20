@@ -37,19 +37,18 @@
     {%- if page.url !== '/resume/' %}
       <ul class="hidden md:(flex gap-2)">
         {%- for item in collections.all | eleventyNavigation %}
-        {%- if item.url !== '/' %}
-        <li class="nav-item text-sm">
-          <a href="{{ item.url }}" class="group py-1.5 px-4 block relative after:({{ bubble }}) rounded-full motion-safe:(transition) hover:(after:(opacity-100 scale-100)) [&.active]:(after:(opacity-100 scale-100)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
-            <span>{{ item.key }}</span>
-          </a>
-        </li>
-        {%- endif %}
+          {%- if item.url !== '/' %}
+          <li class="nav-item text-sm">
+            <a href="{{ item.url }}" class="group py-1.5 px-4 block relative after:({{ bubble }}) rounded-full motion-safe:(transition) hover:(after:(opacity-100 scale-100)) [&.active]:(after:(opacity-100 scale-100)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+              <span>{{ item.key }}</span>
+            </a>
+          </li>
+          {%- endif %}
         {%- endfor %}
       </ul>
     {%- endif %}
 
     <button
-      @click.prevent.stop="menu = !menu"
       x-ref="button"
       @click="toggle()"
       :aria-pressed="open"
@@ -64,30 +63,28 @@
         <rect width="9" height="2" y="7" rx="1" class="origin-center translate-y-[5px] group-[[aria-pressed=true]]:(translate-y-0 rotate-[135deg]) motion-safe:(transition-all duration-300)" />
       </svg>
     </button>
-    <ul
-      x-ref="panel"
-      x-anchor.bottom-end.offset.10="$refs.button"
-      x-show="open"
-      x-transition:enter-start="opacity-0 blur-md -translate-y-2"
-      x-transition:enter-end="opacity-100 blur-0 translate-y-0"
-      x-transition:leave-start="opacity-100 blur-0 translate-y-0"
-      x-transition:leave-end="opacity-0 blur-md -translate-y-2"
-      @click.outside="close($refs.button)"
-      :id="$id('nav-dropdown')"
-      class="p-1.5 w-screen max-w-[12rem] bg-gray-950 flex-(& col) gap-2 z-50 rounded-xl shadow-lg motion-safe:(transition) {% if page.url !== '/resume/' %} md:hidden{% endif %} dark:(bg-gray-950)"
-    >
-      {%- for item in collections.all | eleventyNavigation %}
-      {%- if item.url === '/' and page.url === '/' %}
-      {%- else %}
-      <li class="nav-item text-sm font-semibold">
-        <a href="{{ item.url }}" class="group px-1 h-10 text-white flex items-center gap-3 relative rounded-lg motion-safe:(transition) hover:(bg-gray-200/20 dark:(bg-gray-500/30)) [&.active]:(bg-gray-200/20 dark:(bg-gray-500/30)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
-          <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) flex items-center justify-center rounded-md group-hover:text-white">{{ item.title }}</small>
-          <span>{{ item.key }}</span>
-        </a>
-      </li>
-      {%- endif %}
-      {%- endfor %}
-    </ul>
+    <template x-teleport="body">
+      <ul
+        x-ref="panel"
+        x-show="open"
+        x-collapse
+        x-init="$el.parentNode.insertBefore($el, document.body.firstChild)"
+        @click.outside="close($refs.button)"
+        :id="$id('nav-dropdown')"
+        class="pb-px w-screen bg-gray-700 grid-(& cols-2) gap-px relative z-50 shadow-lg dark:(bg-gray-700)"
+      >
+        {%- for item in collections.all | eleventyNavigation %}
+          {%- if item.url !== '/' %}
+          <li class="nav-item w-full h-full flex">
+            <a href="{{ item.url }}" class="group py-6 pl-[3vw] pr-0 w-full h-full bg-gray-950 text-white text-[5vw] font-black flex items-center gap-3 relative dark:bg-gray-950 motion-safe:(transition) hover:(bg-gray-800 dark:(bg-gray-800)) [&.active]:(bg-gray-800 dark:(bg-gray-800)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+              {#- <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) flex items-center justify-center rounded-md group-hover:text-white">{{ item.title }}</small> -#}
+              <span>{{ item.key }}</span>
+            </a>
+          </li>
+          {%- endif %}
+        {%- endfor %}
+      </ul>
+    </template>
   </nav>
   {%- if page.url == '/resume/' %}
     <span class="flex"><button type="button" @click.prevent.stop="window.print();" class="w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Print"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify text-lg md:(text-2xl)" noobserver></iconify-icon></button></span>

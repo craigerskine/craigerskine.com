@@ -22,7 +22,7 @@ eleventyComputed:
 {%- endmacro -%}
 
 <!doctype html>
-<html lang="en" x-data="{}">
+<html lang="en" x-data>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -40,207 +40,209 @@ eleventyComputed:
       }
     </style>
   </head>
-  <body class="print:(!m-0 !py-0 !px-0 bg-white text-xs) p-2 bg-gray-100 text-gray-700 md:(py-12 px-5)" style="display: none;">
-    <b class="print:(hidden) bg-paper fixed inset-0 z-[-1]" aria-hidden="true"></b>
-    <div class="mx-auto px-4 max-w-7xl relative lg:(px-8)">
-      <div class="print:(hidden) absolute top-2 right-6 z-50 lg:(-top-5 right-8)">
-        {%- include 'nav.njk' -%}
-      </div>
-      <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
-        <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500/20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
-          <a href="/" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block">
-              <title>{{ resume.applicant }} logo</title>
-              <g fill-rule="evenodd" transform="translate(2,2)">
-                <path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
-                <path class="stroke-current" fill="transparent" stroke-width="3" d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" />
-              </g>
-            </svg>
-          </a>
-          <h1 class="text-(2xl center) flex-none relative xl:(pr-12 text-left)">
-            <b class="font-black md:(text-[50px] tracking-tight)">{{ resume.applicant }}</b>
-            <i class="text-sm font(serif normal) block opacity-80 xl:(pt-3 text-xl)">{{ resume.position }}</i>
-          </h1>
-          <div class="print:(flex-row) text-sm flex-(& col wrap 1) gap-x-5 md:(flex-row)">
-            <ul class="ml-auto md:(flex gap-x-5) print:(flex gap-x-5)">
-              <li class="flex-(& col)">
-                <b class="pb-2 w-full block">Contact:</b>
-                <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 flex-(& 1 col) justify-center gap-y-2 md:(pr-12 mb-0)">
+  <body class="print:(bg-white text-xs) bg-gray-100 text-gray-700" style="display: none;">
+    <div class="p2 md:(py-12 px-5) print:(!m-0 !py-0 !px-0)">
+      <b class="print:(hidden) bg-paper fixed inset-0 z-[-1]" aria-hidden="true"></b>
+      <div class="mx-auto px-4 max-w-7xl relative lg:(px-8)">
+        <div class="print:(hidden) absolute top-2 right-6 z-50 lg:(-top-5 right-8)">
+          {%- include 'nav.njk' -%}
+        </div>
+        <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
+          <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500/20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
+            <a href="/" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block">
+                <title>{{ resume.applicant }} logo</title>
+                <g fill-rule="evenodd" transform="translate(2,2)">
+                  <path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
+                  <path class="stroke-current" fill="transparent" stroke-width="3" d="M42.747122,81.9990174 C58.9655226,93.344021 78.7054673,100 100,100 C121.294533,100 141.034477,93.344021 157.252882,81.9990144 C155.193825,75.4436177 152.039977,69.3730608 148.005622,64.0016292 C134.634094,74.0472141 118.012221,80 100,80 C81.9877797,80 65.3659077,74.0472146 51.9943761,64.0016357 C47.9600255,69.3730625 44.8061777,75.4436199 42.747122,81.9990174 Z" />
+                </g>
+              </svg>
+            </a>
+            <h1 class="text-(2xl center) flex-none relative xl:(pr-12 text-left)">
+              <b class="font-black md:(text-[50px] tracking-tight)">{{ resume.applicant }}</b>
+              <i class="text-sm font(serif normal) block opacity-80 xl:(pt-3 text-xl)">{{ resume.position }}</i>
+            </h1>
+            <div class="print:(flex-row) text-sm flex-(& col wrap 1) gap-x-5 md:(flex-row)">
+              <ul class="ml-auto md:(flex gap-x-5) print:(flex gap-x-5)">
+                <li class="flex-(& col)">
+                  <b class="pb-2 w-full block">Contact:</b>
+                  <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 flex-(& 1 col) justify-center gap-y-2 md:(pr-12 mb-0)">
+                    <li>
+                      <a href="mailto:{{ resume.email }}" class="group inline-block relative trnasition hover:(text-blue-500) focus:(text-blue-500)">
+                        {{ resume.email }}
+                        {{ underline() }}
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="flex-(& col)">
+                  <b class="pb-2 w-full block">@{{ resume.username }}</b>
+                  <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 text-4xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
+                    {%- for soc in resume.social %}
+                    <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" class="iconify" noobserver></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
+                    {%- endfor %}
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </header>
+          <main class="print:(!px-0 grid-cols-2 gap-6) pb-12 px-6 grid-(& cols-1) gap-16 relative md:(px-12) lg:(grid-cols-2)">
+            {%- call region(title='Personal Statement') %}
+              <article class="space-y-8">
+                <p class="print:(!pb-0 !text-base) pb-4 text-(lg gray-900 wrap-balance) font-bold lg:(text-xl leading-relaxed)">{{ resume.personal.lead }}</p>
+                <p class="print:(text-xs)">{{ resume.personal.body | safe }}</p>
+                <p class="print:(text-xs)">{{ resume.personal.closing | safe }}</p>
+                <ul class="print:(text-xs) text-sm space-y-2">
+                  {%- for site in resume.personal.sites %}
                   <li>
-                    <a href="mailto:{{ resume.email }}" class="group inline-block relative trnasition hover:(text-blue-500) focus:(text-blue-500)">
-                      {{ resume.email }}
+                    <a href="{{ site.url }}" class="group font-bold inline-block opacity-80 motion-safe:transition hover:(text-blue-500 opacity-100) focus:(text-blue-500 opacity-100)">
+                      {# <i class="mr-1 text-xs font-mono inline-block opacity-50" aria-hidden="true">//</i> #}
+                      <span class="inline-flex items-center gap-2">
+                        <iconify-icon icon="fa6-solid:globe" class="iconify opacity-50" noobserver></iconify-icon>
+                        {{ site.title }}
+                      </span>
                       {{ underline() }}
                     </a>
                   </li>
-                </ul>
-              </li>
-              <li class="flex-(& col)">
-                <b class="pb-2 w-full block">@{{ resume.username }}</b>
-                <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 text-4xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
-                  {%- for soc in resume.social %}
-                  <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" class="iconify" noobserver></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
                   {%- endfor %}
                 </ul>
-              </li>
-            </ul>
-          </div>
-        </header>
-        <main class="print:(!px-0 grid-cols-2 gap-6) pb-12 px-6 grid-(& cols-1) gap-16 relative md:(px-12) lg:(grid-cols-2)">
-          {%- call region(title='Personal Statement') %}
-            <article class="space-y-8">
-              <p class="print:(!pb-0 !text-base) pb-4 text-(lg gray-900 wrap-balance) font-bold lg:(text-xl leading-relaxed)">{{ resume.personal.lead }}</p>
-              <p class="print:(text-xs)">{{ resume.personal.body | safe }}</p>
-              <p class="print:(text-xs)">{{ resume.personal.closing | safe }}</p>
-              <ul class="print:(text-xs) text-sm space-y-2">
-                {%- for site in resume.personal.sites %}
+              </article>
+            {%- endcall %}
+            {%- call region(title='Experience') %}
+              {% set time %}{% year %}{% endset %}
+              <div class="mb-5 border-(b dashed gray-500/25) flex justify-center divide-(x dashed gray-500/25)">
+                {%- for total in resume.experience.totals %}
+                <p class="px-10 pb-5 text-center">
+                  <b class="print:(!text-[60px]) text-[75px] font-normal block tracking-tighter leading-none relative md:(text-[100px])">
+                    {{ time - total.time }}
+                    <b class="text-xs tracking-normal absolute -top-1 -right-2 opacity-80">Yrs</b>
+                  </b>
+                  <small class="text-xs block opacity-80 whitespace-nowrap">{{ total.title }} Design</small>
+                </p>
+                {%- endfor %}
+              </div>
+              <ul class="ml-3 relative md:(ml-8)">
+                <li class="w-1 bg-gradient-to-b from-current to-transparent text-gray-400 absolute left-1 inset-y-0" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5" role="img" class="ml-px fill-current absolute -top-1 -left-1 scale-125" role="img">
+                    <title>Arrow</title>
+                    <polygon points="5 0 10 5 0 5"></polygon>
+                  </svg>
+                </li>
+                {%- for exp in resume.experience.work %}
+                {%- if loop.index < 5 %}
+                <li class="flex space-x-5 relative">
+                  <b class="flex items-center">
+                    <b class="w-3 h-3 bg-gray-{{ 7 - loop.index }}00 ring-(2 gray-50/100) relative rounded-full"></b>
+                  </b>
+                  <ul class="py-3 self-center">
+                    <li class="text-sm">
+                      {{ exp.start }} - {{ exp.end }}
+                      {%- set exp_present = time - exp.start -%}
+                      {%- set exp_past = exp.end - exp.start -%}
+                      <sup class="ml-1 text-xs italic inline-block opacity-80">
+                        {%- if exp.end !== 'Present' %}
+                          {{ exp_past }} yr{{ 's' if exp_past > 1 }}
+                        {%- else %}
+                          {%- if exp_present < 1 %}
+                            ~yr
+                          {%- else %}
+                            {{ exp_present }} yr{{ 's' if exp_present > 1 }}
+                          {%- endif %}
+                        {%- endif %}
+                      </sup>
+                    </li>
+                    <li>{{ exp.position }}</li>
+                    <li class="pt-1 text-xs font-bold opacity-80">{{ exp.company }}</li>
+                  </ul>
+                </li>
+                {%- endif %}
+                {%- endfor %}
+              </ul>
+            {%- endcall %}
+            <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
+              <b class="h-px bg-gray-500/25 flex-1"></b>
+              <span class="flex-none">Continue to next page...</span>
+              <iconify-icon icon="mdi:flip-vertical" class="iconify" noobserver></iconify-icon>
+              <b class="h-px bg-gray-500/25 flex-1"></b>
+            </div>
+            {%- call region(title='Specialties') %}
+              <ul class="flex justify-center -space-x-2 md:(-space-x-4)">
+                {% for spec in resume.specialties %}
+                <li class="group flex-(& col) items-center motion-safe:(transition) hover:(scale-110 text-red-500)">
+                  <b class="w-16 h-16 ring-(2 inset current) flex items-center justify-center rounded-full group-hover:(ring-4) md:(w-24 h-24)">
+                    <iconify-icon icon="{{ spec.ico }}" class="iconify text-2xl md:(text-4xl)" noobserver></iconify-icon>
+                  </b>
+                  <i class="-mt-4 w-0.5 bg-current relative {% if loop.index % 2 == 0 %}h-12{% else %}h-24{% endif %}">
+                    <i class="ml-px w-2 h-2 bg-current absolute -top-1 -left-1 rounded-full"></i>
+                  </i>
+                  <p>{{ spec.title }}</p>
+                </li>
+                {%- endfor %}
+              </ul>
+            {%- endcall %}
+            {%- call region(title='Skills Levels') %}
+              <ul class="divide-(y dashed gray-500/25)">
+                {%- for skill in resume.skills %}
+                <li class="group flex items-center cursor-default mt-2 pt-2">
+                  <b class="mr-2 min-w-0 font-normal truncate">{{ skill.title }}</b>
+                  <div class="ml-auto p-[3px] w-32 bg-gray-200 flex items-center rounded-full shadow-inner sm:(w-48)" role="progressbar">
+                    <div class="w-[{{ skill.rating }}%] h-1.5 bg-current flex item-center justify-end relative rounded-full motion-safe:(transition duration-300 group-hover:(text-orange-500))">
+                      <b class="w-3 h-3 bg-current ring-(2 white/100) rounded-full transform -translate-y-[3px]" aria-hidden="true">
+                        <b class="absolute inset-0 ring-(2 current) rounded-full opacity-0 group-hover:(opacity-100 animate-ping)"></b>
+                      </b>
+                    </div>
+                    <i class="sr-only">{{ skill.rating }}% skill level</i>
+                  </div>
+                </li>
+                {%- endfor %}
+              </ul>
+            {%- endcall %}
+            {%- call region(title='Accomplishments') %}
+              <ul class="space-y-12">
+                {%- for accomplishment in resume.accomplishments %}
                 <li>
-                  <a href="{{ site.url }}" class="group font-bold inline-block opacity-80 motion-safe:transition hover:(text-blue-500 opacity-100) focus:(text-blue-500 opacity-100)">
-                    {# <i class="mr-1 text-xs font-mono inline-block opacity-50" aria-hidden="true">//</i> #}
-                    <span class="inline-flex items-center gap-2">
-                      <iconify-icon icon="fa6-solid:globe" class="iconify opacity-50" noobserver></iconify-icon>
-                      {{ site.title }}
-                    </span>
-                    {{ underline() }}
+                  <a href="{{ accomplishment.url }}" class="group space-x-6 flex items-center motion-safe:transition hover:(scale-110) focus:(scale-110)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" focusable="false" aria-hidden="true" class="w-16 h-16 text-current fill-current flex-none opacity-20 motion-safe:transition group-hover:(-rotate-6) group-focus:(-rotate-6)">
+                      <title>{{ accomplishment.title }}</title>
+                      {{ accomplishment.ico | safe }}
+                    </svg>
+                    <p>
+                      <b class="flex-(& wrap) items-center">{{ accomplishment.title }} <small class="ml-1 text-xs opacity-80">&mdash; {{ accomplishment.type }}</small></b>
+                      <small class="block opacity-80">{{ accomplishment.desc }}</small>
+                    </p>
                   </a>
                 </li>
                 {%- endfor %}
               </ul>
-            </article>
-          {%- endcall %}
-          {%- call region(title='Experience') %}
-            {% set time %}{% year %}{% endset %}
-            <div class="mb-5 border-(b dashed gray-500/25) flex justify-center divide-(x dashed gray-500/25)">
-              {%- for total in resume.experience.totals %}
-              <p class="px-10 pb-5 text-center">
-                <b class="print:(!text-[60px]) text-[75px] font-normal block tracking-tighter leading-none relative md:(text-[100px])">
-                  {{ time - total.time }}
-                  <b class="text-xs tracking-normal absolute -top-1 -right-2 opacity-80">Yrs</b>
-                </b>
-                <small class="text-xs block opacity-80 whitespace-nowrap">{{ total.title }} Design</small>
-              </p>
-              {%- endfor %}
-            </div>
-            <ul class="ml-3 relative md:(ml-8)">
-              <li class="w-1 bg-gradient-to-b from-current to-transparent text-gray-400 absolute left-1 inset-y-0" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5" role="img" class="ml-px fill-current absolute -top-1 -left-1 scale-125" role="img">
-                  <title>Arrow</title>
-                  <polygon points="5 0 10 5 0 5"></polygon>
-                </svg>
-              </li>
-              {%- for exp in resume.experience.work %}
-              {%- if loop.index < 5 %}
-              <li class="flex space-x-5 relative">
-                <b class="flex items-center">
-                  <b class="w-3 h-3 bg-gray-{{ 7 - loop.index }}00 ring-(2 gray-50/100) relative rounded-full"></b>
-                </b>
-                <ul class="py-3 self-center">
-                  <li class="text-sm">
-                    {{ exp.start }} - {{ exp.end }}
-                    {%- set exp_present = time - exp.start -%}
-                    {%- set exp_past = exp.end - exp.start -%}
-                    <sup class="ml-1 text-xs italic inline-block opacity-80">
-                      {%- if exp.end !== 'Present' %}
-                        {{ exp_past }} yr{{ 's' if exp_past > 1 }}
-                      {%- else %}
-                        {%- if exp_present < 1 %}
-                          ~yr
-                        {%- else %}
-                          {{ exp_present }} yr{{ 's' if exp_present > 1 }}
-                        {%- endif %}
-                      {%- endif %}
-                    </sup>
-                  </li>
-                  <li>{{ exp.position }}</li>
-                  <li class="pt-1 text-xs font-bold opacity-80">{{ exp.company }}</li>
-                </ul>
-              </li>
-              {%- endif %}
-              {%- endfor %}
-            </ul>
-          {%- endcall %}
-          <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
-            <b class="h-px bg-gray-500/25 flex-1"></b>
-            <span class="flex-none">Continue to next page...</span>
-            <iconify-icon icon="mdi:flip-vertical" class="iconify" noobserver></iconify-icon>
-            <b class="h-px bg-gray-500/25 flex-1"></b>
-          </div>
-          {%- call region(title='Specialties') %}
-            <ul class="flex justify-center -space-x-2 md:(-space-x-4)">
-              {% for spec in resume.specialties %}
-              <li class="group flex-(& col) items-center motion-safe:(transition) hover:(scale-110 text-red-500)">
-                <b class="w-16 h-16 ring-(2 inset current) flex items-center justify-center rounded-full group-hover:(ring-4) md:(w-24 h-24)">
-                  <iconify-icon icon="{{ spec.ico }}" class="iconify text-2xl md:(text-4xl)" noobserver></iconify-icon>
-                </b>
-                <i class="-mt-4 w-0.5 bg-current relative {% if loop.index % 2 == 0 %}h-12{% else %}h-24{% endif %}">
-                  <i class="ml-px w-2 h-2 bg-current absolute -top-1 -left-1 rounded-full"></i>
-                </i>
-                <p>{{ spec.title }}</p>
-              </li>
-              {%- endfor %}
-            </ul>
-          {%- endcall %}
-          {%- call region(title='Skills Levels') %}
-            <ul class="divide-(y dashed gray-500/25)">
-              {%- for skill in resume.skills %}
-              <li class="group flex items-center cursor-default mt-2 pt-2">
-                <b class="mr-2 min-w-0 font-normal truncate">{{ skill.title }}</b>
-                <div class="ml-auto p-[3px] w-32 bg-gray-200 flex items-center rounded-full shadow-inner sm:(w-48)" role="progressbar">
-                  <div class="w-[{{ skill.rating }}%] h-1.5 bg-current flex item-center justify-end relative rounded-full motion-safe:(transition duration-300 group-hover:(text-orange-500))">
-                    <b class="w-3 h-3 bg-current ring-(2 white/100) rounded-full transform -translate-y-[3px]" aria-hidden="true">
-                      <b class="absolute inset-0 ring-(2 current) rounded-full opacity-0 group-hover:(opacity-100 animate-ping)"></b>
-                    </b>
-                  </div>
-                  <i class="sr-only">{{ skill.rating }}% skill level</i>
-                </div>
-              </li>
-              {%- endfor %}
-            </ul>
-          {%- endcall %}
-          {%- call region(title='Accomplishments') %}
-            <ul class="space-y-12">
-              {%- for accomplishment in resume.accomplishments %}
-              <li>
-                <a href="{{ accomplishment.url }}" class="group space-x-6 flex items-center motion-safe:transition hover:(scale-110) focus:(scale-110)">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" focusable="false" aria-hidden="true" class="w-16 h-16 text-current fill-current flex-none opacity-20 motion-safe:transition group-hover:(-rotate-6) group-focus:(-rotate-6)">
-                    <title>{{ accomplishment.title }}</title>
-                    {{ accomplishment.ico | safe }}
-                  </svg>
-                  <p>
-                    <b class="flex-(& wrap) items-center">{{ accomplishment.title }} <small class="ml-1 text-xs opacity-80">&mdash; {{ accomplishment.type }}</small></b>
-                    <small class="block opacity-80">{{ accomplishment.desc }}</small>
-                  </p>
-                </a>
-              </li>
-              {%- endfor %}
-            </ul>
-          {%- endcall %}
-          {%- call region(title='Ask me about') %}
-            <ul class="flex-(& wrap) justify-center gap-5">
-              {%- for hobby in resume.hobbies %}
-              <li>
-                <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(2 gray-500/20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-500/100) scale-110) focus:(ring-(4 blue-500/100) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
-                  <iconify-icon icon="{{ hobby.ico }}" class="iconify text-4xl print:(text-lg)" noobserver></iconify-icon>
-                  <small class="mt-2 text-xs tracking-tight opacity-80 print:(!mt-0 text-[6px])">{{ hobby.title }}</small>
-                </a>
-              </li>
-              {%- endfor %}
-            </ul>
-          {%- endcall %}
-        </main>
-        <footer class="print:(!py-2 !fixed !bottom-0 !inset-x-0) py-12 border-(t dashed gray-500/20) text-(xs center) uppercase tracking-wider relative opacity-80">
-          Made with
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" role="img" class="-mt-1 mx-1 fill-current text-red-500 inline-block">
-            <title>Love</title>
-            <polygon points="8 3 11 0 12 0 16 4 16 5 9 12 7 12 0 5 0 4 4 0 5 0" transform="translate(0,2)"></polygon>
-          </svg>
-          by
-          <a href="https://craigerskine.com/" class="group mx-1 font-bold inline-block motion-safe:transition hover:(text-blue-600) focus:(text-blue-600)">
-            {{ resume.applicant }}
-            {{ underline() }}
-          </a>
-        </footer>
-        <b class="resume-bg bg-(paper white) absolute inset-0 z-[-1] print:(!hidden)" aria-hidden="true"></b>
-        <b class="resume-bg bg-(paper white) absolute inset-0 z-[-2] shadow-xl md:(-rotate-1) print:(!hidden)" aria-hidden="true"></b>
+            {%- endcall %}
+            {%- call region(title='Ask me about') %}
+              <ul class="flex-(& wrap) justify-center gap-5">
+                {%- for hobby in resume.hobbies %}
+                <li>
+                  <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(2 gray-500/20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-500/100) scale-110) focus:(ring-(4 blue-500/100) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
+                    <iconify-icon icon="{{ hobby.ico }}" class="iconify text-4xl print:(text-lg)" noobserver></iconify-icon>
+                    <small class="mt-2 text-xs tracking-tight opacity-80 print:(!mt-0 text-[6px])">{{ hobby.title }}</small>
+                  </a>
+                </li>
+                {%- endfor %}
+              </ul>
+            {%- endcall %}
+          </main>
+          <footer class="print:(!py-2 !fixed !bottom-0 !inset-x-0) py-12 border-(t dashed gray-500/20) text-(xs center) uppercase tracking-wider relative opacity-80">
+            Made with
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" role="img" class="-mt-1 mx-1 fill-current text-red-500 inline-block">
+              <title>Love</title>
+              <polygon points="8 3 11 0 12 0 16 4 16 5 9 12 7 12 0 5 0 4 4 0 5 0" transform="translate(0,2)"></polygon>
+            </svg>
+            by
+            <a href="https://craigerskine.com/" class="group mx-1 font-bold inline-block motion-safe:transition hover:(text-blue-600) focus:(text-blue-600)">
+              {{ resume.applicant }}
+              {{ underline() }}
+            </a>
+          </footer>
+          <b class="resume-bg bg-(paper white) absolute inset-0 z-[-1] print:(!hidden)" aria-hidden="true"></b>
+          <b class="resume-bg bg-(paper white) absolute inset-0 z-[-2] shadow-xl md:(-rotate-1) print:(!hidden)" aria-hidden="true"></b>
+        </div>
       </div>
     </div>
 

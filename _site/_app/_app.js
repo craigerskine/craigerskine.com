@@ -120,6 +120,7 @@ injectGlobal`
 // alpinejs
 import Alpine from 'alpinejs';
 import anchor from '@alpinejs/anchor';
+import collapse from '@alpinejs/collapse';
 import focus from '@alpinejs/focus';
 import tippy from 'tippy.js';
 document.addEventListener('alpine:init', () => {
@@ -138,6 +139,6 @@ document.addEventListener('alpine:init', () => {
     tippy(el, { content: evaluate(expression) })
   });
 });
-Alpine.plugin([anchor, focus]);
+Alpine.plugin([anchor, collapse, focus]);
 window.Alpine = Alpine;
 Alpine.start();
