@@ -46,7 +46,7 @@ date: 0001-01-01
               <img src="/_assets/qnx/img/header.png" alt="QNX Chrome" class="w-[180px] inline-block" />
             </h1>
             <section class="mx-auto pt-8 px-24 max-w-prose text-(sm center) md:(px-0 text-(base left))">
-              <hr class="my-5 border-(black opacity-20) h-[2px] bg-(white opacity-30)" />
+              <hr class="my-5 border-(black opacity-20) h-0.5 bg-(white opacity-30)" />
               <p>Welcome QNX fans! Just a heads up... all of the skins, themes, icons, &amp; wallpapers on this site are super old and problably will not work with modern OS's or their required software anymore. You have been warned.</p>
             </section>
           </header>
@@ -70,7 +70,7 @@ date: 0001-01-01
                               class="group py-1 px-2 w-full flex items-center space-x-2 motion-safe:transition hover:(bg-qnx-theme) focus:(bg-qnx-theme)"
                               :class="qnxActive === index ? 'bg-qnx-theme' : 'bg-qnx-item'"
                               :aria-current="qnxActive === index ? 'page' : null"
-                              @click.prevent="qnxActive = index"
+                              @click.prevent="qnxActive = index, max = true"
                             >
                               <img :src="'/_assets/qnx/img/ico-'+ entry.ico +'.png'" :alt="entry.title +' icon'" :class="qnxActive === index ? 'opacity-100' : 'opacity-50'" class="w-[16px] h-[16px] object-contain object-center motion-safe:transition group-hover:(opacity-100) group-focus:(opacity-100)" />
                               <span class="flex-1" x-text="entry.title"></span>
@@ -98,11 +98,11 @@ date: 0001-01-01
                       <div class="header h-4 qnx-bg-title flex relative">
                         <div class="title flex">
                           <b class="pl-1.5 pr-2 qnx-bg-title-active flex-1 flex">
-                            <i class="my-auto mr-12 w-2 h-2 bg-(black opacity-50) flex ring-(1 white opacity-75) rounded-full shadow">
-                              <i class="m-auto w-[2px] h-1 bg-[#FFEB00] rounded-full"></i>
-                            </i>
+                            <a @click.prevent="max = !max" href="#" class="my-auto mr-12 border-(& qnx-theme) w-2.5 h-2.5 bg-(black opacity-50) flex rounded-full shadow-[.5px_.5px_0_rgba(0,0,0,.75),-.5px_-.5px_0_rgba(255,255,255,.75)]">
+                              <i :class="max || 'rotate-180'" class="m-auto w-1.5 h-[3px] bg-qnx-accent [clip-path:polygon(50%_100%,0_0,100%_0)] transition"></i>
+                            </a>
                           </b>
-                          <i class="flex -space-x-[8px] relative -left-[2px]">
+                          <i class="flex -space-x-[8px] relative -left-0.5">
                             <i class="w-[10px] qnx-bg-title rounded-[12px/40px]"></i>
                             <i class="w-[10px] qnx-bg-title-active rounded-[12px/40px]"></i>
                             <i class="w-[10px] qnx-bg-title rounded-[12px/40px]"></i>
@@ -110,21 +110,19 @@ date: 0001-01-01
                             <i class="w-[10px] qnx-bg-title rounded-[12px/40px]"></i>
                           </i>
                         </div>
-                        <i class="my-auto ml-auto mr-1.5 w-2 h-2 bg-(black opacity-50) flex ring-(1 white opacity-75) rounded-full shadow">
-                          <i class="m-auto w-1 h-[2px] bg-[#FFEB00] rounded-full"></i>
-                        </i>
-                        <b class="r w-px bg-(black opacity-25) absolute inset-y-0 right-0"></b>
-                        <b class="b h-px bg-(black opacity-25) absolute inset-x-0 bottom-0"></b>
-                        <b class="l w-px bg-(white opacity-25) absolute inset-y-0 left-0"></b>
-                        <b class="t h-px bg-(white opacity-25) absolute inset-x-0 top-0"></b>
+                        <a @click.prevent="qnxActive = null" href="#" class="my-auto ml-auto mr-1.5 border-(1 qnx-dark) w-2.5 h-2.5 bg-black/50 flex rounded-full shadow-[.5px_.5px_0_rgba(0,0,0,.75),-.5px_-.5px_0_rgba(255,255,255,.75)]">
+                          <i class="m-auto w-[5px] h-[5px] bg-qnx-accent [clip-path:polygon(20%_0%,0%_20%,30%_50%,0%_80%,20%_100%,50%_70%,80%_100%,100%_80%,70%_50%,100%_20%,80%_0%,50%_30%)]"></i>
+                        </a>
+                        <b class="r w-px bg-(black/25) absolute inset-y-0 right-0"></b>
+                        <b class="b h-px bg-(black/25) absolute inset-x-0 bottom-0"></b>
+                        <b class="l w-px bg-(white/25) absolute inset-y-0 left-0"></b>
+                        <b class="t h-px bg-(white/25) absolute inset-x-0 top-0"></b>
                       </div>
-                      <div class="body p-[2px] pt-0 bg-qnx-base relative">
-                        <b class="r w-px bg-(black opacity-25) absolute inset-y-0 right-0"></b>
-                        <b class="b h-px bg-(black opacity-25) absolute inset-x-0 bottom-0"></b>
-                        <b class="l w-px bg-(white opacity-25) absolute inset-y-0 left-0"></b>
-                        <b class="notch w-[2px] h-3 bg-[#2C4A70] absolute -top-px left-0">
-                          <b class="w-px bg-(white opacity-25) absolute left-0 inset-y-0"></b>
-                        </b>
+                      <div x-show="max" x-collapse class="body p-0.5 pt-0 bg-qnx-base relative">
+                        <b class="r w-px bg-(black/25) absolute inset-y-0 right-0"></b>
+                        <b class="b h-px bg-(black/25) absolute inset-x-0 bottom-0"></b>
+                        <b class="l w-px bg-(white/25) absolute inset-y-0 left-0"></b>
+                        <b class="notch w-0.5 h-3 bg-[#2C4A70] absolute -top-px left-0"><b class="w-px bg-(white/25) absolute left-0 inset-y-0"></b></b>
                         <div class="border-(1 qnx-line) bg-qnx-cream">
                           <ul class="bg-qnx-cream divide-(y qnx-dark)">
                             <template x-for="(file, index) in entry.files" hidden>
@@ -187,7 +185,7 @@ date: 0001-01-01
               <template x-for="(entry, index) in entries" hidden>
                 <li class="border-(r qnx-line) flex">
                   <div class="qnx-bevel">
-                    <div class="p-[2px] flex">
+                    <div class="p-0.5 flex">
                       <div class="qnx-bevel-sunk">
                         <template x-if="qnxActive !== index" hidden>
                           <div class="flex absolute inset-0"><div class="qnx-bevel"></div></div>
@@ -209,9 +207,11 @@ date: 0001-01-01
     <script type="module">
       // alpine
       import Alpine from 'https://esm.run/alpinejs';
+      import collapse from 'https://esm.run/@alpinejs/collapse';
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
           qnxActive: 0,
+          max: true,
           taskMenu: false,
           entries: [
             {
@@ -274,6 +274,7 @@ date: 0001-01-01
           }
         }));
       });
+      Alpine.plugin([collapse,]);
       window.Alpine = Alpine;
       Alpine.start();
 
@@ -288,6 +289,7 @@ date: 0001-01-01
         theme: {
           extend: {
             colors: ({ theme }) => ({
+              'qnx-accent': '#FFEB00',
               'qnx-cream': '#E7E3D6',
               'qnx-theme': '#98A8C8',
               'qnx-lite': '#F0F0F0',
@@ -305,9 +307,7 @@ date: 0001-01-01
           },
         },
         rules: [
-          ['text-wrap-(unset|wrap|nowrap|balance)', 'textWrap'],
-          [ 'qnx-bevel', { '@apply': 'bg-qnx-base border border-t-qnx-lite border-l-qnx-lite border-b-qnx-dark border-r-qnx-dark flex-1 flex relative' } ],
-          [ 'qnx-bevel-sunk', { '@apply': 'bg-qnx-base border border-t-qnx-dark border-l-qnx-dark border-b-qnx-light border-r-qnx-light flex-1 flex relative' } ],
+          [ 'text-wrap-(unset|wrap|nowrap|balance)', 'textWrap' ],
         ],
       });
       // global css
@@ -316,6 +316,8 @@ date: 0001-01-01
           [x-cloak] { @apply hidden; }
           .qnx-bg-title { @apply bg-gradient-to-b from-[#F7F7F7] to-[#9C9E9C]; }
           .qnx-bg-title-active { @apply bg-gradient-to-b from-[#638ECE] to-[#396194]; }
+          .qnx-bevel { @apply bg-qnx-base border border-t-qnx-lite border-l-qnx-lite border-b-qnx-dark border-r-qnx-dark flex-1 flex relative; }
+          .qnx-bevel-sunk { @apply bg-qnx-base border border-t-qnx-dark border-l-qnx-dark border-b-qnx-light border-r-qnx-light flex-1 flex relative; }
         }
       `
     </script>
