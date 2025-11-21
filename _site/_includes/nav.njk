@@ -76,7 +76,7 @@
         {%- for item in collections.all | eleventyNavigation %}
           {%- if item.url !== '/' %}
           <li class="nav-item w-full h-full flex">
-            <a href="{{ item.url }}" class="group py-6 pl-[3vw] pr-0 w-full h-full bg-gray-950 text-white text-[5vw] font-black flex items-center gap-3 relative dark:bg-gray-950 motion-safe:(transition) hover:(bg-gray-800 dark:(bg-gray-800)) [&.active]:(bg-gray-800 dark:(bg-gray-800)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+            <a href="{{ item.url }}" class="group py-[5vw] pl-[4vw] w-full h-full bg-gray-950 text-white leading-none tracking-tight sm:(text-3xl leading-none) md:(text-[5vw]) lg:text-6xl font-black flex items-center gap-3 relative dark:bg-gray-950 motion-safe:(transition) hover:(bg-gray-800 dark:(bg-gray-800)) [&.active]:(bg-gray-800 dark:(bg-gray-800)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
               {#- <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) flex items-center justify-center rounded-md group-hover:text-white">{{ item.title }}</small> -#}
               <span>{{ item.key }}</span>
             </a>

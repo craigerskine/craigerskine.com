@@ -112,10 +112,10 @@ eleventyComputed:
               {% set time %}{% year %}{% endset %}
               <div class="mb-5 border-(b dashed gray-500/25) flex justify-center divide-(x dashed gray-500/25)">
                 {%- for total in resume.experience.totals %}
-                <p class="px-10 pb-5 text-center">
-                  <b class="print:(!text-[60px]) text-[75px] font-normal block tracking-tighter leading-none relative md:(text-[100px])">
+                <p class="grow pb-5 text-center">
+                  <b class="print:(!text-[60px]) text-[75px] font-normal flex justify-center tracking-tighter leading-none relative md:(text-[100px])">
                     {{ time - total.time }}
-                    <b class="text-xs tracking-normal absolute -top-1 -right-2 opacity-80">Yrs</b>
+                    <sup class="text-xs leading-6 font-semibold tracking-normal opacity-80">Yrs</sup>
                   </b>
                   <small class="text-xs block opacity-80 whitespace-nowrap">{{ total.title }} Design</small>
                 </p>
