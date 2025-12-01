@@ -24,19 +24,28 @@ hardware:
     url: https://kieselguitars.com/series/guitar/z2
 
   - type: Guitar
+    name: Kiesel › Kyber Headless
+    sub:
+      - 2025
+      - Custom 6
+      - Fishman Fluence
+    url: https://kieselguitars.com/series/guitar/kyber-headless
+
+  - type: Guitar
     name: .strandberg* › Boden
     sub:
       - 2020
       - Metal 6
       - Black Pearl
-    url: https://strandbergguitars.com/product-category/family/boden-metal/
+    url: https://strandbergguitars.com/en-US/product/boden-metal-nx-6-black-granite
 
   - type: Guitar
-    name: Ibanez › Q52PB
+    name: .strandberg* › Boden
     sub:
-      - Nyatoh
-      - Maple/Bubinga
-    url: https://amazon.com/dp/B0BK5615JM?tag=qrayg-20
+      - 2025
+      - Original N2.6
+      - Sunset Coral Burst Satin
+    url: https://strandbergguitars.com/en-US/product/boden-original-n26-sunset-coral-burst-satin
 
   - type: Amp
     name: Positive Grid › Spark 40
@@ -76,6 +85,7 @@ hardware:
       - Nunchuck
       - Nutcracker
       - Lumos
+      - Graphene
     url: https://polychromedsp.com/
 
   - type: Plugin
