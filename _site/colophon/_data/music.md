@@ -8,12 +8,12 @@ color:
 hardware:
 
   - type: Guitar
-    name: Kiesel › Vader
+    name: Kiesel › Kyber Headless
     sub:
-      - 2021
+      - 2025
       - Custom 6
       - Fishman Fluence
-    url: https://kieselguitars.com/series/guitar/vader
+    url: https://kieselguitars.com/series/guitar/kyber-headless
 
   - type: Guitar
     name: Kiesel › Zeus
@@ -24,20 +24,12 @@ hardware:
     url: https://kieselguitars.com/series/guitar/z2
 
   - type: Guitar
-    name: Kiesel › Kyber Headless
+    name: Kiesel › Vader
     sub:
-      - 2025
+      - 2021
       - Custom 6
       - Fishman Fluence
-    url: https://kieselguitars.com/series/guitar/kyber-headless
-
-  - type: Guitar
-    name: .strandberg* › Boden
-    sub:
-      - 2020
-      - Metal 6
-      - Black Pearl
-    url: https://strandbergguitars.com/en-US/product/boden-metal-nx-6-black-granite
+    url: https://kieselguitars.com/series/guitar/vader
 
   - type: Guitar
     name: .strandberg* › Boden
@@ -46,6 +38,14 @@ hardware:
       - Original N2.6
       - Sunset Coral Burst Satin
     url: https://strandbergguitars.com/en-US/product/boden-original-n26-sunset-coral-burst-satin
+
+  - type: Guitar
+    name: .strandberg* › Boden
+    sub:
+      - 2020
+      - Metal 6
+      - Black Pearl
+    url: https://strandbergguitars.com/en-US/product/boden-metal-nx-6-black-granite
 
   - type: Amp
     name: Positive Grid › Spark 40
