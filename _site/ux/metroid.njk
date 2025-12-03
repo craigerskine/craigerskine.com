@@ -1,7 +1,7 @@
 ---
 layout: false
 tags: ux
-title: Metroid Passwords
+title: Metroid Password Generator
 desc: Generate custom NES Metroid password using a simple interface...
 tech:
   - title: HTML
@@ -20,7 +20,7 @@ date: 0017-01-01
 <html lang="en" class="bg-transparent" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <title>Metroid Password Generator</title>
+    <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <meta property="og:title" content="{{ title }}" />
@@ -59,7 +59,7 @@ date: 0017-01-01
         h2 { @apply mb-6 pb-2 border-b border-current/30 text-(--color-warning) text-xs; }
         img { @apply transition; }
         label { @apply relative transition; }
-        label:not(:has(.btn)):focus-within { @apply outline-2 outline-white outline-offset-4 rounded-sm; }
+        label:not(:has(.btn)):has(:focus-visible) { @apply outline-2 outline-white outline-offset-4 rounded-sm; }
         input[type=checkbox] { @apply border-0 absolute inset-0 z-10 cursor-pointer appearance-none opacity-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-current; }
         .tippy-content { @apply text-xs; }
       }
