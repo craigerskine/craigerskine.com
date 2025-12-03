@@ -22,6 +22,12 @@ date: 0017-01-01
     <meta charset="UTF-8" />
     <title>Metroid Password Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ desc }}" />
+    <meta property="og:url" content="{{ site.meta.url }}{{ page.url }}" />
+    <meta property="og:image" content="{{ site.meta.url }}/_assets/img/ux/metroid/title.png" />
+
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.cdnfonts.com/css/narpassword00000" rel="stylesheet" />
@@ -53,6 +59,7 @@ date: 0017-01-01
         h2 { @apply mb-6 pb-2 border-b border-current/30 text-(--color-warning) text-xs; }
         img { @apply transition; }
         label { @apply relative transition; }
+        label:not(:has(.btn)):focus-within { @apply outline-2 outline-white outline-offset-4 rounded-sm; }
         input[type=checkbox] { @apply border-0 absolute inset-0 z-10 cursor-pointer appearance-none opacity-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-current; }
         .tippy-content { @apply text-xs; }
       }
@@ -102,7 +109,7 @@ date: 0017-01-01
           <section class="lg:shrink-0">
             <h2>Suit</h2>
             <div class="flex flex-wrap justify-center gap-4">
-              <label>
+              <label x-tooltip="'Suit'">
                 <input type="checkbox" x-model="options.swimsuit" @change="updatePassword()" title="Suit" />
                 <img src="/_assets/img/ux/metroid/samus.png" alt="Suit" :class="options.swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
               </label>
@@ -114,23 +121,23 @@ date: 0017-01-01
             <section>
               <h2>Power-Ups</h2>
               <div class="flex flex-wrap gap-4">
-                <label>
+                <label x-tooltip="'Morph Ball'">
                   <input type="checkbox" x-model="options.morphBall" @change="updatePassword()" title="Morph Ball" />
                   <img src="/_assets/img/ux/metroid/power-morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Bombs'">
                   <input type="checkbox" x-model="options.bombs" @change="updatePassword()"  title="Bombs" />
                   <img src="/_assets/img/ux/metroid/power-bombs.png" alt="Bombs" :class="options.bombs || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Hi-Jump'">
                   <input type="checkbox" x-model="options.highJump" @change="updatePassword()" title="High Jump" />
                   <img src="/_assets/img/ux/metroid/power-high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Varia Suit'">
                   <input type="checkbox" x-model="options.variaSuit" @change="updatePassword()" title="Varia Suit" />
                   <img src="/_assets/img/ux/metroid/power-varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Screw Attack'">
                   <input type="checkbox" x-model="options.screwAttack" @change="updatePassword()" title="Screw Attack" />
                   <img src="/_assets/img/ux/metroid/power-screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-70 grayscale'" class="w-8" />
                 </label>
@@ -141,23 +148,23 @@ date: 0017-01-01
             <section>
               <h2>Loadout</h2>
               <div class="flex flex-wrap gap-4">
-                <label>
+                <label x-tooltip="'Long Beam'">
                   <input type="checkbox" x-model="options.longBeam" @change="updatePassword()" title="Long Beam" />
                   <img src="/_assets/img/ux/metroid/loadout-long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Ice Beam'">
                   <input type="checkbox" x-model="options.iceBeam" @change="updatePassword()" title="Ice Beam" />
                   <img src="/_assets/img/ux/metroid/loadout-ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Wave Beam'">
                   <input type="checkbox" x-model="options.waveBeam" @change="updatePassword()" title="Wave Beam" />
                   <img src="/_assets/img/ux/metroid/loadout-wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Missiles'">
                   <input type="checkbox" x-model="options.missiles" @change="updatePassword()" title="All Missiles" />
                   <img src="/_assets/img/ux/metroid/loadout-missile.png" alt="Missiles" :class="options.missiles || 'opacity-70 grayscale'" class="w-8" />
                 </label>
-                <label>
+                <label x-tooltip="'Energy Tanks'">
                   <input type="checkbox" x-model="options.energyTanks" @change="updatePassword()" title="All Energy Tanks" />
                   <img src="/_assets/img/ux/metroid/loadout-etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-70 grayscale'" class="w-8" />
                 </label>
@@ -170,21 +177,21 @@ date: 0017-01-01
             <h2>Bosses</h2>
             <div class="flex flex-col gap-4">
               <div class="flex items-end gap-4">
-                <label>
+                <label x-tooltip="'Kraid'">
                   <input type="checkbox" x-model="bosses.kraid" @change="updatePassword()" title="Kraid" />
                   <img src="/_assets/img/ux/metroid/boss-kraid.png" alt="Kraid" :class="bosses.kraid && 'opacity-70 grayscale'" class="h-16" />
                 </label>
-                <label>
+                <label x-tooltip="'Ridley'">
                   <input type="checkbox" x-model="bosses.ridley" @change="updatePassword()" title="Ridley" />
                   <img src="/_assets/img/ux/metroid/boss-ridley.png" alt="Ridley" :class="bosses.ridley && 'opacity-70 grayscale'" class="h-16" />
                 </label>
-                <label class="ml-auto flex flex-col items-center">
+                <label class="ml-auto flex flex-col items-center" x-tooltip="'Kraid Statue'">
                   <input type="checkbox" x-model="statues.kraid" @change="updatePassword()" title="Kraid Statue" />
                   <img src="/_assets/img/ux/metroid/statue-kraid.png" alt="Kraid" :class="statues.kraid ? '' : 'opacity-70 grayscale'" class="h-6" />
                   <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Kraid" :class="statues.kraid ? 'h-4' : 'h-0'" class="w-2.5 transition-all" />
                   <img src="/_assets/img/ux/metroid/statue-base.png" alt="Kraid" :class="statues.kraid ? '' : 'opacity-70 grayscale'" class="h-4" />
                 </label>
-                <label class="flex flex-col items-center">
+                <label class="flex flex-col items-center" x-tooltip="'Ridley Statue'">
                   <input type="checkbox" x-model="statues.ridley" @change="updatePassword()" title="Ridley Statue" />
                   <img src="/_assets/img/ux/metroid/statue-ridley.png" alt="Ridley" :class="statues.ridley ? '' : 'opacity-70 grayscale'" class="w-4" />
                   <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Ridley" :class="statues.ridley ? 'h-4' : 'h-0'" class="w-2.5 transition-all" />
@@ -192,15 +199,15 @@ date: 0017-01-01
                 </label>
               </div>
               <div class="flex items-center gap-4">
-                <label>
+                <label x-tooltip="'Mother Brain'">
                   <input type="checkbox" x-model="bosses.brain" @change="updatePassword()" title="Mother Brain" />
                   <img src="/_assets/img/ux/metroid/boss-motherbrain.png" alt="Mother Brain" class="h-24" x-show="!bosses.brain" />
                   <img src="/_assets/img/ux/metroid/boss-motherbrain-x.png" alt="Mother Brain" class="h-24 block opacity-70 grayscale" x-show="bosses.brain" />
                 </label>
                 <div class="flex flex-row-reverse gap-1.5">
                   <template x-for="(z, i) in zebetites" :key="i" hidden>
-                    <label class="flex flex-col items-center">
-                      <input type="checkbox" x-tooltip="'Zebetite '+ (i + 1)" :checked="z" @change="zebetites[i] = !zebetites[i]; updatePassword()" />
+                    <label class="flex flex-col items-center" x-tooltip="'Zebetite '+ (i + 1)">
+                      <input type="checkbox" :checked="z" @change="zebetites[i] = !zebetites[i]; updatePassword()" />
                       <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4" />
                       <img src="/_assets/img/ux/metroid/zebetite.png" :alt="'Zebetite '+ (i + 1)" class="h-8 transition-all" :class="zebetites[i] ? 'w-0' : 'w-full'" />
                       <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4 [transform:scaleY(-1)]" />
