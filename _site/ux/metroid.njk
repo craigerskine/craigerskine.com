@@ -75,7 +75,7 @@ date: 0017-01-01
       <header class="pt-12 mb-12 w-full shrink-0">
         <hgroup class="flex flex-col items-center gap-2">
           <p><img src="/_assets/img/ux/metroid/title.png" alt="Metroid" class="motion-safe:animate-pulse" /></p>
-          <h1 class="text-success font-black">Password Generator</h1>
+          <h1 class="text-xs text-success font-black sm:text-base">Password Generator</h1>
         </hgroup>
       </header>
 
@@ -93,28 +93,30 @@ date: 0017-01-01
 
         <div class="container mx-auto flex flex-wrap justify-center gap-y-8 gap-x-24">
 
-          <!-- location -->
-          <section>
-            <h2>Location</h2>
-            <div class="text-sm flex flex-col items-start gap-2.5">
-              <template x-for="item in locations" :key="item.value" hidden>
-                <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" :value="item.value" x-model="location" @change="updatePassword()" :aria-label="item.title" /></label>
-              </template>
-            </div>
-          </section>
+          <div class="w-full max-w-xs grid grid-cols-1 gap-y-8 gap-x-8 sm:grid-cols-[1fr_auto] md:w-auto md:gap-x-24">
+            <!-- location -->
+            <section>
+              <h2>Location</h2>
+              <div class="text-sm flex flex-col items-start gap-2.5">
+                <template x-for="item in locations" :key="item.value" hidden>
+                  <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" :value="item.value" x-model="location" @change="updatePassword()" :aria-label="item.title" /></label>
+                </template>
+              </div>
+            </section>
 
-          <!-- suit -->
-          <section class="lg:shrink-0">
-            <h2>Suit</h2>
-            <div class="flex flex-wrap justify-center gap-4">
-              <label x-tooltip="'Suit'">
-                <input type="checkbox" x-model="swimsuit" @change="updatePassword()" title="Suit" />
-                <img src="/_assets/img/ux/metroid/samus.png" alt="Suit" :class="swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
-              </label>
-            </div>
-          </section>
+            <!-- suit -->
+            <section class="lg:shrink-0">
+              <h2>Suit</h2>
+              <div class="flex flex-wrap justify-center gap-4">
+                <label x-tooltip="'Suit'">
+                  <input type="checkbox" x-model="swimsuit" @change="updatePassword()" title="Suit" />
+                  <img src="/_assets/img/ux/metroid/samus.png" alt="Suit" :class="swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
+                </label>
+              </div>
+            </section>
+          </div>
 
-          <div class="grid grid-cols-1 gap-8">
+          <div class="w-full max-w-xs grid grid-cols-1 gap-8 md:w-auto">
 
             <!-- power-ups -->
             <section>
@@ -144,7 +146,7 @@ date: 0017-01-01
           </div>
 
           <!-- bosses -->
-          <section>
+          <section class="w-full max-w-xs md:w-auto">
             <h2>Bosses</h2>
             <div class="flex flex-col gap-8">
               <div class="flex items-end gap-4">
@@ -163,7 +165,7 @@ date: 0017-01-01
                   </label>
                 </template>
               </div>
-              <div class="flex items-center gap-4">
+              <div class="flex items-center justify-between gap-4">
                 <label x-tooltip="'Mother Brain'">
                   <input type="checkbox" x-model="brain" @change="updatePassword()" title="Mother Brain" />
                   <img src="/_assets/img/ux/metroid/boss-motherbrain.png" alt="Mother Brain" class="h-24" x-show="!brain" />
