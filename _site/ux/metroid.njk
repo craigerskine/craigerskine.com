@@ -55,7 +55,6 @@ date: 0017-01-01
       }
 
       @layer base {
-        [x-cloak] { display: none; }
         h2 { @apply mb-6 pb-2 border-b border-current/30 text-(--color-warning) text-xs; }
         img { @apply transition; }
         label { @apply relative transition; }
@@ -65,6 +64,8 @@ date: 0017-01-01
       }
 
       .btn-text { @apply p-0 border-0 h-auto text-gray-500 uppercase no-underline underline-offset-4 rounded-sm checked:text-white checked:underline hover:underline; }
+
+      [x-cloak] { display: none; }
     </style>
   </head>
   <body class="bg-black font-mono uppercase !block" style="display: none;" x-data="app" x-init="updatePassword()">
@@ -83,25 +84,22 @@ date: 0017-01-01
         <!-- password -->
         <header class="text-info text-xl flex justify-center normal-case sm:text-2xl md:text-4xl">
           <div class="pt-4 pb-2 border-1 border-current/30 w-[260px] text-center grid grid-cols-2 items-center justify-center gap-2 select-none relative selection:bg-sky-300 selection:text-sky-900 sm:w-[300px] md:w-[440px]">
-            <span x-text="maskedPassword[0]"></span>
-            <span x-text="maskedPassword[1]"></span>
-            <span x-text="maskedPassword[2]"></span>
-            <span x-text="maskedPassword[3]"></span>
+            <template x-for="(i, index) in 4" hidden>
+              <span x-text="maskedPassword[index]"></span>
+            </template>
             <button class="appearance-none border border-current/30 w-9 h-9 bg-black text-2xl flex items-center justify-center absolute top-0 right-0 cursor-pointer -translate-y-1/2 translate-x-1/2 transition hover:border-success hover:bg-success hover:text-black" @click="copyPassword"><iconify-icon icon="pixelarticons:clipboard" class="iconify" noobserver></iconify-icon></button>
           </div>
         </header>
 
-        <div class="container mx-auto flex flex-wrap justify-center gap-8">
+        <div class="container mx-auto flex flex-wrap justify-center gap-y-8 gap-x-24">
 
           <!-- location -->
           <section>
             <h2>Location</h2>
             <div class="text-sm flex flex-col items-start gap-2.5">
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="brinstar" x-model="location" @change="updatePassword()" aria-label="Brinstar" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="norfair" x-model="location" @change="updatePassword()" aria-label="Norfair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="kraidsLair" x-model="location" @change="updatePassword()" aria-label="Kraid's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="ridleysLair" x-model="location" @change="updatePassword()" aria-label="Ridley's Lair" /></label>
-              <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" value="tourian" x-model="location" @change="updatePassword()" aria-label="Tourian" /></label>
+              <template x-for="item in locations" :key="item.value" hidden>
+                <label><input type="radio" class="btn btn-link btn-sm btn-text" name="location" :value="item.value" x-model="location" @change="updatePassword()" :aria-label="item.title" /></label>
+              </template>
             </div>
           </section>
 
@@ -110,37 +108,24 @@ date: 0017-01-01
             <h2>Suit</h2>
             <div class="flex flex-wrap justify-center gap-4">
               <label x-tooltip="'Suit'">
-                <input type="checkbox" x-model="options.swimsuit" @change="updatePassword()" title="Suit" />
-                <img src="/_assets/img/ux/metroid/samus.png" alt="Suit" :class="options.swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
+                <input type="checkbox" x-model="swimsuit" @change="updatePassword()" title="Suit" />
+                <img src="/_assets/img/ux/metroid/samus.png" alt="Suit" :class="swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
               </label>
             </div>
           </section>
 
           <div class="grid grid-cols-1 gap-8">
+
             <!-- power-ups -->
             <section>
               <h2>Power-Ups</h2>
               <div class="flex flex-wrap gap-4">
-                <label x-tooltip="'Morph Ball'">
-                  <input type="checkbox" x-model="options.morphBall" @change="updatePassword()" title="Morph Ball" />
-                  <img src="/_assets/img/ux/metroid/power-morph-ball.png" alt="Morph Ball" :class="options.morphBall || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Bombs'">
-                  <input type="checkbox" x-model="options.bombs" @change="updatePassword()"  title="Bombs" />
-                  <img src="/_assets/img/ux/metroid/power-bombs.png" alt="Bombs" :class="options.bombs || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Hi-Jump'">
-                  <input type="checkbox" x-model="options.highJump" @change="updatePassword()" title="High Jump" />
-                  <img src="/_assets/img/ux/metroid/power-high-jump.png" alt="Hi-Jump" :class="options.highJump || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Varia Suit'">
-                  <input type="checkbox" x-model="options.variaSuit" @change="updatePassword()" title="Varia Suit" />
-                  <img src="/_assets/img/ux/metroid/power-varia-suit.png" alt="Varia Suit" :class="options.variaSuit || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Screw Attack'">
-                  <input type="checkbox" x-model="options.screwAttack" @change="updatePassword()" title="Screw Attack" />
-                  <img src="/_assets/img/ux/metroid/power-screw-attack.png" alt="Screw Attack" :class="options.screwAttack || 'opacity-70 grayscale'" class="w-8" />
-                </label>
+                <template x-for="item in power" :key="slugify(item.title)" hidden>
+                  <label x-tooltip="item.title">
+                    <input type="checkbox" x-model="item.got" @change="updatePassword()" :aria-label="item.title" />
+                    <img :src="'/_assets/img/ux/metroid/power-'+ slugify(item.title) +'.png'" :alt="item.title" :class="item.got || 'opacity-70 grayscale'" class="w-8" />
+                  </label>
+                </template>
               </div>
             </section>
 
@@ -148,26 +133,12 @@ date: 0017-01-01
             <section>
               <h2>Loadout</h2>
               <div class="flex flex-wrap gap-4">
-                <label x-tooltip="'Long Beam'">
-                  <input type="checkbox" x-model="options.longBeam" @change="updatePassword()" title="Long Beam" />
-                  <img src="/_assets/img/ux/metroid/loadout-long-beam.png" alt="Long Beam" :class="options.longBeam || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Ice Beam'">
-                  <input type="checkbox" x-model="options.iceBeam" @change="updatePassword()" title="Ice Beam" />
-                  <img src="/_assets/img/ux/metroid/loadout-ice-beam.png" alt="Ice Beam" :class="options.iceBeam || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Wave Beam'">
-                  <input type="checkbox" x-model="options.waveBeam" @change="updatePassword()" title="Wave Beam" />
-                  <img src="/_assets/img/ux/metroid/loadout-wave-beam.png" alt="Wave Beam" :class="options.waveBeam || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Missiles'">
-                  <input type="checkbox" x-model="options.missiles" @change="updatePassword()" title="All Missiles" />
-                  <img src="/_assets/img/ux/metroid/loadout-missile.png" alt="Missiles" :class="options.missiles || 'opacity-70 grayscale'" class="w-8" />
-                </label>
-                <label x-tooltip="'Energy Tanks'">
-                  <input type="checkbox" x-model="options.energyTanks" @change="updatePassword()" title="All Energy Tanks" />
-                  <img src="/_assets/img/ux/metroid/loadout-etank.png" alt="Energy Tanks" :class="options.energyTanks || 'opacity-70 grayscale'" class="w-8" />
-                </label>
+                <template x-for="item in loadout" :key="slugify(item.title)" hidden>
+                  <label x-tooltip="item.title">
+                    <input type="checkbox" x-model="item.got" @change="updatePassword()" :aria-label="item.title" />
+                    <img :src="'/_assets/img/ux/metroid/loadout-'+ slugify(item.title) +'.png'" :alt="item.title" :class="item.got || 'opacity-70 grayscale'" class="w-8" />
+                  </label>
+                </template>
               </div>
             </section>
           </div>
@@ -175,34 +146,28 @@ date: 0017-01-01
           <!-- bosses -->
           <section>
             <h2>Bosses</h2>
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-8">
               <div class="flex items-end gap-4">
-                <label x-tooltip="'Kraid'">
-                  <input type="checkbox" x-model="bosses.kraid" @change="updatePassword()" title="Kraid" />
-                  <img src="/_assets/img/ux/metroid/boss-kraid.png" alt="Kraid" :class="bosses.kraid && 'opacity-70 grayscale'" class="h-16" />
-                </label>
-                <label x-tooltip="'Ridley'">
-                  <input type="checkbox" x-model="bosses.ridley" @change="updatePassword()" title="Ridley" />
-                  <img src="/_assets/img/ux/metroid/boss-ridley.png" alt="Ridley" :class="bosses.ridley && 'opacity-70 grayscale'" class="h-16" />
-                </label>
-                <label class="ml-auto flex flex-col items-center" x-tooltip="'Kraid Statue'">
-                  <input type="checkbox" x-model="statues.kraid" @change="updatePassword()" title="Kraid Statue" />
-                  <img src="/_assets/img/ux/metroid/statue-kraid.png" alt="Kraid" :class="statues.kraid ? '' : 'opacity-70 grayscale'" class="h-6" />
-                  <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Kraid" :class="statues.kraid ? 'h-4' : 'h-0'" class="w-2.5 transition-all" />
-                  <img src="/_assets/img/ux/metroid/statue-base.png" alt="Kraid" :class="statues.kraid ? '' : 'opacity-70 grayscale'" class="h-4" />
-                </label>
-                <label class="flex flex-col items-center" x-tooltip="'Ridley Statue'">
-                  <input type="checkbox" x-model="statues.ridley" @change="updatePassword()" title="Ridley Statue" />
-                  <img src="/_assets/img/ux/metroid/statue-ridley.png" alt="Ridley" :class="statues.ridley ? '' : 'opacity-70 grayscale'" class="w-4" />
-                  <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Ridley" :class="statues.ridley ? 'h-4' : 'h-0'" class="w-2.5 transition-all" />
-                  <img src="/_assets/img/ux/metroid/statue-base.png" alt="Ridley" :class="statues.ridley ? '' : 'opacity-70 grayscale'" class="h-4" />
-                </label>
+                <template x-for="(active, name) in bosses" :key="name" hidden>
+                  <label x-tooltip="name.charAt(0).toUpperCase() + name.slice(1)">
+                    <input type="checkbox" x-model="bosses[name]" @change="updatePassword()" :aria-label="name" />
+                    <img :src="'/_assets/img/ux/metroid/boss-'+ name +'.png'" :alt="name" :class="active && 'opacity-70 grayscale'" class="h-16" />
+                  </label>
+                </template>
+                <template x-for="(active, name) in statues" :key="name" hidden>
+                  <label class="flex flex-col items-center" :class="name === 'kraid' && 'ml-auto'" x-tooltip="name.charAt(0).toUpperCase() + name.slice(1) +' statue'">
+                    <input type="checkbox" x-model="statues[name]" @change="updatePassword()" :aria-label="name +' statue'" />
+                    <img :src="'/_assets/img/ux/metroid/statue-'+ name +'.png'" :alt="name" :class="active ? '' : 'opacity-70 grayscale'" class="h-6" />
+                    <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Kraid" :class="active ? 'h-4' : 'h-0'" class="w-2.5 transition-all" />
+                    <img src="/_assets/img/ux/metroid/statue-base.png" alt="Kraid" :class="active ? '' : 'opacity-70 grayscale'" class="h-4" />
+                  </label>
+                </template>
               </div>
               <div class="flex items-center gap-4">
                 <label x-tooltip="'Mother Brain'">
-                  <input type="checkbox" x-model="bosses.brain" @change="updatePassword()" title="Mother Brain" />
-                  <img src="/_assets/img/ux/metroid/boss-motherbrain.png" alt="Mother Brain" class="h-24" x-show="!bosses.brain" />
-                  <img src="/_assets/img/ux/metroid/boss-motherbrain-x.png" alt="Mother Brain" class="h-24 block opacity-70 grayscale" x-show="bosses.brain" />
+                  <input type="checkbox" x-model="brain" @change="updatePassword()" title="Mother Brain" />
+                  <img src="/_assets/img/ux/metroid/boss-motherbrain.png" alt="Mother Brain" class="h-24" x-show="!brain" />
+                  <img src="/_assets/img/ux/metroid/boss-motherbrain-x.png" alt="Mother Brain" class="h-24 block opacity-70 grayscale" x-show="brain" />
                 </label>
                 <div class="flex flex-row-reverse gap-1.5">
                   <template x-for="(z, i) in zebetites" :key="i" hidden>
@@ -287,32 +252,41 @@ date: 0017-01-01
       import 'https://esm.run/tippy.js/dist/tippy.css';
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
-          password: [],
           toastCopy: false,
+          password: [],
+          locations: [
+            { title: 'Brinstar', value: 'brinstar', },
+            { title: 'Norfair', value: 'norfair', },
+            { title: 'Kraid\'s Lair', value: 'kraidsLair', },
+            { title: 'Ridley\'s Lair', value: 'ridleysLair', },
+            { title: 'Tourian', value: 'tourian', },
+          ],
           location: 'brinstar',
-          options: {
-            morphBall: false,
-            bombs: false,
-            highJump: false,
-            variaSuit: false,
-            screwAttack: false,
-            longBeam: false,
-            iceBeam: false,
-            waveBeam: false,
-            missiles: false,
-            energyTanks: false,
-            swimsuit: false,
+          swimsuit: false,
+          power: {
+            morphBall: { title: 'Morph Ball', got: false, },
+            bombs: { title: 'Bombs', got: false, },
+            highJump: { title: 'High Jump', got: false, },
+            variaSuit: { title: 'Varia Suit', got: false, },
+            screwAttack: { title: 'Screw Attack', got: false, },
+          },
+          loadout:{
+            longBeam: { title: 'Long Beam', got: false, },
+            iceBeam: { title: 'Ice Beam', got: false, },
+            waveBeam: { title: 'Wave Beam', got: false, },
+            missiles: { title: 'Missiles', got: false, },
+            energyTanks: { title: 'Energy Tanks', got: false, },
           },
           bosses: {
-            ridley: false,
             kraid: false,
-            brain: false,
+            ridley: false,
           },
           statues: {
-            ridley: false,
             kraid: false,
+            ridley: false,
           },
           zebetites: [false, false, false, false, false],
+          brain: false,
 
           updatePassword() {
             const buffer = new Uint8Array(18);
@@ -330,32 +304,34 @@ date: 0017-01-01
               default:            setStartBits(0, 0, 0); break;
             }
 
-            if (this.options.morphBall) {
+            if (this.swimsuit) setBit(buffer, 71, 1);
+
+            if (this.power.morphBall.got) {
               setBit(buffer, 76, 1);
               setBit(buffer, 0, 0);
               setBit(buffer, 5, 1);
             }
-            if (this.options.bombs) {
+            if (this.power.bombs.got) {
               setBit(buffer, 72, 1);
               setBit(buffer, 6, 1);
             }
-            if (this.options.highJump) {
+            if (this.power.highJump.got) {
               setBit(buffer, 73, 1);
               setBit(buffer, 24, 1);
             }
-            if (this.options.variaSuit) {
+            if (this.power.variaSuit.got) {
               setBit(buffer, 77, 1);
               setBit(buffer, 11, 1);
             }
-            if (this.options.screwAttack) {
+            if (this.power.screwAttack.got) {
               setBit(buffer, 75, 1);
               setBit(buffer, 26, 1);
             }
-            if (this.options.longBeam) setBit(buffer, 74, 1);
-            if (this.options.iceBeam)  setBit(buffer, 79, 1);
-            if (this.options.waveBeam) setBit(buffer, 78, 1);
+            if (this.loadout.longBeam.got) setBit(buffer, 74, 1);
+            if (this.loadout.iceBeam.got)  setBit(buffer, 79, 1);
+            if (this.loadout.waveBeam.got) setBit(buffer, 78, 1);
 
-            if (this.options.missiles) {
+            if (this.loadout.missiles.got) {
               buffer[10] = 255;
               const missileContainerBits = [
                 1, 8, 13, 14, 16, 17, 18, 19, 20, 21, 22, 27, 28, 31,
@@ -364,30 +340,21 @@ date: 0017-01-01
               missileContainerBits.forEach(bit => setBit(buffer, bit, 1));
             }
 
-            if (this.options.energyTanks) {
+            if (this.loadout.energyTanks.got) {
               [4, 9, 12, 30, 36, 42, 45, 48].forEach(bit => setBit(buffer, bit, 1));
             }
 
-            if (this.bosses.kraid) {
-              setBit(buffer, 126, 1);
-            }
-            if (this.bosses.ridley) {
-              setBit(buffer, 124, 1);
-            }
-            setBit(buffer, 58, this.bosses.brain);
+            if (this.bosses.kraid) setBit(buffer, 126, 1);
+            if (this.bosses.ridley) setBit(buffer, 124, 1);
 
-            if (this.statues.kraid) {
-              setBit(buffer, 127, 1);
-            }
-            if (this.statues.ridley) {
-              setBit(buffer, 125, 1);
-            }
+            if (this.statues.kraid) setBit(buffer, 127, 1);
+            if (this.statues.ridley) setBit(buffer, 125, 1);
 
             this.zebetites.forEach((active, index) => {
               setBit(buffer, 53 + index, active ? 1 : 0);
             });
 
-            if (this.options.swimsuit) setBit(buffer, 71, 1);
+            if (this.brain) setBit(buffer, 58, 1);
 
             buffer[16] = 0;
             rotateRight(buffer);
@@ -414,63 +381,77 @@ date: 0017-01-01
             }
           },
 
+          slugify(text) {
+            return text.toString()
+              .toLowerCase()
+              .trim()
+              .replace(/\.+/g, '-')      // . to -
+              .replace(/&+/g, '-and-')   // & to -and-
+              .replace(/\s+/g, '-')      // space to -
+              .normalize('NFKD')         // unicode normalization
+              .replace(/[^\w-]+/g, '')   // remove other crazy chars
+              .replace(/--+/g, '-')      // multiple - to single -
+              .replace(/^-+/, '')        // remove - from start
+              .replace(/-+$/, '')        // remove - from end
+          },
+
         }));
 
         Alpine.magic('tooltip', el => message => {
-        let instance = tippy(el, {
-          content: message,
-          trigger: 'manual',
-        });
+          let instance = tippy(el, {
+            content: message,
+            trigger: 'manual',
+          });
 
-        // esc
-        const onEscape = (e) => {
-          if (e.key === 'Escape') cleanup();
-        };
+          // esc
+          const onEscape = (e) => {
+            if (e.key === 'Escape') cleanup();
+          };
 
-        const cleanup = () => {
-          instance.hide();
-          setTimeout(() => instance.destroy(), 150);
-          document.removeEventListener('keydown', onEscape);
-          el.removeEventListener('mouseleave', cleanup);
-          el.removeEventListener('blur', cleanup);
-        };
-
-        document.addEventListener('keydown', onEscape);
-        el.addEventListener('mouseleave', cleanup);
-        el.addEventListener('blur', cleanup);
-
-        instance.show();
-
-        // fallback timeout
-        setTimeout(cleanup, 2000);
-      });
-
-      Alpine.directive('tooltip', (el, { expression }, { evaluate }) => {
-        const instance = tippy(el, {
-          content: evaluate(expression),
-        });
-
-        const onEscape = (e) => {
-          if (e.key === 'Escape') {
+          const cleanup = () => {
             instance.hide();
+            setTimeout(() => instance.destroy(), 150);
+            document.removeEventListener('keydown', onEscape);
+            el.removeEventListener('mouseleave', cleanup);
+            el.removeEventListener('blur', cleanup);
+          };
+
+          document.addEventListener('keydown', onEscape);
+          el.addEventListener('mouseleave', cleanup);
+          el.addEventListener('blur', cleanup);
+
+          instance.show();
+
+          // fallback timeout
+          setTimeout(cleanup, 2000);
+        });
+
+        Alpine.directive('tooltip', (el, { expression }, { evaluate }) => {
+          const instance = tippy(el, {
+            content: evaluate(expression),
+          });
+
+          const onEscape = (e) => {
+            if (e.key === 'Escape') {
+              instance.hide();
+            }
+          };
+
+          document.addEventListener('keydown', onEscape);
+
+          el._tippyCleanup = () => {
+            document.removeEventListener('keydown', onEscape);
+            instance.destroy();
+          };
+        });
+
+        document.addEventListener('alpine:clean', (e) => {
+          const el = e.target;
+          if (el._tippyCleanup) {
+            el._tippyCleanup();
+            delete el._tippyCleanup;
           }
-        };
-
-        document.addEventListener('keydown', onEscape);
-
-        el._tippyCleanup = () => {
-          document.removeEventListener('keydown', onEscape);
-          instance.destroy();
-        };
-      });
-
-      document.addEventListener('alpine:clean', (e) => {
-        const el = e.target;
-        if (el._tippyCleanup) {
-          el._tippyCleanup();
-          delete el._tippyCleanup;
-        }
-      });
+        });
       });
       window.Alpine = Alpine;
       // Alpine.plugin([blah]);
