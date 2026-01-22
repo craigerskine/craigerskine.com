@@ -28,7 +28,7 @@ eleventyComputed:
     @keydown.left.prevent.stop="$focus.wrap().prev()"
     @keydown.end.prevent.stop="$focus.last()"
     @keydown.page-down.prevent.stop="$focus.last()"
-    class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner"
+    class="p-1.5 bg-gray-500/10 inline-flex gap-x-1.5 ring-(1 gray-500/25) rounded-full shadow-inner before:(content-[''] bg-white/90 dark:(bg-black/50 ring-(1 gray-500/25)) absolute z-[-1] top-[anchor(top)] right-[anchor(right)] bottom-[anchor(bottom)] left-[anchor(left)] [position-anchor:--tab-active] pointer-events-none rounded-[inherit] transition-[left,right] ease-in-out)"
     role="tablist"
   >
     <template x-for="(item, index) in workTypes" hidden>
@@ -40,8 +40,8 @@ eleventyComputed:
           :id="'tab-work-type-'+ index"
           :tabindex="workActive === index ? 0 : -1"
           :aria-selected="workActive === index"
-          :class="workActive === index ? 'bg-white/90 dark:bg-black/50 dark:ring-1 dark:ring-gray-500/25' : 'hover:text-gray-500'"
-          class="py-3 px-6 text-sm leading-none font-semibold uppercase block rounded-full motion-safe:(transition)"
+          :class="workActive === index ? 'category-active transition delay-100' : 'transition-none'"
+          class="py-3 px-6 text-(gray-500 sm) leading-none font-semibold uppercase block rounded-full motion-safe:(transition) [&.category-active]:(bg-gray-50 text-gray-900 [anchor-name:--tab-active])"
           role="tab"
           ></button>
       </li>
