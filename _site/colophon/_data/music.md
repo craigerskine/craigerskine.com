@@ -72,10 +72,10 @@ hardware:
     url: https://amazon.com/dp/B0CP9LT3DF?tag=qrayg-20
 
   - type: Modeling
-    name: Neural DSP › Quad Cortex
+    name: Neural DSP › Quad Cortex mini
     sub:
       - USB
-    url: https://www.sweetwater.com/store/detail/QuadCortex--neural-dsp-quad-cortex-quad-core-digital-effects-modeler-profiler-floorboard
+    url: https://sweetwater.com/store/detail/QCMini--neural-dsp-quad-cortex-mini-modeling-and-effects-processor-sweetwater-exclusive
 
   - type: Plugin
     name: PolyChrome › DSP
