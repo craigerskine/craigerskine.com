@@ -58,20 +58,6 @@
         </main>
       </div>
       <div class="h-72" aria-hidden="true"></div>
-
-{%- macro media(data=[], category='games') -%}
-{%- for item in data %}
-<li class="flex-1 justify-center {% if loop.index == 3 %}hidden xs:(flex){% else %}flex{% endif %}">
-  <a x-tooltip="'{{ item.sub if category == 'music' }}{{ ': '+ item.title if category == 'music' else item.title }}'" href="{{ item.url }}" class="media-case media-{{ item.media }} group flex relative motion-safe:(transition-all) transform hover:(-translate-y-2)">
-    <div class="flex w-full">
-      <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" class="w-full h-full" />
-      <i class="bg-no-repeat absolute inset-0" style="background-image: url('/_assets/img/media/cases/{{ item.media }}.png');"></i>
-    </div>
-  </a>
-</li>
-{%- endfor %}
-{%- endmacro -%}
-
       <footer class="w-full bg-(paper gray-100) flex-none relative z-10">
         {{ grunge(pos='bot') }}
         <b class="bg-(grid fixed) text-gray-100 absolute inset-0 opacity-5 dark:(opacity-30)" aria-hidden="true"></b>
@@ -105,6 +91,15 @@
               </div>
             </div>
             <div class="mx-auto w-full max-w-[466px] space-y-12 lg:(mx-0)">
+              {%- macro media(data=[], category='games') -%}
+              {%- for item in data %}
+              <li class="flex-1 justify-center {% if loop.index == 3 %}hidden xs:(flex){% else %}flex{% endif %}">
+                <a x-tooltip="'{{ item.sub if category == 'music' }}{{ ': '+ item.title if category == 'music' else item.title }}'" href="{{ item.url }}" class="media-case media-{{ item.media }}">
+                  <img src="/_assets/img/media/{{ category }}/{{ item.media }}-{% if category == 'music' %}{{ item.sub | slugify }}-{% endif %}{{ item.title | slugify }}.jpg" alt="{{ item.title }}" />
+                </a>
+              </li>
+              {%- endfor %}
+              {%- endmacro -%}
               {%- call heading(sub='Currently', ico='fa6-solid:gamepad') %}Playing{%- endcall %}
               <ul class="media-shelf mx-auto mb-16 pt-4 pb-16 px-2 w-full bg-bottom bg-no-repeat flex items-end justify-between lg:mb-32" style="background-image: url('/_assets/img/media-shelf.png');">
                 {{ media(data=currently.playing, category='games') }}

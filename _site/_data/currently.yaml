@@ -1,17 +1,19 @@
 ---
-# dvd,ps2,wii,gcn,xb,xb360: 204x280
-# cd: 192x196
-# cd-tl: 192x304
-# xbone: 212x220
-# wiiu: 208x280
-# switch: 156x248
-# switch-2: 156x248
-# 3ds: 210x168
-# ds: 204x180
-# ps4: 204x240
-# ps3: 212x232
-# psv: 170x216
-# psp: 168x260
+# 204x280 - default, dvd, wii-u, wii, xb-360, xb
+# 204x240 - ps5, ps4
+# 212x232 - ps3
+# 170x216 - psv
+# 168x260 - psp
+# 156x248 - switch-2, switch
+# 204x180 - 3ds, ds
+# 212x220 - xb-x, xb-one
+# 192x196 - cd
+# 192x304 - cd-tl
+# 224x224 - box
+# 280x204 - box wide
+# 204x240 - box-md
+# 204x204 - box-sm
+# 204x280 - box-tl
 playing:
   - title: 'Dragon Quest I & II: HD-2D Remake'
     sub: Switch 2

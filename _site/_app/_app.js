@@ -89,22 +89,24 @@ install({
 });
 
 injectGlobal`
+  :root {
+    --color-default: #434341;
+    --color-switch-2: #E70010;
+    --color-wii-u: #43CCE8;
+    --color-wii: #EEEEEE;
+    --color-3ds: #EEEEEE;
+    --color-xbx: #027C00;
+    --color-xb-one: var(--color-xbx);
+    --color-xb-360: #73E336;
+    --color-xb: #6AA948;
+    --color-ps5: #115CDD;
+    --color-ps4: var(--color-ps5);
+    --color-psv: #0068FF;
+  }
   @layer base {
     [x-cloak] { @apply hidden; }
     body { @apply !block; }
     :focus-visible { @apply outline-(& 2 solid current) outline-offset-1; }
-    .media-dvd,.media-ps2,.media-wii,.media-gcn,.media-xb,.media-xb360 { padding: 7px 8px 7px 0; width: 110px; height: 154px; }
-    .media-cd { padding: 2px 4px 2px 12px; width: 112px; height: 102px; }
-    .media-cd-tl { padding: 2px 4px 2px 12px; width: 112px; height: 156px; }
-    .media-xbone { padding: 17px 4px 7px 0; width: 110px; height: 134px; }
-    .media-wiiu { padding: 7px 6px 7px 0; width: 110px; height: 154px; }
-    .media-switch,.media-switch-2 { padding: 4px 4px 4px 0; width: 83px; height: 134px; }
-    .media-3ds { padding: 5px 5px 5px 0; width: 110px; height: 104px; }
-    .media-ds { padding: 7px 8px 7px 0; width: 110px; height: 104px; }
-    .media-ps5,.media-ps4 { padding: 7px 8px 7px 0; width: 110px; height: 134px; }
-    .media-ps3 { padding: 14px 4px 4px 0; width: 110px; height: 134px; }
-    .media-psv { padding: 5px 5px 5px 0; width: 90px; height: 118px; }
-    .media-psp { padding: 4px 4px 4px 0; width: 88px; height: 138px; }
     .tippy-box[data-state="hidden"] { @apply opacity-0 translate-y-1; }
     [data-tippy-root] { @apply max-w-[calc(100vw-10px)]; }
     .tippy-box { @apply bg-black text-(white xs) font-normal relative outline-0 opacity-100 rounded shadow-[0_0_0_1px_currentColor] translate-y-0 motion-safe:(transition duration-75); }
@@ -114,6 +116,59 @@ injectGlobal`
     .tippy-box[data-placement^="right"] > .tippy-arrow { @apply [filter:drop-shadow(-1px_0_0_white)] left-0 before:(left-[-7px] border-(t-[8px] r-[8px] b-[8px] l-0 r-[initial]) origin-right); }
     .tippy-arrow { @apply w-4 h-4 text-black absolute before:(content-[''] absolute border-(transparent solid)); }
     .tippy-content { @apply py-1.5 px-3 relative z-[1]; }
+    /* media cases */
+    .media-case { background: var(--color-default); display: inline-block; text-decoration: none; position: relative; border-radius: 0.1875rem; transition: all .15s cubic-bezier(0,1,0.5,1.5); }
+    .media-case:hover,.media-case:focus { transform: translate(0, -0.5rem); }
+    .media-case img { width: 100%; height: 100%; border-radius: 0 0.125rem 0.125rem 0; }
+    /* plastic colors */
+    .media-switch-2 { background: var(--color-switch-2); }
+    .media-wii-u { background: var(--color-wii-u); }
+    .media-wii { background: var(--color-wii); }
+    .media-3ds { background: var(--color-3ds); }
+    .media-xb-x { background: var(--color-xbx); }
+    .media-xb-one { background: var(--color-xb-one); }
+    .media-xb-360 { background: var(--color-xb-360); }
+    .media-xb { background: var(--color-xb); }
+    .media-ps5 { background: var(--color-ps5); }
+    .media-ps4 { background: var(--color-ps4); }
+    .media-psv { background: var(--color-psv); }
+    /* sizes */
+    .media-case { padding: 7px 8px 7px 0; width: 110px; height: 154px; }
+    .media-ps5,.media-ps4 { padding: 7px 8px 7px 0; height: 134px; }
+    .media-ps3 { padding: 14px 4px 4px 0; width: 110px; height: 134px; }
+    .media-psv { padding: 5px 5px 5px 0; width: 90px; height: 118px; }
+    .media-psp { padding: 4px 4px 4px 0; width: 88px; height: 138px; }
+    .media-switch-2,.media-switch { padding: 4px 4px 4px 0; width: 83px; height: 134px; }
+    .media-3ds,.media-ds { height: 104px; }
+    .media-xb-x,.media-xb-one { padding: 17px 4px 7px 0; height: 134px; }
+    .media-cd { padding: 2px 4px 2px 12px; width: 112px; height: 102px; }
+    .media-cd-tl { padding: 2px 4px 2px 12px; width: 112px; height: 156px; }
+    .media-box { padding: 0; width: 112px; height: 112px; border-radius: 2px; }
+    .media-box-wd { padding: 0; width: 140px; height: 102px; border-radius: 2px; }
+    .media-box-md { padding: 0; width: 102px; height: 120px; border-radius: 2px; }
+    .media-box-sm { padding: 0; width: 102px; height: 102px; border-radius: 2px; }
+    .media-box-tl { padding: 0; width: 102px; height: 140px; border-radius: 2px; }
+    /* cases */
+    .media-case:after { width: 100%; height: 100%; background: url(/_assets/img/media/cases/case.png) no-repeat 0 0; content: ""; position: absolute; top: 0; left: 0; }
+    /* sony */
+    .media-ps5:after,.media-ps4:after { background-image: url(/_assets/img/media/cases/sony-ps5.png); }
+    .media-ps3:after { background-image: url(/_assets/img/media/cases/sony-ps3.png); }
+    .media-psv:after { background-image: url(/_assets/img/media/cases/sony-psv.png); }
+    .media-psp:after { background-image: url(/_assets/img/media/cases/sony-psp.png); }
+    /* nintendo */
+    .media-switch-2:after { background-image: url(/_assets/img/media/cases/n-switch-2.png); }
+    .media-switch:after { background-image: url(/_assets/img/media/cases/n-switch.png); }
+    .media-3ds:after,.media-ds:after { background-image: url(/_assets/img/media/cases/case-sm.png); }
+    /* microsoft */
+    .media-xb-x:after,.media-xb-one:after { background-image: url(/_assets/img/media/cases/ms-xbx.png); }
+    /* misc */
+    .media-cd:after { background-image: url(/_assets/img/media/cases/cd.png); }
+    .media-cd-tl:after { background-image: url(/_assets/img/media/cases/cd-tl.png); }
+    .media-box:after { background-image: url(/_assets/img/media/cases/box.png); }
+    .media-box-wd:after { background-image: url(/_assets/img/media/cases/box-wd.png); }
+    .media-box-md:after { background-image: url(/_assets/img/media/cases/box-md.png); }
+    .media-box-sm:after { background-image: url(/_assets/img/media/cases/box-sm.png); }
+    .media-box-tl:after { background-image: url(/_assets/img/media/cases/box-tl.png); }
   }
 `;
 
