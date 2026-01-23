@@ -90,41 +90,42 @@ install({
 
 injectGlobal`
   :root {
-    --color-default: #434341;
-    --color-switch-2: #E70010;
-    --color-wii-u: #43CCE8;
-    --color-wii: #EEEEEE;
-    --color-3ds: #EEEEEE;
-    --color-xbx: #027C00;
-    --color-xb-one: var(--color-xbx);
-    --color-xb-360: #73E336;
-    --color-xb: #6AA948;
-    --color-ps5: #115CDD;
-    --color-ps4: var(--color-ps5);
-    --color-psv: #0068FF;
-    --color-blu-ray: color-mix(in srgb, #0095d5, transparent 50%);
+    --media-default: #434341;
+    --media-switch-2: #E70010;
+    --media-wii-u: #43CCE8;
+    --media-wii: #EEEEEE;
+    --media-3ds: #EEEEEE;
+    --media-xbx: #027C00;
+    --media-xb-one: var(--media-xbx);
+    --media-xb-360: #73E336;
+    --media-xb: #6AA948;
+    --media-ps5: #115CDD;
+    --media-ps4: var(--media-ps5);
+    --media-psv: #0068FF;
+    --media-blu-ray: color-mix(in srgb, #0095d5, transparent 50%);
   }
   @layer base {
     [x-cloak] { @apply hidden; }
     body { @apply !block; }
     :focus-visible { @apply outline-(& 2 solid current) outline-offset-1; }
+
     /* media cases */
-    .media-case { background: var(--color-default); display: inline-block; text-decoration: none; position: relative; border-radius: 0.1875rem; transition: all .15s cubic-bezier(0,1,0.5,1.5); }
+    .media-case { background: var(--media-default); display: inline-flex; text-decoration: none; position: relative; border-radius: 0.1875rem; transition: all .15s cubic-bezier(0,1,0.5,1.5); }
     .media-case:hover,.media-case:focus { transform: translate(0, -0.5rem); }
-    .media-case img { width: 100%; height: 100%; border-radius: 0 0.125rem 0.125rem 0; }
-    /* plastic colors */
-    .media-switch-2 { background: var(--color-switch-2); }
-    .media-wii-u { background: var(--color-wii-u); }
-    .media-wii { background: var(--color-wii); }
-    .media-3ds { background: var(--color-3ds); }
-    .media-xb-x { background: var(--color-xbx); }
-    .media-xb-one { background: var(--color-xb-one); }
-    .media-xb-360 { background: var(--color-xb-360); }
-    .media-xb { background: var(--color-xb); }
-    .media-ps5 { background: var(--color-ps5); }
-    .media-ps4 { background: var(--color-ps4); }
-    .media-psv { background: var(--color-psv); }
-    .media-blu-ray { background: var(--color-blu-ray); }
+    .media-case img { width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 0 0.125rem 0.125rem 0; }
+    /* bezel colors */
+    .media-switch-2 { background: var(--media-switch-2); }
+    .media-wii-u { background: var(--media-wii-u); }
+    .media-wii { background: var(--media-wii); }
+    .media-3ds { background: var(--media-3ds); }
+    .media-xb-x { background: var(--media-xbx); }
+    .media-xb-one { background: var(--media-xb-one); }
+    .media-xb-360 { background: var(--media-xb-360); }
+    .media-xb { background: var(--media-xb); }
+    .media-ps5 { background: var(--media-ps5); }
+    .media-ps4 { background: var(--media-ps4); }
+    .media-psv { background: var(--media-psv); }
+    .media-blu-ray { background: var(--media-blu-ray); }
     /* tweaks */
     .media-cd,.media-cd-tl { border-radius: 0; & img { border-radius: 0; } }
     /* sizes */
@@ -145,18 +146,14 @@ injectGlobal`
     .media-box-tl { padding: 0; width: 102px; height: 140px; border-radius: 2px; }
     /* cases */
     .media-case:after { width: 100%; height: 100%; background: url(/_assets/img/media/cases/case.png) no-repeat 0 0; content: ""; position: absolute; top: 0; left: 0; }
-    /* sony */
     .media-ps5:after,.media-ps4:after { background-image: url(/_assets/img/media/cases/sony-ps5.png); }
     .media-ps3:after { background-image: url(/_assets/img/media/cases/sony-ps3.png); }
     .media-psv:after { background-image: url(/_assets/img/media/cases/sony-psv.png); }
     .media-psp:after { background-image: url(/_assets/img/media/cases/sony-psp.png); }
-    /* nintendo */
     .media-switch-2:after { background-image: url(/_assets/img/media/cases/n-switch-2.png); }
     .media-switch:after { background-image: url(/_assets/img/media/cases/n-switch.png); }
     .media-3ds:after,.media-ds:after { background-image: url(/_assets/img/media/cases/case-sm.png); }
-    /* microsoft */
     .media-xb-x:after,.media-xb-one:after { background-image: url(/_assets/img/media/cases/ms-xbx.png); }
-    /* misc */
     .media-blu-ray:after { background-image: url(/_assets/img/media/cases/blu-ray.png); }
     .media-cd:after { background-image: url(/_assets/img/media/cases/cd.png); }
     .media-cd-tl:after { background-image: url(/_assets/img/media/cases/cd-tl.png); }
@@ -165,6 +162,7 @@ injectGlobal`
     .media-box-md:after { background-image: url(/_assets/img/media/cases/box-md.png); }
     .media-box-sm:after { background-image: url(/_assets/img/media/cases/box-sm.png); }
     .media-box-tl:after { background-image: url(/_assets/img/media/cases/box-tl.png); }
+
     /* tippy */
     .tippy-box[data-state="hidden"] { @apply opacity-0 translate-y-1; }
     [data-tippy-root] { @apply max-w-[calc(100vw-10px)]; }
