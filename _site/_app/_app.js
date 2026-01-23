@@ -102,6 +102,7 @@ injectGlobal`
     --color-ps5: #115CDD;
     --color-ps4: var(--color-ps5);
     --color-psv: #0068FF;
+    --color-blu-ray: color-mix(in srgb, #0095d5, transparent 50%);
   }
   @layer base {
     [x-cloak] { @apply hidden; }
@@ -132,10 +133,11 @@ injectGlobal`
     .media-ps5 { background: var(--color-ps5); }
     .media-ps4 { background: var(--color-ps4); }
     .media-psv { background: var(--color-psv); }
+    .media-blu-ray { background: var(--color-blu-ray); }
     /* sizes */
     .media-case { padding: 7px 8px 7px 0; width: 110px; height: 154px; }
     .media-ps5,.media-ps4 { padding: 7px 8px 7px 0; height: 134px; }
-    .media-ps3 { padding: 14px 4px 4px 0; width: 110px; height: 134px; }
+    .media-ps3,.media-blu-ray { padding: 14px 4px 4px 0; width: 110px; height: 134px; }
     .media-psv { padding: 5px 5px 5px 0; width: 90px; height: 118px; }
     .media-psp { padding: 4px 4px 4px 0; width: 88px; height: 138px; }
     .media-switch-2,.media-switch { padding: 4px 4px 4px 0; width: 83px; height: 134px; }
@@ -162,6 +164,7 @@ injectGlobal`
     /* microsoft */
     .media-xb-x:after,.media-xb-one:after { background-image: url(/_assets/img/media/cases/ms-xbx.png); }
     /* misc */
+    .media-blu-ray:after { background-image: url(/_assets/img/media/cases/blu-ray.png); }
     .media-cd:after { background-image: url(/_assets/img/media/cases/cd.png); }
     .media-cd-tl:after { background-image: url(/_assets/img/media/cases/cd-tl.png); }
     .media-box:after { background-image: url(/_assets/img/media/cases/box.png); }
