@@ -1,6 +1,6 @@
 ---
 title: PC
-date: 0001-01-01
+date: 0003-01-01
 ico: fa6-brands:windows
 color:
   title: blue

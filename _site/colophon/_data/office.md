@@ -1,7 +1,7 @@
 ---
 title: Office
-date: 0003-01-01
-ico: mdi:desktop-tower
+date: 0001-01-01
+ico: mdi:desk
 color:
   title: red
   shade: 500
