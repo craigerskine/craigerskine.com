@@ -28,18 +28,18 @@ hardware:
       - + S8 Sub
     url: https://amazon.com/dp/B07MYW4Q8S?tag=qrayg-20
 
-  - type: Headphones
-    name: Beats › Studio Pro
-    sub:
-      - Over Ear
-      - Black
-    url: https://amazon.com/dp/B0C8PR4W22?tag=qrayg-20
-
   # - type: Headphones
-  #   name: Bowers & Wilkins › PX-7
+  #   name: Beats › Studio Pro
   #   sub:
   #     - Over Ear
-  #   url: https://amazon.com/dp/B07WK6SGZC?tag=qrayg-20
+  #     - Black
+  #   url: https://amazon.com/dp/B0C8PR4W22?tag=qrayg-20
+
+  - type: Headphones
+    name: Bowers & Wilkins › PX-7
+    sub:
+      - Over Ear
+    url: https://amazon.com/dp/B07WK6SGZC?tag=qrayg-20
 
   - type: Cam
     name: Insta360 › Link
@@ -62,12 +62,19 @@ hardware:
   #     - Atomic Grey
   #   url: https://amazon.com/dp/B09T74FDVJ?tag=qrayg-20
 
-  - type: USB Switch
-    name: UGreen › USB3 Switch
+  # - type: USB Switch
+  #   name: UGreen › USB3 Switch
+  #   sub:
+  #     - 4x USB3
+  #     - Mac ↔ PC
+  #   url: https://amazon.com/dp/B01N6GD9JO?tag=qrayg-20
+
+  - type: Router
+    name: GL.iNet › GL-BE6500 (Flint 3e)
     sub:
-      - 4x USB3
-      - Mac ↔ PC
-    url: https://amazon.com/dp/B01N6GD9JO?tag=qrayg-20
+      - Dual-Band
+      - OpenWRT
+    url: https://amazon.com/dp/B0FX9C5QVJ?tag=qrayg-20
 
   - type: Misc
     name: LaMetric › Sky
