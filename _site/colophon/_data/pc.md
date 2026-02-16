@@ -50,10 +50,11 @@ hardware:
       - 80+ Platinum
     url: https://amazon.com/dp/B07M63H81H?tag=qrayg-20
 
-  - type: M.2
-    name: Samsung › 970 Evo Plus
+  - type: SFF PC (Emulation)
+    name: Beelink › EQR5
     sub:
-      - 250GB
-    url: https://amazon.com/dp/B07MG119KG?tag=qrayg-20
+      - AMD Ryzen 7 5825U
+      - 16GB DDR4
+    url: https://amazon.com/dp/B0DSVY45GV?tag=qrayg-20
 
 ---
