@@ -56,6 +56,6 @@ hardware:
       - Batocera
       - AMD Ryzen 7 5825U
       - 16GB DDR4
-    url: https://amazon.com/dp/B0DSVY45GV?tag=qrayg-20
+    url: https://amazon.com/dp/B0DHND191H?tag=qrayg-20
 
 ---
