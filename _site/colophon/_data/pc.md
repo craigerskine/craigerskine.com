@@ -50,9 +50,10 @@ hardware:
       - 80+ Platinum
     url: https://amazon.com/dp/B07M63H81H?tag=qrayg-20
 
-  - type: SFF PC (Emulation)
+  - type: mini PC
     name: Beelink › EQR5
     sub:
+      - Batocera
       - AMD Ryzen 7 5825U
       - 16GB DDR4
     url: https://amazon.com/dp/B0DSVY45GV?tag=qrayg-20
