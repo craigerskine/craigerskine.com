@@ -15,6 +15,11 @@
 # 204x204 - box-sm
 # 204x280 - box-tl
 playing:
+  - title: 'Monster Hunter: Wilds'
+    sub: PS5
+    media: ps5
+    url: https://amazon.com/dp/B0DHX2V7TX?tag=qrayg-20
+
   - title: 'Dragon Quest VII: Reimagined'
     sub: Switch 2
     media: switch-2
@@ -24,11 +29,6 @@ playing:
     sub: Switch 2
     media: switch-2
     url: https://amazon.com/dp/B0F9ZT5MH9?tag=qrayg-20
-
-  - title: 'Monster Hunter: Wilds'
-    sub: PS5
-    media: ps5
-    url: https://amazon.com/dp/B0DHX2V7TX?tag=qrayg-20
 
 listening:
   - title: Solveig
