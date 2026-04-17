@@ -10,7 +10,7 @@ eleventyComputed:
 
 {%- macro region(title='') -%}
 <section>
-  <h2 class="mb-10 border-(b-2 gray-800) font-black tracking-wider uppercase">
+  <h2 class="print:(!mb-4) mb-10 border-(b-2 gray-800) font-black tracking-wider uppercase">
     <b class="py-px px-2 bg-gray-800 text-white inline-block">{{ title }}</b>
   </h2>
   {{ caller() }}
@@ -33,7 +33,7 @@ eleventyComputed:
     <style>
       @media print {
         @page {
-          margin: 2rem 1rem 1rem;
+          margin: 1rem;
           padding: 0;
           size: portrait;
         }
@@ -48,9 +48,9 @@ eleventyComputed:
           {%- include 'nav.njk' -%}
         </div>
         <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
-          <header class="print:(!py-6 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500/20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
+          <header class="print:(!mb-6 !py-2 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500/20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
             <a href="/" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block print:(w-14 h-14)">
                 <title>{{ resume.applicant }} logo</title>
                 <g fill-rule="evenodd" transform="translate(2,2)">
                   <path d="M100,200 C44.7715223,200 0,155.228478 0,100 C0,44.7715223 44.7715223,0 100,0 C137.038592,0 169.374042,20.1365308 186.656057,50.0592979 C182.902635,56.5581213 178.439143,62.5953278 173.371615,68.0648818 C161.041547,39.7757571 132.830213,20 100,20 C55.8172178,20 20,55.8172178 20,100 C20,144.182782 55.8172178,180 100,180 C132.767816,180 160.934295,160.299342 173.301142,132.096319 C178.366895,137.552678 182.830857,143.575528 186.587453,150.059298 C169.288565,179.916659 136.989642,200 100,200 Z" />
@@ -86,9 +86,9 @@ eleventyComputed:
               </ul>
             </div>
           </header>
-          <main class="print:(!px-0 grid-cols-2 gap-6) pb-12 px-6 grid-(& cols-1) gap-16 relative md:(px-12) lg:(grid-cols-2)">
+          <main class="print:(!px-0 !grid-cols-2 !gap-y-4 !gap-x-8) pb-12 px-6 grid-(& cols-1) gap-16 relative md:(px-12) lg:(grid-cols-2)">
             {%- call region(title='Personal Statement') %}
-              <article class="space-y-8">
+              <article class="print:!space-y-4 space-y-8">
                 <p class="print:(!pb-0 !text-base) pb-4 text-(lg gray-900 wrap-balance) font-bold lg:(text-xl leading-relaxed)">{{ resume.personal.lead }}</p>
                 <p class="print:(text-xs)">{{ resume.personal.body | safe }}</p>
                 <p class="print:(text-xs)">{{ resume.personal.closing | safe }}</p>
@@ -159,12 +159,12 @@ eleventyComputed:
                 {%- endfor %}
               </ul>
             {%- endcall %}
-            <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
+            {#- <div class="print:(!flex items-center gap-3 col-span-2 [page-break-after:always]) hidden lg:(col-span-2)" aria-hidden="true">
               <b class="h-px bg-gray-500/25 flex-1"></b>
               <span class="flex-none">Continue to next page...</span>
               <iconify-icon icon="mdi:flip-vertical" class="iconify" noobserver></iconify-icon>
               <b class="h-px bg-gray-500/25 flex-1"></b>
-            </div>
+            </div> -#}
             {%- call region(title='Specialties') %}
               <ul class="flex justify-center -space-x-2 md:(-space-x-4)">
                 {% for spec in resume.specialties %}
@@ -198,7 +198,7 @@ eleventyComputed:
               </ul>
             {%- endcall %}
             {%- call region(title='Accomplishments') %}
-              <ul class="space-y-12">
+              <ul class="print:!space-y-6 space-y-12">
                 {%- for accomplishment in resume.accomplishments %}
                 <li>
                   <a href="{{ accomplishment.url }}" class="group space-x-6 flex items-center motion-safe:transition hover:(scale-110) focus:(scale-110)">
@@ -206,17 +206,17 @@ eleventyComputed:
                       <title>{{ accomplishment.title }}</title>
                       {{ accomplishment.ico | safe }}
                     </svg>
-                    <p>
-                      <b class="flex-(& wrap) items-center">{{ accomplishment.title }} <small class="ml-1 text-xs opacity-80">&mdash; {{ accomplishment.type }}</small></b>
-                      <small class="block opacity-80">{{ accomplishment.desc }}</small>
-                    </p>
+                    <div>
+                      <h3 class="font-bold flex-(& wrap) items-center">{{ accomplishment.title }} <small class="ml-1 text-xs opacity-80">&mdash; {{ accomplishment.type }}</small></h3>
+                      <p class="print:(line-clamp-2) text-sm opacity-80">{{ accomplishment.desc }}</p>
+                    </div>
                   </a>
                 </li>
                 {%- endfor %}
               </ul>
             {%- endcall %}
             {%- call region(title='Ask me about') %}
-              <ul class="flex-(& wrap) justify-center gap-5">
+              <ul class="print:(!grid !grid-cols-4) flex-(& wrap) justify-center gap-5">
                 {%- for hobby in resume.hobbies %}
                 <li>
                   <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(2 gray-500/20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-500/100) scale-110) focus:(ring-(4 blue-500/100) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
@@ -228,7 +228,7 @@ eleventyComputed:
               </ul>
             {%- endcall %}
           </main>
-          <footer class="print:(!py-2 !fixed !bottom-0 !inset-x-0) py-12 border-(t dashed gray-500/20) text-(xs center) uppercase tracking-wider relative opacity-80">
+          <footer class="print:(!py-2 !text-[.5rem] !fixed !bottom-0 !inset-x-0) py-12 border-(t dashed gray-500/20) text-(xs center) uppercase tracking-wider relative opacity-80">
             Made with
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" role="img" class="-mt-1 mx-1 fill-current text-red-500 inline-block">
               <title>Love</title>
