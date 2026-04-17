@@ -109,6 +109,115 @@ injectGlobal`
     body { @apply !block; }
     :focus-visible { @apply outline-(& 2 solid current) outline-offset-1; }
 
+    .dropdown {
+      @apply relative inline-block;
+      position-area: var(--anchor-v, bottom) var(--anchor-h, span-right);
+
+      &[popover] {
+        z-index: 999;
+        @media (prefers-reduced-motion: no-preference) {
+          animation: dropdown 0.2s;
+          transition-property: opacity, scale, display;
+          transition-behavior: allow-discrete;
+          transition-duration: 0.2s;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      }
+      @starting-style {
+        &[popover] {
+          scale: 95%;
+          opacity: 0;
+        }
+      }
+
+      /* experimental */
+      &:where([popover]) {
+        background: #0000;
+      }
+      &[popover] {
+        @apply fixed text-inherit;
+        @supports not (position-area: bottom) {
+          @apply m-auto;
+          &::backdrop {
+            background-color: color-mix(in oklab, #000 30%, #0000);
+          }
+        }
+
+        &:not(:popover-open) {
+          @apply hidden origin-top opacity-0;
+          scale: 95%;
+        }
+      }
+    }
+
+    .dropdown-start {
+      --anchor-h: span-right;
+
+      &.dropdown-left {
+        --anchor-h: left;
+        --anchor-v: span-bottom;
+      }
+
+      &.dropdown-right {
+        --anchor-h: right;
+        --anchor-v: span-bottom;
+      }
+    }
+
+    .dropdown-center {
+      --anchor-h: center;
+      }
+
+      &.dropdown-left {
+        --anchor-h: left;
+        --anchor-v: center;
+      }
+
+      &.dropdown-right {
+        --anchor-h: right;
+        --anchor-v: center;
+      }
+    }
+
+    .dropdown-end {
+      --anchor-h: span-left;
+      }
+
+      &.dropdown-left {
+        --anchor-h: left;
+        --anchor-v: span-top;
+      }
+
+      &.dropdown-right {
+        --anchor-h: right;
+        --anchor-v: span-top;
+      }
+    }
+
+    .dropdown-left {
+      --anchor-h: left;
+      --anchor-v: span-bottom;
+    }
+
+    .dropdown-right {
+      --anchor-h: right;
+      --anchor-v: span-bottom;
+    }
+
+    .dropdown-bottom {
+      --anchor-v: bottom;
+    }
+
+    .dropdown-top {
+      --anchor-v: top;
+    }
+
+    @keyframes dropdown {
+      0% {
+        opacity: 0;
+      }
+    }
+
     /* media cases */
     .media-case { background: var(--media-default); display: inline-flex; text-decoration: none; position: relative; border-radius: 0.1875rem; transition: all .15s cubic-bezier(0,1,0.5,1.5); }
     .media-case:hover,.media-case:focus { transform: translate(0, -0.5rem); }

@@ -49,12 +49,9 @@
     {%- endif %}
 
     <button
-      x-ref="button"
-      @click="toggle()"
-      :aria-pressed="open"
-      :aria-expanded="open"
-      :aria-controls="$id('nav-dropdown')"
       class="group w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0)){% if page.url !== '/resume/' %} md:hidden{% endif %}"
+      style="anchor-name: --anchor-nav"
+      popovertarget="popover-nav"
     >
       <span class="sr-only">Menu</span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-4 h-4 fill-current pointer-events-none">
@@ -63,28 +60,23 @@
         <rect width="9" height="2" y="7" rx="1" class="origin-center translate-y-[5px] group-[[aria-pressed=true]]:(translate-y-0 rotate-[135deg]) motion-safe:(transition-all)" />
       </svg>
     </button>
-    <template x-teleport="body">
-      <ul
-        x-ref="panel"
-        x-show="open"
-        x-collapse
-        x-init="$el.parentNode.insertBefore($el, document.body.firstChild)"
-        @click.outside="close($refs.button)"
-        :id="$id('nav-dropdown')"
-        class="pb-px w-screen bg-gray-700 grid-(& cols-2) gap-px relative z-50 shadow-lg dark:(bg-gray-700)"
-      >
-        {%- for item in collections.all | eleventyNavigation %}
-          {%- if item.url !== '/' %}
-          <li class="nav-item w-full h-full flex">
-            <a href="{{ item.url }}" class="group py-[5vw] pl-[4vw] w-full h-full bg-gray-950 text-white leading-none tracking-tight sm:(text-3xl leading-none) md:(text-[5vw]) lg:text-6xl font-black flex items-center gap-3 relative dark:bg-gray-950 motion-safe:(transition) hover:(bg-gray-800 dark:(bg-gray-800)) [&.active]:(bg-gray-800 dark:(bg-gray-800)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
-              {#- <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) flex items-center justify-center rounded-md group-hover:text-white">{{ item.title }}</small> -#}
-              <span>{{ item.key }}</span>
-            </a>
-          </li>
-          {%- endif %}
-        {%- endfor %}
-      </ul>
-    </template>
+    <ul
+      id="popover-nav"
+      class="dropdown dropdown-center mt-3 p-2 border border-gray-500/25 w-52 bg-gray-50 font-semibold text-xs space-y-0.5 rounded-xl shadow-md z-50"
+      style="position-anchor: --anchor-nav"
+      popover
+    >
+      {%- for item in collections.all | eleventyNavigation %}
+        {%- if item.url !== '/' %}
+        <li>
+          <a href="{{ item.url }}" class="py-2 px-3 block rounded-lg transition [&:hover,&.active]:(bg-gray-950 text-gray-200) {% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+            {#- <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) flex items-center justify-center rounded-md group-hover:text-white">{{ item.title }}</small> -#}
+            <span>{{ item.key }}</span>
+          </a>
+        </li>
+        {%- endif %}
+      {%- endfor %}
+    </ul>
   </nav>
   {%- if page.url == '/resume/' %}
     <span class="flex"><button type="button" @click.prevent.stop="window.print();" class="w-10 h-10 inline-flex items-center justify-center rounded-full motion-safe:(transition) hover:(bg-gray-500/20) focus-visible:(shadow-none outline-(& 2 current offset-0))" aria-label="Print"><iconify-icon icon="mdi:printer" width="1em" height="1em" inline="false" class="iconify text-lg md:(text-2xl)" noobserver></iconify-icon></button></span>
