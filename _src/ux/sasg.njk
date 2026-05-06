@@ -27,7 +27,7 @@ date: 0008-01-01
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   </head>
 
-  <body class="bg-(brand top repeat-y fixed) text-content leading-tight font-(serif) !block" style="display: none; background-image: url('/_assets/img/ux/sasg/pattern_card.gif');">
+  <body class="bg-(brand top repeat-y fixed) text-content leading-tight font-(serif) !block" style="display: none; background-image: url('{{ '/' | url }}_assets/img/ux/sasg/pattern_card.gif');">
     <div class="bg-gradient-to-r from-black to-black via-transparent fixed inset-0" aria-hidden="true"></div>
     <div id="app" class="mx-auto py-3 max-w-[566px] min-h-screen flex-(& col) relative">
       <header class="py-2 flex-none">
@@ -42,7 +42,7 @@ date: 0008-01-01
             <li class="order-first text-2xl leading-none uppercase sm:(order-3)">SASG <span class="text-4xl">p</span>roduct<span class="text-4xl">s</span></li>
             <template x-for="(item, index) in products" hidden>
               <li :class="[item.order === 1 ? 'order-first sm:col-span-3 sm:order-'+ item.order : 'sm:(order-'+ item.order +')', item.order === 5 ? 'sm:col-span-3' : '']">
-                <a href="#" @click.prevent class="inline-block motion-safe:(transition) hover:(-translate-y-1)"><img :src="'/_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" /></a>
+                <a href="#" @click.prevent class="inline-block motion-safe:(transition) hover:(-translate-y-1)"><img :src="'{{ '/' | url }}_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" /></a>
               </li>
             </template>
           </ul>
@@ -51,19 +51,19 @@ date: 0008-01-01
           <ul class="mx-auto pb-12 max-w-[468px] text-(center [13px]) grid-(& cols-1) gap-6 sm:(grid-cols-3 gap-2)">
             <template x-for="item in info" hidden>
               <li class="mx-auto max-w-[150px] sm:(mx-0 max-w-none)">
-                <a href="#" @click.prevent class="inline-block motion-safe:(transition) hover:(-translate-y-1)"><img :src="'/_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" class="mx-auto" /></a>
+                <a href="#" @click.prevent class="inline-block motion-safe:(transition) hover:(-translate-y-1)"><img :src="'{{ '/' | url }}_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" class="mx-auto" /></a>
                 <p class="pt-1 text-wrap-balance" x-text="item.desc"></p>
               </li>
             </template>
           </ul>
         </section>
       </main>
-      <footer class="mx-auto pt-3 w-full max-w-[548px] bg-(top no-repeat) text-[13px] flex-(& col none) items-center justify-between sm:(flex-row)" style="background-image: url('/_assets/img/ux/sasg/ruler_rain.gif');">
+      <footer class="mx-auto pt-3 w-full max-w-[548px] bg-(top no-repeat) text-[13px] flex-(& col none) items-center justify-between sm:(flex-row)" style="background-image: url('{{ '/' | url }}_assets/img/ux/sasg/ruler_rain.gif');">
         <p><a href="#" @click.prevent>Copyright</a> 2003, SASG</p>
         <nav class="py-1.5" role="navigation" aria-label="Footer navigation">
           <ul class="flex">
             <template x-for="(item, index) in footer" hidden>
-              <li><a href="#" @click.prevent><img :src="'/_assets/img/ux/sasg/footer_'+ (index + 1) +'.gif'" :alt="item" /></a></li>
+              <li><a href="#" @click.prevent><img :src="'{{ '/' | url }}_assets/img/ux/sasg/footer_'+ (index + 1) +'.gif'" :alt="item" /></a></li>
             </template>
           </ul>
         </nav>

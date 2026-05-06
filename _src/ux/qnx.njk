@@ -29,8 +29,8 @@ date: 0001-01-01
   <body class="bg-cream text-(gray-900 xs) font-tahoma !block" style="display: none;">
     <div class="min-h-screen flex-(& col) relative">
       <header class="bg-gradient-to-br from-qnx-cream to-[#BFB6A9] fixed inset-0">
-        <div class="fixed inset-0 opacity-75" style="background-image: url('/_assets/qnx/img/bg-fabric.png');"></div>
-        <div class="w-48 h-48 bg-(cover no-repeat) fixed -top-24 -left-24 rounded-full shadow-2xl sm:(w-64 h-64 -top-32 -left-32)" style="background-image: url('/_assets/qnx/img/star.png')"></div>
+        <div class="fixed inset-0 opacity-75" style="background-image: url('{{ '/' | url }}_assets/qnx/img/bg-fabric.png');"></div>
+        <div class="w-48 h-48 bg-(cover no-repeat) fixed -top-24 -left-24 rounded-full shadow-2xl sm:(w-64 h-64 -top-32 -left-32)" style="background-image: url('{{ '/' | url }}_assets/qnx/img/star.png')"></div>
       </header>
       <main class="grow relative z-10">
         <section>
@@ -72,7 +72,7 @@ date: 0001-01-01
                               :aria-current="qnxActive === index ? 'page' : null"
                               @click.prevent="qnxActive = index, max = true"
                             >
-                              <img :src="'/_assets/qnx/img/ico-'+ entry.ico +'.png'" :alt="entry.title +' icon'" :class="qnxActive === index ? 'opacity-100' : 'opacity-50'" class="w-[16px] h-[16px] object-contain object-center motion-safe:transition group-hover:(opacity-100) group-focus:(opacity-100)" />
+                              <img :src="'{{ '/' | url }}_assets/qnx/img/ico-'+ entry.ico +'.png'" :alt="entry.title +' icon'" :class="qnxActive === index ? 'opacity-100' : 'opacity-50'" class="w-[16px] h-[16px] object-contain object-center motion-safe:transition group-hover:(opacity-100) group-focus:(opacity-100)" />
                               <span class="flex-1" x-text="entry.title"></span>
                               <b class="w-[9px] h-[9px] bg-white text-qnx-line flex ring-(1 current) rounded-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 7" class="m-auto w-[7px] h-[7px] fill-current" aria-hidden="true"><polygon points="3 7 3 5 0 5 0 2 3 2 3 0 7 3.5" /></svg></b>
                             </a>
@@ -127,7 +127,7 @@ date: 0001-01-01
                           <ul class="bg-qnx-cream divide-(y qnx-dark)">
                             <template x-for="(file, index) in entry.files" hidden>
                               <li class="p-2">
-                                <a :href="'/_assets/qnx/files/'+ slugify(entry.title) +'-'+ slugify(file.title) +'.zip'" class="group inline-flex items-center space-x-2 motion-safe:transition hover:(text-blue-500) focus:(text-blue-500)" download>
+                                <a :href="'{{ '/' | url }}_assets/qnx/files/'+ slugify(entry.title) +'-'+ slugify(file.title) +'.zip'" class="group inline-flex items-center space-x-2 motion-safe:transition hover:(text-blue-500) focus:(text-blue-500)" download>
                                   <b class="w-[9px] h-[9px] text-qnx-line flex ring-(1 current) rounded-full opacity-50 transform rotate-90">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 7" class="m-auto w-[7px] h-[7px] fill-current" aria-hidden="true"><polygon points="3 7 3 5 0 5 0 2 3 2 3 0 7 3.5" /></svg>
                                   </b>
@@ -191,7 +191,7 @@ date: 0001-01-01
                           <div class="flex absolute inset-0"><div class="qnx-bevel"></div></div>
                         </template>
                         <a href="#" @click.prevent="qnxActive = index" :class="['group py-1 px-3 w-full flex items-center relative motion-safe:transition md:(text-sm space-x-2)', qnxActive === index ? 'bg-qnx-dark shadow-inner' : '']">
-                          <img :src="'/_assets/qnx/img/ico-'+ entry.ico +'.png'" :alt="entry.title +' icon'" class="w-[16px] h-[16px] object-contain object-center opacity-50 motion-safe:transition group-hover:(opacity-100) group-focus:(opacity-100)" />
+                          <img :src="'{{ '/' | url }}_assets/qnx/img/ico-'+ entry.ico +'.png'" :alt="entry.title +' icon'" class="w-[16px] h-[16px] object-contain object-center opacity-50 motion-safe:transition group-hover:(opacity-100) group-focus:(opacity-100)" />
                           <span class="hidden md:(inline-block)" x-text="entry.title"></span>
                         </a>
                       </div>
