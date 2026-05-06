@@ -5,6 +5,7 @@
   "scripts": {
     "start": "eleventy --serve --quiet",
     "build": "eleventy",
+    "ghpages": "eleventy --pathprefix=craigerskine.com",
     "format": "npx prettier --ignore-path ./.prettierignore --write public"
   },
   "keywords": [

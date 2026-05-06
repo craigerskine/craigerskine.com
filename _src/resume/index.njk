@@ -49,7 +49,7 @@ eleventyComputed:
         </div>
         <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
           <header class="print:(!mb-6 !py-2 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500/20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
-            <a href="/" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
+            <a href="{{ '/' | url }}" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block print:(w-14 h-14)">
                 <title>{{ resume.applicant }} logo</title>
                 <g fill-rule="evenodd" transform="translate(2,2)">
@@ -246,7 +246,7 @@ eleventyComputed:
       </div>
     </div>
 
-    <script src="/_assets/js/_app.js?v={% bust %}"></script>
+    <script src="{{ '/' | url }}_assets/js/_app.js?v={% bust %}"></script>
 
     {%- include 'analytics.njk' -%}
 

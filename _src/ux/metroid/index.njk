@@ -81,7 +81,7 @@ date: 0017-01-01
 
       <header class="pt-12 mb-12 w-full shrink-0">
         <hgroup class="flex flex-col items-center gap-2">
-          <p><img src="/_assets/img/ux/metroid/title.png" alt="Metroid" class="motion-safe:animate-pulse" /></p>
+          <p><img src="{{ '/' | url }}_assets/img/ux/metroid/title.png" alt="Metroid" class="motion-safe:animate-pulse" /></p>
           <h1 class="text-xs text-success font-black sm:text-base">Password Generator</h1>
         </hgroup>
       </header>
@@ -117,7 +117,7 @@ date: 0017-01-01
               <div class="flex flex-wrap justify-center gap-4">
                 <label x-tooltip="'Suit'">
                   <input type="checkbox" x-model="swimsuit" @change="updatePassword()" title="Suit" />
-                  <img src="/_assets/img/ux/metroid/samus.png" alt="Suit" :class="swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
+                  <img src="{{ '/' | url }}_assets/img/ux/metroid/samus.png" alt="Suit" :class="swimsuit ? 'object-right' : 'object-left'" class="w-8 h-16 object-cover" />
                 </label>
               </div>
             </section>
@@ -167,24 +167,24 @@ date: 0017-01-01
                   <label class="flex flex-col items-center" :class="name === 'kraid' && 'ml-auto'" x-tooltip="name.charAt(0).toUpperCase() + name.slice(1) +' statue'">
                     <input type="checkbox" x-model="statues[name]" @change="updatePassword()" :aria-label="name +' statue'" />
                     <img :src="'/_assets/img/ux/metroid/statue-'+ name +'.png'" :alt="name" :class="active ? '' : 'opacity-70 grayscale'" class="h-6" />
-                    <img src="/_assets/img/ux/metroid/statue-ext.png" alt="Kraid" :class="active ? 'h-4' : 'h-0'" class="w-2.5 transition-all" />
-                    <img src="/_assets/img/ux/metroid/statue-base.png" alt="Kraid" :class="active ? '' : 'opacity-70 grayscale'" class="h-4" />
+                    <img src="{{ '/' | url }}_assets/img/ux/metroid/statue-ext.png" alt="Kraid" :class="active ? 'h-4' : 'h-0'" class="w-2.5 transition-all" />
+                    <img src="{{ '/' | url }}_assets/img/ux/metroid/statue-base.png" alt="Kraid" :class="active ? '' : 'opacity-70 grayscale'" class="h-4" />
                   </label>
                 </template>
               </div>
               <div class="flex items-center justify-between gap-4">
                 <label x-tooltip="'Mother Brain'">
                   <input type="checkbox" x-model="brain" @change="updatePassword()" title="Mother Brain" />
-                  <img src="/_assets/img/ux/metroid/boss-motherbrain.png" alt="Mother Brain" class="h-24" x-show="!brain" />
-                  <img src="/_assets/img/ux/metroid/boss-motherbrain-x.png" alt="Mother Brain" class="h-24 block opacity-70 grayscale" x-show="brain" />
+                  <img src="{{ '/' | url }}_assets/img/ux/metroid/boss-motherbrain.png" alt="Mother Brain" class="h-24" x-show="!brain" />
+                  <img src="{{ '/' | url }}_assets/img/ux/metroid/boss-motherbrain-x.png" alt="Mother Brain" class="h-24 block opacity-70 grayscale" x-show="brain" />
                 </label>
                 <div class="flex flex-row-reverse gap-1.5">
                   <template x-for="(z, i) in zebetites" :key="i" hidden>
                     <label class="flex flex-col items-center" x-tooltip="'Zebetite '+ (i + 1)">
                       <input type="checkbox" :checked="z" @change="zebetites[i] = !zebetites[i]; updatePassword()" />
-                      <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4" />
-                      <img src="/_assets/img/ux/metroid/zebetite.png" :alt="'Zebetite '+ (i + 1)" class="h-8 transition-all" :class="zebetites[i] ? 'w-0' : 'w-full'" />
-                      <img src="/_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4 [transform:scaleY(-1)]" />
+                      <img src="{{ '/' | url }}_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4" />
+                      <img src="{{ '/' | url }}_assets/img/ux/metroid/zebetite.png" :alt="'Zebetite '+ (i + 1)" class="h-8 transition-all" :class="zebetites[i] ? 'w-0' : 'w-full'" />
+                      <img src="{{ '/' | url }}_assets/img/ux/metroid/zebetite-base.png" alt="Zebetite base" class="w-4 [transform:scaleY(-1)]" />
                     </label>
                   </template>
                 </div>

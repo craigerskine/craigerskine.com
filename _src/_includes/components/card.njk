@@ -1,7 +1,7 @@
 {%- macro card(param) -%}
 <li class="p-4 flex flex-col items-start relative motion-safe:(transition) hover:(-translate-y-1 -translate-x-1)">
   <div class="{{ 'pt-16' if param.ico }}">
-    <a{% if param.url === '#' %} @click.prevent{% endif %} href="{{ param.url }}" class="group text-gray-900 font-bold{% if param.url === '#' %} cursor-not-allowed{% endif %}">
+    <a{% if param.url === '#' %} @click.prevent{% endif %} href="{{ param.url | url }}" class="group text-gray-900 font-bold{% if param.url === '#' %} cursor-not-allowed{% endif %}">
       {{ param.title }}
       {%- if param.ico %}
         <span class="h-12 w-12 text-2xl btn btn-{{ param.color }} absolute top-3 left-3" aria-hidden="true">

@@ -22,7 +22,7 @@
   class="flex items-center justify-between gap-1"
 >
   {%- if page.url !== '/resume/' %}
-    <a href="/" class="group flex-none rounded-full" aria-hidden="true">
+    <a href="{{ '/' | url }}" class="group flex-none rounded-full" aria-hidden="true">
       <div class="btn btn-gray p-2 w-12 h-12 text-2xl md:(w-14 h-14)">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" class="w-full h-full fill-current">
           <title>Craig Erskine</title>
@@ -39,7 +39,7 @@
         {%- for item in collections.all | eleventyNavigation %}
           {%- if item.url !== '/' %}
           <li class="nav-item text-sm">
-            <a href="{{ item.url }}" class="group py-1.5 px-4 block relative after:({{ bubble }}) rounded-full motion-safe:(transition) hover:(after:(opacity-100 scale-100)) [&.active]:(after:(opacity-100 scale-100)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+            <a href="{{ item.url | url }}" class="group py-1.5 px-4 block relative after:({{ bubble }}) rounded-full motion-safe:(transition) hover:(after:(opacity-100 scale-100)) [&.active]:(after:(opacity-100 scale-100)){% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
               <span>{{ item.key }}</span>
             </a>
           </li>
@@ -69,7 +69,7 @@
       {%- for item in collections.all | eleventyNavigation %}
         {%- if item.url !== '/' %}
         <li>
-          <a href="{{ item.url }}" class="py-2 px-3 block rounded-lg transition [&:hover,&.active]:(bg-gray-950 text-gray-200) {% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+          <a href="{{ item.url | url }}" class="py-2 px-3 block rounded-lg transition [&:hover,&.active]:(bg-gray-950 text-gray-200) {% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
             {#- <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) flex items-center justify-center rounded-md group-hover:text-white">{{ item.title }}</small> -#}
             <span>{{ item.key }}</span>
           </a>
