@@ -1,3 +1,5 @@
+{%- set pageTitle -%}{{ title +' - '+ site.meta.title if title else site.meta.title  +' - '+ site.meta.description }}{%- endset -%}
+
 {%- from 'components/heading.njk' import heading -%}
 {%- from 'components/social.njk' import social -%}
 {%- from 'components/ui-grunge.njk' import grunge -%}
@@ -8,22 +10,23 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{{ title +' - '+ site.meta.title if title else site.meta.title  +' - '+ site.meta.description }}</title>
+    <title>{{ pageTitle | safe }}</title>
     <meta name="description" content="{{ site.meta.description }}" />
     <meta name="author" content="{{ site.meta.author + ' - '+ site.meta.url }}" />
     <meta name="generator" content="{{ eleventy.generator }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content="{{ site.meta.url }}/android-chrome-512x512.png" />
-
-    <meta property="og:title" content="{{ site.meta.title }}" />
+    <meta name="title" content="{{ pageTitle | safe }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ site.meta.url }}{{ page.url | url }}" />
+    <meta property="og:title" content="{{ pageTitle | safe }}" />
     <meta property="og:description" content="{{ site.meta.description }}" />
-    <meta property="og:url" content="{{ site.meta.url }}{{ page.url }}" />
-    <meta property="og:image" content="{{ site.meta.url }}/og-image.png" />
-    <meta property="og:image:width" content="500" />
-    <meta property="og:image:height" content="500" />
-    <meta name="theme-color" content="#111111" />
+    <meta property="og:image" content="{{ site.meta.url }}{{ page.url | url }}og-image.png" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="{{ site.meta.url }}{{ page.url | url }}" />
+    <meta property="twitter:title" content="{{ pageTitle | safe }}" />
+    <meta property="twitter:description" content="{{ site.meta.description }}" />
+    <meta property="twitter:image" content="{{ site.meta.url }}{{ page.url | url }}og-image.png" />
 
     <link rel="icon" type="image/x-icon" href="{{ '/' | url }}favicon.ico" />
     <link rel="apple-touch-icon" href="{{ '/' | url }}apple-touch-icon.png" />
