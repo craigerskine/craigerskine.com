@@ -1,4 +1,4 @@
-{%- set pageTitle -%}{{ title +' - '+ site.meta.title if title else site.meta.title  +' - '+ site.meta.description }}{%- endset -%}
+{%- set pageTitle -%}{{ title + site.meta.separator + site.meta.title if title else site.meta.title  + site.meta.separator + site.meta.description }}{%- endset -%}
 
 {%- from 'components/heading.njk' import heading -%}
 {%- from 'components/social.njk' import social -%}
