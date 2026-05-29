@@ -14,7 +14,7 @@ hardware:
     url: https://amazon.com/dp/B09R9NT3FT?tag=qrayg-20
 
   - type: Living Room
-    name: Sonos › Beam Gen 2
+    name: Sonos › Beam
     sub:
       - Soundbar
       - Gen 2
@@ -45,10 +45,10 @@ hardware:
     url: https://amazon.com/dp/B09R9BVJ9Q?tag=qrayg-20
 
   - type: Office
-    name: Sonos › Beam Gen 2
+    name: Sonos › Beam
     sub:
       - Soundbar
-      - Gen 1
+      - Gen 2
       - Black
     url: https://amazon.com/dp/B09GPYL7BJ?tag=qrayg-20
 
@@ -66,6 +66,21 @@ hardware:
       - Subwoofer
       - Black
     url: https://amazon.com/dp/B0BGJV72YM?tag=qrayg-20
+
+  - type: Bedroom
+    name: Sony › K-43S20M2
+    sub:
+      - TV
+      - 4K
+    url: https://amazon.com/dp/B0DYKBNW89?tag=qrayg-20
+
+  - type: Bedroom
+    name: Sonos › Beam
+    sub:
+      - Soundbar
+      - Gen 1
+      - Black
+    url: https://amazon.com/dp/B09GPYL7BJ?tag=qrayg-20
 
   - type: Basement
     name: Sony › XBR43X800E
