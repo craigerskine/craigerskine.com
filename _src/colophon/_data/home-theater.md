@@ -5,8 +5,8 @@ ico: mdi:speaker
 color:
   title: pink
   shade: 500
-hardware:
 
+hardware:
   - type: Living Room
     name: Sony › KD55X85K
     sub:
@@ -14,7 +14,7 @@ hardware:
     url: https://amazon.com/dp/B09R9NT3FT?tag=qrayg-20
 
   - type: Living Room
-    name: Sonos › Beam
+    name: Sonos › Beam Gen 2
     sub:
       - Soundbar
       - Gen 2
@@ -37,13 +37,15 @@ hardware:
     url: https://amazon.com/dp/B0BGJV72YM?tag=qrayg-20
 
   - type: Office
-    name: Sony › XBR43X800E
+    name: Sony › A90K
     sub:
       - TV
-    url: https://amazon.com/dp/B01MZFJWOS?tag=qrayg-20
+      - OLED
+      - 4K
+    url: https://amazon.com/dp/B09R9BVJ9Q?tag=qrayg-20
 
   - type: Office
-    name: Sonos › Beam
+    name: Sonos › Beam Gen 2
     sub:
       - Soundbar
       - Gen 1
@@ -66,10 +68,11 @@ hardware:
     url: https://amazon.com/dp/B0BGJV72YM?tag=qrayg-20
 
   - type: Basement
-    name: Sony › KDL40V4100
+    name: Sony › XBR43X800E
     sub:
       - TV
-    url: https://crutchfield.com/S-486JN9Njsnm/p_15840V4100/Sony-KDL-40V4100.html
+      - 4K
+    url: https://amazon.com/dp/B01MZFJWOS?tag=qrayg-20
 
   - type: Basement
     name: Sonos › Playbar
@@ -106,9 +109,15 @@ hardware:
     url: https://amazon.com/dp/B07Z8NHNZZ?tag=qrayg-20
 
   - type: Garage
-    name: Panasonic › TC-P50ST60
+    name: Sony › KDL40V4100
     sub:
       - TV
-    url: https://amazon.com/dp/B00AVRJK3K?tag=qrayg-20
+    url: https://crutchfield.com/S-486JN9Njsnm/p_15840V4100/Sony-KDL-40V4100.html
+
+  # - type: Garage
+  #   name: Panasonic › TC-P50ST60
+  #   sub:
+  #     - TV
+  #   url: https://amazon.com/dp/B00AVRJK3K?tag=qrayg-20
 
 ---
