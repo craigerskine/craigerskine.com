@@ -87,6 +87,8 @@ install({
   ],
 });
 
+const prefix = window.__pathPrefix || '/';
+
 injectGlobal`
   :root {
     --media-default: #434341;
@@ -253,23 +255,23 @@ injectGlobal`
     .media-box-sm { padding: 0; width: 102px; height: 102px; border-radius: 2px; }
     .media-box-tl { padding: 0; width: 102px; height: 140px; border-radius: 2px; }
     /* cases */
-    .media-case:after { width: 100%; height: 100%; background: url(/_assets/img/media/cases/case.png) no-repeat 0 0; content: ""; position: absolute; top: 0; left: 0; }
-    .media-ps5:after,.media-ps4:after { background-image: url(/_assets/img/media/cases/sony-ps5.png); }
-    .media-ps3:after { background-image: url(/_assets/img/media/cases/sony-ps3.png); }
-    .media-psv:after { background-image: url(/_assets/img/media/cases/sony-psv.png); }
-    .media-psp:after { background-image: url(/_assets/img/media/cases/sony-psp.png); }
-    .media-switch-2:after { background-image: url(/_assets/img/media/cases/n-switch-2.png); }
-    .media-switch:after { background-image: url(/_assets/img/media/cases/n-switch.png); }
-    .media-3ds:after,.media-ds:after { background-image: url(/_assets/img/media/cases/case-sm.png); }
-    .media-xb-x:after,.media-xb-one:after { background-image: url(/_assets/img/media/cases/ms-xbx.png); }
-    .media-blu-ray:after { background-image: url(/_assets/img/media/cases/blu-ray.png); }
-    .media-cd:after { background-image: url(/_assets/img/media/cases/cd.png); }
-    .media-cd-tl:after { background-image: url(/_assets/img/media/cases/cd-tl.png); }
-    .media-box:after { background-image: url(/_assets/img/media/cases/box.png); }
-    .media-box-wd:after { background-image: url(/_assets/img/media/cases/box-wd.png); }
-    .media-box-md:after { background-image: url(/_assets/img/media/cases/box-md.png); }
-    .media-box-sm:after { background-image: url(/_assets/img/media/cases/box-sm.png); }
-    .media-box-tl:after { background-image: url(/_assets/img/media/cases/box-tl.png); }
+    .media-case:after { width: 100%; height: 100%; background: url(${prefix}_assets/img/media/cases/case.png) no-repeat 0 0; content: ""; position: absolute; top: 0; left: 0; }
+    .media-ps5:after,.media-ps4:after { background-image: url(${prefix}_assets/img/media/cases/sony-ps5.png); }
+    .media-ps3:after { background-image: url(${prefix}_assets/img/media/cases/sony-ps3.png); }
+    .media-psv:after { background-image: url(${prefix}_assets/img/media/cases/sony-psv.png); }
+    .media-psp:after { background-image: url(${prefix}_assets/img/media/cases/sony-psp.png); }
+    .media-switch-2:after { background-image: url(${prefix}_assets/img/media/cases/n-switch-2.png); }
+    .media-switch:after { background-image: url(${prefix}_assets/img/media/cases/n-switch.png); }
+    .media-3ds:after,.media-ds:after { background-image: url(${prefix}_assets/img/media/cases/case-sm.png); }
+    .media-xb-x:after,.media-xb-one:after { background-image: url(${prefix}_assets/img/media/cases/ms-xbx.png); }
+    .media-blu-ray:after { background-image: url(${prefix}_assets/img/media/cases/blu-ray.png); }
+    .media-cd:after { background-image: url(${prefix}_assets/img/media/cases/cd.png); }
+    .media-cd-tl:after { background-image: url(${prefix}_assets/img/media/cases/cd-tl.png); }
+    .media-box:after { background-image: url(${prefix}_assets/img/media/cases/box.png); }
+    .media-box-wd:after { background-image: url(${prefix}_assets/img/media/cases/box-wd.png); }
+    .media-box-md:after { background-image: url(${prefix}_assets/img/media/cases/box-md.png); }
+    .media-box-sm:after { background-image: url(${prefix}_assets/img/media/cases/box-sm.png); }
+    .media-box-tl:after { background-image: url(${prefix}_assets/img/media/cases/box-tl.png); }
 
     /* tippy */
     .tippy-box[data-state="hidden"] { @apply opacity-0 translate-y-1; }

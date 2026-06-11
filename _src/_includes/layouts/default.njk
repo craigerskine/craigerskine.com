@@ -150,6 +150,7 @@
     </div>
 
     {% renderblock 'js' %}
+    <script>window.__pathPrefix = "{{ '/' | url }}";</script>
     <script src="{{ '/' | url }}_assets/js/_app.js?v={% bust %}"></script>
 
   </body>
