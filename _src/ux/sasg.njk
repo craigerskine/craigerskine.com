@@ -22,24 +22,24 @@ date: 0008-01-01
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title x-text="meta_title"></title>
-    <meta name="description" :content="meta_desc" />
+    <title x-text="meta.title"></title>
+    <meta name="description" :content="meta.desc" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   </head>
 
-  <body class="bg-(brand top repeat-y fixed) text-content leading-tight font-(serif) !block" style="display: none; background-image: url('{{ '/' | url }}_assets/img/ux/sasg/pattern_card.gif');">
+  <body class="[background-color:var(--color-brand)] bg-(top repeat-y fixed) [color:var(--color-content)] leading-tight font-(serif) !block" style="display: none; background-image: url('{{ '/' | url }}_assets/img/ux/sasg/pattern_card.gif');">
     <div class="bg-gradient-to-r from-black to-black via-transparent fixed inset-0" aria-hidden="true"></div>
     <div id="app" class="mx-auto py-3 max-w-[566px] min-h-screen flex-(& col) relative">
       <header class="py-2 flex-none">
-        <h1><a href="#" @click.prevent><img src="{{ '/' | url }}_assets/img/ux/sasg/header_sasg.gif" :alt="meta_desc" /></a></h1>
+        <h1><a href="#" @click.prevent><img src="{{ '/' | url }}_assets/img/ux/sasg/header_sasg.gif" :alt="meta.desc" /></a></h1>
       </header>
       <main class="px-4 flex-1">
         <section class="mx-auto max-w-[448px]">
-          <p><span class="text-2xl">W</span>elcome to the <img src="{{ '/' | url }}_assets/img/ux/sasg/logo_sasg_tiny.gif" :alt="meta_title" class="inline-block align-baseline" /> <i>INTERNET SERVICES</i>. SASG is an alliance of well-known Amiga shareware authors with the spirit to enrich the shareware community with an unprecedented service & performance. If you are a first-time visitor of our website we advise you to read our introductory <a href="#">help</a> page and the SASG <a href="#">news</a> summary before you proceed.</p>
+          <p><span class="text-2xl">W</span>elcome to the <img src="{{ '/' | url }}_assets/img/ux/sasg/logo_sasg_tiny.gif" :alt="meta.title" class="inline-block align-baseline" /> <i>INTERNET SERVICES</i>. SASG is an alliance of well-known Amiga shareware authors with the spirit to enrich the shareware community with an unprecedented service & performance. If you are a first-time visitor of our website we advise you to read our introductory <a href="#">help</a> page and the SASG <a href="#">news</a> summary before you proceed.</p>
         </section>
         <section>
-          <ul class="mx-auto pt-6 pb-12 max-w-[440px] text-center grid-(& cols-1) justify-items-center gap-2 sm:(grid-cols-3)">
-            <li class="order-first text-2xl leading-none uppercase sm:(order-3)">SASG <span class="text-4xl">p</span>roduct<span class="text-4xl">s</span></li>
+          <ul class="mx-auto pt-6 pb-12 max-w-xs text-center grid-(& cols-2) justify-items-center gap-2 sm:(max-w-[440px] grid-cols-3)">
+            <li class="pb-6 col-span-2 order-first text-2xl leading-none uppercase sm:(pb-0 col-auto order-3)"><span class="block">SASG</span> <span class="text-4xl">p</span>roduct<span class="text-4xl">s</span></li>
             <template x-for="(item, index) in products" hidden>
               <li :class="[item.order === 1 ? 'order-first sm:col-span-3 sm:order-'+ item.order : 'sm:(order-'+ item.order +')', item.order === 5 ? 'sm:col-span-3' : '']">
                 <a href="#" @click.prevent class="inline-block motion-safe:(transition) hover:(-translate-y-1)"><img :src="'{{ '/' | url }}_assets/img/ux/sasg/button_'+ item.title.toLowerCase() +'.gif'" :alt="item.title" /></a>
@@ -74,8 +74,10 @@ date: 0008-01-01
     <script>
       document.addEventListener('alpine:init', () => {
         Alpine.data('app', () => ({
-          meta_title: 'SASG International',
-          meta_desc: 'Standardized Amiga Shareware Group',
+          meta: {
+            title: 'SASG International',
+            desc: 'Standardized Amiga Shareware Group',
+          },
           products: [
             { title: 'MUI', order: 1, },
             { title: 'MWB', order: 2, },

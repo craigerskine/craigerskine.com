@@ -9,11 +9,6 @@ install({
   hash: false,
   theme: {
     extend: {
-      colors: ({ theme }) => ({
-        brand: '#040635',
-        content: '#EBE5FF',
-        link: '#FFD34F',
-      }),
       fontFamily: ({ theme }) => ({
         serif: 'Times New Roman,'+ theme('fontFamily.serif'),
       }),
@@ -25,8 +20,18 @@ install({
 });
 // global css
 injectGlobal`
+  :root {
+    --color-brand: #040635;
+    --color-content: #EBE5FF;
+    --color-link: #FFD34F;
+  }
   @layer base {
-    a { @apply text-link underline; }
+    a {
+      @apply [color:var(--color-link)] underline transition;
+      &:hover {
+        color: color-mix(in oklab, var(--color-brand) 20%, var(--color-link));
+      }
+    }
     [x-cloak] { @apply hidden; }
   }
 `

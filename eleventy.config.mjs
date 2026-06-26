@@ -26,6 +26,7 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addWatchTarget('./_src/_app/_app.js');
+  eleventyConfig.addWatchTarget('./_src/_app/sasg.js');
 
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
