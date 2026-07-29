@@ -86,6 +86,7 @@ hardware:
       - Nutcracker
       - Lumos
       - Graphene
+      - Iroko
     url: https://polychromedsp.com/
 
   - type: Plugin
