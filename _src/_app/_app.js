@@ -108,7 +108,7 @@ injectGlobal`
   @layer base {
     [x-cloak] { @apply hidden; }
     body { @apply !block; }
-    :focus-visible { @apply outline-(& 2 solid current) outline-offset-1; }
+    :focus-visible { @apply outline-(& 2 solid current offset-1) rounded; }
 
     .dropdown {
       @apply relative inline-block;

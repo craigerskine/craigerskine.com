@@ -8,6 +8,8 @@ eleventyComputed:
     order: 5
 ---
 
+{% set __underline = 'w-full h-px bg-current block transform scale-0 motion-safe:(transition) group-hover:(scale-100) group-focus-visible:(scale-100)' %}
+
 {%- macro region(title='') -%}
 <section>
   <h2 class="print:(!mb-4) mb-10 border-(b-2 gray-800) font-black tracking-wider uppercase">
@@ -15,10 +17,6 @@ eleventyComputed:
   </h2>
   {{ caller() }}
 </section>
-{%- endmacro -%}
-
-{%- macro underline() -%}
-<b class="w-full h-px bg-current block transform scale-0 motion-safe:(transition) group-hover:(scale-100) group-focus:(scale-100)" aria-hidden="true"></b>
 {%- endmacro -%}
 
 <!doctype html>
@@ -29,7 +27,7 @@ eleventyComputed:
     <title>{{ resume.applicant }} - {{ title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..900&display=swap" rel="stylesheet" />
     <style>
       @media print {
         @page {
@@ -49,7 +47,7 @@ eleventyComputed:
         </div>
         <div class="print:(shadow-none) resume mx-auto ring-(2 inset white) relative rounded-sm shadow-2xl xl:(max-w-[1060px])">
           <header class="print:(!mb-6 !py-2 flex-row) mb-12 py-6 px-6 border-(b dashed gray-500/20) flex-(& col) items-center gap-5 relative z-10 md:(py-16 px-12) xl:(flex-row)">
-            <a href="{{ '/' | url }}" class="flex-none self-center motion-safe:transition hover:(scale-125 -rotate-6)">
+            <a href="{{ '/' | url }}" class="flex-none self-center rounded-full motion-safe:transition hover:(scale-125 -rotate-6)">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 204" role="img" focusable="false" aria-hidden="true" class="p-1 w-[80px] h-[80px] fill-current text-gray-500 block print:(w-14 h-14)">
                 <title>{{ resume.applicant }} logo</title>
                 <g fill-rule="evenodd" transform="translate(2,2)">
@@ -68,9 +66,9 @@ eleventyComputed:
                   <b class="pb-2 w-full block">Contact:</b>
                   <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 flex-(& 1 col) justify-center gap-y-2 md:(pr-12 mb-0)">
                     <li>
-                      <a href="mailto:{{ resume.email }}" class="group inline-block relative trnasition hover:(text-blue-500) focus:(text-blue-500)">
+                      <a href="mailto:{{ resume.email }}" class="group inline-block relative trnasition hover:(text-blue-500) focus-visible:(text-blue-500)">
                         {{ resume.email }}
-                        {{ underline() }}
+                        <b class="{{ __underline }}" aria-hidden="true"></b>
                       </a>
                     </li>
                   </ul>
@@ -79,7 +77,7 @@ eleventyComputed:
                   <b class="pb-2 w-full block">@{{ resume.username }}</b>
                   <ul class="mb-5 border-(l gray-500/25 dashed) pl-5 text-4xl flex-(& 1) items-center gap-x-3 md:(pr-12 mb-0)">
                     {%- for soc in resume.social %}
-                    <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus:(text-{{ soc.color }}-800 scale-110)'"><iconify-icon icon="{{ soc.ico }}" class="iconify" noobserver></iconify-icon><b class="sr-only">{{ soc.ico }}</b></a></li>
+                    <li><a href="{{ soc.url }}" class="text-{{ soc.color }}-500 block motion-safe:transition hover:(text-{{ soc.color }}-800 scale-110) focus-visible:(text-{{ soc.color }}-800 scale-110)'" aria-label="{{ soc.ico }}"><iconify-icon icon="{{ soc.ico }}" class="iconify block" noobserver></iconify-icon></a></li>
                     {%- endfor %}
                   </ul>
                 </li>
@@ -95,13 +93,13 @@ eleventyComputed:
                 <ul class="print:(text-xs) text-sm space-y-2">
                   {%- for site in resume.personal.sites %}
                   <li>
-                    <a href="{{ site.url }}" class="group font-bold inline-block opacity-80 motion-safe:transition hover:(text-blue-500 opacity-100) focus:(text-blue-500 opacity-100)">
+                    <a href="{{ site.url }}" class="group font-bold inline-block opacity-80 motion-safe:transition hover:(text-blue-500 opacity-100) focus-visible:(text-blue-500 opacity-100)">
                       {# <i class="mr-1 text-xs font-mono inline-block opacity-50" aria-hidden="true">//</i> #}
                       <span class="inline-flex items-center gap-2">
                         <iconify-icon icon="fa6-solid:globe" class="iconify opacity-50" noobserver></iconify-icon>
                         {{ site.title }}
                       </span>
-                      {{ underline() }}
+                      <b class="{{ __underline }}" aria-hidden="true"></b>
                     </a>
                   </li>
                   {%- endfor %}
@@ -201,8 +199,8 @@ eleventyComputed:
               <ul class="print:!space-y-6 space-y-12">
                 {%- for accomplishment in resume.accomplishments %}
                 <li>
-                  <a href="{{ accomplishment.url }}" class="group space-x-6 flex items-center motion-safe:transition hover:(scale-110) focus:(scale-110)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" focusable="false" aria-hidden="true" class="w-16 h-16 text-current fill-current flex-none opacity-20 motion-safe:transition group-hover:(-rotate-6) group-focus:(-rotate-6)">
+                  <a href="{{ accomplishment.url }}" class="group space-x-6 flex items-center motion-safe:transition hover:(scale-110) focus-visible:(scale-110)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" focusable="false" aria-hidden="true" class="w-16 h-16 text-current fill-current flex-none opacity-20 motion-safe:transition group-hover:(-rotate-6) group-focus-visible:(-rotate-6)">
                       <title>{{ accomplishment.title }}</title>
                       {{ accomplishment.ico | safe }}
                     </svg>
@@ -219,7 +217,7 @@ eleventyComputed:
               <ul class="print:(!grid !grid-cols-4) flex-(& wrap) justify-center gap-5">
                 {%- for hobby in resume.hobbies %}
                 <li>
-                  <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(2 gray-500/20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-500/100) scale-110) focus:(ring-(4 blue-500/100) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
+                  <a href="{{ hobby.url }}" class="print:(!w-14 !h-14) w-24 h-24 ring-(2 gray-500/20) flex-(& col) items-center justify-center rounded-full motion-safe:transition hover:(ring-(4 blue-500/100) scale-110) focus-visible:(ring-(4 blue-500/100) scale-110) {% if hobby.url == '#' %}pointer-events-none{% endif %}">
                     <iconify-icon icon="{{ hobby.ico }}" class="iconify text-4xl print:(text-lg)" noobserver></iconify-icon>
                     <small class="mt-2 text-xs tracking-tight opacity-80 print:(!mt-0 text-[6px])">{{ hobby.title }}</small>
                   </a>
@@ -235,9 +233,9 @@ eleventyComputed:
               <polygon points="8 3 11 0 12 0 16 4 16 5 9 12 7 12 0 5 0 4 4 0 5 0" transform="translate(0,2)"></polygon>
             </svg>
             by
-            <a href="https://craigerskine.com/" class="group mx-1 font-bold inline-block motion-safe:transition hover:(text-blue-600) focus:(text-blue-600)">
+            <a href="https://craigerskine.com/" class="group mx-1 font-bold inline-block motion-safe:transition hover:(text-blue-600) focus-visible:(text-blue-600)">
               {{ resume.applicant }}
-              {{ underline() }}
+              <b class="{{ __underline }}" aria-hidden="true"></b>
             </a>
           </footer>
           <b class="resume-bg bg-white bg-fixed [background-image:url({{ '/' | url }}_assets/img/bg-paper.png)] absolute inset-0 z-[-1] print:(!hidden)" aria-hidden="true"></b>

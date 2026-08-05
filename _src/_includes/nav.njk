@@ -69,7 +69,7 @@
       {%- for item in collections.all | eleventyNavigation %}
         {%- if item.url !== '/' %}
         <li>
-          <a href="{{ item.url | url }}" class="py-2 px-3 block rounded-lg transition [&:hover,&.active]:(bg-gray-950 text-gray-200) {% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
+          <a href="{{ item.url | url }}" class="py-2 px-3 block rounded-lg transition [&:hover,&.active]:(bg-gray-950 text-gray-200) [&:focus-visible]:(outline-1 -outline-offset-2) {% if item.url !== '/' %}{% if item.url === page.url or item.url in page.url %} active{% endif %}{% endif %}"{%- if item.url === page.url or item.url in page.url %} aria-current="page"{%- endif -%}>
             {#- <small class="btn-pri w-8 h-8 bg-white/10 text-(white/60 xs) flex items-center justify-center rounded-md group-hover:text-white">{{ item.title }}</small> -#}
             <span>{{ item.key }}</span>
           </a>
