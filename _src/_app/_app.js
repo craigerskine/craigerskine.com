@@ -84,6 +84,8 @@ install({
     ['btn-', ({ $$ }) => `bg-white/50 ring-(inset 1 black/10) shadow motion-safe:(transition) group-hover:(bg-${$$}-500/50 bg-gradient-to-b from-white/30 via-transparent to-${$$}-500/30 text-${$$}-800 ring-${$$}-900/20 shadow-(lg ${$$}-500/30)) dark:(bg-black/20 ring-white/10)`],
     ['tab-', ({ $$ }) => `flex items-center justify-center relative rounded-full ring-(1 gray-200 inset) shadow motion-safe:(transition) after:(border-(t white/50) absolute inset-0 content-[''] rounded-full) bg-${$$}-500/50 bg-gradient-to-b from-white/30 via-transparent to-${$$}-500/30 text-${$$}-800 ring-${$$}-900/20 shadow-(lg ${$$}-500/30)`],
     ['bg-grid', { 'background-image': 'url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 6 6\' width=\'6\' height=\'6\' fill=\'currentColor\'><path d=\'m6 5v1h-1v-1zm-4 0v1h-1v-1zm3-1v1h-1v-1zm-2 0v1h-1v-1zm1-1v1h-1v-1zm-1-1v1h-1v-1zm2 0v1h-1v-1zm-3-1v1h-1v-1zm4 0v1h-1v-1zm-5-1v1h-1v-1z\' /></svg>")' }],
+    ['modal-middle', {'@apply': 'place-items-center [&>.modal-box]:(w-11/12 h-auto max-w-[32rem] [max-height:calc(100vh-5em)] [translate:0_2%] scale-100 rounded-xl)'}],
+    ['modal-bottom', {'@apply': 'place-items-end [&>.modal-box]:(w-full h-auto max-w-none [max-height:calc(100vh-5em)] [translate:0_100%] scale-100 rounded-none)'}],
   ],
 });
 
@@ -217,6 +219,86 @@ injectGlobal`
       0% {
         opacity: 0;
       }
+    }
+
+    /* modal */
+    .modal {
+      @apply
+        m-0
+        p-0
+        w-full
+        h-full
+        max-w-none
+        max-h-[none]
+        pointer-events-none
+        grid
+        items-center
+        justify-items-center
+        invisible
+        fixed
+        inset-0
+        bg-transparent
+        text-[inherit];
+      transition:
+        overlay 0.3s allow-discrete,
+        visibility 0.3s allow-discrete,
+        background-color 0.3s ease-out,
+        opacity 0.1s ease-out;
+      overflow: clip;
+      overscroll-behavior: contain;
+      z-index: 999;
+      scrollbar-gutter: auto;
+
+      &::backdrop { @apply hidden; }
+
+      &[open] {
+        @apply pointer-events-auto visible opacity-100;
+        transition:
+          visibility 0s allow-discrete,
+          background-color 0.3s ease-out,
+          opacity 0.1s ease-out;
+        background-color: oklch(0% 0 0/ 0.4);
+
+        & > .modal-box {
+          translate: 0 0;
+          scale: 1;
+          opacity: 1;
+        }
+
+        &:root:has(&) { --page-scroll-lock: ; }
+      }
+
+      @starting-style { &[open] { @apply opacity-0; } }
+    }
+
+    .modal-action {
+      @apply mt-6 flex justify-end gap-2;
+    }
+
+    .modal-toggle {
+      @apply fixed h-0 w-0 appearance-none opacity-0;
+    }
+
+    .modal-backdrop {
+      @apply col-start-1 row-start-1 grid self-stretch justify-self-stretch text-transparent;
+      z-index: -1;
+      & button {
+        @apply cursor-pointer;
+      }
+    }
+
+    .modal-box {
+      @apply bg-gray-100 col-start-1 row-start-1 max-h-screen w-11/12 max-w-[32rem] p-6 rounded-xl;
+      transition:
+        translate 0.3s ease-out,
+        scale 0.3s ease-out,
+        opacity 0.2s ease-out 0.05s,
+        box-shadow 0.3s ease-out;
+      scale: 95%;
+      opacity: 0;
+      box-shadow: oklch(0% 0 0/ 0.25) 0px 25px 50px -12px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
 
     /* media cases */

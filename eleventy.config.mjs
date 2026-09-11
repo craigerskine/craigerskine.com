@@ -19,6 +19,7 @@ export default function (eleventyConfig) {
     '_src/_assets/img': '_assets/img',
     '_src/_assets/css': '_assets/css',
     '_src/_assets/font': '_assets/font',
+    '_src/_assets/music': '_assets/music',
     '_src/_assets/qnx': '_assets/qnx',
     '_src/_assets/twitch': '_assets/twitch',
     '_src/ux/metroid/_root': 'ux/metroid',

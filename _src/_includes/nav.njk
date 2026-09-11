@@ -18,7 +18,7 @@
   }"
   x-id="['nav-dropdown']"
   @keydown.escape.prevent="close($refs.button)"
-  @focusin.window="!$refs.panel.contains($event.target) && close()"
+  @focusin.window="{#- !$refs.panel.contains($event.target) && close() -#}"
   class="flex items-center justify-between gap-1"
 >
   {%- if page.url !== '/resume/' %}
