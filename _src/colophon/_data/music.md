@@ -7,13 +7,13 @@ color:
   shade: 500
 hardware:
 
-  - type: Guitar
-    name: Kiesel › Kyber Headless
-    sub:
-      - 2025
-      - Custom 6
-      - Fishman Fluence
-    url: https://kieselguitars.com/series/guitar/kyber-headless
+  # - type: Guitar
+  #   name: Kiesel › Kyber Headless
+  #   sub:
+  #     - 2025
+  #     - Custom 6
+  #     - Fishman Fluence
+  #   url: https://kieselguitars.com/series/guitar/kyber-headless
 
   - type: Guitar
     name: Kiesel › Zeus
